@@ -6,22 +6,23 @@
 
       home-manager = {
         url = "github:nix-community/home-manager/release-22.05";
+        inputs.nixpkgs.follows = "nixpkgs";
       };
     };
-  description = "main";
+  description = "System configuration";
   outputs = { self, nixpkgs, unstable, home-manager }: {
+
+    homeManagerConfigurations.denis = home-manager.lib.homeManagerConfiguration {
+      modules = [
+        ./home.nix
+      ];
+    };
+
     nixosConfigurations.Denis-N = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./hardware-configuration.nix
         ./configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.denis = import ./home.nix;
-        }
-
       ];
     };
   };
