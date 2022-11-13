@@ -478,6 +478,9 @@ in
     # };
   };
 
+  users.extraGroups.vboxusers.members = [ "denis" ];
+  virtualisation.virtualbox.host.enable = true;
+
   networking = {
     hostName = "Denis-N";
     extraHosts = ''
