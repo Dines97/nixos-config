@@ -1,8 +1,10 @@
 {
   inputs =
     {
+      # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
       nixpkgs.url = "github:NixOS/nixpkgs/release-22.05";
-      unstable.url = "github:NixOS/nixpkgs/master";
+      unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
       home-manager = {
         url = "github:nix-community/home-manager/release-22.05";
@@ -10,7 +12,7 @@
       };
     };
   description = "System configuration";
-  outputs = { self, nixpkgs, unstable, home-manager }: {
+  outputs = { self, nixpkgs, home-manager, unstable }: {
 
     homeManagerConfigurations.denis = home-manager.lib.homeManagerConfiguration {
       modules = [
@@ -26,5 +28,4 @@
       ];
     };
   };
-
 }

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, unstable, ... }:
 {
   home.username = "denis";
 
@@ -102,7 +102,7 @@
     gnome.gnome-keyring
     gnome.dconf-editor
     gnome.gnome-shell-extensions
-    # gnomeExtensions.tray-icons-reloaded
+    gnomeExtensions.tray-icons-reloaded
     # gnomeExtensions.app-icons-taskbar
     gnomeExtensions.appindicator
     # gnomeExtensions.appindicator
