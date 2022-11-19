@@ -1,6 +1,58 @@
 { config, pkgs, unstable, ... }:
+
+let
+  python-bot = p: with p; with pkgs.python310Packages; [
+    discordpy
+    sqlalchemy
+    google-cloud-texttospeech
+    setuptools
+    psycopg2
+    pylint
+    langcodes
+    language-data
+
+    tkinter
+  ];
+
+  python-ml = p: with p; with pkgs.python310Packages; [
+    # jupyter
+    notebook
+    # jupyterlab
+    pandas
+    numpy
+    scikit-learn
+    matplotlib
+    discordpy
+
+    (tensorflow-bin.override { cudaSupport = true; })
+    # tensorflowWithCuda
+
+    Keras
+
+    gym
+    pytorch
+    torchvision
+    pyglet
+    seaborn
+  ];
+
+  python-with-packages = pkgs.python310.withPackages python-bot;
+in
+
+let
+  ulauncherDesktopItem = pkgs.makeDesktopItem {
+    name = "Ulauncher";
+    desktopName = "Ulauncher";
+    icon = "ulauncher";
+    exec = "ulauncher";
+    comment = "Application launcher for Linux";
+    categories = [ "GNOME" "GTK" "Utility" ];
+  };
+in
+
 {
   home.username = "denis";
+  home.stateVersion = "22.05";
 
   nixpkgs.config.allowUnfree = true;
 
@@ -49,6 +101,11 @@
     appimage-run
     gwe
 
+    # Xmonad
+    # dmenu
+    # haskellPackages.xmobar
+    # feh
+
     # Nix
     unstable.rnix-lsp
     unstable.nixpkgs-fmt
@@ -94,6 +151,10 @@
     htop
     ulauncher
     ulauncherDesktopItem
+    wget
+    jdk
+
+    (discord.override { nss = nss_latest; })
 
     # Gnome
     # chrome-gnome-shell
@@ -140,8 +201,8 @@
 
     # JavaScript
     # (nodejs6.override { enableNpm = false; })
-    nodejs6
-    nodePackages.pnpm
+    # nodejs6
+    # nodePackages.pnpm
 
     # Python
     python-with-packages

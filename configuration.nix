@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, home-manager, ... }:
+{ config, pkgs, lib, ... }:
 let
   nodejs6_pkgs = import
     (builtins.fetchTarball {
@@ -14,72 +14,17 @@ let
 in
 
 let
+
   user-name = "denis";
-
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-
-  pycord_latest = p: p.callPackage ./pycord_latest.nix { };
-
-  auradio = p: with p; with pkgs.python310Packages;[
-    python-vlc
-  ];
-
-  python-bot = p: with p; with pkgs.python310Packages; [
-    (pycord_latest p)
-    sqlalchemy
-    google-cloud-texttospeech
-    setuptools
-    psycopg2
-    pylint
-    langcodes
-    language-data
-
-    tkinter
-  ];
-
-  python-ml = p: with p; with pkgs.python310Packages; [
-    # jupyter
-    notebook
-    # jupyterlab
-    pandas
-    numpy
-    scikit-learn
-    matplotlib
-    discordpy
-
-    (tensorflow-bin.override { cudaSupport = true; })
-    # tensorflowWithCuda
-
-    Keras
-
-    gym
-    pytorch
-    torchvision
-    pyglet
-    seaborn
-  ];
-
-  python-with-packages = pkgs.python310.withPackages python-bot;
-
-  ulauncherDesktopItem = pkgs.makeDesktopItem {
-    name = "Ulauncher";
-    desktopName = "Ulauncher";
-    icon = "ulauncher";
-    exec = "ulauncher";
-    comment = "Application launcher for Linux";
-    categories = [ "GNOME" "GTK" "Utility" ];
-  };
+  # pycord_latest = p: p.callPackage ./pycord_latest.nix { };
 
 in
 {
   imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-
     ./cachix.nix
 
     ./hyprland.nix
-
   ];
 
   nixpkgs.overlays = [
@@ -361,24 +306,6 @@ in
   ];
 
   environment.variables.JAVA_HOME = "${pkgs.jdk}/lib/openjdk";
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-
-    (discord.override { nss = nss_latest; })
-
-    linux-pam
-    # vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    # wget
-    jdk
-    # jdk11
-    # conda
-
-    dmenu
-    haskellPackages.xmobar
-    feh
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
