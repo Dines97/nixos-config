@@ -4,20 +4,7 @@
 
 { config, pkgs, lib, ... }:
 let
-  nodejs6_pkgs = import
-    (builtins.fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/12408341763b8f2f0f0a88001d9650313f6371d5.tar.gz";
-    })
-    { };
-
-  nodejs6 = nodejs6_pkgs.nodejs-6_x;
-in
-
-let
-
   user-name = "denis";
-  # pycord_latest = p: p.callPackage ./pycord_latest.nix { };
-
 in
 {
   imports = [
@@ -94,43 +81,54 @@ in
 
   boot.supportedFilesystems = [ "ntfs" ];
 
-  hardware.nvidia.modesetting.enable = true;
-  hardware.opengl.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
-  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
+  services.xserver = {
+    # Enable the X11 windowing system.
+    enable = true;
 
-  hardware.nvidia.prime = {
-    offload.enable = true;
-    # sync.enable = true;
+    # Configure keymap in X11
+    layout = "us, ru";
+    # xkbOptions = "grp:alt_shift_toggle";
 
-    # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
-    intelBusId = "PCI:0:2:0";
-
-    # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
-    nvidiaBusId = "PCI:2:0:0";
+    videoDrivers = [ "nvidia" ];
   };
 
-  # hardware.opengl = {
-  #   enable = true;
-  #   extraPackages = with pkgs; [
-  #     intel-media-driver # LIBVA_DRIVER_NAME=iHD
-  #     vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-  #     vaapiVdpau
-  #     libvdpau-va-gl
-  #     # libGL
-  #     mesa.drivers
-  #   ];
-  # };
+  hardware.nvidia = {
+    prime = {
+      offload.enable = true;
+      # sync.enable = true;
+
+      # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
+      intelBusId = "PCI:0:2:0";
+
+      # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
+      nvidiaBusId = "PCI:2:0:0";
+    };
+
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
+
+    modesetting.enable = true;
+  };
+
+  hardware.opengl = {
+    enable = true;
+    # extraPackages = with pkgs; [
+    #   intel-media-driver # LIBVA_DRIVER_NAME=iHD
+    #   vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+    #   vaapiVdpau
+    #   libvdpau-va-gl
+    #   # libGL
+    #   mesa.drivers
+    # ];
+  };
 
   services.flatpak.enable = true;
-  services.xserver.enable = true;
 
   # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
 
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.displayManager.gdm.enable = true;
-  services.gnome.chrome-gnome-shell.enable = true;
+  services.gnome.gnome-browser-connector.enable = true;
 
   # services.xserver.windowManager.i3 = {
   #   enable = true;
@@ -184,14 +182,6 @@ in
   # rtkit is optional but recommended
   security.rtkit.enable = true;
 
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    # jack.enable = true;
-  };
 
   virtualisation = {
     docker = {
@@ -236,54 +226,75 @@ in
   # Set your time zone.
   time.timeZone = "Europe/Istanbul";
 
-  services.samba = {
-    enable = true;
-    openFirewall = true;
-    extraConfig = ''
-      workgroup = WORKGROUP
-      browseable = yes
-    '';
-    shares = {
-      public = {
-        path = "/home/${user-name}/shared";
-        browseable = "yes";
-        "guest ok" = "yes";
+  services = {
+    samba = {
+      enable = true;
+      openFirewall = true;
+      extraConfig = ''
+        workgroup = WORKGROUP
+        browseable = yes
+      '';
+      shares = {
+        public = {
+          path = "/home/${user-name}/shared";
+          browseable = "yes";
+          "guest ok" = "yes";
 
+        };
       };
     };
-  };
 
-  services.avahi = {
-    nssmdns = true;
-    enable = true;
-    publish = {
+    avahi = {
+      nssmdns = true;
       enable = true;
-      addresses = true;
-      domain = true;
-      hinfo = true;
-      userServices = true;
-      workstation = true;
+      publish = {
+        enable = true;
+        addresses = true;
+        domain = true;
+        hinfo = true;
+        userServices = true;
+        workstation = true;
+      };
+    };
+
+    # Enable CUPS to print documents.
+    printing.enable = true;
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      # jack.enable = true;
+    };
+
+    # Enable the OpenSSH daemon.
+    openssh = {
+      enable = true;
+      openFirewall = true;
     };
   };
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LANGUAGE = "en_US.UTF-8";
+      LANG = "en_US.UTF-8";
+
+      LC_ALL = "tr_TR.UTF-8";
+      LC_MONETARY = "tr_TR.UTF-8";
+      LC_PAPER = "tr_TR.UTF-8";
+      LC_MEASUREMENT = "tr_TR.UTF-8";
+      LC_TIME = "tr_TR.UTF-8";
+      LC_NUMERIC = "tr_TR.UTF-8";
+    };
+  };
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
   # };
-
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us, ru";
-    # xkbOptions = "grp:alt_shift_toggle";
-  };
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
 
   # Enable sound.
   # sound.enable = true;
@@ -317,18 +328,12 @@ in
 
   # List services that you want to enable:
 
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    openFirewall = true;
-  };
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.11"; # Did you read the comment?
+  system.stateVersion = "22.11"; # Did you read the comment?
 
 }

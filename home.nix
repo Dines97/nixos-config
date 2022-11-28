@@ -10,8 +10,6 @@ let
     pylint
     langcodes
     language-data
-
-    tkinter
   ];
 
   python-ml = p: with p; with pkgs.python310Packages; [
@@ -48,6 +46,18 @@ let
     comment = "Application launcher for Linux";
     categories = [ "GNOME" "GTK" "Utility" ];
   };
+in
+
+let
+  # pycord_latest = p: p.callPackage ./pycord_latest.nix { };
+
+  nodejs6_pkgs = import
+    (builtins.fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/12408341763b8f2f0f0a88001d9650313f6371d5.tar.gz";
+    })
+    { };
+
+  nodejs6 = nodejs6_pkgs.nodejs-6_x;
 in
 
 {
@@ -271,6 +281,11 @@ in
       credential.helper = "${ pkgs.git.override { withLibsecret = true; } }/bin/git-credential-libsecret";
     };
   };
+
+  # programs.hstr = {
+  #   enable = true;
+  #   enableZshIntegration = true;
+  # };
 
   programs.go.enable = true;
 
