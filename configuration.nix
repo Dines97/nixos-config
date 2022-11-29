@@ -1,14 +1,15 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }:
-let
-  user-name = "denis";
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  user-name = "denis";
+in {
   nixpkgs.overlays = [
-
     (self: super: {
       discord = super.discord.overrideAttrs (old: {
         version = "0.0.21";
@@ -43,15 +44,16 @@ in
     #     };
     #   });
     # })
-
   ];
 
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-tour
-  ]) ++ (with pkgs.gnome;[
-    epiphany
-    gnome-terminal
-  ]);
+  environment.gnome.excludePackages =
+    (with pkgs; [
+      gnome-tour
+    ])
+    ++ (with pkgs.gnome; [
+      epiphany
+      gnome-terminal
+    ]);
 
   nix = {
     settings = {
@@ -74,7 +76,7 @@ in
   # boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
   # boot.kernelPackages = pkgs.linuxKernel.packages.linux_testing;
 
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = ["ntfs"];
 
   services.xserver = {
     # Enable the X11 windowing system.
@@ -84,7 +86,7 @@ in
     layout = "us, ru";
     # xkbOptions = "grp:alt_shift_toggle";
 
-    videoDrivers = [ "nvidia" ];
+    videoDrivers = ["nvidia"];
   };
 
   hardware.nvidia = {
@@ -157,13 +159,13 @@ in
     ${user-name} ALL=(ALL) NOPASSWD: /run/current-system/sw/bin/podman
   '';
 
-  environment.shells = [ pkgs.zsh ];
+  environment.shells = [pkgs.zsh];
 
   users.users.${user-name} = {
     isNormalUser = true;
     home = "/home/${user-name}";
     description = "Denis Kaynar";
-    extraGroups = [ "wheel" "networkmanager" "docker" "podman" ];
+    extraGroups = ["wheel" "networkmanager" "docker" "podman"];
     shell = pkgs.zsh;
     useDefaultShell = false;
   };
@@ -176,7 +178,6 @@ in
 
   # rtkit is optional but recommended
   security.rtkit.enable = true;
-
 
   virtualisation = {
     docker = {
@@ -192,7 +193,7 @@ in
     # };
   };
 
-  users.extraGroups.vboxusers.members = [ "denis" ];
+  users.extraGroups.vboxusers.members = ["denis"];
   virtualisation.virtualbox.host.enable = true;
 
   networking = {
@@ -207,8 +208,8 @@ in
 
     firewall = {
       enable = true;
-      allowedTCPPorts = [ ];
-      allowedUDPPorts = [ ];
+      allowedTCPPorts = [];
+      allowedUDPPorts = [];
     };
 
     # Configure network proxy if necessary
@@ -234,7 +235,6 @@ in
           path = "/home/${user-name}/shared";
           browseable = "yes";
           "guest ok" = "yes";
-
         };
       };
     };
@@ -307,7 +307,7 @@ in
   fonts.fonts = with pkgs; [
     liberation_ttf
     (nerdfonts.override {
-      fonts = [ "JetBrainsMono" "FiraCode" ];
+      fonts = ["JetBrainsMono" "FiraCode"];
     })
   ];
 
@@ -330,5 +330,4 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
-
 }

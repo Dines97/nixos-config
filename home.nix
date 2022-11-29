@@ -1,66 +1,67 @@
-{ config, pkgs, unstable, ... }:
+{
+  config,
+  pkgs,
+  unstable,
+  ...
+}: let
+  python-bot = p:
+    with p;
+    with pkgs.python310Packages; [
+      discordpy
+      sqlalchemy
+      google-cloud-texttospeech
+      setuptools
+      psycopg2
+      pylint
+      langcodes
+      language-data
+    ];
 
-let
-  python-bot = p: with p; with pkgs.python310Packages; [
-    discordpy
-    sqlalchemy
-    google-cloud-texttospeech
-    setuptools
-    psycopg2
-    pylint
-    langcodes
-    language-data
-  ];
+  python-ml = p:
+    with p;
+    with pkgs.python310Packages; [
+      # jupyter
+      notebook
+      # jupyterlab
+      pandas
+      numpy
+      scikit-learn
+      matplotlib
+      discordpy
 
-  python-ml = p: with p; with pkgs.python310Packages; [
-    # jupyter
-    notebook
-    # jupyterlab
-    pandas
-    numpy
-    scikit-learn
-    matplotlib
-    discordpy
+      (tensorflow-bin.override {cudaSupport = true;})
+      # tensorflowWithCuda
 
-    (tensorflow-bin.override { cudaSupport = true; })
-    # tensorflowWithCuda
+      Keras
 
-    Keras
-
-    gym
-    pytorch
-    torchvision
-    pyglet
-    seaborn
-  ];
+      gym
+      pytorch
+      torchvision
+      pyglet
+      seaborn
+    ];
 
   python-with-packages = pkgs.python310.withPackages python-bot;
-in
 
-let
   ulauncherDesktopItem = pkgs.makeDesktopItem {
     name = "Ulauncher";
     desktopName = "Ulauncher";
     icon = "ulauncher";
     exec = "ulauncher";
     comment = "Application launcher for Linux";
-    categories = [ "GNOME" "GTK" "Utility" ];
+    categories = ["GNOME" "GTK" "Utility"];
   };
-in
 
-let
   # pycord_latest = p: p.callPackage ./pycord_latest.nix { };
-
-  nodejs6_pkgs = import
+  nodejs6_pkgs =
+    import
     (builtins.fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/12408341763b8f2f0f0a88001d9650313f6371d5.tar.gz";
     })
-    { };
+    {};
 
   nodejs6 = nodejs6_pkgs.nodejs-6_x;
-in
-
-{
+in {
   home.username = "denis";
   home.stateVersion = "22.05";
 
@@ -121,6 +122,7 @@ in
     # unstable.nixpkgs-fmt
     unstable.nil
     unstable.alejandra
+    unstable.statix
 
     # Neovim
     unstable.neovim
@@ -166,7 +168,7 @@ in
     wget
     jdk
 
-    (discord.override { nss = nss_latest; })
+    (discord.override {nss = nss_latest;})
 
     # Gnome
     # chrome-gnome-shell
@@ -243,7 +245,6 @@ in
     sl
   ];
 
-
   # services.barrier.client = {
   #   enable = true;
   #   enableCrypto = true;
@@ -270,7 +271,7 @@ in
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" ];
+      plugins = ["git"];
       theme = "robbyrussell";
     };
   };
@@ -280,7 +281,7 @@ in
     userName = "Denis Kaynar";
     userEmail = "kaynar.denis@gmail.com";
     extraConfig = {
-      credential.helper = "${ pkgs.git.override { withLibsecret = true; } }/bin/git-credential-libsecret";
+      credential.helper = "${pkgs.git.override {withLibsecret = true;}}/bin/git-credential-libsecret";
     };
   };
 
@@ -290,5 +291,4 @@ in
   # };
 
   programs.go.enable = true;
-
 }
