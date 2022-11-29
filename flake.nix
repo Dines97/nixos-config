@@ -29,8 +29,14 @@
       nixosConfigurations.Denis-N = nixpkgs.lib.nixosSystem {
         system = system;
         modules = [
+          # Include the results of the hardware scan.
           ./hardware-configuration.nix
+
+          ./cachix.nix
+
           ./configuration.nix
+
+          ./hyprland.nix
 
           home-manager.nixosModules.home-manager
           {

@@ -7,13 +7,6 @@ let
   user-name = "denis";
 in
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./cachix.nix
-
-    ./hyprland.nix
-  ];
-
   nixpkgs.overlays = [
 
     (self: super: {
@@ -61,7 +54,9 @@ in
   ]);
 
   nix = {
-    autoOptimiseStore = true;
+    settings = {
+      auto-optimise-store = true;
+    };
     gc = {
       automatic = true;
       dates = "weekly";

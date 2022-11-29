@@ -117,8 +117,10 @@ in
     # feh
 
     # Nix
-    unstable.rnix-lsp
-    unstable.nixpkgs-fmt
+    # unstable.rnix-lsp
+    # unstable.nixpkgs-fmt
+    unstable.nil
+    unstable.alejandra
 
     # Neovim
     unstable.neovim
