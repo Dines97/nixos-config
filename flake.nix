@@ -16,6 +16,13 @@
       url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ros = {
+      url = "github:lopsided98/nix-ros-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # hyprland.url = "github:hyprwm/Hyprland";
   };
 
   description = "System configuration";
@@ -25,13 +32,33 @@
     nixpkgs,
     home-manager,
     nixpkgs-unstable,
+    # hyprland,
+    ros,
   }: let
     system = "x86_64-linux";
-    unstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
+
+    overlay-unstable = final: prev: {
+      unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    };
+
+    overlay-ros = final: prev: {
+      ros = import ros {
+        inherit system;
+      };
+    };
   in {
     nixosConfigurations.Denis-N = nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
+        ({
+          config,
+          pkgs,
+          ...
+        }: {nixpkgs.overlays = [overlay-unstable overlay-ros];})
+
         # Include the results of the hardware scan.
         ./hardware-configuration.nix
 
@@ -39,15 +66,14 @@
 
         ./configuration.nix
 
-        ./hyprland.nix
+        # hyprland.nixosModules.default
+        # {programs.hyprland.enable = true;}
 
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.denis = import ./home.nix;
-
-          home-manager.extraSpecialArgs = {inherit unstable;};
 
           # Optionally, use home-manager.extraSpecialArgs to pass
           # arguments to home.nix

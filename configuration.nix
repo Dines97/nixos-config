@@ -46,18 +46,25 @@ in {
     # })
   ];
 
-  environment.gnome.excludePackages =
-    (with pkgs; [
-      gnome-tour
-    ])
-    ++ (with pkgs.gnome; [
-      epiphany
-      gnome-terminal
-    ]);
+  environment = {
+    shells = [pkgs.zsh];
+
+    variables.JAVA_HOME = "${pkgs.jdk}/lib/openjdk";
+
+    gnome.excludePackages =
+      (with pkgs; [
+        gnome-tour
+      ])
+      ++ (with pkgs.gnome; [
+        epiphany
+        gnome-terminal
+      ]);
+  };
 
   nix = {
     settings = {
       auto-optimise-store = true;
+      trusted-users = ["root" "@users"];
     };
     gc = {
       automatic = true;
@@ -78,151 +85,103 @@ in {
 
   boot.supportedFilesystems = ["ntfs"];
 
-  services.xserver = {
-    # Enable the X11 windowing system.
-    enable = true;
-
-    # Configure keymap in X11
-    layout = "us, ru";
-    # xkbOptions = "grp:alt_shift_toggle";
-
-    videoDrivers = ["nvidia"];
-  };
-
-  hardware.nvidia = {
-    prime = {
-      offload.enable = true;
-      # sync.enable = true;
-
-      # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
-      intelBusId = "PCI:0:2:0";
-
-      # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
-      nvidiaBusId = "PCI:2:0:0";
-    };
-
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
-
-    modesetting.enable = true;
-  };
-
-  hardware.opengl = {
-    enable = true;
-    # extraPackages = with pkgs; [
-    #   intel-media-driver # LIBVA_DRIVER_NAME=iHD
-    #   vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-    #   vaapiVdpau
-    #   libvdpau-va-gl
-    #   # libGL
-    #   mesa.drivers
-    # ];
-  };
-
-  services.flatpak.enable = true;
-
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.gnome.gnome-browser-connector.enable = true;
-
-  # services.xserver.windowManager.i3 = {
-  #   enable = true;
-  #   package = pkgs.i3-gaps;
+  # boot = {
+  #   plymouth = {
+  #     enable = true;
+  #     theme = "breeze";
+  #   };
+  #   initrd.systemd.enable = true;
   # };
 
-  services.xserver.windowManager.awesome.enable = true;
+  hardware = {
+    nvidia = {
+      modesetting.enable = true;
+      # package = config.boot.kernelPackages.nvidiaPackages.beta;
 
-  # services.xserver.windowManager.xmonad = {
-  #   enable = true;
-  #   enableContribAndExtras = true;
-  #   extraPackages = haskellPackages: [
-  #     # haskellPackages.xmonad-wallpaper
-  #   ];
-  # };
+      prime = {
+        # offload.enable = true;
+        sync.enable = true;
 
-  # programs.hyprland.enable = true;
-  # programs.hyprland.package = unstable.hyprland;
-  #
-  # programs.sway.enable = true;
-  # programs.sway.extraOptions = [
-  #   "--verbose"
-  #   "--debug"
-  #   "--unsupported-gpu"
-  # ];
+        # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
+        intelBusId = "PCI:0:2:0";
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.firefox.enableGnomeExtensions = true;
-
-  security.sudo.configFile = ''
-    ${user-name} ALL=(ALL) NOPASSWD: /run/current-system/sw/bin/podman
-  '';
-
-  environment.shells = [pkgs.zsh];
-
-  users.users.${user-name} = {
-    isNormalUser = true;
-    home = "/home/${user-name}";
-    description = "Denis Kaynar";
-    extraGroups = ["wheel" "networkmanager" "docker" "podman"];
-    shell = pkgs.zsh;
-    useDefaultShell = false;
-  };
-
-  # programs.partition-manager.enable = true;
-
-  # Remove sound.enable or turn it off if you had it set previously, it seems to cause conflicts with pipewire
-  # sound.enable = false;
-  hardware.pulseaudio.enable = false;
-
-  # rtkit is optional but recommended
-  security.rtkit.enable = true;
-
-  virtualisation = {
-    docker = {
-      enable = true;
-      # enableNvidia = true;
+        # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
+        nvidiaBusId = "PCI:2:0:0";
+      };
     };
 
-    # podman = {
-    #   enable = true;
-    #   enableNvidia = true;
-    #   dockerCompat = true;
-    #   dockerSocket.enable = true;
-    # };
-  };
-
-  users.extraGroups.vboxusers.members = ["denis"];
-  virtualisation.virtualbox.host.enable = true;
-
-  networking = {
-    hostName = "Denis-N";
-    extraHosts = ''
-      192.168.49.2 argocd.testing.com jaeger.testing.com kiali.testing.com db.testing.com
-      172.18.0.2 echo.com
-    '';
-    networkmanager.enable = true;
-
-    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-    firewall = {
+    opengl = {
       enable = true;
-      allowedTCPPorts = [];
-      allowedUDPPorts = [];
+      extraPackages = with pkgs; [
+        intel-media-driver # LIBVA_DRIVER_NAME=iHD
+        vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+        vaapiVdpau
+        libvdpau-va-gl
+        # libGL
+        mesa.drivers
+      ];
     };
-
-    # Configure network proxy if necessary
-    # proxy = {
-    #   default = "http://user:password@proxy:port/";
-    #   noProxy = "127.0.0.1,localhost,internal.domain";
-    # };
   };
 
-  # Set your time zone.
-  time.timeZone = "Europe/Istanbul";
-
+  # List services that you want to enable:
   services = {
+    touchegg.enable = true;
+
+    gnome.gnome-browser-connector.enable = true;
+
+    xserver = {
+      # Enable the X11 windowing system.
+      enable = true;
+
+      # Configure keymap in X11
+      layout = "us, ru";
+      # xkbOptions = "grp:alt_shift_toggle";
+
+      videoDrivers = ["nvidia"];
+
+      # Enable touchpad support (enabled default in most desktopManager).
+      libinput.enable = true;
+
+      screenSection = ''
+        Option         "ForceFullCompositionPipeline" "on"
+        Option         "AllowIndirectGLXProtocol" "off"
+        Option         "TripleBuffer" "on"
+      '';
+
+      displayManager = {
+        autoLogin = {
+          enable = true;
+          user = "denis";
+        };
+
+        # gdm.enable = true;
+        # sddm.enable = true;
+        # lightdm.enable = true;
+      };
+
+      desktopManager = {
+        gnome.enable = true;
+        # plasma5.enable = true;
+      };
+
+      windowManager = {
+        # i3 = {
+        #   enable = true;
+        #   package = pkgs.i3-gaps;
+        # };
+
+        # xmonad = {
+        #   enable = true;
+        #   enableContribAndExtras = true;
+        #   extraPackages = haskellPackages: [
+        #     # haskellPackages.xmonad-wallpaper
+        #   ];
+        # };
+
+        awesome.enable = true;
+      };
+    };
+
     samba = {
       enable = true;
       openFirewall = true;
@@ -269,7 +228,105 @@ in {
       enable = true;
       openFirewall = true;
     };
+
+    # barrier.client = {
+    #   enable = true;
+    #   enableCrypto = true;
+    #   enableDragDrop = false;
+    #   name = "Denis-N";
+    #   server = "Denis-PC";
+    # };
+
+    flatpak.enable = true;
   };
+
+  qt5 = {
+    enable = true;
+    style = "adwaita-dark";
+    # platformTheme = "gnome";
+  };
+
+  # programs.sway.enable = true;
+  # programs.sway.extraOptions = [
+  #   "--verbose"
+  #   "--debug"
+  #   "--unsupported-gpu"
+  # ];
+
+  nixpkgs = {
+    config.allowUnfree = true;
+    config.firefox.enableGnomeExtensions = true;
+  };
+
+  security = {
+    sudo.configFile = ''
+      ${user-name} ALL=(ALL) NOPASSWD: /run/current-system/sw/bin/podman
+    '';
+
+    # rtkit is optional but recommended
+    rtkit.enable = true;
+  };
+
+  users.users.${user-name} = {
+    isNormalUser = true;
+    home = "/home/${user-name}";
+    description = "Denis Kaynar";
+    extraGroups = ["wheel" "networkmanager" "docker" "podman" "libvirtd"];
+    shell = pkgs.zsh;
+    useDefaultShell = false;
+  };
+
+  # programs.partition-manager.enable = true;
+
+  # Remove sound.enable or turn it off if you had it set previously, it seems to cause conflicts with pipewire
+  # sound.enable = false;
+  hardware.pulseaudio.enable = false;
+
+  virtualisation = {
+    docker = {
+      enable = true;
+      # enableNvidia = true;
+    };
+
+    # podman = {
+    #   enable = true;
+    #   enableNvidia = true;
+    #   dockerCompat = true;
+    #   dockerSocket.enable = true;
+    # };
+
+    virtualbox.host.enable = true;
+
+    libvirtd.enable = true;
+  };
+
+  users.extraGroups.vboxusers.members = ["denis"];
+
+  networking = {
+    hostName = "Denis-N";
+    extraHosts = ''
+      192.168.49.2 argocd.testing.com jaeger.testing.com kiali.testing.com db.testing.com
+      172.18.0.2 echo.com
+    '';
+    networkmanager.enable = true;
+
+    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [];
+      allowedUDPPorts = [];
+    };
+
+    # Configure network proxy if necessary
+    # proxy = {
+    #   default = "http://user:password@proxy:port/";
+    #   noProxy = "127.0.0.1,localhost,internal.domain";
+    # };
+  };
+
+  # Set your time zone.
+  time.timeZone = "Europe/Istanbul";
 
   # Select internationalisation properties.
   i18n = {
@@ -278,12 +335,12 @@ in {
       LANGUAGE = "en_US.UTF-8";
       LANG = "en_US.UTF-8";
 
-      LC_ALL = "tr_TR.UTF-8";
-      LC_MONETARY = "tr_TR.UTF-8";
-      LC_PAPER = "tr_TR.UTF-8";
-      LC_MEASUREMENT = "tr_TR.UTF-8";
-      LC_TIME = "tr_TR.UTF-8";
-      LC_NUMERIC = "tr_TR.UTF-8";
+      LC_ALL = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
     };
   };
   # console = {
@@ -294,9 +351,6 @@ in {
   # Enable sound.
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.jane = {
@@ -311,8 +365,6 @@ in {
     })
   ];
 
-  environment.variables.JAVA_HOME = "${pkgs.jdk}/lib/openjdk";
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -320,8 +372,6 @@ in {
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  # List services that you want to enable:
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
