@@ -62,8 +62,7 @@
 
   nodejs6 = nodejs6_pkgs.nodejs-6_x;
 in {
-  nixpkgs.config.allowUnfree = true;
-
+  imports = [./modules/programs/hstr.nix];
   home = {
     username = "denis";
     stateVersion = "22.11";
@@ -100,9 +99,10 @@ in {
       ls = "exa";
       ll = "exa --long --all --header --time-style=long-iso --git --icons --group-directories-first --group -b";
       cat = "bat";
+      nixrebuild = "sudo nix flake update /etc/nixos && sudo nixos-rebuild switch";
 
       nconf = "nvim $HOME/.config/nvim/";
-      nixconf = "sudo -E nvim /etc/nixos/";
+      nixconf = "nvim /etc/nixos/";
       iconf = "nvim $HOME/.config/i3/";
       aconf = "nvim $HOME/.config/awesome/";
       hconf = "nvim $HOME/.config/hypr/";
@@ -117,6 +117,8 @@ in {
       appimage-run
       gwe
       nix-info
+
+      openlens
 
       # Xmonad
       # dmenu
@@ -206,7 +208,7 @@ in {
       postgresql
       kube3d
       kind
-      lens
+      # lens
       k9s
       kubebuilder
       cue
@@ -217,11 +219,11 @@ in {
       docker-machine-kvm2 # Minikube driver
 
       # JetBrains
-      unstable.jetbrains.rider
-      unstable.jetbrains.webstorm
+      jetbrains.rider
+      jetbrains.webstorm
       # jetbrains.idea-ultimate
-      # jetbrains.pycharm-professional
-      # jetbrains.clion
+      jetbrains.pycharm-professional
+      jetbrains.clion
       # jetbrains.goland
 
       # JavaScript
@@ -232,7 +234,7 @@ in {
 
       # Python
       python-with-packages
-      python2
+      conda
 
       # C/C++
       cmake
@@ -293,10 +295,10 @@ in {
 
     go.enable = true;
 
-    # hstr = {
-    #   enable = true;
-    #   enableZshIntegration = true;
-    # };
+    hstr = {
+      enable = true;
+      enableZshIntegration = true;
+    };
 
     # vscode = {
     #   enable = true;

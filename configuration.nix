@@ -120,6 +120,7 @@ in {
         # libGL
         mesa.drivers
       ];
+      driSupport32Bit = true;
     };
   };
 
@@ -254,8 +255,10 @@ in {
   # ];
 
   nixpkgs = {
-    config.allowUnfree = true;
-    config.firefox.enableGnomeExtensions = true;
+    config = {
+      allowUnfree = true;
+      firefox.enableGnomeExtensions = true;
+    };
   };
 
   security = {
@@ -285,7 +288,7 @@ in {
   virtualisation = {
     docker = {
       enable = true;
-      # enableNvidia = true;
+      enableNvidia = true;
     };
 
     # podman = {

@@ -49,6 +49,10 @@
         inherit system;
       };
     };
+
+    overlay-pkgs = self: super: {
+      openlens = super.callPackage ./pkgs/openlens {};
+    };
   in {
     nixosConfigurations.Denis-N = nixpkgs.lib.nixosSystem {
       inherit system;
@@ -57,7 +61,7 @@
           config,
           pkgs,
           ...
-        }: {nixpkgs.overlays = [overlay-unstable overlay-ros];})
+        }: {nixpkgs.overlays = [overlay-unstable overlay-ros overlay-pkgs];})
 
         # Include the results of the hardware scan.
         ./hardware-configuration.nix
