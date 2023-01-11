@@ -52,13 +52,9 @@ in {
       fi
     '');
 
-    programs.zsh.initExtra = mkIf cfg.enableZshIntegration (mkOrder 200 ''
-      # HSTR configuration - add this to ~/.zshrc
-      alias hh=hstr                    # hh to be alias for hstr
-      setopt histignorespace           # skip cmds w/ leading space from history
-      export HSTR_CONFIG=hicolor       # get more colors
-      bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
-    '');
+    programs.zsh.initExtra = mkIf cfg.enableZshIntegration ''
+      eval "$(${pkgs.hstr}/bin/hstr --show-zsh-configuration)"
+    '';
 
     programs.fish.shellInit = mkIf cfg.enableFishIntegration ''
       source ${cfg.package}/share/fzf/key-bindings.fish && fzf_key_bindings
