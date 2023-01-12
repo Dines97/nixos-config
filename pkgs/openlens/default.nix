@@ -5,27 +5,30 @@
   wrapGAppsHook,
 }: let
   pname = "openlens";
-  version = "5.5.4";
-  name = "${pname}-${version}";
+  version = "6.3.0";
+
+  owner = "beliys";
+  repo = "OpenLens";
 
   src = fetchurl {
-    url = " https://github.com/MuhammedKalkan/OpenLens/releases/download/v${version}/OpenLens-${version}.AppImage";
-    sha256 = "sha256-TctFXURez3ljUOdxhukIm49AAP6Fobuin17OA02FKII=";
-    name = "${pname}.AppImage";
+    url = " https://github.com/${owner}/${repo}/releases/download/v${version}/OpenLens-${version}.x86_64.AppImage";
+    sha256 = "sha256-Vx6ex7Au+gCwH/4G6Od/2Vz1TyauaqOBf58Olmo4plo=";
   };
 
-  appimageContents = appimageTools.extractType2 {
-    inherit name src;
-  };
+  appimageContents = appimageTools.extractType2 {inherit src pname version;};
 in
   appimageTools.wrapType2 {
-    inherit name src;
+    inherit src pname version;
 
     extraInstallCommands = ''
-      mv $out/bin/${name} $out/bin/${pname}
-      install -m 444 -D ${appimageContents}/open-lens.desktop $out/share/applications/${pname}.desktop
-      install -m 444 -D ${appimageContents}/usr/share/icons/hicolor/512x512/apps/open-lens.png \
-         $out/share/icons/hicolor/512x512/apps/${pname}.png
+      mv $out/bin/${pname}-${version} $out/bin/${pname}
+
+      install -Dm 644 ${appimageContents}/open-lens.desktop \
+        $out/share/applications/${pname}.desktop
+
+      install -Dm 644 ${appimageContents}/usr/share/icons/hicolor/512x512/apps/open-lens.png \
+        $out/share/icons/hicolor/512x512/apps/${pname}.png
+
       substituteInPlace $out/share/applications/${pname}.desktop \
         --replace 'Icon=open-lens' 'Icon=${pname}' \
         --replace 'Exec=AppRun' 'Exec=${pname}'

@@ -118,8 +118,6 @@ in {
       gwe
       nix-info
 
-      openlens
-
       # Xmonad
       # dmenu
       # haskellPackages.xmobar
@@ -209,6 +207,7 @@ in {
       kube3d
       kind
       # lens
+      (callPackage ./pkgs/openlens {})
       k9s
       kubebuilder
       cue
@@ -283,6 +282,7 @@ in {
       extraConfig = {
         credential.helper = "${pkgs.git.override {withLibsecret = true;}}/bin/git-credential-libsecret";
       };
+      lfs.enable = true;
     };
 
     go.enable = true;
