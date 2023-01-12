@@ -62,7 +62,7 @@
 
   nodejs6 = nodejs6_pkgs.nodejs-6_x;
 in {
-  imports = [./modules/programs/hstr.nix];
+  imports = [./modules/programs/hstr.nix ./modules/programs/tmux.nix];
   home = {
     username = "denis";
     stateVersion = "22.11";
@@ -154,7 +154,6 @@ in {
       qbittorrent
       protonvpn-gui
       unstable.alacritty
-      unstable.tmux
       unstable.wezterm
       gh
       libreoffice-fresh
@@ -273,6 +272,21 @@ in {
         plugins = ["git"];
         theme = "robbyrussell";
       };
+    };
+
+    tmux = {
+      enable = true;
+      enableMouse = true;
+      keyMode = "vi";
+      terminal = "tmux-256color";
+      historyLimit = 5000;
+      clock24 = true;
+      extraConfig = builtins.readFile ./conf/tmux.conf;
+      package = pkgs.unstable.tmux;
+      plugins = with pkgs.unstable; [
+        tmuxPlugins.sensible
+        tmuxPlugins.yank
+      ];
     };
 
     git = {
