@@ -3,6 +3,7 @@
   fetchurl,
   appimageTools,
   wrapGAppsHook,
+  nss,
 }: let
   pname = "openlens";
   version = "6.3.0";
@@ -19,6 +20,8 @@
 in
   appimageTools.wrapType2 {
     inherit src pname version;
+
+    extraPkgs = pkgs: appimageTools.defaultFhsEnvArgs.multiPkgs pkgs ++ [nss];
 
     extraInstallCommands = ''
       mv $out/bin/${pname}-${version} $out/bin/${pname}

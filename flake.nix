@@ -17,47 +17,42 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ros = {
-      url = "github:lopsided98/nix-ros-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    neovim-nightly-overlay.url = "github:neovim/neovim?dir=contrib";
 
     # hyprland.url = "github:hyprwm/Hyprland";
   };
 
   description = "System configuration";
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    nixpkgs-unstable,
-    # hyprland,
-    ros,
-  }: let
+  outputs = {self, ...} @ inputs: let
     system = "x86_64-linux";
 
     overlay-unstable = final: prev: {
-      unstable = import nixpkgs-unstable {
+      unstable = import inputs.nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
       };
     };
-
-    overlay-ros = final: prev: {
-      ros = import ros {
-        inherit system;
-      };
-    };
+    # conda-zsh-overlay = final: prev: {
+    #   conda = prev.conda.overrideAttrs {
+    #     runScript = "zsh -l";
+    #   };
+    # };
   in {
-    nixosConfigurations.Denis-N = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.Denis-N = inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
         ({
           config,
           pkgs,
           ...
-        }: {nixpkgs.overlays = [overlay-unstable overlay-ros];})
+        }: {
+          nixpkgs.overlays = [
+            overlay-unstable
+            inputs.neovim-nightly-overlay.overlay
+            # conda-zsh-overlay
+          ];
+        })
 
         # Include the results of the hardware scan.
         ./hardware-configuration.nix
@@ -69,7 +64,7 @@
         # hyprland.nixosModules.default
         # {programs.hyprland.enable = true;}
 
-        home-manager.nixosModules.home-manager
+        inputs.home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;

@@ -131,7 +131,8 @@ in {
       unstable.statix
 
       # Neovim
-      unstable.neovim
+      neovim
+      # neovim-nightly
       xclip
       vale
       unstable.sumneko-lua-language-server
@@ -159,7 +160,7 @@ in {
       libreoffice-fresh
       notepadqq
       flameshot
-      unstable.teams
+      teams
       spotify
 
       firefox
@@ -206,7 +207,8 @@ in {
       kube3d
       kind
       # lens
-      (callPackage ./pkgs/openlens {})
+      (callPackage ./pkgs/openlens {nss = nss_latest;})
+      (discord.override {nss = nss_latest;})
       k9s
       kubebuilder
       cue

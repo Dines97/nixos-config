@@ -77,21 +77,24 @@ in {
     '';
   };
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  # boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
-  # boot.kernelPackages = pkgs.linuxKernel.packages.linux_testing;
+  boot = {
+    loader = {
+      # Use the systemd-boot EFI boot loader.
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
 
-  boot.supportedFilesystems = ["ntfs"];
+    # supportedFilesystems = ["ntfs"];
 
-  # boot = {
-  #   plymouth = {
-  #     enable = true;
-  #     theme = "breeze";
-  #   };
-  #   initrd.systemd.enable = true;
-  # };
+    # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_testing;
+
+    # plymouth = {
+    #   enable = true;
+    #   theme = "breeze";
+    # };
+    # initrd.systemd.enable = true;
+  };
 
   hardware = {
     nvidia = {
@@ -99,8 +102,8 @@ in {
       # package = config.boot.kernelPackages.nvidiaPackages.beta;
 
       prime = {
-        # offload.enable = true;
-        sync.enable = true;
+        offload.enable = true;
+        # sync.enable = true;
 
         # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
         intelBusId = "PCI:0:2:0";
@@ -112,6 +115,7 @@ in {
 
     opengl = {
       enable = true;
+      # driSupport32Bit = true;
       extraPackages = with pkgs; [
         intel-media-driver # LIBVA_DRIVER_NAME=iHD
         vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
@@ -120,7 +124,6 @@ in {
         # libGL
         mesa.drivers
       ];
-      driSupport32Bit = true;
     };
   };
 
@@ -262,9 +265,19 @@ in {
   };
 
   security = {
-    sudo.configFile = ''
-      ${user-name} ALL=(ALL) NOPASSWD: /run/current-system/sw/bin/podman
-    '';
+    sudo = {
+      extraRules = [
+        {
+          users = ["${user-name}"];
+          commands = [
+            {
+              command = "/run/current-system/sw/bin/podman";
+              options = ["NOPASSWD"];
+            }
+          ];
+        }
+      ];
+    };
 
     # rtkit is optional but recommended
     rtkit.enable = true;
@@ -287,16 +300,16 @@ in {
 
   virtualisation = {
     docker = {
-      enable = true;
-      enableNvidia = true;
+      enable = false;
+      # enableNvidia = true;
     };
 
-    # podman = {
-    #   enable = true;
-    #   enableNvidia = true;
-    #   dockerCompat = true;
-    #   dockerSocket.enable = true;
-    # };
+    podman = {
+      enable = true;
+      # enableNvidia = true;
+      dockerCompat = true;
+      dockerSocket.enable = true;
+    };
 
     virtualbox.host.enable = true;
 
