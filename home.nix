@@ -19,7 +19,7 @@
   python-ml = p:
     with p;
     with pkgs.python310Packages; [
-      # jupyter
+      jupyter
       notebook
       # jupyterlab
       pandas
@@ -28,9 +28,8 @@
       matplotlib
 
       (tensorflow-bin.override {cudaSupport = true;})
-      # tensorflowWithCuda
 
-      Keras
+      keras
 
       gym
       pytorch
@@ -280,7 +279,7 @@ in {
       enable = true;
       enableMouse = true;
       keyMode = "vi";
-      terminal = "tmux-256color";
+      terminal = "xterm-256color";
       historyLimit = 5000;
       clock24 = true;
       extraConfig = builtins.readFile ./conf/tmux.conf;

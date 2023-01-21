@@ -1,23 +1,18 @@
 {
   inputs = {
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    #
-    # home-manager = {
-    #   url = "github:nix-community/home-manager";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       # url = "/home/denis/home-manager";
-      url = "github:nix-community/home-manager/release-22.11";
+      # url = "github:nix-community/home-manager/release-22.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neovim-nightly-overlay.url = "github:neovim/neovim?dir=contrib";
+    # neovim-nightly-overlay.url = "github:neovim/neovim?dir=contrib";
 
     # hyprland.url = "github:hyprwm/Hyprland";
   };
@@ -49,7 +44,7 @@
         }: {
           nixpkgs.overlays = [
             overlay-unstable
-            inputs.neovim-nightly-overlay.overlay
+            # inputs.neovim-nightly-overlay.overlay
             # conda-zsh-overlay
           ];
         })
