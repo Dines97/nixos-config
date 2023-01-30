@@ -283,6 +283,35 @@ in {
       lfs.enable = true;
     };
 
+    neovim = {
+      enable = true;
+      package = pkgs.unstable.neovim-unwrapped;
+      defaultEditor = true;
+
+      extraPackages = with pkgs; [
+        # Nix
+        # unstable.rnix-lsp
+        # unstable.nixpkgs-fmt
+        unstable.nil
+        unstable.alejandra
+        unstable.statix
+
+        # Neovim
+        xclip
+        vale
+        unstable.sumneko-lua-language-server
+        unstable.gopls
+        unstable.nodePackages.yaml-language-server
+        unstable.omnisharp-roslyn
+        unstable.nodePackages.prettier
+        unstable.nodePackages.vue-language-server
+        # unstable.python310Packages.jedi-language-server
+
+        unstable.nodePackages.pyright
+        unstable.python310Packages.black
+      ];
+    };
+
     go.enable = true;
 
     hstr = {
