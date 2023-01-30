@@ -1,47 +1,52 @@
 {
   lib,
-  fetchurl,
-  appimageTools,
-  wrapGAppsHook,
-  nss,
+  stdenv,
+  fetchFromGitHub,
+  fetchYarnDeps,
+  nodejs-16_x,
+  yarn,
+  fixup_yarn_lock,
+  cacert,
 }: let
-  pname = "openlens";
-  version = "6.3.0";
-
-  owner = "beliys";
-  repo = "OpenLens";
-
-  src = fetchurl {
-    url = " https://github.com/${owner}/${repo}/releases/download/v${version}/OpenLens-${version}.x86_64.AppImage";
-    sha256 = "sha256-72qzswHlSk33zPUN1Wa7vcEYc3CERVAAjGsIlhU6AlM=";
-  };
-
-  appimageContents = appimageTools.extractType2 {inherit src pname version;};
+  yarn' = yarn.override {nodejs = nodejs-16_x;};
 in
-  appimageTools.wrapType2 {
-    inherit src pname version;
+  stdenv.mkDerivation rec {
+    pname = "openlens";
+    version = "6.3.0";
 
-    extraPkgs = pkgs: appimageTools.defaultFhsEnvArgs.multiPkgs pkgs ++ [nss];
-
-    extraInstallCommands = ''
-      mv $out/bin/${pname}-${version} $out/bin/${pname}
-
-      install -Dm 644 ${appimageContents}/open-lens.desktop \
-        $out/share/applications/${pname}.desktop
-
-      install -Dm 644 ${appimageContents}/usr/share/icons/hicolor/512x512/apps/open-lens.png \
-        $out/share/icons/hicolor/512x512/apps/${pname}.png
-
-      substituteInPlace $out/share/applications/${pname}.desktop \
-        --replace 'Icon=open-lens' 'Icon=${pname}' \
-        --replace 'Exec=AppRun' 'Exec=${pname}'
-    '';
-
-    meta = with lib; {
-      description = "The Kubernetes IDE";
-      homepage = "https://k8slens.dev/";
-      license = licenses.mit;
-      maintainers = with maintainers; [dbirks];
-      platforms = ["x86_64-linux"];
+    src = fetchFromGitHub {
+      owner = "lensapp";
+      repo = "lens";
+      rev = "v${version}";
+      sha256 = "sha256-nxHkslWhxDEVL4aUCVpd8sKL7QqZKJMTK+gDJFX+PuM=";
     };
+
+    yarnCache = stdenv.mkDerivation {
+      name = "${pname}-${version}-yarn-cachre";
+      inherit src;
+      nativeBuildInputs = [cacert yarn' fixup_yarn_lock];
+      buildPhase = ''
+        export HOME=$PWD
+
+        yarn config set yarn-offline-mirror $out
+        yarn install --check-files --frozen-lockfile \
+            --ignore-scripts --ignore-platform \
+            --ignore-engines --no-progress --non-interactive
+      '';
+
+      outputHashMode = "recursive";
+      outputHashAlgo = "sha256";
+      outputHash = "sha256-7UBXigQj7c+fuHPIM5BbRe02DuL+cs6VbQ/D84Yk8i5=";
+    };
+
+    buildInputs = [nodejs-16_x];
+
+    configurePhase = ''
+      runHook preConfigure
+
+      yarn install --offline --check-files --frozen-lockfile
+      patchShebangs node_modules/
+
+      runHook postConfigure
+    '';
   }

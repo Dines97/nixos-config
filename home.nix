@@ -61,7 +61,14 @@
 
   nodejs6 = nodejs6_pkgs.nodejs-6_x;
 in {
-  imports = [./modules/programs/hstr.nix ./modules/programs/tmux.nix];
+  imports = [./modules/programs/hstr.nix ./modules/programs/tmux.nix ./neovim];
+
+  dconf.settings = {
+    "org.gnome.desktop.input-sources" = {
+      xkb-options = "['grp:alt_shift_toggle','caps:none']";
+    };
+  };
+
   home = {
     username = "denis";
     stateVersion = "22.11";
@@ -73,7 +80,6 @@ in {
       # PYTHONPATH = "${python-with-packages}/${python-with-packages.sitePackages}";
       PAGER = "less";
       LESS = "-r --mouse";
-      EDITOR = "nvim";
       GOPATH = "$HOME/go";
       PNPM_HOME = "$HOME/pnpm";
 
@@ -122,30 +128,6 @@ in {
       # haskellPackages.xmobar
       # feh
 
-      # Nix
-      # unstable.rnix-lsp
-      # unstable.nixpkgs-fmt
-      unstable.nil
-      unstable.alejandra
-      unstable.statix
-
-      # Neovim
-      neovim
-      # neovim-nightly
-      xclip
-      vale
-      unstable.sumneko-lua-language-server
-      unstable.gopls
-      unstable.nodePackages.yaml-language-server
-      unstable.omnisharp-roslyn
-      unstable.nodePackages.prettier
-      unstable.nodePackages.vue-language-server
-      # vimPlugins.packer-nvim
-      # unstable.python310Packages.jedi-language-server
-
-      unstable.nodePackages.pyright
-      unstable.python310Packages.black
-
       barrier
       megasync
       fsearch
@@ -156,7 +138,7 @@ in {
       unstable.alacritty
       unstable.wezterm
       gh
-      libreoffice-fresh
+      # libreoffice-fresh
       notepadqq
       flameshot
       teams
@@ -206,7 +188,8 @@ in {
       kube3d
       kind
       # lens
-      (callPackage ./pkgs/openlens {nss = nss_latest;})
+      # (callPackage ./pkgs/openlens {})
+      # (callPackage ./pkgs/openlens-bin {})
       (discord.override {nss = nss_latest;})
       k9s
       kubebuilder
@@ -218,11 +201,11 @@ in {
       docker-machine-kvm2 # Minikube driver
 
       # JetBrains
-      jetbrains.rider
-      jetbrains.webstorm
+      # jetbrains.rider
+      # jetbrains.webstorm
       # jetbrains.idea-ultimate
-      jetbrains.pycharm-professional
-      jetbrains.clion
+      # jetbrains.pycharm-professional
+      # jetbrains.clion
       # jetbrains.goland
 
       # JavaScript
@@ -232,7 +215,7 @@ in {
       # nodePackages.pnpm
 
       # Python
-      python-with-packages
+      #python-with-packages
       conda
 
       # C/C++
