@@ -61,7 +61,7 @@
 
   nodejs6 = nodejs6_pkgs.nodejs-6_x;
 in {
-  imports = [./modules/programs/hstr.nix ./modules/programs/tmux.nix ./neovim];
+  imports = [./modules/programs/hstr.nix ./modules/programs/tmux.nix];
 
   dconf.settings = {
     "org.gnome.desktop.input-sources" = {
@@ -281,6 +281,20 @@ in {
         credential.helper = "${pkgs.git.override {withLibsecret = true;}}/bin/git-credential-libsecret";
       };
       lfs.enable = true;
+    };
+
+    alacritty = {
+      enable = true;
+      packaga = pkgs.unstable.alacritty;
+      settings = {
+        window = {
+          opacity = 0.9;
+          dimensions = {
+            columns = 140;
+            lines = 30;
+          };
+        };
+      };
     };
 
     neovim = {
