@@ -12,8 +12,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # neovim-nightly-overlay.url = "github:neovim/neovim?dir=contrib";
-
     # hyprland.url = "github:hyprwm/Hyprland";
   };
 
@@ -44,7 +42,6 @@
         }: {
           nixpkgs.overlays = [
             overlay-unstable
-            # inputs.neovim-nightly-overlay.overlay
             # conda-zsh-overlay
           ];
         })

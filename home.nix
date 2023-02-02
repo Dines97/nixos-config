@@ -28,7 +28,6 @@
       matplotlib
 
       (tensorflow-bin.override {cudaSupport = true;})
-
       keras
 
       gym
@@ -60,12 +59,30 @@
     {};
 
   nodejs6 = nodejs6_pkgs.nodejs-6_x;
+
+  alacritty-launch =
+    pkgs.writeScriptBin "alacritty-launch"
+    ''
+      xid=$(${pkgs.xdotool}/bin/xdotool search --class Alacritty)
+
+      if [ -z ''${xid} ]
+      then
+        ${pkgs.unstable.alacritty}/bin/alacritty
+      else
+      	${pkgs.xdotool}/bin/xdotool windowactivate ''${xid}
+      fi
+    '';
 in {
   imports = [./modules/programs/hstr.nix ./modules/programs/tmux.nix];
 
   dconf.settings = {
     "org.gnome.desktop.input-sources" = {
       xkb-options = "['grp:alt_shift_toggle','caps:none']";
+    };
+    "org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom0" = {
+      binding = "<Control>Return";
+      command = "${alacritty-launch}/bin/alacritty-launch";
+      name = "Alacritty activate";
     };
   };
 
@@ -120,7 +137,7 @@ in {
       cachix
       pciutils
       appimage-run
-      gwe
+      # gwe
       nix-info
 
       # Xmonad
@@ -135,7 +152,7 @@ in {
       vlc
       qbittorrent
       protonvpn-gui
-      unstable.alacritty
+      alacritty-launch
       unstable.wezterm
       gh
       # libreoffice-fresh
@@ -285,13 +302,38 @@ in {
 
     alacritty = {
       enable = true;
-      packaga = pkgs.unstable.alacritty;
+      package = pkgs.unstable.alacritty;
       settings = {
+        draw_bold_text_with_bright_colors = false;
+        shell = {
+          program = "/bin/sh";
+          args = ["-l" "-c" "tmux attach || tmux"];
+        };
         window = {
           opacity = 0.9;
           dimensions = {
             columns = 140;
             lines = 30;
+          };
+        };
+        font = {
+          builtin_box_drawing = true;
+          size = 13.0;
+          normal = {
+            family = "JetBrainsMono Nerd Font Mono";
+            style = "Regular";
+          };
+          bold = {
+            family = "JetBrainsMono Nerd Font Mono";
+            style = "Bold";
+          };
+          italic = {
+            family = "JetBrainsMono Nerd Font Mono";
+            style = "Italic";
+          };
+          bold_italic = {
+            family = "JetBrainsMono Nerd Font Mono";
+            style = "Bold Italic";
           };
         };
       };
