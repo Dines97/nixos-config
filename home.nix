@@ -96,6 +96,7 @@ in {
 
       # PYTHONPATH = "${python-with-packages}/${python-with-packages.sitePackages}";
       PAGER = "less";
+      EDITOR = "nvim";
       LESS = "-r --mouse";
       GOPATH = "$HOME/go";
       PNPM_HOME = "$HOME/pnpm";
@@ -155,7 +156,7 @@ in {
       alacritty-launch
       unstable.wezterm
       gh
-      # libreoffice-fresh
+      libreoffice-fresh
       notepadqq
       flameshot
       teams
@@ -342,7 +343,7 @@ in {
     neovim = {
       enable = true;
       package = pkgs.unstable.neovim-unwrapped;
-      defaultEditor = true;
+      # defaultEditor = true;
 
       extraPackages = with pkgs; [
         # Nix

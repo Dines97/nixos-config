@@ -1,14 +1,15 @@
 {
   inputs = {
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       # url = "/home/denis/home-manager";
-      # url = "github:nix-community/home-manager/release-22.11";
-      url = "github:nix-community/home-manager";
+
+      url = "github:nix-community/home-manager/release-22.11";
+      # url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
