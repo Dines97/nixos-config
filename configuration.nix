@@ -330,7 +330,9 @@ in {
 
     firewall = {
       enable = true;
-      allowedTCPPorts = [];
+      allowedTCPPorts = [
+        24800 # Barrier server port
+      ];
       allowedUDPPorts = [];
     };
 
