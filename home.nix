@@ -157,12 +157,16 @@ in {
       unstable.wezterm
       gh
       libreoffice-fresh
+      hunspell
+      hunspellDicts.uk_UA
+      hunspellDicts.th_TH
       notepadqq
       flameshot
       teams
       spotify
 
       firefox
+      autokey
       dotnet-sdk # problems with unstable channel
       hstr
       exa
@@ -343,6 +347,7 @@ in {
     neovim = {
       enable = true;
       package = pkgs.unstable.neovim-unwrapped;
+      # package = pkgs.neovim-nightly;
       # defaultEditor = true;
 
       extraPackages = with pkgs; [
@@ -367,6 +372,10 @@ in {
         unstable.nodePackages.pyright
         unstable.python310Packages.black
       ];
+    };
+
+    emacs = {
+      enable = true;
     };
 
     go.enable = true;
