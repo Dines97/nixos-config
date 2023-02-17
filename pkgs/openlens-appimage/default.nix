@@ -13,7 +13,7 @@
 
   src = fetchurl {
     url = " https://github.com/${owner}/${repo}/releases/download/v${version}/OpenLens-${version}.x86_64.AppImage";
-    sha256 = "sha256-72qzswHlSk33zPUN1Wa7vcEYc3CERVAAjGsIlhU6AlM=";
+    sha256 = "sha256-YpJMNmadm4Mt2r5LSqMD0wW1Hzm60E4KMhN4IT+XQiY=";
   };
 
   appimageContents = appimageTools.extractType2 {inherit src pname version;};

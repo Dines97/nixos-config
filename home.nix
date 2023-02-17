@@ -39,7 +39,22 @@
       opencv4
     ];
 
-  python-with-packages = pkgs.python310.withPackages python-ml;
+  gondola-bot-plus-panic-api = p:
+    with p;
+    with pkgs.python310Packages; [
+      nextcord
+      fastapi
+      uvicorn
+      setuptools
+      beautifulsoup4
+      jsonpickle
+      sqlalchemy
+      google-cloud-texttospeech
+      psycopg2
+      yt-dlp
+    ];
+
+  python-with-packages = pkgs.python310.withPackages gondola-bot-plus-panic-api;
 
   ulauncherDesktopItem = pkgs.makeDesktopItem {
     name = "Ulauncher";
@@ -154,7 +169,7 @@ in {
       qbittorrent
       protonvpn-gui
       alacritty-launch
-      unstable.wezterm
+      wezterm
       gh
       libreoffice-fresh
       hunspell
@@ -164,8 +179,10 @@ in {
       flameshot
       teams
       spotify
+      (discord.override {nss = unstable.nss_latest;})
 
-      firefox
+      unstable.firefox
+      unstable.thunderbird
       autokey
       dotnet-sdk # problems with unstable channel
       hstr
@@ -178,8 +195,6 @@ in {
       ulauncherDesktopItem
       wget
       jdk
-
-      (discord.override {nss = nss_latest;})
 
       # Gnome
       # chrome-gnome-shell
@@ -210,9 +225,7 @@ in {
       kube3d
       kind
       # lens
-      # (callPackage ./pkgs/openlens {})
-      # (callPackage ./pkgs/openlens-bin {})
-      (discord.override {nss = nss_latest;})
+      (callPackage ./pkgs/openlens-appimage {})
       k9s
       kubebuilder
       cue
@@ -226,7 +239,7 @@ in {
       # jetbrains.rider
       # jetbrains.webstorm
       # jetbrains.idea-ultimate
-      # jetbrains.pycharm-professional
+      jetbrains.pycharm-professional
       # jetbrains.clion
       # jetbrains.goland
 
@@ -237,7 +250,7 @@ in {
       # nodePackages.pnpm
 
       # Python
-      #python-with-packages
+      python-with-packages
       conda
 
       # C/C++
@@ -275,7 +288,7 @@ in {
 
       oh-my-zsh = {
         enable = true;
-        plugins = ["git"];
+        plugins = ["git" "kubectx"];
         theme = "robbyrussell";
       };
     };
@@ -361,7 +374,7 @@ in {
         # Neovim
         xclip
         vale
-        unstable.sumneko-lua-language-server
+        sumneko-lua-language-server
         unstable.gopls
         unstable.nodePackages.yaml-language-server
         unstable.omnisharp-roslyn

@@ -80,7 +80,10 @@ in {
   boot = {
     loader = {
       # Use the systemd-boot EFI boot loader.
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        memtest86.enable = true;
+      };
       efi.canTouchEfiVariables = true;
     };
 
@@ -321,6 +324,7 @@ in {
   networking = {
     hostName = "Denis-N";
     extraHosts = ''
+      188.132.128.77 argocd.panic.io panic.io
       192.168.49.2 argocd.testing.com jaeger.testing.com kiali.testing.com db.testing.com
       172.18.0.2 echo.com
     '';
