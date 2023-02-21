@@ -169,7 +169,7 @@ in {
       qbittorrent
       protonvpn-gui
       alacritty-launch
-      wezterm
+      unstable.wezterm
       gh
       libreoffice-fresh
       hunspell
@@ -180,6 +180,7 @@ in {
       teams
       spotify
       (discord.override {nss = unstable.nss_latest;})
+      etcher
 
       unstable.firefox
       unstable.thunderbird
@@ -208,7 +209,7 @@ in {
       # gnomeExtensions.app-icons-taskbar
       gnomeExtensions.appindicator
       # gnomeExtensions.appindicator
-      # gparted
+      gparted
       vimix-gtk-themes
       vimix-icon-theme
 
@@ -236,7 +237,7 @@ in {
       docker-machine-kvm2 # Minikube driver
 
       # JetBrains
-      # jetbrains.rider
+      jetbrains.rider
       # jetbrains.webstorm
       # jetbrains.idea-ultimate
       jetbrains.pycharm-professional

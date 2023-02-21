@@ -264,6 +264,9 @@ in {
     config = {
       allowUnfree = true;
       firefox.enableGnomeExtensions = true;
+      permittedInsecurePackages = [
+        "electron-12.2.3" # For etcher
+      ];
     };
   };
 
