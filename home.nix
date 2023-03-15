@@ -105,6 +105,13 @@ in {
     username = "denis";
     stateVersion = "22.11";
 
+    pointerCursor = {
+      package = pkgs.nordzy-cursor-theme;
+      gtk.enable = true;
+      x11.enable = true;
+      name = "Nordzy-cursors";
+    };
+
     sessionVariables = {
       # I dont about should I create this variable by myself
       XDG_CONFIG_HOME = "$HOME/.config";
@@ -170,14 +177,13 @@ in {
       protonvpn-gui
       alacritty-launch
       unstable.wezterm
-      gh
       libreoffice-fresh
       hunspell
       hunspellDicts.uk_UA
       hunspellDicts.th_TH
       notepadqq
       flameshot
-      teams
+      unstable.teams
       spotify
       (discord.override {nss = unstable.nss_latest;})
       etcher
@@ -187,6 +193,7 @@ in {
       autokey
       dotnet-sdk # problems with unstable channel
       hstr
+      ripgrep
       exa
       bat
       ncdu
@@ -206,9 +213,10 @@ in {
       gnome.gnome-shell-extensions
       gnomeExtensions.tray-icons-reloaded
       gnomeExtensions.x11-gestures
-      # gnomeExtensions.app-icons-taskbar
+      gnomeExtensions.app-icons-taskbar
       gnomeExtensions.appindicator
-      # gnomeExtensions.appindicator
+      gnomeExtensions.remove-alttab-delay-v2
+      gnomeExtensions.caffeine
       gparted
       vimix-gtk-themes
       vimix-icon-theme
@@ -309,14 +317,27 @@ in {
       ];
     };
 
+    zellij = {
+      enable = true;
+      package = pkgs.unstable.zellij;
+      settings = {
+      };
+    };
+
     git = {
       enable = true;
       userName = "Denis Kaynar";
       userEmail = "kaynar.denis@gmail.com";
       extraConfig = {
         credential.helper = "${pkgs.git.override {withLibsecret = true;}}/bin/git-credential-libsecret";
+        init.defaultBranch = "master";
       };
       lfs.enable = true;
+    };
+
+    gh = {
+      enable = true;
+      enableGitCredentialHelper = true;
     };
 
     alacritty = {

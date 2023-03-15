@@ -9,43 +9,6 @@
 }: let
   user-name = "denis";
 in {
-  nixpkgs.overlays = [
-    (self: super: {
-      discord = super.discord.overrideAttrs (old: {
-        version = "0.0.21";
-        src = super.fetchurl {
-          url = "https://dl.discordapp.net/apps/linux/0.0.21/discord-0.0.21.tar.gz";
-          # sha256 = lib.fakeSha256;
-          sha256 = "sha256-KDKUssPRrs/D10s5GhJ23hctatQmyqd27xS9nU7iNaM=";
-        };
-      });
-    })
-    #
-    # (self: super: {
-    #   sl = super.sl.overrideAttrs (old: {
-    #     src = super.fetchFromGitHub {
-    #       owner = "mtoyoda";
-    #       repo = "sl";
-    #       rev = "923e7d7ebc5c1f009755bdeb789ac25658ccce03";
-    #       # sha256 = lib.fakeSha256;
-    #       sha256 = "173gxk0ymiw94glyjzjizp8bv8g72gwkjhacigd1an09jshdrjb5";
-    #     };
-    #   });
-    # })
-    #
-    # (self: super: {
-    #   neovim-unwrapped = super.neovim-unwrapped.overrideAttrs (old: {
-    #     version = "nightly";
-    #     src = super.fetchFromGitHub {
-    #       owner = "neovim";
-    #       repo = "neovim";
-    #       rev = "nightly";
-    #       sha256 = "sha256-gMPbe//zu8lxGgMy1C5o5N/YYYM8B26cs3H3F2rgFTo=";
-    #     };
-    #   });
-    # })
-  ];
-
   environment = {
     shells = [pkgs.zsh];
 
@@ -75,6 +38,16 @@ in {
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+  };
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      firefox.enableGnomeExtensions = true;
+      permittedInsecurePackages = [
+        "electron-12.2.3" # For etcher
+      ];
+    };
   };
 
   boot = {
@@ -150,9 +123,13 @@ in {
       libinput.enable = true;
 
       screenSection = ''
-        Option         "ForceFullCompositionPipeline" "on"
-        Option         "AllowIndirectGLXProtocol" "off"
-        Option         "TripleBuffer" "on"
+        Option         "ForceFullCompositionPipeline"   "on"
+        Option         "AllowIndirectGLXProtocol"       "off"
+        Option         "TripleBuffer"                   "on"
+      '';
+
+      deviceSection = ''
+        Option         "Coolbits"                       "4"
       '';
 
       displayManager = {
@@ -221,14 +198,14 @@ in {
     # Enable CUPS to print documents.
     printing.enable = true;
 
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      # jack.enable = true;
-    };
+    # pipewire = {
+    #   enable = true;
+    #   alsa.enable = true;
+    #   alsa.support32Bit = false;
+    #   pulse.enable = true;
+    #   # If you want to use JACK applications, uncomment this
+    #   jack.enable = false;
+    # };
 
     # Enable the OpenSSH daemon.
     openssh = {
@@ -259,16 +236,6 @@ in {
   #   "--debug"
   #   "--unsupported-gpu"
   # ];
-
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      firefox.enableGnomeExtensions = true;
-      permittedInsecurePackages = [
-        "electron-12.2.3" # For etcher
-      ];
-    };
-  };
 
   security = {
     sudo = {
@@ -301,8 +268,11 @@ in {
   # programs.partition-manager.enable = true;
 
   # Remove sound.enable or turn it off if you had it set previously, it seems to cause conflicts with pipewire
-  # sound.enable = false;
-  hardware.pulseaudio.enable = false;
+  sound.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    extraConfig = "unload-module module-combine-sink";
+  };
 
   virtualisation = {
     docker = {
