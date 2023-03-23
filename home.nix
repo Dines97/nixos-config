@@ -78,14 +78,14 @@
   alacritty-launch =
     pkgs.writeScriptBin "alacritty-launch"
     ''
-      xid=$(${pkgs.xdotool}/bin/xdotool search --class Alacritty)
+       xid=$(${pkgs.xdotool}/bin/xdotool search --class Alacritty)
 
-      if [ -z ''${xid} ]
-      then
-        ${pkgs.unstable.alacritty}/bin/alacritty
-      else
-      	${pkgs.xdotool}/bin/xdotool windowactivate ''${xid}
-      fi
+       if [ -z ''${xid} ]
+       then
+       ${pkgs.unstable.alacritty}/bin/alacritty
+       else
+      ${pkgs.xdotool}/bin/xdotool windowactivate ''${xid}
+       fi
     '';
 in {
   imports = [./modules/programs/hstr.nix ./modules/programs/tmux.nix];
@@ -172,6 +172,7 @@ in {
       megasync
       fsearch
       obs-studio
+      piper
       vlc
       qbittorrent
       protonvpn-gui
@@ -409,9 +410,17 @@ in {
       ];
     };
 
-    emacs = {
+    doom-emacs = {
       enable = true;
+      doomPrivateDir = ./doom.d;
+      emacsPackage = pkgs.emacs-nox;
     };
+
+    # emacs = {
+    #   enable = true;
+    #   package = pkgs.unstable.emacs;
+    #   extraPackages = epkgs: [];
+    # };
 
     go.enable = true;
 

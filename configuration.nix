@@ -107,6 +107,8 @@ in {
   services = {
     touchegg.enable = true;
 
+    cpupower-gui.enable = true;
+
     gnome.gnome-browser-connector.enable = true;
 
     xserver = {
@@ -126,10 +128,6 @@ in {
         Option         "ForceFullCompositionPipeline"   "on"
         Option         "AllowIndirectGLXProtocol"       "off"
         Option         "TripleBuffer"                   "on"
-      '';
-
-      deviceSection = ''
-        Option         "Coolbits"                       "4"
       '';
 
       displayManager = {
@@ -228,6 +226,10 @@ in {
     enable = true;
     style = "adwaita-dark";
     # platformTheme = "gnome";
+  };
+
+  programs = {
+    wireshark.enable = true;
   };
 
   # programs.sway.enable = true;
