@@ -25,7 +25,9 @@
 
   description = "System configuration";
 
-  outputs = {self, ...} @ inputs:
+  outputs = {self, ...} @ inputs: let
+    pkgs = self.pkgs.x86_64-linux.nixpkgs;
+  in
     inputs.fup.lib.mkFlake {
       inherit self inputs;
 
@@ -44,37 +46,33 @@
 
       channels.nixpkgs = {
         overlaysBuilder = channels: [
-          (final: prev: {unstable = channels.nixpkgs-unstable;})
+          (final: prev: {
+            openlens = pkgs.callPackage ./pkgs/openlens-appimage {};
+            unstable = channels.nixpkgs-unstable;
+          })
         ];
       };
 
       hostDefaults = {
         modules = [
-          {
-            nix = {
-              generateNixPathFromInputs = true;
-              linkInputs = true;
-              settings = {
-                experimental-features = ["nix-command" "flakes"];
-              };
-            };
-          }
+          inputs.home-manager.nixosModules.home-manager
+          ./cachix.nix
+          ./hosts/shared
         ];
       };
 
       hosts.Denis-N = {
         modules = [
-          ./hardware-configuration.nix
-          ./cachix.nix
-          ./configuration.nix
+          ./hosts/denis-n
 
-          inputs.home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
             home-manager.users.denis = {...}: {
-              imports = [./home.nix inputs.nix-doom-emacs.hmModule];
+              imports = [
+                ./modules/programs/hstr.nix
+                ./modules/programs/tmux.nix
+                ./users/denis
+                inputs.nix-doom-emacs.hmModule
+              ];
             };
           }
         ];

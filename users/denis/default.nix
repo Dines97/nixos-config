@@ -88,8 +88,6 @@
        fi
     '';
 in {
-  imports = [./modules/programs/hstr.nix ./modules/programs/tmux.nix];
-
   dconf.settings = {
     "org.gnome.desktop.input-sources" = {
       xkb-options = "['grp:alt_shift_toggle','caps:none']";
@@ -234,8 +232,7 @@ in {
       postgresql
       kube3d
       kind
-      # lens
-      (callPackage ./pkgs/openlens-appimage {})
+      openlens
       k9s
       kubebuilder
       cue
@@ -310,7 +307,7 @@ in {
       terminal = "xterm-256color";
       historyLimit = 5000;
       clock24 = true;
-      extraConfig = builtins.readFile ./conf/tmux.conf;
+      extraConfig = builtins.readFile ../../configs/tmux.conf;
       package = pkgs.unstable.tmux;
       plugins = with pkgs.unstable; [
         tmuxPlugins.sensible
@@ -412,7 +409,7 @@ in {
 
     doom-emacs = {
       enable = true;
-      doomPrivateDir = ./doom.d;
+      doomPrivateDir = ../../configs/doom.d;
       emacsPackage = pkgs.emacs-nox;
     };
 
