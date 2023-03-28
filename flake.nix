@@ -1,16 +1,11 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      # url = "/home/denis/home-manager";
-
-      url = "github:nix-community/home-manager/release-22.11";
-      # url = "github:nix-community/home-manager";
-
+      # url = "github:nix-community/home-manager/release-22.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -37,6 +32,12 @@
       };
 
       sharedOverlays = [
+        (final: prev: {
+          teams = prev.teams.overrideAttrs (old: {
+            src = ./teams.deb;
+          });
+        })
+
         # conda-zsh-overlay = final: prev: {
         #   conda = prev.conda.overrideAttrs {
         #     runScript = "zsh -l";
@@ -45,6 +46,15 @@
       ];
 
       channels.nixpkgs = {
+        overlaysBuilder = channels: [
+          (final: prev: {
+            openlens = pkgs.callPackage ./pkgs/openlens-appimage {};
+            unstable = channels.nixpkgs-unstable;
+          })
+        ];
+      };
+
+      channels.nixpkgs-unstable = {
         overlaysBuilder = channels: [
           (final: prev: {
             openlens = pkgs.callPackage ./pkgs/openlens-appimage {};
@@ -62,13 +72,14 @@
       };
 
       hosts.Denis-N = {
+        # channelName = "nixpkgs-unstable";
+
         modules = [
           ./hosts/denis-n
 
           {
             home-manager.users.denis = {...}: {
               imports = [
-                ./modules/programs/hstr.nix
                 ./modules/programs/tmux.nix
                 ./users/denis
                 inputs.nix-doom-emacs.hmModule

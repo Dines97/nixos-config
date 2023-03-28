@@ -116,7 +116,6 @@ in {
 
       # PYTHONPATH = "${python-with-packages}/${python-with-packages.sitePackages}";
       PAGER = "less";
-      EDITOR = "nvim";
       LESS = "-r --mouse";
       GOPATH = "$HOME/go";
       PNPM_HOME = "$HOME/pnpm";
@@ -307,7 +306,7 @@ in {
       terminal = "xterm-256color";
       historyLimit = 5000;
       clock24 = true;
-      extraConfig = builtins.readFile ../../configs/tmux.conf;
+      extraConfig = builtins.readFile ./configs/tmux.conf;
       package = pkgs.unstable.tmux;
       plugins = with pkgs.unstable; [
         tmuxPlugins.sensible
@@ -381,7 +380,90 @@ in {
       enable = true;
       package = pkgs.unstable.neovim-unwrapped;
       # package = pkgs.neovim-nightly;
-      # defaultEditor = true;
+      defaultEditor = true;
+
+      extraLuaConfig = builtins.readFile ./configs/nvim/init.lua;
+
+      plugins = with pkgs.unstable;
+      with pkgs.unstable.vimUtils;
+      with pkgs.unstable.vimPlugins; [
+        {
+          plugin = mini-nvim;
+          type = "lua";
+          config = builtins.readFile ./configs/nvim/plugins/mini.lua;
+        }
+        {
+          plugin = buildVimPluginFrom2Nix {
+            pname = "tmux.nvim";
+            version = "2023-3-11";
+            src = fetchFromGitHub {
+              owner = "aserowy";
+              repo = "tmux.nvim";
+              rev = "9ba03cc5dfb30f1dc9eb50d0796dfdd52c5f454e";
+              sha256 = "sha256-ZBnQFKe8gySFQ9v6j4C/F/mq+bCH1n8G42AlBx6MbXY=";
+            };
+            meta.homepage = "https://github.com/aserowy/tmux.nvim/";
+          };
+          type = "lua";
+          config = builtins.readFile ./configs/nvim/plugins/tmux.lua;
+        }
+        {
+          plugin = null-ls-nvim;
+          type = "lua";
+          config = builtins.readFile ./configs/nvim/plugins/null_ls.lua;
+        }
+        {
+          plugin = lualine-nvim;
+          type = "lua";
+          config = builtins.readFile ./configs/nvim/plugins/lualine.lua;
+        }
+
+        plenary-nvim
+        nvim-web-devicons
+        nui-nvim
+        nvim-notify
+        {
+          plugin = nvim-treesitter.withAllGrammars;
+          type = "lua";
+          config = builtins.readFile ./configs/nvim/plugins/treesitter.lua;
+        }
+        {
+          plugin = onedark-nvim;
+          type = "lua";
+          config = builtins.readFile ./configs/nvim/plugins/onedark.lua;
+        }
+        {
+          plugin = neo-tree-nvim;
+          type = "lua";
+          config = builtins.readFile ./configs/nvim/plugins/neo_tree.lua;
+        }
+        cmp-nvim-lsp
+        omnisharp-extended-lsp-nvim
+        {
+          plugin = nvim-lspconfig;
+          type = "lua";
+          config = builtins.readFile ./configs/nvim/plugins/nvim_lspconfig.lua;
+        }
+        cmp-path
+        luasnip
+        cmp_luasnip
+        cmp-buffer
+        {
+          plugin = nvim-cmp;
+          type = "lua";
+          config = builtins.readFile ./configs/nvim/plugins/nvim_cmp.lua;
+        }
+        {
+          plugin = which-key-nvim;
+          type = "lua";
+          config = builtins.readFile ./configs/nvim/plugins/which_key.lua;
+        }
+        {
+          plugin = legendary-nvim;
+          type = "lua";
+          config = builtins.readFile ./configs/nvim/plugins/legendary.lua;
+        }
+      ];
 
       extraPackages = with pkgs; [
         # Nix
@@ -409,7 +491,7 @@ in {
 
     doom-emacs = {
       enable = true;
-      doomPrivateDir = ../../configs/doom.d;
+      doomPrivateDir = ./configs/doom.d;
       emacsPackage = pkgs.emacs-nox;
     };
 
