@@ -14,5 +14,8 @@ vim.opt.expandtab = true
 
 vim.opt.undofile = true
 
+-- Required by notify
+vim.opt.termguicolors = true
+
 vim.opt.scrolloff = 5
 vim.cmd('syntax on')

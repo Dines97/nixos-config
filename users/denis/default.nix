@@ -116,6 +116,7 @@ in {
 
       # PYTHONPATH = "${python-with-packages}/${python-with-packages.sitePackages}";
       PAGER = "less";
+      EDITOR = "nvim";
       LESS = "-r --mouse";
       GOPATH = "$HOME/go";
       PNPM_HOME = "$HOME/pnpm";
@@ -380,13 +381,22 @@ in {
       enable = true;
       package = pkgs.unstable.neovim-unwrapped;
       # package = pkgs.neovim-nightly;
-      defaultEditor = true;
+      # defaultEditor = true;
 
       extraLuaConfig = builtins.readFile ./configs/nvim/init.lua;
 
       plugins = with pkgs.unstable;
       with pkgs.unstable.vimUtils;
       with pkgs.unstable.vimPlugins; [
+        {
+          plugin = comment-nvim;
+          type = "lua";
+          # Setup should be called for default keybindings
+          config = "require('Comment').setup()";
+        }
+        {
+          plugin = barbar-nvim;
+        }
         {
           plugin = mini-nvim;
           type = "lua";
@@ -421,7 +431,11 @@ in {
         plenary-nvim
         nvim-web-devicons
         nui-nvim
-        nvim-notify
+        {
+          plugin = nvim-notify;
+          type = "lua";
+          config = builtins.readFile ./configs/nvim/plugins/notify.lua;
+        }
         {
           plugin = nvim-treesitter.withAllGrammars;
           type = "lua";
@@ -435,10 +449,16 @@ in {
         {
           plugin = neo-tree-nvim;
           type = "lua";
-          config = builtins.readFile ./configs/nvim/plugins/neo_tree.lua;
+          # Setup should be called for tree be enabled at startup
+          config = "require('neo-tree').setup()";
         }
         cmp-nvim-lsp
         omnisharp-extended-lsp-nvim
+        {
+          plugin = neodev-nvim;
+          type = "lua";
+          config = builtins.readFile ./configs/nvim/plugins/neodev.lua;
+        }
         {
           plugin = nvim-lspconfig;
           type = "lua";
@@ -473,19 +493,28 @@ in {
         unstable.alejandra
         unstable.statix
 
-        # Neovim
+        # Mix
         xclip
         vale
-        sumneko-lua-language-server
-        unstable.gopls
-        unstable.nodePackages.yaml-language-server
-        unstable.omnisharp-roslyn
         unstable.nodePackages.prettier
         unstable.nodePackages.vue-language-server
-        # unstable.python310Packages.jedi-language-server
 
+        # Lua
+        unstable.sumneko-lua-language-server
+
+        # Go
+        unstable.gopls
+
+        # Yaml
+        unstable.nodePackages.yaml-language-server
+
+        # C#
+        unstable.omnisharp-roslyn
+
+        # Python
         unstable.nodePackages.pyright
         unstable.python310Packages.black
+        # unstable.python310Packages.jedi-language-server
       ];
     };
 

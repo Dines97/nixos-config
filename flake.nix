@@ -4,8 +4,8 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      # url = "github:nix-community/home-manager/release-22.11";
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager/release-22.11";
+      # url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -81,6 +81,7 @@
             home-manager.users.denis = {...}: {
               imports = [
                 ./modules/programs/tmux.nix
+                ./modules/programs/hstr.nix
                 ./users/denis
                 inputs.nix-doom-emacs.hmModule
               ];

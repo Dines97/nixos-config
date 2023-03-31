@@ -12,13 +12,9 @@ local mappings = {
     name = 'Git',
     a = { '<cmd>Gwrite<cr>', 'Git add' },
     s = { '<cmd>Git<cr>', 'Git status' },
-    p = { function() require('gitsigns').preb_hunk() end, 'Prev hunk' },
+    p = { function() require('gitsigns').prev_hunk() end, 'Prev hunk' },
     n = { function() require('gitsigns').next_hunk() end, 'Next hunk' },
     h = { function() require('gitsigns').preview_hunk() end, 'Preview hunk' }
-  },
-  P = {
-    name = 'Plugins',
-    s = { '<cmd>Lazy sync<cr>', 'Sync' }
   },
   N = {
     name = 'Neovim',
