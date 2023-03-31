@@ -12,8 +12,7 @@
 
       extraLuaConfig = builtins.readFile ./configs/nvim/init.lua;
 
-      plugins = with pkgs.unstable;
-      with pkgs.unstable.vimUtils;
+      plugins = with pkgs.unstable.vimUtils;
       with pkgs.unstable.vimPlugins; [
         {
           plugin = comment-nvim;
@@ -33,7 +32,7 @@
           plugin = buildVimPluginFrom2Nix {
             pname = "tmux.nvim";
             version = "2023-3-11";
-            src = fetchFromGitHub {
+            src = pkgs.fetchFromGitHub {
               owner = "aserowy";
               repo = "tmux.nvim";
               rev = "9ba03cc5dfb30f1dc9eb50d0796dfdd52c5f454e";
@@ -114,34 +113,34 @@
 
       extraPackages = with pkgs; [
         # Nix
-        # unstable.rnix-lsp
-        # unstable.nixpkgs-fmt
-        unstable.nil
-        unstable.alejandra
-        unstable.statix
+        # rnix-lsp
+        # nixpkgs-fmt
+        nil
+        alejandra
+        statix
 
         # Mix
         xclip
         vale
-        unstable.nodePackages.prettier
-        unstable.nodePackages.vue-language-server
+        nodePackages.prettier
+        nodePackages.vue-language-server
 
         # Lua
-        unstable.sumneko-lua-language-server
+        sumneko-lua-language-server
 
         # Go
-        unstable.gopls
+        gopls
 
         # Yaml
-        unstable.nodePackages.yaml-language-server
+        nodePackages.yaml-language-server
 
         # C#
-        unstable.omnisharp-roslyn
+        omnisharp-roslyn
 
         # Python
-        unstable.nodePackages.pyright
-        unstable.python310Packages.black
-        # unstable.python310Packages.jedi-language-server
+        nodePackages.pyright
+        python310Packages.black
+        # python310Packages.jedi-language-server
       ];
     };
   };
