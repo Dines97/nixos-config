@@ -83,11 +83,16 @@
                 ./modules/programs/tmux.nix
                 ./modules/programs/hstr.nix
                 ./users/denis
+                ./users/denis/neovim.nix
                 inputs.nix-doom-emacs.hmModule
               ];
             };
           }
         ];
+      };
+
+      hmModules = {
+        neovim = ./users/denis/neovim.nix;
       };
     };
 }
