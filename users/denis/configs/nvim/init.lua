@@ -19,3 +19,4 @@ vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 5
 vim.cmd('syntax on')
+vim.cmd('set spell')

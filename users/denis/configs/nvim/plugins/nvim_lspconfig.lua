@@ -1,7 +1,7 @@
 local servers = {
   gopls = {},
   dockerls = {},
-  yamlls = {},
+  yamlls = require('yaml-companion').setup(),
   pyright = {},
   hls = {},
   nil_ls = {},
@@ -24,7 +24,6 @@ local servers = {
           defaultConfig = {
             indent_style = 'space',
             indent_size = '2',
-
             quote_style = 'single',
             trailing_table_separator = 'never'
           }

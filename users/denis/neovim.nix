@@ -16,7 +16,11 @@
       plenary-nvim # Required for most of the plugins
       nvim-web-devicons # Additional icons
       barbar-nvim # Tabline plugin
-
+      {
+        plugin = gitsigns-nvim; # Show git signs in sidebar
+        type = "lua";
+        config = "require('gitsigns').setup()"; # Setup need to be called for gitsigns to appear
+      }
       {
         plugin = telescope-nvim;
         type = "lua";
@@ -25,18 +29,19 @@
       telescope-fzf-native-nvim
 
       {
-        plugin = nvim-neoclip-lua; # Clipboard manager
-        type = "lua";
-        config = "require('neoclip').setup()";
+        #FIXME: Doesn't work for now
+        plugin = sqlite-lua; # Required for clipboard manager for persistent clipboard
+        # type = "lua";
+        config = "let g:sqlite_clib_path = '${pkgs.unstable.sqlite.out}/lib/libsqlite3.so'";
+        # config = "vim.g.sqlite_clib_path = '${pkgs.unstable.sqlite.out}/lib/libsqlite3.so'"; # sqlite3 is required by sqlite-lua
       }
       {
-        plugin = sqlite-lua; # Required for clipboard manager for persisten clipboard
+        plugin = nvim-neoclip-lua; # Clipboard manager
         type = "lua";
-        config = "vim.g.sqlite_clib_path = '${pkgs.unstable.sqlite.out}/lib/libsqlite3.so'"; # sqllite3 is required by sqlite-lua
+        config = builtins.readFile ./configs/nvim/plugins/neoclip.lua; # Persistent need be activated separately
       }
 
       {
-        # FIXME: doesn't work on nixos
         plugin = presence-nvim; # Discord presence plugin
         type = "lua";
         config = "require('presence').setup()";
@@ -47,9 +52,19 @@
         config = "require('Comment').setup()"; # Setup should be called for default keybindings
       }
       {
+        plugin = fidget-nvim;
+        type = "lua";
+        config = "require'fidget'.setup()";
+      }
+      {
+        plugin = todo-comments-nvim; # Comment highlighting
+        type = "lua";
+        config = "require('todo-comments').setup()";
+      }
+      {
         plugin = mini-nvim; # Collection of small modules
         type = "lua";
-        config = builtins.readFile ./configs/nvim/plugins/mini.lua; # Each of module need to be activated seperatly
+        config = builtins.readFile ./configs/nvim/plugins/mini.lua; # Each of module need to be activated separately
       }
       {
         plugin = buildVimPluginFrom2Nix {
@@ -71,6 +86,8 @@
         type = "lua";
         config = builtins.readFile ./configs/nvim/plugins/null_ls.lua;
       }
+
+      lsp-status-nvim
       {
         plugin = lualine-nvim;
         type = "lua";
@@ -100,6 +117,19 @@
       }
       cmp-nvim-lsp
       omnisharp-extended-lsp-nvim
+      {
+        plugin = buildVimPluginFrom2Nix {
+          pname = "yaml-companion.nvim";
+          version = "2023-03-04";
+          src = pkgs.fetchFromGitHub {
+            owner = "someone-stole-my-name";
+            repo = "yaml-companion.nvim";
+            rev = "4de1e1546abc461f62dee02fcac6a02debd6eb9e";
+            sha256 = "sha256-BmX7hyiIMQfcoUl09Y794HrSDq+cj93T+Z5u3e5wqLc=";
+          };
+          meta.homepage = "https://github.com/someone-stole-my-name/yaml-companion.nvim/";
+        };
+      }
       {
         plugin = neodev-nvim;
         type = "lua";

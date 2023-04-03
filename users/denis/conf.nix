@@ -152,6 +152,12 @@ in {
     };
 
     packages = with pkgs; [
+      (retroarch.override {
+        cores = with libretro; [
+          dolphin
+        ];
+      })
+
       # ROS
       # ros.gazebo
 
