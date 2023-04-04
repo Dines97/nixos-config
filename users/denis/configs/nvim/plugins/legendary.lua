@@ -1,3 +1,5 @@
+local mini_trailspace = require('mini.trailspace')
+
 require('legendary').setup({
   keymaps = {
     -- Better window movement
@@ -47,7 +49,12 @@ require('legendary').setup({
             r = { vim.lsp.buf.rename, 'Rename' },
             a = { vim.lsp.buf.code_action, 'Code action' },
             R = { vim.lsp.buf.references, 'References' },
-            f = { function() vim.lsp.buf.format { async = true } end, 'Format' }
+            f = { function()
+              mini_trailspace.trim()
+              mini_trailspace.trim_last_lines()
+
+              vim.lsp.buf.format { async = true }
+            end, 'Format' }
           },
           w = {
             name = 'Workspace',
@@ -70,18 +77,17 @@ require('legendary').setup({
         require('which-key').register(mappings, mappings_opts)
       end,
       description = 'Lsp Attach'
-    },
-
-    {
-      'BufWritePre',
-      function()
-        local mini_trailspace = require('mini.trailspace')
-        mini_trailspace.trim()
-        mini_trailspace.trim_last_lines()
-
-        vim.lsp.buf.format({ async = false })
-      end,
-      description = 'Format on save'
     }
+
+    -- {
+    --   'BufWritePre',
+    --   function()
+    --     mini_trailspace.trim()
+    --     mini_trailspace.trim_last_lines()
+    --
+    --     vim.lsp.buf.format({ async = false })
+    --   end,
+    --   description = 'Format on save'
+    -- }
   }
 })

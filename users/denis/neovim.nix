@@ -17,6 +17,14 @@
       nvim-web-devicons # Additional icons
       barbar-nvim # Tabline plugin
       {
+        plugin = nvim-navic;
+      }
+      {
+        plugin = indent-blankline-nvim; # Indention line
+        type = "lua";
+        config = builtins.readFile ./configs/nvim/plugins/indent-blankline.lua;
+      }
+      {
         plugin = gitsigns-nvim; # Show git signs in sidebar
         type = "lua";
         config = "require('gitsigns').setup()"; # Setup need to be called for gitsigns to appear
@@ -66,10 +74,26 @@
         type = "lua";
         config = builtins.readFile ./configs/nvim/plugins/mini.lua; # Each of module need to be activated separately
       }
+      hologram-nvim
+      {
+        plugin = buildVimPluginFrom2Nix {
+          pname = "pets.nvim";
+          version = "2023-03-15";
+          src = pkgs.fetchFromGitHub {
+            owner = "giusgad";
+            repo = "pets.nvim";
+            rev = "8200520815038a57787d129cc30f9a7575b6802b";
+            sha256 = "sha256-obdjCiNyFCGz8Z6eWPL3nQ+kAAwqfbwbpWmMiABCFHw=";
+          };
+          meta.homepage = "https://github.com/giusgad/pets.nvim/";
+        };
+        type = "lua";
+        config = "require('pets').setup()";
+      }
       {
         plugin = buildVimPluginFrom2Nix {
           pname = "tmux.nvim";
-          version = "2023-3-11";
+          version = "2023-03-11";
           src = pkgs.fetchFromGitHub {
             owner = "aserowy";
             repo = "tmux.nvim";
