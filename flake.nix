@@ -33,6 +33,17 @@
 
       sharedOverlays = [
         (final: prev: {
+          openlens = pkgs.callPackage ./pkgs/openlens-appimage {};
+          ulauncher = prev.ulauncher.overrideAttrs (old: {
+            desktopItem = pkgs.makeDesktopItem {
+              name = "Ulauncher";
+              desktopName = "Ulauncher";
+              icon = "ulauncher";
+              exec = "ulauncher";
+              comment = "Application launcher for Linux";
+              categories = ["GNOME" "GTK" "Utility"];
+            };
+          });
           teams = prev.teams.overrideAttrs (old: {
             src = ./teams.deb;
           });
@@ -48,16 +59,6 @@
       channels.nixpkgs = {
         overlaysBuilder = channels: [
           (final: prev: {
-            openlens = pkgs.callPackage ./pkgs/openlens-appimage {};
-            unstable = channels.nixpkgs-unstable;
-          })
-        ];
-      };
-
-      channels.nixpkgs-unstable = {
-        overlaysBuilder = channels: [
-          (final: prev: {
-            openlens = pkgs.callPackage ./pkgs/openlens-appimage {};
             unstable = channels.nixpkgs-unstable;
           })
         ];

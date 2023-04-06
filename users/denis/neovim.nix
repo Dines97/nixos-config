@@ -210,6 +210,7 @@
 
       # Go
       gopls
+      delve
 
       # Yaml
       nodePackages.yaml-language-server
