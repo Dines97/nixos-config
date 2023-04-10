@@ -15,6 +15,13 @@
     with pkgs.unstable.vimPlugins; [
       plenary-nvim # Required for most of the plugins
       nvim-web-devicons # Additional icons
+      dressing-nvim # vim.ui interface improvement
+      {
+        plugin = flutter-tools-nvim;
+        type = "lua";
+        config = "require('flutter-tools').setup()";
+      }
+
       barbar-nvim # Tabline plugin
       {
         plugin = nvim-navic;

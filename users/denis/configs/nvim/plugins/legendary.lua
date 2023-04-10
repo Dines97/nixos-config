@@ -53,7 +53,9 @@ require('legendary').setup({
               mini_trailspace.trim()
               mini_trailspace.trim_last_lines()
 
-              vim.lsp.buf.format { async = true }
+              vim.lsp.buf.format { async = false }
+
+              vim.api.nvim_command('write')
             end, 'Format' }
           },
           w = {

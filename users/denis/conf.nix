@@ -17,17 +17,6 @@
        fi
     '';
 in {
-  dconf.settings = {
-    "org.gnome.desktop.input-sources" = {
-      xkb-options = "['grp:alt_shift_toggle','caps:none']";
-    };
-    "org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom0" = {
-      binding = "<Control>Return";
-      command = "${alacritty-launch}/bin/alacritty-launch";
-      name = "Alacritty activate";
-    };
-  };
-
   home = {
     username = "denis";
     stateVersion = "22.11";
@@ -103,7 +92,7 @@ in {
       unstable.firefox
       unstable.thunderbird
       autokey
-      dotnet-sdk # problems with unstable channel
+      dotnet-sdk_7 # problems with unstable channel
       hstr
       ripgrep
       exa
@@ -168,9 +157,8 @@ in {
       conda
 
       # C/C++
-      cmake
       gnumake
-      gcc
+      # gcc
 
       # Rust
       cargo
@@ -180,6 +168,9 @@ in {
       ghc
       # haskell-language-server
       haskellPackages.haskell-language-server
+
+      # Flutter
+      flutter
     ];
   };
 

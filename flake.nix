@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
     fup.url = "github:gytis-ivaskevicius/flake-utils-plus";
@@ -29,6 +34,9 @@
       channelsConfig = {
         allowUnfree = true;
         allowBroken = false;
+        permittedInsecurePackages = [
+          "electron-12.2.3" # For etcher
+        ];
       };
 
       sharedOverlays = [
@@ -77,6 +85,27 @@
 
         modules = [
           ./hosts/denis-n
+
+          {
+            home-manager.users.denis = {...}: {
+              imports = [
+                ./modules/programs/tmux.nix
+                ./modules/programs/hstr.nix
+                ./users/denis
+                inputs.nix-doom-emacs.hmModule
+              ];
+            };
+          }
+        ];
+      };
+
+      hosts.work = {
+        # channelName = "nixpkgs-unstable";
+
+        modules = [
+          ./hosts/work
+
+          inputs.wsl.nixosModules.wsl
 
           {
             home-manager.users.denis = {...}: {
