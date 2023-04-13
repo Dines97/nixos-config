@@ -144,7 +144,7 @@ in {
       docker-machine-kvm2 # Minikube driver
 
       # JetBrains
-      jetbrains.rider
+      unstable.jetbrains.rider
       # jetbrains.webstorm
       # jetbrains.idea-ultimate
       # jetbrains.pycharm-professional
