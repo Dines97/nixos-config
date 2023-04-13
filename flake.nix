@@ -9,6 +9,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    neovim = {
+      url = "path:./neovim/";
+    };
+
     wsl = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -114,14 +118,11 @@
                 ./modules/programs/hstr.nix
                 ./users/denis
                 inputs.nix-doom-emacs.hmModule
+                inputs.neovim.hmModule
               ];
             };
           }
         ];
-      };
-
-      hmModules = {
-        neovim = ./users/denis/neovim.nix;
       };
     };
 }
