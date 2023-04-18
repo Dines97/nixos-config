@@ -92,7 +92,7 @@ in {
       unstable.firefox
       unstable.thunderbird
       autokey
-      dotnet-sdk_7 # problems with unstable channel
+      dotnet-sdk_6 # problems with unstable channel
       hstr
       ripgrep
       exa
@@ -144,7 +144,7 @@ in {
       docker-machine-kvm2 # Minikube driver
 
       # JetBrains
-      unstable.jetbrains.rider
+      jetbrains.rider
       # jetbrains.webstorm
       # jetbrains.idea-ultimate
       # jetbrains.pycharm-professional
