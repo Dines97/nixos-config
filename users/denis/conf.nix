@@ -92,7 +92,7 @@ in {
       unstable.firefox
       unstable.thunderbird
       autokey
-      dotnet-sdk_6 # problems with unstable channel
+      dotnet-sdk
       hstr
       ripgrep
       exa
