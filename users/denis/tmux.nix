@@ -11,8 +11,8 @@
     historyLimit = 5000;
     clock24 = true;
     extraConfig = builtins.readFile ./configs/tmux.conf;
-    package = pkgs.unstable.tmux;
-    plugins = with pkgs.unstable; [
+    package = pkgs.tmux;
+    plugins = with pkgs; [
       tmuxPlugins.sensible
       tmuxPlugins.yank
     ];

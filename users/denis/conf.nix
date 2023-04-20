@@ -11,7 +11,7 @@
 
        if [ -z ''${xid} ]
        then
-       ${pkgs.unstable.alacritty}/bin/alacritty
+       ${pkgs.alacritty}/bin/alacritty
        else
       ${pkgs.xdotool}/bin/xdotool windowactivate ''${xid}
        fi
@@ -77,20 +77,20 @@ in {
       qbittorrent
       protonvpn-gui
       alacritty-launch
-      unstable.wezterm
+      wezterm
       libreoffice-fresh
       hunspell
       hunspellDicts.uk_UA
       hunspellDicts.th_TH
       notepadqq
       flameshot
-      unstable.teams
+      teams
       spotify
-      (discord.override {nss = unstable.nss_latest;})
+      (discord.override {nss = nss_latest;})
       etcher
 
-      unstable.firefox
-      unstable.thunderbird
+      firefox
+      thunderbird
       autokey
       dotnet-sdk
       hstr
@@ -129,7 +129,7 @@ in {
 
       # DevOps
       kubectl
-      unstable.kubernetes-helm
+      kubernetes-helm
       postgresql
       kube3d
       kind
@@ -144,7 +144,7 @@ in {
       docker-machine-kvm2 # Minikube driver
 
       # JetBrains
-      unstable.jetbrains.rider
+      jetbrains.rider
       # jetbrains.webstorm
       # jetbrains.idea-ultimate
       # jetbrains.pycharm-professional

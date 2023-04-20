@@ -63,14 +63,16 @@
         #   };
         # };
       ];
-
-      channels.nixpkgs = {
-        overlaysBuilder = channels: [
-          (final: prev: {
-            unstable = channels.nixpkgs-unstable;
-          })
-        ];
-      };
+      channels.nixpkgs.overlaysBuilder = channels: [
+        (final: prev: {
+          inherit (channels.nixpkgs-unstable) sumneko-lua-language-server;
+          vimPlugins =
+            prev.vimPlugins
+            // {
+              inherit (channels.nixpkgs-unstable.vimPlugins) presence-nvim nvim-notify mini-nvim nvim-lspconfig;
+            };
+        })
+      ];
 
       hostDefaults = {
         modules = [
@@ -81,8 +83,6 @@
       };
 
       hosts.Denis-N = {
-        # channelName = "nixpkgs-unstable";
-
         modules = [
           ./hosts/denis-n
 
@@ -100,8 +100,6 @@
       };
 
       hosts.work = {
-        # channelName = "nixpkgs-unstable";
-
         modules = [
           ./hosts/work
 

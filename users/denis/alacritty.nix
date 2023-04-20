@@ -5,7 +5,7 @@
 }: {
   programs.alacritty = {
     enable = true;
-    package = pkgs.unstable.alacritty;
+    package = pkgs.alacritty;
     settings = {
       draw_bold_text_with_bright_colors = false;
       shell = {

@@ -5,14 +5,14 @@
 }: {
   programs.neovim = {
     enable = true;
-    package = pkgs.unstable.neovim-unwrapped;
+    package = pkgs.neovim-unwrapped;
     # package = pkgs.neovim-nightly;
     # defaultEditor = true;
 
     extraLuaConfig = builtins.readFile ./configs/nvim/init.lua;
 
-    plugins = with pkgs.unstable.vimUtils;
-    with pkgs.unstable.vimPlugins; [
+    plugins = with pkgs.vimUtils;
+    with pkgs.vimPlugins; [
       plenary-nvim # Required for most of the plugins
       nvim-web-devicons # Additional icons
       dressing-nvim # vim.ui interface improvement
@@ -47,8 +47,8 @@
         #FIXME: Doesn't work for now
         plugin = sqlite-lua; # Required for clipboard manager for persistent clipboard
         # type = "lua";
-        config = "let g:sqlite_clib_path = '${pkgs.unstable.sqlite.out}/lib/libsqlite3.so'";
-        # config = "vim.g.sqlite_clib_path = '${pkgs.unstable.sqlite.out}/lib/libsqlite3.so'"; # sqlite3 is required by sqlite-lua
+        config = "let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
+        # config = "vim.g.sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'"; # sqlite3 is required by sqlite-lua
       }
       {
         plugin = nvim-neoclip-lua; # Clipboard manager
@@ -192,7 +192,7 @@
       }
     ];
 
-    extraPackages = with pkgs.unstable; [
+    extraPackages = with pkgs; [
       sqlite # Required for neoclip
 
       # Telescope
