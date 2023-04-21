@@ -65,11 +65,16 @@
       ];
       channels.nixpkgs.overlaysBuilder = channels: [
         (final: prev: {
-          inherit (channels.nixpkgs-unstable) sumneko-lua-language-server;
+          inherit (channels.nixpkgs-unstable) sumneko-lua-language-server dotnet-sdk;
           vimPlugins =
             prev.vimPlugins
             // {
               inherit (channels.nixpkgs-unstable.vimPlugins) presence-nvim nvim-notify mini-nvim nvim-lspconfig;
+            };
+          jetbrains =
+            prev.jetbrains
+            // {
+              inherit (channels.nixpkgs-unstable.jetbrains) rider;
             };
         })
       ];
