@@ -57,6 +57,13 @@ in {
     };
 
     packages = with pkgs; [
+      (retroarch.override {
+        cores = with libretro; [
+          dolphin
+          ppsspp
+          pcsx2
+        ];
+      })
       cachix
       pciutils
       appimage-run
@@ -101,6 +108,14 @@ in {
       xdotool
       htop
       ulauncher
+      (makeDesktopItem {
+        name = "Ulauncher";
+        desktopName = "Ulauncher";
+        icon = "ulauncher";
+        exec = "ulauncher";
+        comment = "Application launcher for Linux";
+        categories = ["GNOME" "GTK" "Utility"];
+      })
       wget
       jdk
 
@@ -168,9 +183,6 @@ in {
       ghc
       # haskell-language-server
       haskellPackages.haskell-language-server
-
-      # Flutter
-      flutter
     ];
   };
 
@@ -204,6 +216,12 @@ in {
         name = "gitignore";
         sha256 = "sha256:0qdb55njabpnajqfvkvc40lkzl75pydav0i8yb6w8vcskbz0p9dw";
       }));
+    };
+
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      # nix-direnv.enable = true;
     };
 
     gh = {
