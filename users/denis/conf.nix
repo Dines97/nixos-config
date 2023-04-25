@@ -71,7 +71,7 @@ in {
           gnomeExtensions.remove-alttab-delay-v2
           gnomeExtensions.caffeine
         ])
-        [
+        (lib.mkIf (osConfig.services.xserver.displayManager.sessionPackages != 0) [
           (retroarch.override {
             cores = with libretro; [
               dolphin
@@ -79,7 +79,8 @@ in {
               pcsx2
             ];
           })
-
+        ])
+        [
           cachix
           pciutils
           appimage-run
