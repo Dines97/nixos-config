@@ -71,7 +71,7 @@ in {
           gnomeExtensions.remove-alttab-delay-v2
           gnomeExtensions.caffeine
         ])
-        (lib.mkIf (osConfig.services.xserver.displayManager.sessionPackages != 0) [
+        (lib.mkIf (osConfig.services.xserver.displayManager.sessionPackages != []) [
           (retroarch.override {
             cores = with libretro; [
               dolphin

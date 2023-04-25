@@ -69,15 +69,6 @@
     # };
   };
 
-  services = {
-    flatpak.enable = true;
-    xserver = {
-      desktopManager = {
-        gnome.enable = true;
-      };
-    };
-  };
-
   fonts.fonts = with pkgs; [
     liberation_ttf
     (nerdfonts.override {
