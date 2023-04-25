@@ -1,7 +1,8 @@
 {
-  config,
-  pkgs,
   lib,
+  pkgs,
+  config,
+  osConfig,
   ...
 }: let
   alacritty-launch =
@@ -56,134 +57,137 @@ in {
       hconf = "nvim $HOME/.config/hypr/";
     };
 
-    packages = with pkgs; [
-      (retroarch.override {
-        cores = with libretro; [
-          dolphin
-          ppsspp
-          pcsx2
-        ];
-      })
-      cachix
-      pciutils
-      appimage-run
-      # gwe
-      nix-info
+    packages = with pkgs;
+      lib.mkMerge [
+        (lib.mkIf osConfig.services.xserver.desktopManager.gnome.enable [
+          gnome.gnome-tweaks
+          gnome.gnome-keyring
+          gnome.dconf-editor
+          gnome.gnome-shell-extensions
+          gnomeExtensions.tray-icons-reloaded
+          gnomeExtensions.x11-gestures
+          gnomeExtensions.app-icons-taskbar
+          gnomeExtensions.appindicator
+          gnomeExtensions.remove-alttab-delay-v2
+          gnomeExtensions.caffeine
+        ])
+        [
+          (retroarch.override {
+            cores = with libretro; [
+              dolphin
+              ppsspp
+              pcsx2
+            ];
+          })
 
-      # Xmonad
-      # dmenu
-      # haskellPackages.xmobar
-      # feh
+          cachix
+          pciutils
+          appimage-run
+          # gwe
+          nix-info
 
-      barrier
-      megasync
-      fsearch
-      obs-studio
-      piper
-      vlc
-      qbittorrent
-      protonvpn-gui
-      alacritty-launch
-      wezterm
-      libreoffice-fresh
-      hunspell
-      hunspellDicts.uk_UA
-      hunspellDicts.th_TH
-      notepadqq
-      flameshot
-      teams
-      spotify
-      (discord.override {nss = nss_latest;})
-      etcher
+          # Xmonad
+          # dmenu
+          # haskellPackages.xmobar
+          # feh
 
-      firefox
-      thunderbird
-      autokey
-      dotnet-sdk
-      hstr
-      ripgrep
-      exa
-      bat
-      ncdu
-      xdotool
-      htop
-      ulauncher
-      (makeDesktopItem {
-        name = "Ulauncher";
-        desktopName = "Ulauncher";
-        icon = "ulauncher";
-        exec = "ulauncher";
-        comment = "Application launcher for Linux";
-        categories = ["GNOME" "GTK" "Utility"];
-      })
-      wget
-      jdk
+          barrier
+          megasync
+          fsearch
+          obs-studio
+          piper
+          vlc
+          qbittorrent
+          protonvpn-gui
+          alacritty-launch
+          wezterm
+          libreoffice-fresh
+          hunspell
+          hunspellDicts.uk_UA
+          hunspellDicts.th_TH
+          notepadqq
+          flameshot
+          teams
+          spotify
+          (discord.override {nss = nss_latest;})
+          etcher
+          gnome.gnome-boxes
+          gparted
+          vimix-gtk-themes
+          vimix-icon-theme
 
-      # Gnome
-      # chrome-gnome-shell
-      gnome.gnome-tweaks
-      gnome.gnome-boxes
-      gnome.gnome-keyring
-      gnome.dconf-editor
-      gnome.gnome-shell-extensions
-      gnomeExtensions.tray-icons-reloaded
-      gnomeExtensions.x11-gestures
-      gnomeExtensions.app-icons-taskbar
-      gnomeExtensions.appindicator
-      gnomeExtensions.remove-alttab-delay-v2
-      gnomeExtensions.caffeine
-      gparted
-      vimix-gtk-themes
-      vimix-icon-theme
+          firefox
+          thunderbird
+          autokey
+          dotnet-sdk
+          hstr
+          ripgrep
+          exa
+          bat
+          ncdu
+          xdotool
+          htop
+          ulauncher
+          (makeDesktopItem {
+            name = "Ulauncher";
+            desktopName = "Ulauncher";
+            icon = "ulauncher";
+            exec = "ulauncher";
+            comment = "Application launcher for Linux";
+            categories = ["GNOME" "GTK" "Utility"];
+          })
+          wget
+          jdk
 
-      # KDE
-      # kate
-      # ark
-      # libsForQt5.kwalletmanager
-      # partition-manager
+          # KDE
+          # kate
+          # ark
+          # libsForQt5.kwalletmanager
+          # partition-manager
 
-      # DevOps
-      kubectl
-      kubernetes-helm
-      postgresql
-      kube3d
-      kind
-      openlens
-      k9s
-      kubebuilder
-      cue
-      skaffold
-      docker-compose
+          # DevOps
+          kubectl
+          kubernetes-helm
+          postgresql
+          kube3d
+          kind
+          openlens
+          k9s
+          kubebuilder
+          cue
+          skaffold
+          docker-compose
 
-      minikube
-      docker-machine-kvm2 # Minikube driver
+          minikube
+          docker-machine-kvm2 # Minikube driver
 
-      # JetBrains
-      jetbrains.rider
-      # jetbrains.webstorm
-      # jetbrains.idea-ultimate
-      # jetbrains.pycharm-professional
-      # jetbrains.clion
-      # jetbrains.goland
+          # JetBrains
+          jetbrains.rider
+          # jetbrains.webstorm
+          # jetbrains.idea-ultimate
+          # jetbrains.pycharm-professional
+          # jetbrains.clion
+          # jetbrains.goland
 
-      # openjdk11
+          # openjdk11
 
-      # Python
-      conda
+          # Python
+          conda
 
-      # C/C++
-      gnumake
-      # gcc
+          # C/C++
+          gnumake
+          # gcc
 
-      # Rust
-      cargo
+          # Rust
+          cargo
 
-      # Haskell
-      cabal-install
-      ghc
-      # haskell-language-server
-      haskellPackages.haskell-language-server
-    ];
+          # Haskell
+          cabal-install
+          ghc
+          # haskell-language-server
+          haskellPackages.haskell-language-server
+        ]
+      ];
   };
 
   programs = {
