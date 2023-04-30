@@ -128,15 +128,6 @@ in {
           ncdu
           xdotool
           htop
-          ulauncher
-          (makeDesktopItem {
-            name = "Ulauncher";
-            desktopName = "Ulauncher";
-            icon = "ulauncher";
-            exec = "ulauncher";
-            comment = "Application launcher for Linux";
-            categories = ["GNOME" "GTK" "Utility"];
-          })
           wget
           jdk
 
@@ -204,6 +195,14 @@ in {
         enable = true;
         plugins = ["git" "kubectx"];
         theme = "robbyrussell";
+      };
+    };
+    rofi = {
+      enable = true;
+      theme = "Arc-Dark";
+      extraConfig = {
+        show-icons = true;
+        kb-cancel = "Alt+space,Escape";
       };
     };
 

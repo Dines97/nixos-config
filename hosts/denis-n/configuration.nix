@@ -42,6 +42,9 @@ in {
       permittedInsecurePackages = [
         "electron-12.2.3" # For etcher
       ];
+      packageOverrides = pkgs: {
+        vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
+      };
     };
   };
 
@@ -72,6 +75,8 @@ in {
       modesetting.enable = true;
       # package = config.boot.kernelPackages.nvidiaPackages.beta;
 
+      forceFullCompositionPipeline = true;
+
       prime = {
         # offload.enable = true;
         sync.enable = true;
@@ -89,6 +94,7 @@ in {
       # driSupport32Bit = true;
       extraPackages = with pkgs; [
         intel-media-driver # LIBVA_DRIVER_NAME=iHD
+        libva
         vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
         vaapiVdpau
         libvdpau-va-gl
@@ -118,12 +124,6 @@ in {
 
       # Enable touchpad support (enabled default in most desktopManager).
       libinput.enable = true;
-
-      screenSection = ''
-        Option         "ForceFullCompositionPipeline"   "on"
-        Option         "AllowIndirectGLXProtocol"       "off"
-        Option         "TripleBuffer"                   "on"
-      '';
 
       displayManager = {
         autoLogin = {
@@ -191,14 +191,14 @@ in {
     # Enable CUPS to print documents.
     printing.enable = true;
 
-    # pipewire = {
-    #   enable = true;
-    #   alsa.enable = true;
-    #   alsa.support32Bit = false;
-    #   pulse.enable = true;
-    #   # If you want to use JACK applications, uncomment this
-    #   jack.enable = false;
-    # };
+    pipewire = {
+      enable = true;
+      alsa.enable = false;
+      alsa.support32Bit = false;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      jack.enable = false;
+    };
 
     # Enable the OpenSSH daemon.
     openssh = {
@@ -267,7 +267,7 @@ in {
   # Remove sound.enable or turn it off if you had it set previously, it seems to cause conflicts with pipewire
   sound.enable = true;
   hardware.pulseaudio = {
-    enable = true;
+    enable = false;
     extraConfig = "unload-module module-combine-sink";
   };
 
@@ -280,8 +280,8 @@ in {
     podman = {
       enable = true;
       # enableNvidia = true;
-      dockerCompat = true;
-      dockerSocket.enable = true;
+      dockerCompat = false;
+      dockerSocket.enable = false;
     };
 
     virtualbox.host.enable = true;

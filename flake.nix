@@ -14,7 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
     fup.url = "github:gytis-ivaskevicius/flake-utils-plus";
 
@@ -42,16 +42,6 @@
       sharedOverlays = [
         (final: prev: {
           openlens = pkgs.callPackage ./pkgs/openlens-appimage {};
-          ulauncher = prev.ulauncher.overrideAttrs (old: {
-            desktopItem = pkgs.makeDesktopItem {
-              name = "Ulauncher";
-              desktopName = "Ulauncher";
-              icon = "ulauncher";
-              exec = "ulauncher";
-              comment = "Application launcher for Linux";
-              categories = ["GNOME" "GTK" "Utility"];
-            };
-          });
           teams = prev.teams.overrideAttrs (old: {
             src = ./teams.deb;
           });
@@ -98,7 +88,7 @@
                 ./modules/programs/tmux.nix
                 ./modules/programs/hstr.nix
                 ./users/denis
-                inputs.nix-doom-emacs.hmModule
+                # inputs.nix-doom-emacs.hmModule
               ];
             };
           }
