@@ -107,7 +107,7 @@
                 ./modules/programs/tmux.nix
                 ./modules/programs/hstr.nix
                 ./users/denis
-                inputs.nix-doom-emacs.hmModule
+                # inputs.nix-doom-emacs.hmModule
               ];
             };
           }
