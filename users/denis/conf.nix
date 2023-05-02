@@ -185,16 +185,30 @@ in {
   programs = {
     zsh = {
       enable = true;
+      # enableSyntaxHighlighting = true;
       history = {
         share = true;
         ignoreDups = true;
         expireDuplicatesFirst = true;
       };
 
+      # localVariables = {
+      #   ZSH_TMUX_AUTOSTART = true;
+      #   ZSH_TMUX_CONFIG = "$HOME/.config/tmux/tmux.conf";
+      # };
+
       oh-my-zsh = {
         enable = true;
         plugins = ["git" "kubectx"];
         theme = "robbyrussell";
+      };
+      zplug = {
+        enable = true;
+        plugins = [
+          {
+            name = "zsh-users/zsh-syntax-highlighting";
+          }
+        ];
       };
     };
     rofi = {
