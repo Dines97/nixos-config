@@ -5,6 +5,7 @@ local servers = {
   pyright = {},
   hls = {},
   nil_ls = {},
+  texlab = {},
   lua_ls = {
     settings = {
       Lua = {

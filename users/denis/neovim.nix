@@ -99,6 +99,21 @@
       }
       {
         plugin = buildVimPluginFrom2Nix {
+          pname = "knap"; # LaTeX plugin
+          version = "2023-01-21";
+          src = pkgs.fetchFromGitHub {
+            owner = "frabjous";
+            repo = "knap";
+            rev = "8c083d333b8a82421a521539eb1c450b06c90eb6";
+            sha256 = "sha256-lW4QM3kKmxCF/rUj86d3EdAppwBzGomwk5u6N2u9Hbs=";
+          };
+          meta.homepage = "https://github.com/frabjous/knap/";
+        };
+        type = "lua";
+        config = builtins.readFile ./configs/nvim/plugins/knap.lua;
+      }
+      {
+        plugin = buildVimPluginFrom2Nix {
           pname = "tmux.nvim";
           version = "2023-03-11";
           src = pkgs.fetchFromGitHub {
@@ -229,6 +244,12 @@
       nodePackages.pyright
       python310Packages.black
       # python310Packages.jedi-language-server
+
+      # LaTeX
+      texlive.combined.scheme-full # Full LaTeX distribution
+      sioyek # Preview
+      texlab # LSP
+      rubber
     ];
   };
 }

@@ -58,7 +58,7 @@ in {
       efi.canTouchEfiVariables = true;
     };
 
-    # supportedFilesystems = ["ntfs"];
+    supportedFilesystems = ["ntfs"];
 
     # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
     # kernelPackages = pkgs.linuxKernel.packages.linux_testing;
@@ -350,7 +350,7 @@ in {
   # };
 
   fonts.fonts = with pkgs; [
-    liberation_ttf
+    google-fonts
     (nerdfonts.override {
       fonts = ["JetBrainsMono" "FiraCode"];
     })

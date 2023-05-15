@@ -77,6 +77,11 @@ in {
               dolphin
               ppsspp
               pcsx2
+              fbneo
+              mame
+              snes9x
+              mesen
+              mgba
             ];
           })
         ])
@@ -158,7 +163,7 @@ in {
           # jetbrains.webstorm
           # jetbrains.idea-ultimate
           # jetbrains.pycharm-professional
-          # jetbrains.clion
+          jetbrains.clion
           # jetbrains.goland
 
           # openjdk11
@@ -167,8 +172,8 @@ in {
           conda
 
           # C/C++
-          gnumake
-          # gcc
+          # gnumake
+          gcc # Required for clion
 
           # Rust
           cargo
@@ -240,6 +245,17 @@ in {
       enable = true;
       enableZshIntegration = true;
       # nix-direnv.enable = true;
+    };
+
+    sioyek = {
+      enable = true;
+      config = {
+        dark_mode_contrast = "0.7";
+        page_separator_width = "8";
+        page_separator_color = "0.5 0.5 0.5";
+        custom_background_color = "0.81 0.81 0.75";
+        custom_text_color = "0.09 0.09 0.09";
+      };
     };
 
     gh = {
