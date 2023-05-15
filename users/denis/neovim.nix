@@ -246,7 +246,7 @@
       # python310Packages.jedi-language-server
 
       # LaTeX
-      texlive.combined.scheme-full # Full LaTeX distribution
+      # texlive.combined.scheme-full # Full LaTeX distribution
       sioyek # Preview
       texlab # LSP
       rubber

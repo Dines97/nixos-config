@@ -70,7 +70,6 @@
   };
 
   fonts.fonts = with pkgs; [
-    liberation_ttf
     (nerdfonts.override {
       fonts = ["JetBrainsMono" "FiraCode"];
     })

@@ -350,7 +350,7 @@ in {
   # };
 
   fonts.fonts = with pkgs; [
-    google-fonts
+    # google-fonts
     (nerdfonts.override {
       fonts = ["JetBrainsMono" "FiraCode"];
     })
