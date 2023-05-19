@@ -103,10 +103,12 @@ in {
           obs-studio
           piper
           vlc
+          gnumake
           qbittorrent
           protonvpn-gui
           alacritty-launch
           wezterm
+          awmtt
           libreoffice-fresh
           hunspell
           hunspellDicts.uk_UA
