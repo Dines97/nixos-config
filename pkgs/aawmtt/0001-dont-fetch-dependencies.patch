@@ -1,0 +1,28 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2355aa5..8a397d5 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -45,12 +45,11 @@ set(REPROC++ ON)
+ cmake_policy(SET CMP0135 NEW)
+ set(CMAKE_POLICY_DEFAULT_CMP0135 NEW)
+ 
+-FetchContent_Declare(fmt        GIT_REPOSITORY "https://github.com/fmtlib/fmt"              GIT_TAG "9.1.0")
+-FetchContent_Declare(cli11      GIT_REPOSITORY "https://github.com/CLIUtils/CLI11"          GIT_TAG "v2.3.2")
+-FetchContent_Declare(reproc     GIT_REPOSITORY "https://github.com/DaanDeMeyer/reproc"      GIT_TAG "v14.2.4")
+-FetchContent_Declare(spdlog     GIT_REPOSITORY "https://github.com/gabime/spdlog"           GIT_TAG "v1.11.0")
++find_package(fmt)
++find_package(CLI11)
++find_package(reproc)
++find_package(spdlog)
+ 
+-FetchContent_MakeAvailable(reproc cli11 fmt spdlog)
+ target_link_libraries(${PROJECT_NAME} PRIVATE CLI11::CLI11 reproc++ fmt spdlog::spdlog)
+ 
+ find_package(X11 REQUIRED)
+@@ -61,4 +60,4 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${X11_INCLUDE_DIR})
+ # Install targets
+ # -------------------------------------------------------------------------------------------------------------------------------
+ 
+-install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+\ No newline at end of file
++install(TARGETS ${PROJECT_NAME} DESTINATION bin)

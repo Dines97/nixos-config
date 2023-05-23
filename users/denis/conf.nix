@@ -108,7 +108,8 @@ in {
           protonvpn-gui
           alacritty-launch
           wezterm
-          awmtt
+          aawmtt
+          ventoy-full
           libreoffice-fresh
           hunspell
           hunspellDicts.uk_UA

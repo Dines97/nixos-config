@@ -43,6 +43,7 @@
         (final: prev: {
           openlens = pkgs.callPackage ./pkgs/openlens-appimage {};
           awmtt = pkgs.callPackage ./pkgs/awmtt {};
+          aawmtt = pkgs.callPackage ./pkgs/aawmtt {};
           teams = prev.teams.overrideAttrs (old: {
             src = ./teams.deb;
           });
@@ -57,7 +58,7 @@
 
       channels.nixpkgs.overlaysBuilder = channels: [
         (final: prev: {
-          inherit (channels.nixpkgs-unstable) sumneko-lua-language-server dotnet-sdk;
+          inherit (channels.nixpkgs-unstable) sumneko-lua-language-server dotnet-sdk ventoy-full;
           vimPlugins =
             prev.vimPlugins
             // {
