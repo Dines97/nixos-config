@@ -5,6 +5,31 @@
   osConfig,
   ...
 }: let
+  my-python-packages = ps:
+    with ps; [
+      pandas
+      requests
+      # other python packages
+
+      asgiref
+      async-timeout
+      certifi
+      charset-normalizer
+      click
+      django
+      idna
+      importlib-metadata
+      pysocks
+      python-dotenv
+      redis
+      six
+      spotipy
+      sqlparse
+      typing-extensions
+      urllib3
+      zipp
+    ];
+
   alacritty-launch =
     pkgs.writeScriptBin "alacritty-launch"
     ''
@@ -97,6 +122,8 @@ in {
           # haskellPackages.xmobar
           # feh
 
+          (pkgs.python3.withPackages my-python-packages)
+
           barrier
           megasync
           fsearch
@@ -128,7 +155,7 @@ in {
           firefox
           thunderbird
           autokey
-          dotnet-sdk
+          dotnet-sdk_7
           hstr
           ripgrep
           exa
@@ -165,7 +192,7 @@ in {
           jetbrains.rider
           # jetbrains.webstorm
           # jetbrains.idea-ultimate
-          # jetbrains.pycharm-professional
+          jetbrains.pycharm-professional
           # jetbrains.clion
           # jetbrains.goland
 

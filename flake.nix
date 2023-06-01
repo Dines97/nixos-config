@@ -1,10 +1,10 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.11";
+      url = "github:nix-community/home-manager/release-23.05";
       # url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -58,17 +58,6 @@
 
       channels.nixpkgs.overlaysBuilder = channels: [
         (final: prev: {
-          inherit (channels.nixpkgs-unstable) sumneko-lua-language-server dotnet-sdk ventoy-full;
-          vimPlugins =
-            prev.vimPlugins
-            // {
-              inherit (channels.nixpkgs-unstable.vimPlugins) presence-nvim nvim-notify mini-nvim nvim-lspconfig;
-            };
-          jetbrains =
-            prev.jetbrains
-            // {
-              inherit (channels.nixpkgs-unstable.jetbrains) rider;
-            };
         })
       ];
 
@@ -88,7 +77,6 @@
             home-manager.users.denis = {...}: {
               imports = [
                 ./modules/programs/tmux.nix
-                ./modules/programs/hstr.nix
                 ./users/denis
                 # inputs.nix-doom-emacs.hmModule
               ];

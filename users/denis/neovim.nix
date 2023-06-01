@@ -42,7 +42,6 @@
         config = builtins.readFile ./configs/nvim/plugins/telescope.lua;
       }
       telescope-fzf-native-nvim
-
       {
         #FIXME: Doesn't work for now
         plugin = sqlite-lua; # Required for clipboard manager for persistent clipboard
@@ -69,7 +68,7 @@
       {
         plugin = fidget-nvim;
         type = "lua";
-        config = "require'fidget'.setup()";
+        config = builtins.readFile ./configs/nvim/plugins/fidget.lua;
       }
       {
         plugin = todo-comments-nvim; # Comment highlighting
@@ -151,6 +150,7 @@
         type = "lua";
         config = builtins.readFile ./configs/nvim/plugins/treesitter.lua;
       }
+      nvim-treesitter-context
       {
         plugin = onedark-nvim;
         type = "lua";

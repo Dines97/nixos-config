@@ -217,13 +217,14 @@ in {
     flatpak.enable = true;
   };
 
-  qt5 = {
+  qt = {
     enable = true;
     style = "adwaita-dark";
     # platformTheme = "gnome";
   };
 
   programs = {
+    zsh.enable = true;
     wireshark.enable = true;
   };
 
