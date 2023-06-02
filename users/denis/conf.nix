@@ -45,7 +45,7 @@
 in {
   home = {
     username = "denis";
-    stateVersion = "22.11";
+    stateVersion = "23.05";
 
     pointerCursor = {
       package = pkgs.nordzy-cursor-theme;

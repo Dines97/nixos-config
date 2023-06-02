@@ -28,14 +28,22 @@ require('legendary').setup({
     {
       'LspAttach',
       function(ev)
+        local bufnr = ev.buf
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
+
+        if client.server_capabilities.documentSymbolProvider then
+          require('nvim-navic').attach(client, bufnr)
+          require('notify')('Navic enabled', 'info', {
+            title = 'LSP'
+          })
+        end
 
         require('notify')(client.name .. ': attached', 'info', {
           title = 'LSP'
         })
 
         -- Enable completion triggered by <c-x><c-o>
-        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+        vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
         local mappings = {
           l = {
@@ -70,7 +78,7 @@ require('legendary').setup({
           mode = 'n',
           prefix = '<leader>',
           -- Buffer local mappings.
-          buffer = ev.buf,
+          buffer = bufnr,
           silent = true,
           noremap = true,
           nowait = true

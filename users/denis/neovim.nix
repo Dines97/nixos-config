@@ -23,8 +23,16 @@
       }
 
       barbar-nvim # Tabline plugin
+      nvim-navic # Current code context
       {
-        plugin = nvim-navic;
+        plugin = barbecue-nvim; # Context bar
+        type = "lua";
+        config = "require('barbecue').setup()";
+      }
+      {
+        plugin = statuscol-nvim; # Status column
+        type = "lua";
+        config = "require('statuscol').setup()";
       }
       {
         plugin = indent-blankline-nvim; # Indention line
