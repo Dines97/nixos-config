@@ -47,13 +47,6 @@ in {
     username = "denis";
     stateVersion = "23.05";
 
-    pointerCursor = {
-      package = pkgs.nordzy-cursor-theme;
-      gtk.enable = true;
-      x11.enable = true;
-      name = "Nordzy-cursors";
-    };
-
     sessionVariables = {
       PAGER = "less";
       EDITOR = "nvim";
