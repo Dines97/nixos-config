@@ -79,7 +79,6 @@
 
   wsl = {
     enable = true;
-    automountPath = "/mnt";
     defaultUser = "denis";
     startMenuLaunchers = true;
 
@@ -90,6 +89,12 @@
     docker-desktop.enable = true;
 
     # nativeSystemd = true;
+
+    wslConf = {
+      automount = {
+        root = "/mnt";
+      };
+    };
   };
 
   networking.hostName = "work";

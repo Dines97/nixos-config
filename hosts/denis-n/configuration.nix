@@ -204,6 +204,9 @@ in {
     openssh = {
       enable = true;
       openFirewall = true;
+      settings = {
+        PermitRootLogin = "yes";
+      };
     };
 
     # barrier.client = {
