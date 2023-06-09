@@ -63,11 +63,11 @@
         config = builtins.readFile ./configs/nvim/plugins/neoclip.lua; # Persistent need be activated separately
       }
 
-      {
-        plugin = presence-nvim; # Discord presence plugin
-        type = "lua";
-        config = "require('presence').setup()";
-      }
+      # {
+      #   plugin = presence-nvim; # Discord presence plugin
+      #   type = "lua";
+      #   config = "require('presence').setup()";
+      # }
       {
         plugin = comment-nvim; # Commenting plugin
         type = "lua";
