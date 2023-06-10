@@ -216,6 +216,10 @@
     ];
 
     extraPackages = with pkgs; [
+      # Just for presence
+      discord
+
+
       sqlite # Required for neoclip
 
       # Telescope
