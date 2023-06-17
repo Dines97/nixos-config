@@ -186,7 +186,7 @@ in {
           # jetbrains.webstorm
           # jetbrains.idea-ultimate
           jetbrains.pycharm-professional
-          # jetbrains.clion
+          jetbrains.clion
           # jetbrains.goland
 
           # openjdk11
@@ -197,6 +197,7 @@ in {
           # C/C++
           # gnumake
           gcc # Required for clion
+          gdb
 
           # Rust
           cargo

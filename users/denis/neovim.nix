@@ -216,8 +216,9 @@
     ];
 
     extraPackages = with pkgs; [
-      # Just for presence
-      discord
+      git # For git related plugins
+
+      discord # Just for presence
 
 
       sqlite # Required for neoclip
