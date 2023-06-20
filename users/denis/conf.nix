@@ -157,7 +157,7 @@ in {
           xdotool
           htop
           wget
-          jdk
+          (openjdk17.override {enableJavaFX = true;})
 
           # KDE
           # kate
@@ -184,7 +184,7 @@ in {
           # JetBrains
           jetbrains.rider
           # jetbrains.webstorm
-          # jetbrains.idea-ultimate
+          jetbrains.idea-ultimate
           jetbrains.pycharm-professional
           jetbrains.clion
           # jetbrains.goland
