@@ -5,7 +5,8 @@
 }: {
   programs.tmux = {
     enable = true;
-    enableMouse = true;
+    mouse = true;
+    shortcut = "b";
     keyMode = "vi";
     terminal = "tmux-256color";
     historyLimit = 5000;

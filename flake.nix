@@ -94,7 +94,6 @@
           {
             home-manager.users.denis = {...}: {
               imports = [
-                ./modules/programs/tmux.nix
                 ./users/denis
                 # inputs.nix-doom-emacs.hmModule
               ];
@@ -106,7 +105,6 @@
       hmModules = {
         neovim = ./users/denis/neovim.nix;
         tmux = ./users/denis/tmux.nix;
-        tmux-extra = ./modules/programs/tmux.nix;
       };
     };
 }
