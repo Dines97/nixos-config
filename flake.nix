@@ -105,6 +105,7 @@
 
       hmModules = {
         neovim = ./users/denis/neovim.nix;
+        tmux = ./users/denis/tmux.nix;
       };
     };
 }
