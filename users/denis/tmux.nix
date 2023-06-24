@@ -1,12 +1,13 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }: {
   programs.tmux = {
     enable = true;
     mouse = true;
-    shortcut = "b";
+    shortcut = lib.mkOptionDefault "b";
     keyMode = "vi";
     terminal = "tmux-256color";
     historyLimit = 5000;
