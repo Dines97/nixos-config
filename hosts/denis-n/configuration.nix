@@ -112,6 +112,13 @@ in {
 
     gnome.gnome-browser-connector.enable = true;
 
+    zerotierone = {
+      enable = true;
+      joinNetworks = [
+        "a84ac5c10a88bb46"
+      ];
+    };
+
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
@@ -301,6 +308,7 @@ in {
       188.132.128.77 argocd.panic.io panic.io
       192.168.49.2 argocd.testing.com jaeger.testing.com kiali.testing.com db.testing.com
       172.18.0.2 echo.com
+      185.136.206.253 argocd.darkhole.io gitlab.darkhole.io
     '';
     networkmanager.enable = true;
 
