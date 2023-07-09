@@ -256,13 +256,13 @@ in {
       extraConfig = {
         credential.helper = "${pkgs.git.override {withLibsecret = true;}}/bin/git-credential-libsecret";
         init.defaultBranch = "master";
-        core.autocrlf = true;
+        core.autocrlf = "input";
       };
       lfs.enable = true;
       ignores = lib.splitString "\n" (builtins.readFile (builtins.fetchurl {
         url = "https://www.toptal.com/developers/gitignore/api/linux,windows,macos,jetbrains,jetbrains+all,jetbrains+iml,vim,visualstudio,visualstudiocode,rider,intellij,intellij+all,intellij+iml,pycharm,pycharm+all,pycharm+iml";
         name = "gitignore";
-        sha256 = "";
+        sha256 = "sha256:00qj9fyhg9baajrrqd4hnr906wrzlvgk0vdphyfn1l02napdldwr";
       }));
     };
 
