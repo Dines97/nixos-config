@@ -58,6 +58,12 @@
 
       channels.nixpkgs.overlaysBuilder = channels: [
         (final: prev: {
+          inherit (channels.nixpkgs-unstable) helm-ls;
+          vimPlugins =
+            prev.vimPlugins
+            // {
+              inherit (channels.nixpkgs-unstable.vimPlugins) vim-helm;
+            };
         })
       ];
 
@@ -66,6 +72,7 @@
           inputs.home-manager.nixosModules.home-manager
           ./cachix.nix
           ./hosts/shared
+          ./modules/services/monitoring/glances.nix
         ];
       };
 

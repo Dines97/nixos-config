@@ -13,6 +13,8 @@
 
     plugins = with pkgs.vimUtils;
     with pkgs.vimPlugins; [
+      vim-helm # Helm lsp plugin
+
       plenary-nvim # Required for most of the plugins
       nvim-web-devicons # Additional icons
       dressing-nvim # vim.ui interface improvement
@@ -216,10 +218,11 @@
     ];
 
     extraPackages = with pkgs; [
+      helm-ls # Helm language server
+
       git # For git related plugins
 
       discord # Just for presence
-
 
       sqlite # Required for neoclip
 
