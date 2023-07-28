@@ -80,7 +80,7 @@
   wsl = {
     enable = true;
     defaultUser = "denis";
-    startMenuLaunchers = true;
+    # startMenuLaunchers = true;
 
     # Enable native Docker support
     docker-native.enable = true;

@@ -106,6 +106,7 @@ in {
           })
         ])
         [
+          (ansible.override {windowsSupport = true;})
           preload
 
           cachix
