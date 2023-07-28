@@ -1,27 +1,26 @@
-local configs = require('lspconfig.configs')
-local util = require('lspconfig.util')
+-- local configs = require('lspconfig.configs')
+-- local util = require('lspconfig.util')
 
-if not configs.helm_ls then
-  configs.helm_ls = {
-    default_config = {
-      cmd = { 'helm_ls', 'serve' },
-      filetypes = { 'helm' },
-      root_dir = function(fname)
-        return util.root_pattern('Chart.yaml')(fname)
-      end
-    }
-  }
-end
+-- if not configs.helm_ls then
+--   configs.helm_ls = {
+--     default_config = {
+--       cmd = { 'helm_ls', 'serve' },
+--       filetypes = { 'helm' },
+--       root_dir = function(fname)
+--         return util.root_pattern('Chart.yaml')(fname)
+--       end
+--     }
+--   }
+-- end
 
 local servers = {
   gopls = {},
   dockerls = {},
-  helm_ls = {
-    filetypes = { 'helm' },
-    cmd = { 'helm_ls', 'serve' }
-  },
-  yamlls = require('yaml-companion').setup({
-  }),
+  -- helm_ls = {
+  --   filetypes = { 'helm' },
+  --   cmd = { 'helm_ls', 'serve' }
+  -- },
+  yamlls = {},
   pyright = {},
   hls = {},
   nil_ls = {},
@@ -57,7 +56,9 @@ local servers = {
     handlers = {
       ['textDocument/definition'] = require('omnisharp_extended').handler
     }
-  }
+  },
+  terraformls = {},
+  tflint = {}
   -- volar = {
   --   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' }
   -- },

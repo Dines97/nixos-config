@@ -10,6 +10,8 @@
       pandas
       requests
       # other python packages
+      fastapi
+      uvicorn
 
       asgiref
       async-timeout
@@ -105,6 +107,7 @@ in {
         ])
         [
           (ansible.override {windowsSupport = true;})
+          preload
 
           cachix
           pciutils
@@ -179,6 +182,7 @@ in {
           cue
           skaffold
           docker-compose
+          terraform
 
           minikube
           docker-machine-kvm2 # Minikube driver
@@ -189,6 +193,7 @@ in {
           jetbrains.idea-ultimate
           jetbrains.pycharm-professional
           jetbrains.clion
+          android-studio
           # jetbrains.goland
 
           # openjdk11
