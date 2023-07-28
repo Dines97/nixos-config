@@ -224,6 +224,9 @@ in {
     glances = {
       enable = false;
     };
+    preload = {
+      enable = false;
+    };
   };
 
   qt = {
@@ -233,6 +236,11 @@ in {
   };
 
   programs = {
+    ssh = {
+      setXAuthLocation = true;
+      forwardX11 = true;
+    };
+
     zsh.enable = true;
     wireshark.enable = true;
   };

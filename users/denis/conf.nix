@@ -10,6 +10,8 @@
       pandas
       requests
       # other python packages
+      fastapi
+      uvicorn
 
       asgiref
       async-timeout
@@ -104,6 +106,8 @@ in {
           })
         ])
         [
+          preload
+
           cachix
           pciutils
           appimage-run
@@ -177,6 +181,7 @@ in {
           cue
           skaffold
           docker-compose
+          terraform
 
           minikube
           docker-machine-kvm2 # Minikube driver
@@ -187,6 +192,7 @@ in {
           jetbrains.idea-ultimate
           jetbrains.pycharm-professional
           jetbrains.clion
+          android-studio
           # jetbrains.goland
 
           # openjdk11

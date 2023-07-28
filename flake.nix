@@ -47,6 +47,7 @@
           teams = prev.teams.overrideAttrs (old: {
             src = ./teams.deb;
           });
+          preload = pkgs.callPackage ./pkgs/preload {};
         })
 
         # conda-zsh-overlay = final: prev: {
@@ -73,6 +74,7 @@
           ./cachix.nix
           ./hosts/shared
           ./modules/services/monitoring/glances.nix
+          ./modules/services/misc/preload.nix
         ];
       };
 
