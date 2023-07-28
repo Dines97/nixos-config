@@ -104,6 +104,8 @@ in {
           })
         ])
         [
+          (ansible.override {windowsSupport = true;})
+
           cachix
           pciutils
           appimage-run
