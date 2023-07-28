@@ -227,14 +227,14 @@ in {
         expireDuplicatesFirst = true;
       };
 
-      # localVariables = {
-      #   ZSH_TMUX_AUTOSTART = true;
-      #   ZSH_TMUX_CONFIG = "$HOME/.config/tmux/tmux.conf";
-      # };
+      localVariables = {
+        ZSH_TMUX_AUTOSTART = true;
+        ZSH_TMUX_CONFIG = "$HOME/.config/tmux/tmux.conf";
+      };
 
       oh-my-zsh = {
         enable = true;
-        plugins = ["git" "kubectx"];
+        plugins = ["git" "kubectx"] ++ lib.optional (osConfig.networking.hostName == "work") ["tmux"];
         theme = "robbyrussell";
       };
       zplug = {
