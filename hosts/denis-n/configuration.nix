@@ -312,11 +312,7 @@ in {
   networking = {
     hostName = "Denis-N";
     extraHosts = ''
-      188.132.128.77 argocd.panic.io panic.io
-      192.168.49.2 argocd.testing.com jaeger.testing.com kiali.testing.com db.testing.com
-      192.168.39.153 gitops.io argocd.gitops.io project.prod.gitops.io project.test.gitops.io
-      172.18.0.2 echo.com
-      185.136.206.253 argocd.darkhole.io gitlab.darkhole.io grafana.darkhole.io prometheus.darkhole.io
+      185.254.30.209 kubernetes.fridge.io
     '';
     networkmanager.enable = true;
 

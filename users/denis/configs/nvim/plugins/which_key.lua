@@ -35,6 +35,9 @@ local mappings = {
     name = 'Explorer',
     o = { '<cmd>Neotree source=filesystem reveal=true position=left toggle=true<cr>', 'Open' },
     f = { '<cmd>Neotree source=filesystem reveal=true position=float toggle=true<cr>', 'Float' }
+  },
+  g = {
+    name = 'Git'
   }
 }
 

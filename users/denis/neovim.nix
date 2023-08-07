@@ -28,6 +28,20 @@
         type = "lua";
         config = builtins.readFile ./configs/nvim/plugins/filetype.lua;
       }
+      {
+        plugin = buildVimPluginFrom2Nix {
+          pname = "hmts.nvim"; # Custom treesitter queries for Home Manager nix files, in Neovim
+          version = "2023-08-06";
+          src = pkgs.fetchFromGitHub {
+            owner = "calops";
+            repo = " hmts.nvim";
+            rev = "c1a94724b2b343861031fe3a320d5ee3cb8d5167";
+            sha256 = "";
+          };
+          meta.homepage = "https://github.com/calops/hmts.nvim";
+        };
+        type = "lua";
+      }
 
       vim-helm # Helm lsp plugin
 
@@ -60,7 +74,7 @@
       {
         plugin = gitsigns-nvim; # Show git signs in sidebar
         type = "lua";
-        config = "require('gitsigns').setup()"; # Setup need to be called for gitsigns to appear
+        config = builtins.readFile ./configs/nvim/plugins/gitsigns.lua;
       }
       {
         plugin = telescope-nvim;

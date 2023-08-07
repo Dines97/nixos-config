@@ -132,7 +132,6 @@ in {
           qbittorrent
           protonvpn-gui
           alacritty-launch
-          wezterm
           aawmtt
           ventoy-full
           libreoffice-fresh
