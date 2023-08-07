@@ -20,7 +20,7 @@ local servers = {
   --   filetypes = { 'helm' },
   --   cmd = { 'helm_ls', 'serve' }
   -- },
-  yamlls = {},
+  yamlls = require('yaml-companion').setup({}),
   pyright = {},
   hls = {},
   nil_ls = {},
