@@ -34,9 +34,9 @@
           version = "2023-08-06";
           src = pkgs.fetchFromGitHub {
             owner = "calops";
-            repo = " hmts.nvim";
+            repo = "hmts.nvim";
             rev = "c1a94724b2b343861031fe3a320d5ee3cb8d5167";
-            sha256 = "";
+            sha256 = "sha256-lZs6MloTZ81fKFllOW7VTMW3F0gZPtajh7m3vfA9Tiw=";
           };
           meta.homepage = "https://github.com/calops/hmts.nvim";
         };
