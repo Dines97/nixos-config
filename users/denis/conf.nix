@@ -234,7 +234,7 @@ in {
 
       oh-my-zsh = {
         enable = true;
-        plugins = ["git" "kubectx"] ++ lib.optional (osConfig.networking.hostName == "work") ["tmux"];
+        plugins = ["git" "kubectx" "tmux"];
         theme = "robbyrussell";
       };
       zplug = {
