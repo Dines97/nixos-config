@@ -48,6 +48,15 @@
             src = ./teams.deb;
           });
           preload = pkgs.callPackage ./pkgs/preload {};
+          wezterm = prev.wezterm.overrideAttrs (old: {
+            postInstall =
+              old.postInstall
+              + ''
+                substituteInPlace $out/share/applications/org.wezfurlong.wezterm.desktop --replace \
+                "Exec=wezterm start --cwd ." \
+                "Exec=wezterm"
+              '';
+          });
         })
 
         # conda-zsh-overlay = final: prev: {

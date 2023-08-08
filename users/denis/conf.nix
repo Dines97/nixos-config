@@ -228,7 +228,7 @@ in {
       };
 
       localVariables = {
-        ZSH_TMUX_AUTOSTART = lib.mkDefault false;
+        ZSH_TMUX_AUTOSTART = false;
         ZSH_TMUX_CONFIG = "$HOME/.config/tmux/tmux.conf";
       };
 
