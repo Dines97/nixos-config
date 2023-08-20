@@ -48,6 +48,13 @@
       plenary-nvim # Required for most of the plugins
       nvim-web-devicons # Additional icons
       dressing-nvim # vim.ui interface improvement
+
+      {
+        plugin = satellite-nvim; # scrollbar decorations
+        type = "lua";
+        config = "require('satellite').setup()";
+      }
+
       {
         plugin = flutter-tools-nvim;
         type = "lua";
