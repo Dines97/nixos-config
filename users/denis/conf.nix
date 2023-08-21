@@ -175,7 +175,6 @@ in {
           postgresql
           kube3d
           kind
-          openlens
           k9s
           kubebuilder
           cue
