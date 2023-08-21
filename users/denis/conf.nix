@@ -60,6 +60,10 @@ in {
       LANG = "en_US.UTF-8";
     };
 
+    sessionPath = [
+      "$HOME/.krew/bin"
+    ];
+
     shellAliases = {
       o = "xdg-open";
       gs = "git status";
@@ -228,7 +232,7 @@ in {
       };
 
       localVariables = {
-        ZSH_TMUX_AUTOSTART = false;
+        ZSH_TMUX_AUTOSTART = true;
         ZSH_TMUX_CONFIG = "$HOME/.config/tmux/tmux.conf";
       };
 

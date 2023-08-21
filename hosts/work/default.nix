@@ -83,10 +83,10 @@
     # startMenuLaunchers = true;
 
     # Enable native Docker support
-    docker-native.enable = true;
+    docker-native.enable = false;
 
     # Enable integration with Docker Desktop (needs to be installed)
-    docker-desktop.enable = true;
+    docker-desktop.enable = false;
 
     # nativeSystemd = true;
 

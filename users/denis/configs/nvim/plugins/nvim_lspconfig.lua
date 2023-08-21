@@ -14,6 +14,7 @@
 -- end
 
 local servers = {
+  ansiblels = {},
   gopls = {},
   dockerls = {},
   -- helm_ls = {

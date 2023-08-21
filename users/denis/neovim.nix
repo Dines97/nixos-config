@@ -295,6 +295,10 @@
       python310Packages.black
       # python310Packages.jedi-language-server
 
+      # Ansible
+      ansible-language-server
+      ansible-lint
+
       # LaTeX
       # texlive.combined.scheme-full # Full LaTeX distribution
       sioyek # Preview
