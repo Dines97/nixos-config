@@ -41,7 +41,6 @@
 
       sharedOverlays = [
         (final: prev: {
-          openlens = pkgs.callPackage ./pkgs/openlens-appimage {};
           awmtt = pkgs.callPackage ./pkgs/awmtt {};
           aawmtt = pkgs.callPackage ./pkgs/aawmtt {};
           teams = prev.teams.overrideAttrs (old: {
