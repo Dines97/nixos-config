@@ -70,167 +70,6 @@ in {
     # initrd.systemd.enable = true;
   };
 
-  hardware = {
-    nvidia = {
-      open = false;
-
-      modesetting.enable = true;
-      # package = config.boot.kernelPackages.nvidiaPackages.beta;
-
-      forceFullCompositionPipeline = true;
-
-      prime = {
-        # offload.enable = true;
-        sync.enable = true;
-
-        # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
-        intelBusId = "PCI:0:2:0";
-
-        # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
-        nvidiaBusId = "PCI:2:0:0";
-      };
-    };
-
-    opengl = {
-      enable = true;
-      # driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        intel-media-driver # LIBVA_DRIVER_NAME=iHD
-        libva
-        vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-        vaapiVdpau
-        libvdpau-va-gl
-        # libGL
-        mesa.drivers
-      ];
-    };
-  };
-
-  # List services that you want to enable:
-  services = {
-    touchegg.enable = true;
-
-    cpupower-gui.enable = true;
-
-    gnome.gnome-browser-connector.enable = true;
-
-    zerotierone = {
-      enable = true;
-      joinNetworks = [
-        "a84ac5c10a88bb46"
-      ];
-    };
-
-    xserver = {
-      # Enable the X11 windowing system.
-      enable = true;
-
-      # Configure keymap in X11
-      layout = "us, ru";
-      # xkbOptions = "grp:alt_shift_toggle";
-
-      videoDrivers = ["nvidia"];
-
-      # Enable touchpad support (enabled default in most desktopManager).
-      libinput.enable = true;
-
-      displayManager = {
-        autoLogin = {
-          enable = true;
-          user = "denis";
-        };
-
-        # gdm.enable = true;
-        # sddm.enable = true;
-        # lightdm.enable = true;
-      };
-
-      desktopManager = {
-        gnome.enable = true;
-        # plasma5.enable = true;
-      };
-
-      windowManager = {
-        # i3 = {
-        #   enable = true;
-        #   package = pkgs.i3-gaps;
-        # };
-
-        # xmonad = {
-        #   enable = true;
-        #   enableContribAndExtras = true;
-        #   extraPackages = haskellPackages: [
-        #     # haskellPackages.xmonad-wallpaper
-        #   ];
-        # };
-
-        awesome.enable = true;
-      };
-    };
-
-    samba = {
-      enable = true;
-      openFirewall = true;
-      extraConfig = ''
-        workgroup = WORKGROUP
-        browseable = yes
-      '';
-      shares = {
-        public = {
-          path = "/home/${user-name}/shared";
-          browseable = "yes";
-          "guest ok" = "yes";
-        };
-      };
-    };
-
-    avahi = {
-      enable = true;
-      nssmdns = true;
-      ipv4 = true;
-      ipv6 = false;
-      allowInterfaces = ["enp0s20f0u1u2"];
-    };
-
-    # Enable CUPS to print documents.
-    printing.enable = true;
-
-    pipewire = {
-      enable = true;
-      alsa.enable = false;
-      alsa.support32Bit = false;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      jack.enable = false;
-    };
-
-    # Enable the OpenSSH daemon.
-    openssh = {
-      enable = true;
-      openFirewall = true;
-      settings = {
-        PermitRootLogin = "yes";
-      };
-    };
-
-    # barrier.client = {
-    #   enable = true;
-    #   enableCrypto = true;
-    #   enableDragDrop = false;
-    #   name = "Denis-N";
-    #   server = "Denis-PC";
-    # };
-
-    flatpak.enable = true;
-
-    glances = {
-      enable = false;
-    };
-    preload = {
-      enable = false;
-    };
-  };
-
   qt = {
     enable = true;
     style = "adwaita-dark";
@@ -286,10 +125,6 @@ in {
 
   # Remove sound.enable or turn it off if you had it set previously, it seems to cause conflicts with pipewire
   sound.enable = true;
-  hardware.pulseaudio = {
-    enable = false;
-    extraConfig = "unload-module module-combine-sink";
-  };
 
   virtualisation = {
     docker = {
@@ -322,10 +157,14 @@ in {
 
     firewall = {
       enable = true;
+      allowPing = true;
       allowedTCPPorts = [
         24800 # Barrier server port
+        5357 # wsdd
       ];
-      allowedUDPPorts = [];
+      allowedUDPPorts = [
+        3702 #wsdd
+      ];
     };
 
     # Configure network proxy if necessary
