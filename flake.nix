@@ -87,6 +87,7 @@
       };
 
       hosts.Denis-N = {
+        channelName = "nixpkgs-unstable";
         modules = [
           ./hosts/denis-n
 

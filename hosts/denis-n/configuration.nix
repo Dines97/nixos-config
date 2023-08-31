@@ -73,7 +73,7 @@ in {
   qt = {
     enable = true;
     style = "adwaita-dark";
-    # platformTheme = "gnome";
+    platformTheme = "gnome";
   };
 
   programs = {
