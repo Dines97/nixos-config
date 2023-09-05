@@ -5,8 +5,12 @@
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
-      # url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager-unstable = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     wsl = {
@@ -20,7 +24,9 @@
 
     # hyprland.url = "github:hyprwm/Hyprland";
 
-    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    neovim-plugins.url = "path:neovim";
   };
 
   description = "System configuration";
@@ -76,9 +82,13 @@
         })
       ];
 
+      channels.nixpkgs-unstable.overlaysBuilder = channels: [
+        inputs.neovim-nightly-overlay.overlay
+        # inputs.neovim-plugins.
+      ];
+
       hostDefaults = {
         modules = [
-          inputs.home-manager.nixosModules.home-manager
           ./cachix.nix
           ./hosts/shared
           ./modules/services/monitoring/glances.nix
@@ -90,6 +100,7 @@
         channelName = "nixpkgs-unstable";
         modules = [
           ./hosts/denis-n
+          inputs.home-manager-unstable.nixosModules.home-manager
 
           {
             home-manager.users.denis = {...}: {
@@ -106,6 +117,7 @@
         modules = [
           ./hosts/work
 
+          inputs.home-manager.nixosModules.home-manager
           inputs.wsl.nixosModules.wsl
 
           {
