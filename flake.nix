@@ -84,6 +84,7 @@
 
       channels.nixpkgs-unstable.overlaysBuilder = channels: [
         inputs.neovim-nightly-overlay.overlay
+        inputs.neovim-plugins.overlay
         # inputs.neovim-plugins.
       ];
 

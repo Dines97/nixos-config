@@ -152,6 +152,7 @@ in {
           gparted
           vimix-gtk-themes
           vimix-icon-theme
+          xsel # tmux-yank required dependency
 
           firefox
           thunderbird
