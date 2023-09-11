@@ -197,7 +197,11 @@
         type = "lua";
         config = builtins.readFile ./configs/nvim/plugins/treesitter.lua;
       }
-      nvim-treesitter-context
+      {
+        plugin = nvim-treesitter-context;
+        type = "lua";
+        config = builtins.readFile ./configs/nvim/plugins/nvim-treesitter-context.lua;
+      }
       {
         plugin = onedark-nvim;
         type = "lua";

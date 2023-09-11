@@ -130,6 +130,9 @@ in {
     docker = {
       enable = true;
       # enableNvidia = true;
+      daemon.settings = {
+        insecure-registries = ["185.254.30.209:5000"];
+      };
     };
 
     podman = {

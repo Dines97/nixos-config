@@ -18,6 +18,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    flake-utils.url = "github:numtide/flake-utils";
+
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
     fup.url = "github:gytis-ivaskevicius/flake-utils-plus";
@@ -91,45 +93,67 @@
       hostDefaults = {
         modules = [
           ./cachix.nix
-          ./hosts/shared
           ./modules/services/monitoring/glances.nix
           ./modules/services/misc/preload.nix
-        ];
-      };
-
-      hosts.Denis-N = {
-        channelName = "nixpkgs-unstable";
-        modules = [
-          ./hosts/denis-n
-          inputs.home-manager-unstable.nixosModules.home-manager
 
           {
+            nix = {
+              generateNixPathFromInputs = true;
+              linkInputs = true;
+              settings = {
+                experimental-features = ["nix-command" "flakes"];
+              };
+            };
+
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
             home-manager.users.denis = {...}: {
               imports = [
                 ./users/denis
-                # inputs.nix-doom-emacs.hmModule
               ];
             };
           }
         ];
       };
 
-      hosts.work = {
-        modules = [
-          ./hosts/work
+      hosts = {
+        Denis-N = {
+          channelName = "nixpkgs-unstable";
+          modules = [
+            ./hosts/denis-n
+            inputs.home-manager-unstable.nixosModules.home-manager
+          ];
+        };
 
-          inputs.home-manager.nixosModules.home-manager
-          inputs.wsl.nixosModules.wsl
+        work = {
+          modules = [
+            ./hosts/work
+            inputs.home-manager.nixosModules.home-manager
+            inputs.wsl.nixosModules.wsl
+          ];
+        };
+      };
 
-          {
-            home-manager.users.denis = {...}: {
-              imports = [
-                ./users/denis
-                # inputs.nix-doom-emacs.hmModule
-              ];
-            };
-          }
-        ];
+      outputsBuilder = channels: {
+        packages.python-discord-bot-docker = pkgs.dockerTools.buildImage {
+          name = "darktts";
+          tag = "0.1.0";
+          copyToRoot = self.devShells.x86_64-linux.python-discord-bot;
+        };
+
+        devShells.python-discord-bot = channels.nixpkgs.mkShell {
+          packages = with channels.nixpkgs.pkgs; [
+            (python3.withPackages (ps:
+              with ps; [
+                nextcord
+                sqlalchemy
+                google-cloud-texttospeech
+                setuptools
+                psycopg2
+              ]))
+          ];
+        };
       };
 
       hmModules = {

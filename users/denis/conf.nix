@@ -69,8 +69,8 @@ in {
       gs = "git status";
       gt = "git log --all --decorate --oneline --graph";
       reset = "clear; tmux clear-history";
-      ls = "exa";
-      ll = "exa --long --all --header --time-style=long-iso --git --icons --group-directories-first --group -b";
+      ls = "eza";
+      ll = "eza --long --all --header --time-style=long-iso --git --icons --group-directories-first --group -b";
       cat = "bat";
       nixrebuild = "sudo nix flake update /etc/nixos && sudo nixos-rebuild switch";
 
@@ -160,7 +160,8 @@ in {
           dotnet-sdk_7
           hstr
           ripgrep
-          exa
+          # exa # unmaintained
+          eza
           bat
           ncdu
           xdotool
@@ -193,10 +194,12 @@ in {
           # JetBrains
           jetbrains.rider
           # jetbrains.webstorm
-          jetbrains.idea-ultimate
+          # jetbrains.idea-ultimate
           jetbrains.pycharm-professional
-          jetbrains.clion
+          # jetbrains.clion
+          jetbrains.datagrip
           android-studio
+
           # jetbrains.goland
 
           # openjdk11
@@ -217,6 +220,8 @@ in {
           ghc
           # haskell-language-server
           haskellPackages.haskell-language-server
+
+          nodejs_18
         ]
       ];
   };
