@@ -82,147 +82,147 @@ in {
     };
 
     packages = with pkgs;
-      lib.mkMerge [
-        (lib.mkIf osConfig.services.xserver.desktopManager.gnome.enable [
-          gnome.gnome-tweaks
-          gnome.gnome-keyring
-          gnome.dconf-editor
-          gnome.gnome-shell-extensions
-          gnomeExtensions.tray-icons-reloaded
-          gnomeExtensions.x11-gestures
-          gnomeExtensions.app-icons-taskbar
-          gnomeExtensions.appindicator
-          gnomeExtensions.remove-alttab-delay-v2
-          gnomeExtensions.caffeine
-        ])
-        (lib.mkIf (osConfig.services.xserver.displayManager.sessionPackages != []) [
-          (retroarch.override {
-            cores = with libretro; [
-              dolphin
-              ppsspp
-              pcsx2
-              fbneo
-              mame
-              snes9x
-              mesen
-              mgba
-            ];
-          })
-        ])
-        [
-          (ansible.override {windowsSupport = true;})
-          preload
+      [
+        (ansible.override {windowsSupport = true;})
+        preload
 
-          cachix
-          pciutils
-          appimage-run
-          # gwe
-          nix-info
+        cachix
+        pciutils
+        appimage-run
+        nix-info
 
-          # Xmonad
-          # dmenu
-          # haskellPackages.xmobar
-          # feh
+        # Xmonad
+        # haskellPackages.xmobar
+        # feh
 
-          (pkgs.python3.withPackages my-python-packages)
+        (pkgs.python3.withPackages my-python-packages)
 
-          barrier
-          megasync
-          fsearch
-          obs-studio
-          piper
-          vlc
-          gnumake
-          qbittorrent
-          protonvpn-gui
-          alacritty-launch
-          aawmtt
-          ventoy-full
-          libreoffice-fresh
-          hunspell
-          hunspellDicts.uk_UA
-          hunspellDicts.th_TH
-          notepadqq
-          flameshot
-          teams
-          spotify
-          (discord.override {nss = nss_latest;})
-          etcher
-          gnome.gnome-boxes
-          gparted
-          vimix-gtk-themes
-          vimix-icon-theme
-          xsel # tmux-yank required dependency
+        gnumake
+        ventoy-full
+        xsel # tmux-yank required dependency
 
-          firefox
-          thunderbird
-          autokey
-          dotnet-sdk_7
-          hstr
-          ripgrep
-          # exa # unmaintained
-          eza
-          bat
-          ncdu
-          xdotool
-          htop
-          wget
-          (openjdk17.override {enableJavaFX = true;})
+        dotnet-sdk_7
+        hstr
+        ripgrep
+        # exa # unmaintained
+        eza
+        bat
+        ncdu
+        xdotool
+        htop
+        wget
+        (openjdk17.override {enableJavaFX = true;})
 
-          # KDE
-          # kate
-          # ark
-          # libsForQt5.kwalletmanager
-          # partition-manager
+        # DevOps
+        kubectl
+        kubernetes-helm
+        postgresql
+        kube3d
+        kind
+        k9s
+        kubebuilder
+        cue
+        skaffold
+        docker-compose
+        terraform
 
-          # DevOps
-          kubectl
-          kubernetes-helm
-          postgresql
-          kube3d
-          kind
-          k9s
-          kubebuilder
-          cue
-          skaffold
-          docker-compose
-          terraform
+        minikube
+        docker-machine-kvm2 # Minikube driver
 
-          minikube
-          docker-machine-kvm2 # Minikube driver
+        # openjdk11
 
-          # JetBrains
-          jetbrains.rider
-          # jetbrains.webstorm
-          # jetbrains.idea-ultimate
-          jetbrains.pycharm-professional
-          # jetbrains.clion
-          jetbrains.datagrip
-          android-studio
+        # Python
+        conda
 
-          # jetbrains.goland
+        # C/C++
+        # gnumake
+        gcc # Required for clion
+        gdb
 
-          # openjdk11
+        # Rust
+        cargo
 
-          # Python
-          conda
+        # Haskell
+        cabal-install
+        ghc
+        # haskell-language-server
+        haskellPackages.haskell-language-server
 
-          # C/C++
-          # gnumake
-          gcc # Required for clion
-          gdb
+        nodejs_18
+      ]
+      ++ lib.optionals (osConfig.services.xserver.displayManager.sessionPackages != []) [
+        firefox
+        spotify
+        etcher
+        barrier
+        gnome.gnome-boxes
+        gparted
+        flameshot
+        (discord.override {nss = nss_latest;})
+        autokey
+        megasync
+        fsearch
+        obs-studio
+        piper
+        vlc
+        qbittorrent
+        protonvpn-gui
+        alacritty-launch
+        aawmtt
+        libreoffice-fresh
+        hunspell
+        hunspellDicts.uk_UA
+        hunspellDicts.th_TH
 
-          # Rust
-          cargo
+        vimix-gtk-themes
+        vimix-icon-theme
 
-          # Haskell
-          cabal-install
-          ghc
-          # haskell-language-server
-          haskellPackages.haskell-language-server
+        thunderbird
+        notepadqq
+        teams
 
-          nodejs_18
-        ]
+        (retroarch.override {
+          cores = with libretro; [
+            dolphin
+            ppsspp
+            pcsx2
+            fbneo
+            mame
+            snes9x
+            mesen
+            mgba
+          ];
+        })
+
+        # JetBrains
+        jetbrains.rider
+        # jetbrains.webstorm
+        # jetbrains.idea-ultimate
+        jetbrains.pycharm-professional
+        # jetbrains.clion
+        jetbrains.datagrip
+        # jetbrains.goland
+
+        android-studio
+      ]
+      ++ lib.optionals (osConfig.services.xserver.desktopManager.gnome.enable) [
+        gnome.gnome-tweaks
+        gnome.gnome-keyring
+        gnome.dconf-editor
+        gnome.gnome-shell-extensions
+        gnomeExtensions.tray-icons-reloaded
+        gnomeExtensions.x11-gestures
+        gnomeExtensions.app-icons-taskbar
+        gnomeExtensions.appindicator
+        gnomeExtensions.remove-alttab-delay-v2
+        gnomeExtensions.caffeine
+      ]
+      ++ lib.optionals (osConfig.services.xserver.desktopManager.plasma5.enable) [
+        KDE
+        kate
+        ark
+        libsForQt5.kwalletmanager
+        partition-manager
       ];
   };
 
