@@ -4,10 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    nvim-lspconfig = {
-      url = "github:neovim/nvim-lspconfig";
-      flake = false;
-    };
+    filetype-nvim.url = "github:nathom/filetype.nvim";
+    filetype-nvim.flake = false;
   };
 
   outputs = inputs @ {flake-parts, ...}:
@@ -37,20 +35,17 @@
         # packages.default = pkgs.hello;
 
         packages.vimPlugins = {
-          nvim-lspconfig = pkgs.buildVimPluginFrom2Nix {
-            pname = "nvim-lspconfig";
-            version = "2023-05-22";
-            src = pkgs.fetchFromGitHub {
-              owner = "neovim";
-              repo = "nvim-lspconfig";
-              rev = inputs.nvim-lspconfig.rev;
-              hash = "";
-            };
-            meta.homepage = "https://github.com/neovim/nvim-lspconfig/";
+          filetype-nvim = pkgs.buildVimPluginFrom2Nix {
+            pname = "filetype-nvim";
+            version = "1";
+            src = inputs.filetype-nvim;
+            meta.homepage = "aaa";
           };
         };
 
-        overlayAttrs = lib.genAttrs ["neovim-lspconfig" ] (_: config.packages.vimPlugins.nvim-lspconfig);
+        overlayAttrs = {
+          inherit (config.packages) filetype-nvim;
+        };
       };
       flake = {
         # The usual flake attributes can be defined here, including system-

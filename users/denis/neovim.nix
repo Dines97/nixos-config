@@ -13,6 +13,7 @@
 
     plugins = with pkgs.vimUtils;
     with pkgs.vimPlugins; [
+      # filetype-nvim
       {
         plugin = buildVimPluginFrom2Nix {
           pname = "filetype.nvim";
