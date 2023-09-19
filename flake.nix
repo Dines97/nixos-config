@@ -75,7 +75,7 @@
 
       channels.nixpkgs.overlaysBuilder = channels: [
         (final: prev: {
-          inherit (channels.nixpkgs-unstable) helm-ls eza;
+          inherit (channels.nixpkgs-unstable) helm-ls eza bun;
           vimPlugins =
             prev.vimPlugins
             // {

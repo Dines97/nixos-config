@@ -7,6 +7,12 @@
 }: let
   my-python-packages = ps:
     with ps; [
+      nextcord
+      sqlalchemy
+      google-cloud-texttospeech
+      setuptools
+      psycopg2
+
       pandas
       requests
       # other python packages
@@ -54,7 +60,6 @@ in {
       EDITOR = "nvim";
       LESS = "-r --mouse";
       GOPATH = "$HOME/go";
-      PNPM_HOME = "$HOME/pnpm";
 
       DOTNET_CLI_UI_LANGUAGE = "en";
       LANG = "en_US.UTF-8";
@@ -148,7 +153,9 @@ in {
         # haskell-language-server
         haskellPackages.haskell-language-server
 
-        nodejs_18
+        # JavaScript
+        bun
+        nodejs
       ]
       ++ lib.optionals (osConfig.services.xserver.displayManager.sessionPackages != []) [
         firefox
