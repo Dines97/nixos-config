@@ -155,7 +155,8 @@ in {
 
         # JavaScript
         bun
-        nodejs
+        nodejs_20
+        typescript # For volar in neovim to use
       ]
       ++ lib.optionals (osConfig.services.xserver.displayManager.sessionPackages != []) [
         firefox

@@ -59,10 +59,16 @@ local servers = {
     }
   },
   terraformls = {},
-  tflint = {}
-  -- volar = {
-  --   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' }
-  -- },
+  tflint = {},
+  volar = {
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+    init_options = {
+      typescript = {
+        tsdk = '/etc/profiles/per-user/denis/lib/node_modules/typescript/lib'
+      }
+    }
+  }
+
   -- vuels = {
   --   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' }
   -- },

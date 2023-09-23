@@ -95,6 +95,11 @@
         root = "/mnt";
       };
     };
+
+    extraBin = [
+      {src = "/etc/profiles/per-user/denis/bin/node";}
+      {src = "/etc/profiles/per-user/denis/bin/npm";}
+    ];
   };
 
   networking.hostName = "work";

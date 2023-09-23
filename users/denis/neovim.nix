@@ -316,6 +316,9 @@
       sioyek # Preview
       texlab # LSP
       rubber
+
+      # JavaScript
+      nodePackages.volar # Language server for Vue
     ];
   };
 }
