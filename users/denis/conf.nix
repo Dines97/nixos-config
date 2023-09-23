@@ -163,6 +163,7 @@ in {
         spotify
         etcher
         barrier
+        input-leap
         gnome.gnome-boxes
         gparted
         flameshot
@@ -204,7 +205,7 @@ in {
 
         # JetBrains
         jetbrains.rider
-        # jetbrains.webstorm
+        jetbrains.webstorm
         # jetbrains.idea-ultimate
         jetbrains.pycharm-professional
         # jetbrains.clion
