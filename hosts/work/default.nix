@@ -82,9 +82,6 @@
     defaultUser = "denis";
     # startMenuLaunchers = true;
 
-    # Enable native Docker support
-    docker-native.enable = false;
-
     # Enable integration with Docker Desktop (needs to be installed)
     docker-desktop.enable = false;
 

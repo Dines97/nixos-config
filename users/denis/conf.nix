@@ -117,6 +117,7 @@ in {
         htop
         wget
         (openjdk17.override {enableJavaFX = true;})
+        openssl
 
         # DevOps
         kubectl
