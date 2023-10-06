@@ -12,7 +12,10 @@ in {
   environment = {
     shells = [pkgs.zsh];
 
-    variables.JAVA_HOME = "${pkgs.jdk}/lib/openjdk";
+    variables = {
+      JAVA_HOME = "${pkgs.jdk}/lib/openjdk";
+      # GTK_THEME = "Vimix-dark-doder";
+    };
 
     gnome.excludePackages =
       (with pkgs; [
@@ -21,6 +24,7 @@ in {
       ++ (with pkgs.gnome; [
         epiphany
         gnome-terminal
+        gnome-shell-extensions
       ]);
   };
 

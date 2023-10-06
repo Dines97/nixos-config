@@ -197,7 +197,7 @@ in {
             ppsspp
             pcsx2
             fbneo
-            mame
+            # mame # NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM
             snes9x
             mesen
             mgba
@@ -215,20 +215,24 @@ in {
 
         android-studio
       ]
+      # Gnome
       ++ lib.optionals (osConfig.services.xserver.desktopManager.gnome.enable) [
         gnome.gnome-tweaks
         gnome.gnome-keyring
         gnome.dconf-editor
-        gnome.gnome-shell-extensions
-        gnomeExtensions.tray-icons-reloaded
-        gnomeExtensions.x11-gestures
+
         gnomeExtensions.app-icons-taskbar
         gnomeExtensions.appindicator
+        gnomeExtensions.auto-select-headset
+        gnomeExtensions.user-themes
+
+        # gnomeExtensions.tray-icons-reloaded
+        gnomeExtensions.x11-gestures
         gnomeExtensions.remove-alttab-delay-v2
-        gnomeExtensions.caffeine
+        # gnomeExtensions.caffeine
       ]
+      # KDE
       ++ lib.optionals (osConfig.services.xserver.desktopManager.plasma5.enable) [
-        KDE
         kate
         ark
         libsForQt5.kwalletmanager
