@@ -189,7 +189,7 @@ in {
 
         thunderbird
         notepadqq
-        teams
+        teams-for-linux
 
         (retroarch.override {
           cores = with libretro; [

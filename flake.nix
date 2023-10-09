@@ -18,17 +18,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-utils.url = "github:numtide/flake-utils";
-
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
-    fup.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    fup.url = "github:gytis-ivaskevicius/flake-utils-plus/master";
 
     # hyprland.url = "github:hyprwm/Hyprland";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-
-    neovim-plugins.url = "path:neovim";
   };
 
   description = "System configuration";
@@ -51,9 +47,6 @@
         (final: prev: {
           awmtt = pkgs.callPackage ./pkgs/awmtt {};
           aawmtt = pkgs.callPackage ./pkgs/aawmtt {};
-          teams = prev.teams.overrideAttrs (old: {
-            src = ./teams.deb;
-          });
           preload = pkgs.callPackage ./pkgs/preload {};
           wezterm = prev.wezterm.overrideAttrs (old: {
             postInstall =
@@ -75,7 +68,7 @@
 
       channels.nixpkgs.overlaysBuilder = channels: [
         (final: prev: {
-          inherit (channels.nixpkgs-unstable) helm-ls eza bun;
+          inherit (channels.nixpkgs-unstable) helm-ls eza bun input-leap;
           vimPlugins =
             prev.vimPlugins
             // {
@@ -85,9 +78,10 @@
       ];
 
       channels.nixpkgs-unstable.overlaysBuilder = channels: [
+        (final: prev: {
+          inherit (channels.nixpkgs);
+        })
         inputs.neovim-nightly-overlay.overlay
-        inputs.neovim-plugins.overlay
-        # inputs.neovim-plugins.
       ];
 
       hostDefaults = {
@@ -119,10 +113,10 @@
 
       hosts = {
         Denis-N = {
-          channelName = "nixpkgs-unstable";
+          channelName = "nixpkgs";
           modules = [
             ./hosts/denis-n
-            inputs.home-manager-unstable.nixosModules.home-manager
+            inputs.home-manager.nixosModules.home-manager
           ];
         };
 
