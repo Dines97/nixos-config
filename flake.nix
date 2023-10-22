@@ -42,10 +42,13 @@
 
       channelsConfig = {
         allowUnfree = true;
-        allowBroken = false;
         permittedInsecurePackages = [
           "electron-19.1.9" # For etcher
         ];
+        firefox.enableGnomeExtensions = true;
+        packageOverrides = pkgs: {
+          vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
+        };
       };
 
       sharedOverlays = [
