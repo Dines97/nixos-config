@@ -312,6 +312,26 @@
         "type": "github"
       }
     },
+    "nix-ld": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1686849676,
+        "narHash": "sha256-+z9t7BLugZO1WhyYEq6FI38TMh2EwfgfAv3RDFSjwtc=",
+        "owner": "Mic92",
+        "repo": "nix-ld",
+        "rev": "3abd605e56b5b34ec630bb10ba85f98c93cc05b2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "nix-ld",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1688322751,
@@ -400,6 +420,7 @@
         "home-manager": "home-manager",
         "home-manager-unstable": "home-manager-unstable",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
+        "nix-ld": "nix-ld",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "wsl": "wsl"
