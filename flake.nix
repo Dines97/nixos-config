@@ -118,7 +118,7 @@
 
       hosts = {
         Denis-N = {
-          channelName = "nixpkgs";
+          channelName = "nixpkgs-unstable";
           modules = [
             ./hosts/denis-n
             inputs.home-manager.nixosModules.home-manager
