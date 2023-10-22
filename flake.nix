@@ -25,6 +25,11 @@
     # hyprland.url = "github:hyprwm/Hyprland";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    nix-ld = {
+      url = "github:Mic92/nix-ld";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   description = "System configuration";
@@ -125,6 +130,9 @@
             ./hosts/work
             inputs.home-manager.nixosModules.home-manager
             inputs.wsl.nixosModules.wsl
+
+            inputs.nix-ld.nixosModules.nix-ld
+            {programs.nix-ld.dev.enable = true;}
           ];
         };
       };

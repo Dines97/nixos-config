@@ -130,7 +130,9 @@ in {
         cue
         skaffold
         docker-compose
+
         terraform
+        azure-cli
 
         minikube
         docker-machine-kvm2 # Minikube driver
