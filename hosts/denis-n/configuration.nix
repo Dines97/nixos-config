@@ -40,18 +40,18 @@ in {
     };
   };
 
-  nixpkgs = {
-    config = {
-      firefox.enableGnomeExtensions = true;
-      permittedInsecurePackages = [
-        "electron-12.2.3" # For etcher
-      ];
-      packageOverrides = pkgs: {
-        vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
-      };
-    };
-  };
-
+  # nixpkgs = {
+  #   config = {
+  #     firefox.enableGnomeExtensions = true;
+  #     permittedInsecurePackages = [
+  #       "electron-12.2.3" # For etcher
+  #     ];
+  #     packageOverrides = pkgs: {
+  #       vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
+  #     };
+  #   };
+  # };
+  #
   boot = {
     loader = {
       # Use the systemd-boot EFI boot loader.
