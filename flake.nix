@@ -121,7 +121,7 @@
           channelName = "nixpkgs-unstable";
           modules = [
             ./hosts/denis-n
-            inputs.home-manager.nixosModules.home-manager
+            inputs.home-manager-unstable.nixosModules.home-manager
           ];
         };
 
