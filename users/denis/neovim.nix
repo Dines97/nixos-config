@@ -234,6 +234,11 @@
         config = builtins.readFile ./configs/nvim/plugins/neodev.lua;
       }
       {
+        plugin = trouble-nvim;
+        type = "lua";
+        config = builtins.readFile ./configs/nvim/plugins/trouble.lua;
+      }
+      {
         plugin = nvim-lspconfig;
         type = "lua";
         config = builtins.readFile ./configs/nvim/plugins/nvim_lspconfig.lua;

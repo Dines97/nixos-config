@@ -43,7 +43,8 @@
       channelsConfig = {
         allowUnfree = true;
         permittedInsecurePackages = [
-          "electron-19.1.9" # For etcher
+          "electron-19.1.9"
+          "electron-24.8.6" # For etcher
         ];
         firefox.enableGnomeExtensions = true;
         packageOverrides = pkgs: {

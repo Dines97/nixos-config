@@ -69,6 +69,28 @@ in {
   };
 
   programs = {
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        zlib
+        zstd
+        stdenv.cc.cc
+        curl
+        openssl
+        attr
+        libssh
+        bzip2
+        libxml2
+        acl
+        libsodium
+        util-linux
+        xz
+        systemd
+
+        libbsd
+      ];
+    };
+
     ssh = {
       setXAuthLocation = true;
       forwardX11 = true;
@@ -76,14 +98,16 @@ in {
 
     zsh.enable = true;
     wireshark.enable = true;
-  };
 
-  # programs.sway.enable = true;
-  # programs.sway.extraOptions = [
-  #   "--verbose"
-  #   "--debug"
-  #   "--unsupported-gpu"
-  # ];
+    # sway = {
+    #   enable = true;
+    #   extraOptions = [
+    #     "--verbose"
+    #     "--debug"
+    #     "--unsupported-gpu"
+    #   ];
+    # };
+  };
 
   security = {
     sudo = {
@@ -112,8 +136,6 @@ in {
     shell = pkgs.zsh;
     useDefaultShell = false;
   };
-
-  # programs.partition-manager.enable = true;
 
   # Remove sound.enable or turn it off if you had it set previously, it seems to cause conflicts with pipewire
   sound.enable = true;

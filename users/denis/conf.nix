@@ -80,7 +80,7 @@ in {
       nixrebuild = "sudo nix flake update /etc/nixos && sudo nixos-rebuild switch";
 
       nconf = "nvim $HOME/.config/nvim/";
-      nixconf = "nvim /etc/nixos/";
+      nixconf = "cd /etc/nixos && nvim /etc/nixos/";
       iconf = "nvim $HOME/.config/i3/";
       aconf = "nvim $HOME/.config/awesome/";
       hconf = "nvim $HOME/.config/hypr/";
@@ -160,6 +160,9 @@ in {
         bun
         nodejs_20
         typescript # For volar in neovim to use
+
+        # Flutter
+        flutter
       ]
       ++ lib.optionals (osConfig.services.xserver.displayManager.sessionPackages != []) [
         firefox
