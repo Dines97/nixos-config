@@ -127,12 +127,12 @@ in {
         kind
         k9s
         kubebuilder
-        cue
+        # cue
         skaffold
         docker-compose
 
         terraform
-        azure-cli
+        # azure-cli
 
         minikube
         docker-machine-kvm2 # Minikube driver

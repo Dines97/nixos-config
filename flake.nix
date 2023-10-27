@@ -81,7 +81,7 @@
           vimPlugins =
             prev.vimPlugins
             // {
-              inherit (channels.nixpkgs-unstable.vimPlugins) vim-helm;
+              inherit (channels.nixpkgs-unstable.vimPlugins) vim-helm indent-blankline-nvim;
             };
         })
       ];
