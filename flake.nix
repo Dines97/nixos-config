@@ -90,7 +90,7 @@
         (final: prev: {
           inherit (channels.nixpkgs);
         })
-        inputs.neovim-nightly-overlay.overlay
+        # inputs.neovim-nightly-overlay.overlay
       ];
 
       hostDefaults = {

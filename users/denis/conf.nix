@@ -88,13 +88,38 @@ in {
 
     packages = with pkgs;
       [
-        (ansible.override {windowsSupport = true;})
-        preload
-
+        # NixOS
         cachix
         pciutils
         appimage-run
         nix-info
+        nix-index
+      ]
+      ++ [
+        # Work
+        openconnect
+        # azure-cli
+      ]
+      ++ [
+        # DevOps
+
+        # k8s
+        kubectl
+        kubernetes-helm
+        kube3d
+        kind
+        k9s
+        kubebuilder
+        # cue
+        skaffold
+
+        docker-compose
+        terraform
+        postgresql
+      ]
+      ++ [
+        (ansible.override {windowsSupport = true;})
+        preload
 
         # Xmonad
         # haskellPackages.xmobar
@@ -118,21 +143,6 @@ in {
         wget
         (openjdk17.override {enableJavaFX = true;})
         openssl
-
-        # DevOps
-        kubectl
-        kubernetes-helm
-        postgresql
-        kube3d
-        kind
-        k9s
-        kubebuilder
-        # cue
-        skaffold
-        docker-compose
-
-        terraform
-        # azure-cli
 
         minikube
         docker-machine-kvm2 # Minikube driver
@@ -168,8 +178,13 @@ in {
         firefox
         spotify
         etcher
-        barrier
+        # barrier
         input-leap
+
+        remmina
+        rdesktop
+        libsForQt5.krdc
+
         gnome.gnome-boxes
         gparted
         flameshot
