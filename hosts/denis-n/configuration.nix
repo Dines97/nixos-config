@@ -87,7 +87,23 @@ in {
         xz
         systemd
 
-        libbsd
+        coreutils # For conda
+
+        # libbsd # For pulse secure
+        # glib
+        # gtkmm3
+        # atkmm
+        # glibmm
+        # pangomm
+        # gtk3
+        # gnome2.pango
+        # at-spi2-atk
+        # cairo
+        # cairomm
+        # libsigcxx
+        # gdk-pixbuf
+        # webkitgtk
+        # gnome.libsoup
       ];
     };
 
