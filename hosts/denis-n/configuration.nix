@@ -9,6 +9,58 @@
 }: let
   user-name = "denis";
 in {
+  # containers = {
+  #   recursive = {
+  #     config = {
+  #       config,
+  #       pkgs,
+  #       ...
+  #     }: {
+  #       containers = {
+  #         recursive = {
+  #           config = {
+  #             config,
+  #             pkgs,
+  #             ...
+  #           }: {
+  #             containers = {
+  #               recursive = {
+  #                 config = {
+  #                   config,
+  #                   pkgs,
+  #                   ...
+  #                 }: {
+  #                   containers = {
+  #                     recursive = {
+  #                       config = {
+  #                         config,
+  #                         pkgs,
+  #                         ...
+  #                       }: {
+  #                         containers = {
+  #                           recursive = {
+  #                             config = {
+  #                               config,
+  #                               pkgs,
+  #                               ...
+  #                             }: {
+  #                               services.postgresql.enable = true;
+  #                             };
+  #                           };
+  #                         };
+  #                       };
+  #                     };
+  #                   };
+  #                 };
+  #               };
+  #             };
+  #           };
+  #         };
+  #       };
+  #     };
+  #   };
+  # };
+
   environment = {
     shells = [pkgs.zsh];
 
@@ -69,6 +121,8 @@ in {
   };
 
   programs = {
+    command-not-found.enable = false;
+
     nix-ld = {
       enable = true;
       libraries = with pkgs; [

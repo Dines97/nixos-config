@@ -69,8 +69,8 @@
     };
 
     samba = {
-      enable = true;
-      openFirewall = true;
+      enable = false;
+      openFirewall = false;
       # securityType = "user";
       extraConfig = ''
         workgroup = WORKGROUP

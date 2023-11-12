@@ -30,6 +30,10 @@
       url = "github:Mic92/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+    };
   };
 
   description = "System configuration";
@@ -90,7 +94,7 @@
         (final: prev: {
           inherit (channels.nixpkgs);
         })
-        # inputs.neovim-nightly-overlay.overlay
+        inputs.neovim-nightly-overlay.overlay
       ];
 
       hostDefaults = {
@@ -98,6 +102,8 @@
           ./cachix.nix
           ./modules/services/monitoring/glances.nix
           ./modules/services/misc/preload.nix
+
+          inputs.nix-index-database.nixosModules.nix-index
 
           {
             nix = {

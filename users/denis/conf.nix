@@ -98,7 +98,7 @@ in {
       ++ [
         # Work
         openconnect
-        # azure-cli
+        azure-cli
       ]
       ++ [
         # DevOps
@@ -110,12 +110,14 @@ in {
         kind
         k9s
         kubebuilder
-        # cue
+        cue
         skaffold
 
         docker-compose
         terraform
         postgresql
+
+        vagrant
       ]
       ++ [
         (ansible.override {windowsSupport = true;})
