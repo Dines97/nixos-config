@@ -99,6 +99,7 @@ in {
         # Work
         openconnect
         azure-cli
+        infracost
       ]
       ++ [
         # DevOps

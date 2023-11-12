@@ -13,22 +13,22 @@
 
     plugins = with pkgs.vimUtils;
     with pkgs.vimPlugins; [
-      # filetype-nvim
-      {
-        plugin = buildVimPluginFrom2Nix {
-          pname = "filetype.nvim";
-          version = "2022-06-02";
-          src = pkgs.fetchFromGitHub {
-            owner = "nathom";
-            repo = "filetype.nvim";
-            rev = "b522628a45a17d58fc0073ffd64f9dc9530a8027";
-            sha256 = "sha256-B+VvgQj8akiKe+MX/dV2/mdaaqF8s2INW3phdPJ5TFA=";
-          };
-          meta.homepage = "https://github.com/nathom/filetype.nvim";
-        };
-        type = "lua";
-        config = builtins.readFile ./configs/nvim/plugins/filetype.lua;
-      }
+      # # filetype-nvim
+      # {
+      #   plugin = buildVimPluginFrom2Nix {
+      #     pname = "filetype.nvim";
+      #     version = "2022-06-02";
+      #     src = pkgs.fetchFromGitHub {
+      #       owner = "nathom";
+      #       repo = "filetype.nvim";
+      #       rev = "b522628a45a17d58fc0073ffd64f9dc9530a8027";
+      #       sha256 = "sha256-B+VvgQj8akiKe+MX/dV2/mdaaqF8s2INW3phdPJ5TFA=";
+      #     };
+      #     meta.homepage = "https://github.com/nathom/filetype.nvim";
+      #   };
+      #   type = "lua";
+      #   config = builtins.readFile ./configs/nvim/plugins/filetype.lua;
+      # }
       {
         plugin = buildVimPluginFrom2Nix {
           pname = "hmts.nvim"; # Custom treesitter queries for Home Manager nix files, in Neovim
