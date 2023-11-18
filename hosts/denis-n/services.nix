@@ -35,12 +35,12 @@
       libinput.enable = true;
 
       displayManager = {
-        autoLogin = {
-          enable = true;
-          user = "denis";
-        };
+        # autoLogin = {
+        #   enable = true;
+        #   user = "denis";
+        # };
 
-        # gdm.enable = true;
+        gdm.enable = true;
         # sddm.enable = true;
         # lightdm.enable = true;
       };
@@ -90,23 +90,30 @@
       };
     };
 
+    resolved = {
+      enable = true;
+      llmnr = "true";
+    };
+
     samba-wsdd = {
       enable = true;
       discovery = true;
     };
 
-    avahi = {
-      enable = true;
-      openFirewall = true;
-      nssmdns = true;
-      ipv4 = true;
-      ipv6 = false;
-      # allowInterfaces = ["enp0s20f0u1u2"];
-      publish = {
-        enable = true;
-        addresses = true;
-      };
-    };
+    # avahi = {
+    #   enable = true;
+    #   openFirewall = true;
+    #   nssmdns = true;
+    #   ipv4 = true;
+    #   ipv6 = false;
+    #   # allowInterfaces = ["enp0s20f0u1u2"];
+    #   publish = {
+    #     enable = true;
+    #     addresses = true;
+    #   };
+    #   # domainName = "alocal";
+    #   # browseDomains = ["alocal"];
+    # };
 
     # Enable CUPS to print documents.
     printing.enable = true;

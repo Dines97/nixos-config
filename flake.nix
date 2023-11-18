@@ -93,6 +93,17 @@
       channels.nixpkgs-unstable.overlaysBuilder = channels: [
         (final: prev: {
           inherit (channels.nixpkgs);
+
+          input-leap = prev.input-leap.overrideAttrs (old: {
+            version = "2023-10-22";
+            src = prev.fetchFromGitHub {
+              owner = "input-leap";
+              repo = "input-leap";
+              rev = "c5bb9dcaad302eff4fe17855c147f640bdb76ba9";
+              hash = "sha256-yOiMH5AILjRnNf/Nb2OoSYMM+GSnAhq6QbkvHDQ8eW0=";
+              fetchSubmodules = true;
+            };
+          });
         })
         inputs.neovim-nightly-overlay.overlay
       ];
@@ -100,8 +111,7 @@
       hostDefaults = {
         modules = [
           ./cachix.nix
-          ./modules/services/monitoring/glances.nix
-          ./modules/services/misc/preload.nix
+          ./modules/default.nix
 
           inputs.nix-index-database.nixosModules.nix-index
 

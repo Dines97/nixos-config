@@ -93,6 +93,10 @@ in {
   };
 
   boot = {
+    blacklistedKernelModules = [
+      "uvcvideo"
+    ];
+
     loader = {
       # Use the systemd-boot EFI boot loader.
       systemd-boot = {
