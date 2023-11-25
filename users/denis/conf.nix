@@ -51,6 +51,19 @@
        fi
     '';
 in {
+  wayland.windowManager.sway = {
+    enable = true;
+    config = rec {
+      modifier = "Mod4";
+      # Use kitty as default terminal
+      terminal = "alacritty";
+      startup = [
+        # Launch Firefox on start
+        {command = "firefox";}
+      ];
+    };
+  };
+
   home = {
     username = "denis";
     stateVersion = "23.05";
@@ -306,9 +319,18 @@ in {
       userName = "Denis Kaynar";
       userEmail = "kaynar.denis@gmail.com";
       extraConfig = {
-        credential.helper = "${pkgs.git.override {withLibsecret = true;}}/bin/git-credential-libsecret";
-        init.defaultBranch = "master";
-        core.autocrlf = "input";
+        credential = {
+          helper = "${pkgs.git.override {withLibsecret = true;}}/bin/git-credential-libsecret";
+        };
+        init = {
+          defaultBranch = "master";
+        };
+        core = {
+          autocrlf = "input";
+        };
+        pull = {
+          rebase = false;
+        };
       };
       lfs.enable = true;
       ignores = lib.splitString "\n" (builtins.readFile (builtins.fetchurl {

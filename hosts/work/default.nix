@@ -109,6 +109,7 @@
 
   programs = {
     zsh.enable = true;
+    nix-ld.dev.enable = true;
   };
 
   system.stateVersion = "23.05";

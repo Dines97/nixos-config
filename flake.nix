@@ -113,24 +113,36 @@
           ./cachix.nix
           ./modules/default.nix
 
+          inputs.nix-ld.nixosModules.nix-ld
           inputs.nix-index-database.nixosModules.nix-index
 
           {
             nix = {
               generateNixPathFromInputs = true;
               linkInputs = true;
+
               settings = {
+                auto-optimise-store = true;
+                trusted-users = ["root" "@users"];
                 experimental-features = ["nix-command" "flakes"];
+              };
+
+              gc = {
+                automatic = true;
+                dates = "weekly";
+                options = "--delete-older-than 7d";
               };
             };
 
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
 
-            home-manager.users.denis = {...}: {
-              imports = [
-                ./users/denis
-              ];
+              users.denis = {...}: {
+                imports = [
+                  ./users/denis
+                ];
+              };
             };
           }
         ];
@@ -150,9 +162,6 @@
             ./hosts/work
             inputs.home-manager.nixosModules.home-manager
             inputs.wsl.nixosModules.wsl
-
-            inputs.nix-ld.nixosModules.nix-ld
-            {programs.nix-ld.dev.enable = true;}
           ];
         };
       };

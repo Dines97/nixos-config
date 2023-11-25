@@ -212,7 +212,7 @@
         {
           plugin = neo-tree-nvim;
           type = "lua";
-          config = "require('neo-tree').setup()"; # Setup should be called for tree be enabled at startup
+          config = builtins.readFile ./configs/nvim/plugins/neo-tree.lua; # Setup should be called for tree be enabled at startup
         }
         cmp-nvim-lsp
         omnisharp-extended-lsp-nvim
