@@ -229,7 +229,7 @@ in {
   #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   # };
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     # google-fonts
     (nerdfonts.override {
       fonts = ["JetBrainsMono" "FiraCode"];

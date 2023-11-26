@@ -35,7 +35,7 @@
         # packages.default = pkgs.hello;
 
         packages.vimPlugins = {
-          filetype-nvim = pkgs.buildVimPluginFrom2Nix {
+          filetype-nvim = pkgs.buildVimPlugin {
             pname = "filetype-nvim";
             version = "1";
             src = inputs.filetype-nvim;
