@@ -1,10 +1,10 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -50,7 +50,6 @@
           "electron-19.1.9"
           "electron-24.8.6" # For etcher
         ];
-        firefox.enableGnomeExtensions = true;
         packageOverrides = pkgs: {
           vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
         };
@@ -113,24 +112,36 @@
           ./cachix.nix
           ./modules/default.nix
 
+          inputs.nix-ld.nixosModules.nix-ld
           inputs.nix-index-database.nixosModules.nix-index
 
           {
             nix = {
               generateNixPathFromInputs = true;
               linkInputs = true;
+
               settings = {
+                auto-optimise-store = true;
+                trusted-users = ["root" "@users"];
                 experimental-features = ["nix-command" "flakes"];
+              };
+
+              gc = {
+                automatic = true;
+                dates = "weekly";
+                options = "--delete-older-than 7d";
               };
             };
 
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
 
-            home-manager.users.denis = {...}: {
-              imports = [
-                ./users/denis
-              ];
+              users.denis = {...}: {
+                imports = [
+                  ./users/denis
+                ];
+              };
             };
           }
         ];
@@ -150,9 +161,6 @@
             ./hosts/work
             inputs.home-manager.nixosModules.home-manager
             inputs.wsl.nixosModules.wsl
-
-            inputs.nix-ld.nixosModules.nix-ld
-            {programs.nix-ld.dev.enable = true;}
           ];
         };
       };

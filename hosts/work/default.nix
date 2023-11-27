@@ -8,6 +8,13 @@
   imports = [
     "${modulesPath}/profiles/minimal.nix"
   ];
+
+  boot = {
+    tmp = {
+      cleanOnBoot = true;
+    };
+  };
+
   users = {
     # mutableUsers = false;
 
@@ -69,7 +76,7 @@
     # };
   };
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     (nerdfonts.override {
       fonts = ["JetBrainsMono" "FiraCode"];
     })
@@ -109,6 +116,7 @@
 
   programs = {
     zsh.enable = true;
+    nix-ld.dev.enable = true;
   };
 
   system.stateVersion = "23.05";
