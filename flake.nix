@@ -81,7 +81,7 @@
 
       channels.nixpkgs.overlaysBuilder = channels: [
         (final: prev: {
-          inherit (channels.nixpkgs-unstable) helm-ls eza bun input-leap;
+          inherit (channels.nixpkgs-unstable) helm-ls eza bun input-leap git-credential-manager;
           vimPlugins =
             prev.vimPlugins
             // {

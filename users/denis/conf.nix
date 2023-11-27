@@ -146,6 +146,9 @@ in {
         wget
         (openjdk17.override {enableJavaFX = true;})
         openssl
+        git-credential-manager
+        # gnupg
+        # pinentry
 
         minikube
         docker-machine-kvm2 # Minikube driver
@@ -301,12 +304,21 @@ in {
       };
     };
 
+    password-store = {
+      enable = true;
+    };
+
     git = {
       enable = true;
       userName = "Denis Kaynar";
       userEmail = "kaynar.denis@gmail.com";
       extraConfig = {
-        credential.helper = "${pkgs.git.override {withLibsecret = true;}}/bin/git-credential-libsecret";
+        credential = {
+          helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
+          credentialStore = "plaintext";
+          useHttpPath = true;
+        };
+
         init.defaultBranch = "master";
         core.autocrlf = "input";
       };
