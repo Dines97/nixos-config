@@ -48,7 +48,7 @@
         allowUnfree = true;
         permittedInsecurePackages = [
           "electron-19.1.9"
-          "electron-24.8.6" # For etcher
+          # "electron-24.8.6" # For etcher
         ];
         packageOverrides = pkgs: {
           vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
@@ -111,39 +111,10 @@
         modules = [
           ./cachix.nix
           ./modules/default.nix
+          ./hosts/shared
 
           inputs.nix-ld.nixosModules.nix-ld
           inputs.nix-index-database.nixosModules.nix-index
-
-          {
-            nix = {
-              generateNixPathFromInputs = true;
-              linkInputs = true;
-
-              settings = {
-                auto-optimise-store = true;
-                trusted-users = ["root" "@users"];
-                experimental-features = ["nix-command" "flakes"];
-              };
-
-              gc = {
-                automatic = true;
-                dates = "weekly";
-                options = "--delete-older-than 7d";
-              };
-            };
-
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-
-              users.denis = {...}: {
-                imports = [
-                  ./users/denis
-                ];
-              };
-            };
-          }
         ];
       };
 
