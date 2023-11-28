@@ -59,7 +59,6 @@
         (final: prev: {
           awmtt = pkgs.callPackage ./pkgs/awmtt {};
           aawmtt = pkgs.callPackage ./pkgs/aawmtt {};
-          preload = pkgs.callPackage ./pkgs/preload {};
           wezterm = prev.wezterm.overrideAttrs (old: {
             postInstall =
               old.postInstall

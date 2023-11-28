@@ -119,5 +119,11 @@
     nix-ld.dev.enable = true;
   };
 
+  services = {
+    preload = {
+      enable = true;
+    };
+  };
+
   system.stateVersion = "23.05";
 }
