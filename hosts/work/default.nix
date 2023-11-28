@@ -121,7 +121,7 @@
 
   services = {
     preload = {
-      enable = true;
+      enable = false;
     };
   };
 

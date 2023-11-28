@@ -137,7 +137,6 @@ in {
       ]
       ++ [
         (ansible.override {windowsSupport = true;})
-        preload
 
         # Xmonad
         # haskellPackages.xmobar

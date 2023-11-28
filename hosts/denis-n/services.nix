@@ -126,6 +126,6 @@
     enable = false;
   };
   preload = {
-    enable = true;
+    enable = false;
   };
 }
