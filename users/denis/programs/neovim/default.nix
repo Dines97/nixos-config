@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./plugins/lsp
+    ./plugins/treesitter
   ];
 
   programs.neovim = {
@@ -180,11 +181,6 @@
           type = "lua";
           config = builtins.readFile ./plugins/tmux.lua;
         }
-        {
-          plugin = null-ls-nvim;
-          type = "lua";
-          config = builtins.readFile ./plugins/null_ls.lua;
-        }
 
         lsp-status-nvim
         {
@@ -200,16 +196,6 @@
           config = builtins.readFile ./plugins/notify.lua;
         }
         {
-          plugin = nvim-treesitter.withAllGrammars;
-          type = "lua";
-          config = builtins.readFile ./plugins/treesitter.lua;
-        }
-        {
-          plugin = nvim-treesitter-context;
-          type = "lua";
-          config = builtins.readFile ./plugins/nvim-treesitter-context.lua;
-        }
-        {
           plugin = onedark-nvim;
           type = "lua";
           config = builtins.readFile ./plugins/onedark.lua;
@@ -219,8 +205,6 @@
           type = "lua";
           config = builtins.readFile ./plugins/neo-tree.lua; # Setup should be called for tree be enabled at startup
         }
-        cmp-nvim-lsp
-        omnisharp-extended-lsp-nvim
         {
           plugin = buildVimPlugin {
             pname = "yaml-companion.nvim";

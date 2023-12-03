@@ -15,10 +15,20 @@
         type = "lua";
         config = builtins.readFile ./nvim-cmp.lua;
       }
-      luasnip
-      cmp_luasnip
       cmp-path
       cmp-buffer
+      cmp-nvim-lsp
+
+      luasnip
+      cmp_luasnip
+
+      omnisharp-extended-lsp-nvim
+
+      {
+        plugin = null-ls-nvim;
+        type = "lua";
+        config = builtins.readFile ./null-ls-nvim.lua;
+      }
     ];
 
     extraPackages = with pkgs; [
