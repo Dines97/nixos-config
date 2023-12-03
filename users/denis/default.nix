@@ -51,7 +51,9 @@
        fi
     '';
 in {
-  programs = import ./programs {inherit pkgs config lib;};
+  imports = [
+    ./programs
+  ];
 
   wayland.windowManager.sway = {
     enable = true;
@@ -68,7 +70,7 @@ in {
 
   home = {
     username = "denis";
-    stateVersion = "23.05";
+    stateVersion = "23.11";
 
     sessionVariables = {
       PAGER = "less";
