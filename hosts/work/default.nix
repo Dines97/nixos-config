@@ -69,11 +69,18 @@
       enable = true;
     };
 
-    # podman = {
-    #   enable = true;
-    #   dockerCompat = true;
-    #   dockerSocket.enable = true;
-    # };
+    containers = {
+      enable = true;
+      registries = {
+        insecure = ["registry.turkuazmonitoring.com.tr"];
+      };
+    };
+
+    podman = {
+      enable = true;
+      dockerCompat = false;
+      dockerSocket.enable = false;
+    };
   };
 
   fonts.packages = with pkgs; [
