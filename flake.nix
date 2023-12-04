@@ -48,7 +48,6 @@
         allowUnfree = true;
         permittedInsecurePackages = [
           "electron-19.1.9"
-          # "electron-24.8.6" # For etcher
         ];
         packageOverrides = pkgs: {
           vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
@@ -56,25 +55,8 @@
       };
 
       sharedOverlays = [
-        (final: prev: {
-          awmtt = pkgs.callPackage ./pkgs/awmtt {};
-          aawmtt = pkgs.callPackage ./pkgs/aawmtt {};
-          wezterm = prev.wezterm.overrideAttrs (old: {
-            postInstall =
-              old.postInstall
-              + ''
-                substituteInPlace $out/share/applications/org.wezfurlong.wezterm.desktop --replace \
-                "Exec=wezterm start --cwd ." \
-                "Exec=wezterm"
-              '';
-          });
-        })
-
-        # conda-zsh-overlay = final: prev: {
-        #   conda = prev.conda.overrideAttrs {
-        #     runScript = "zsh -l";
-        #   };
-        # };
+        inputs.neovim-nightly-overlay.overlay
+        (import ./overlays)
       ];
 
       channels.nixpkgs.overlaysBuilder = channels: [
@@ -91,19 +73,7 @@
       channels.nixpkgs-unstable.overlaysBuilder = channels: [
         (final: prev: {
           inherit (channels.nixpkgs);
-
-          input-leap = prev.input-leap.overrideAttrs (old: {
-            version = "2023-10-22";
-            src = prev.fetchFromGitHub {
-              owner = "input-leap";
-              repo = "input-leap";
-              rev = "c5bb9dcaad302eff4fe17855c147f640bdb76ba9";
-              hash = "sha256-yOiMH5AILjRnNf/Nb2OoSYMM+GSnAhq6QbkvHDQ8eW0=";
-              fetchSubmodules = true;
-            };
-          });
         })
-        inputs.neovim-nightly-overlay.overlay
       ];
 
       hostDefaults = {
@@ -120,6 +90,7 @@
       hosts = {
         Denis-N = {
           channelName = "nixpkgs-unstable";
+          system = "x86_64-linux";
           modules = [
             ./hosts/denis-n
             inputs.home-manager-unstable.nixosModules.home-manager
@@ -127,6 +98,7 @@
         };
 
         work = {
+          system = "x86_64-linux";
           modules = [
             ./hosts/work
             inputs.home-manager.nixosModules.home-manager
