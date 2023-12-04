@@ -6,11 +6,13 @@
 }: let
   user-name = "denis";
 in {
-  services = import ./services.nix {};
-  hardware = import ./hardware.nix {inherit pkgs lib config;};
-  # specialisation = import ./specialisations.nix {};
-  boot = import ./boot.nix {inherit pkgs lib config;};
-  programs = import ./programs.nix {inherit pkgs lib config;};
+  imports = [
+    ./services.nix
+    ./hardware.nix
+    ./boot.nix
+    ./programs.nix
+    # ./specialisation.nix
+  ];
 
   fileSystems = {
     "/" = {
@@ -250,5 +252,5 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 }
