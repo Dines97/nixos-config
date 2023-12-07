@@ -127,7 +127,7 @@
       enable = false;
     };
     preload = {
-      enable = false;
+      enable = true;
     };
   };
 }

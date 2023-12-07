@@ -34,7 +34,7 @@ in {
     enable = true;
   };
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.cpuFreqGovernor = "ondemand";
 
   # containers = {
   #   recursive = {

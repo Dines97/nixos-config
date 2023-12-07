@@ -94,7 +94,7 @@ in {
       ls = "eza";
       ll = "eza --long --all --header --time-style=long-iso --git --icons --group-directories-first --group -b";
       cat = "bat";
-      nixrebuild = "sudo nix flake update /etc/nixos && sudo nixos-rebuild switch";
+      nixrebuild = "sudo nix flake update --flake /etc/nixos && sudo nixos-rebuild switch";
 
       nconf = "nvim $HOME/.config/nvim/";
       nixconf = "cd /etc/nixos && nvim /etc/nixos/";

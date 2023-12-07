@@ -4,8 +4,7 @@
   ...
 }: {
   imports = [
-    ./plugins/lsp
-    ./plugins/treesitter
+    ./plugins
   ];
 
   programs.neovim = {
