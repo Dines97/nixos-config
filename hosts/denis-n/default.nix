@@ -134,15 +134,6 @@ in {
     rtkit.enable = true;
   };
 
-  users.users.${user-name} = {
-    isNormalUser = true;
-    home = "/home/${user-name}";
-    description = "Denis Kaynar";
-    extraGroups = ["wheel" "networkmanager" "docker" "podman" "libvirtd"];
-    shell = pkgs.zsh;
-    useDefaultShell = false;
-  };
-
   # Remove sound.enable or turn it off if you had it set previously, it seems to cause conflicts with pipewire
   sound.enable = true;
 

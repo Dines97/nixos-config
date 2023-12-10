@@ -15,26 +15,6 @@
     };
   };
 
-  users = {
-    # mutableUsers = false;
-
-    users = {
-      root = {
-        isSystemUser = true;
-        hashedPassword = "$y$j9T$qI0DM5ydv.oThc7erbbKD.$J.Y6tHHCPUKhoZVkaZjp4BOPqrzUinWSKABMmE7KFW5";
-      };
-
-      denis = {
-        isNormalUser = true;
-        home = "/home/denis";
-        description = "Denis Kaynar";
-        extraGroups = ["wheel" "networkmanager" "docker" "podman" "libvirtd"];
-        shell = pkgs.zsh;
-        useDefaultShell = false;
-      };
-    };
-  };
-
   security = {
     sudo = {
       extraRules = [
@@ -114,12 +94,6 @@
   };
 
   networking.hostName = "work";
-
-  # Enable nix flakes
-  nix.package = pkgs.nixFlakes;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
 
   programs = {
     zsh.enable = true;
