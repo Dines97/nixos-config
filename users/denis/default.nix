@@ -55,6 +55,17 @@ in {
     ./programs
   ];
 
+  dconf = {
+    settings = {
+      "org/gnome/desktop/input-sources" = {
+        xkb-options = [
+          "grp:alt_shift_toggle"
+          "caps:none"
+        ];
+      };
+    };
+  };
+
   wayland.windowManager.sway = {
     enable = true;
     config = rec {
