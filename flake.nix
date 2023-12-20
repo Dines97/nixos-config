@@ -98,10 +98,12 @@
         };
 
         work = {
+          channelName = "nixpkgs-unstable";
           system = "x86_64-linux";
           modules = [
             ./hosts/work
-            inputs.home-manager.nixosModules.home-manager
+            # inputs.home-manager.nixosModules.home-manager
+            inputs.home-manager-unstable.nixosModules.home-manager
             inputs.wsl.nixosModules.wsl
           ];
         };
