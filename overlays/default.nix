@@ -13,12 +13,12 @@ final: prev: {
   });
 
   input-leap = prev.input-leap.overrideAttrs (old: {
-    version = "2023-10-22";
+    version = "2023-11-21";
     src = prev.fetchFromGitHub {
       owner = "input-leap";
       repo = "input-leap";
-      rev = "c5bb9dcaad302eff4fe17855c147f640bdb76ba9";
-      hash = "sha256-yOiMH5AILjRnNf/Nb2OoSYMM+GSnAhq6QbkvHDQ8eW0=";
+      rev = "3e681454b737633a70f2f3b789046a5cb1946708";
+      hash = "sha256-OZMVz075oC7UQI7F9uDz8F6eBr1WN4aYxLFq9bc3M6g=";
       fetchSubmodules = true;
     };
   });

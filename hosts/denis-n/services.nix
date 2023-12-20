@@ -24,6 +24,9 @@
       # Configure keymap in X11
       layout = "us, ru";
       # xkbOptions = "grp:alt_shift_toggle";
+      # xkb = {
+      #   options = "caps:none";
+      # };
 
       videoDrivers = ["nvidia"];
 
@@ -31,12 +34,12 @@
       libinput.enable = true;
 
       displayManager = {
-        autoLogin = {
-          enable = true;
-          user = "denis";
-        };
+        # autoLogin = {
+        #   enable = true;
+        #   user = "denis";
+        # };
 
-        # gdm.enable = true;
+        gdm.enable = true;
         # sddm.enable = true;
         # lightdm.enable = true;
       };
