@@ -9,6 +9,7 @@
 
     settings = {
       auto-optimise-store = true;
+      sandbox = true;
       trusted-users = ["root" "@users"];
       experimental-features = [
         "nix-command"

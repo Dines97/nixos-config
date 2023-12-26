@@ -167,6 +167,7 @@ in {
       185.254.30.209 kubernetes.fridge.io
     '';
     networkmanager.enable = true;
+    wireless.enable = true;
 
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 

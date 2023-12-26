@@ -4,7 +4,7 @@
       availableKernelModules = ["xhci_pci" "nvme" "rtsx_usb_sdmmc"];
       kernelModules = [];
     };
-    kernelModules = ["kvm-intel"];
+    kernelModules = ["kvm-intel" "iwlwifi"];
     extraModulePackages = [];
 
     blacklistedKernelModules = [
