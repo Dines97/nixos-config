@@ -70,6 +70,9 @@
       # JavaScript
       nodePackages.vue-language-server
       nodePackages.volar # Language server for Vue
+
+      # Dockerfile
+      dockerfile-language-server-nodejs
     ];
   };
 }

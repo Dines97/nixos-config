@@ -141,6 +141,10 @@ in {
         kubebuilder
         cue
         skaffold
+        (pkgs.google-cloud-sdk.withExtraComponents (with pkgs.google-cloud-sdk.components; [
+          # gke-gcloud-auth-plugin
+          anthos-auth
+        ]))
 
         docker-compose
         terraform
@@ -242,6 +246,7 @@ in {
         thunderbird
         notepadqq
         teams-for-linux
+        remote-desktop-manager
 
         (retroarch.override {
           cores = with libretro; [

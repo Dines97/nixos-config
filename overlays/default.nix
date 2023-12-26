@@ -2,6 +2,8 @@ final: prev: {
   awmtt = prev.callPackage ./awmtt {};
   aawmtt = prev.callPackage ./aawmtt {};
 
+  # remote-desktop-manager = prev.callPackage ./remote-desktop-manager {};
+
   wezterm = prev.wezterm.overrideAttrs (old: {
     postInstall =
       old.postInstall

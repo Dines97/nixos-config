@@ -5,6 +5,9 @@
   ...
 }: {
   hardware = {
+    enableAllFirmware = true;
+    enableRedistributableFirmware = true;
+
     nvidia = {
       open = false;
 
