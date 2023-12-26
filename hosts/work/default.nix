@@ -85,6 +85,10 @@
       automount = {
         root = "/mnt";
       };
+
+      network = {
+        # generateResolvConf = false;
+      };
     };
 
     extraBin = [
@@ -104,6 +108,18 @@
     preload = {
       enable = false;
     };
+
+    zerotierone = {
+      enable = true;
+      joinNetworks = [
+        "a84ac5c10a88bb46"
+      ];
+    };
+
+    # resolved = {
+    #   enable = true;
+    #   llmnr = "true";
+    # };
   };
 
   system.stateVersion = "23.11";
