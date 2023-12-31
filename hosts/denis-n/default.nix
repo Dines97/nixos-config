@@ -113,27 +113,6 @@ in {
     platformTheme = "gnome";
   };
 
-  security = {
-    polkit.enable = true;
-
-    sudo = {
-      extraRules = [
-        {
-          users = ["${user-name}"];
-          commands = [
-            {
-              command = "/run/current-system/sw/bin/podman";
-              options = ["NOPASSWD"];
-            }
-          ];
-        }
-      ];
-    };
-
-    # rtkit is optional but recommended
-    rtkit.enable = true;
-  };
-
   # Remove sound.enable or turn it off if you had it set previously, it seems to cause conflicts with pipewire
   sound.enable = true;
 

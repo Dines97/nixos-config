@@ -122,6 +122,7 @@ in {
         appimage-run
         nix-info
         nix-index
+        fup-repl
       ]
       ++ [
         # Work
@@ -194,9 +195,6 @@ in {
         gcc # Required for clion
         gdb
 
-        # Rust
-        cargo
-
         # Haskell
         cabal-install
         ghc
@@ -210,6 +208,15 @@ in {
 
         # Flutter
         flutter
+
+        # Java
+        gradle
+
+        # Rust
+        # cargo
+        rustc
+        rustup
+
       ]
       ++ lib.optionals (osConfig.services.xserver.displayManager.sessionPackages != []) [
         spotify
@@ -264,11 +271,12 @@ in {
         # JetBrains
         jetbrains.rider
         jetbrains.webstorm
-        # jetbrains.idea-ultimate
+        jetbrains.idea-ultimate
         jetbrains.pycharm-professional
         # jetbrains.clion
         jetbrains.datagrip
         # jetbrains.goland
+        jetbrains.rust-rover
 
         android-studio
       ]

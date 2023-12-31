@@ -55,4 +55,25 @@
       };
     };
   };
+
+  security = {
+    polkit.enable = true;
+
+    # rtkit is optional but recommended
+    rtkit.enable = true;
+
+    sudo = {
+      extraRules = [
+        {
+          users = ["denis"];
+          commands = [
+            {
+              command = "/run/current-system/sw/bin/podman";
+              options = ["NOPASSWD"];
+            }
+          ];
+        }
+      ];
+    };
+  };
 }

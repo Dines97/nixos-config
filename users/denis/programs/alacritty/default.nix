@@ -19,6 +19,14 @@
           lines = 30;
         };
       };
+      keyboard = {
+        bindings = [
+          {
+            key = "NumpadEnter";
+            chars = "\\x0d";
+          }
+        ];
+      };
       font = {
         builtin_box_drawing = true;
         size = 13.0;

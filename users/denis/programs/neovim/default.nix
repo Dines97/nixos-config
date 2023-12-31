@@ -19,34 +19,13 @@
     with pkgs.vimPlugins;
       [
         nvim-spectre
-        # # filetype-nvim
         # {
-        #   plugin = buildVimPlugin {
-        #     pname = "filetype.nvim";
-        #     version = "2022-06-02";
-        #     src = pkgs.fetchFromGitHub {
-        #       owner = "nathom";
-        #       repo = "filetype.nvim";
-        #       rev = "b522628a45a17d58fc0073ffd64f9dc9530a8027";
-        #       sha256 = "sha256-B+VvgQj8akiKe+MX/dV2/mdaaqF8s2INW3phdPJ5TFA=";
-        #     };
-        #     meta.homepage = "https://github.com/nathom/filetype.nvim";
-        #   };
+        #   plugin = filetype-nvim;
         #   type = "lua";
         #   config = builtins.readFile ./plugins/filetype.lua;
         # }
         {
-          plugin = buildVimPlugin {
-            pname = "hmts.nvim"; # Custom treesitter queries for Home Manager nix files, in Neovim
-            version = "2023-08-06";
-            src = pkgs.fetchFromGitHub {
-              owner = "calops";
-              repo = "hmts.nvim";
-              rev = "c1a94724b2b343861031fe3a320d5ee3cb8d5167";
-              sha256 = "sha256-lZs6MloTZ81fKFllOW7VTMW3F0gZPtajh7m3vfA9Tiw=";
-            };
-            meta.homepage = "https://github.com/calops/hmts.nvim";
-          };
+          plugin = hmts-nvim;
           type = "lua";
         }
 

@@ -17,6 +17,11 @@
       ];
     };
 
+    asus-touchpad-numpad = {
+      enable = true;
+      model = "ux433fa";
+    };
+
     xserver = {
       # Enable the X11 windowing system.
       enable = true;

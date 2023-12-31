@@ -1,8 +1,8 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "git+file:///home/denis/nixpkgs";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs-unstable.url = "git+file:///home/denis/nixpkgs";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
@@ -39,9 +39,7 @@
 
   description = "System configuration";
 
-  outputs = {self, ...} @ inputs: let
-    pkgs = self.pkgs.x86_64-linux.nixpkgs;
-  in
+  outputs = {self, ...} @ inputs:
     inputs.fup.lib.mkFlake {
       inherit self inputs;
 
@@ -50,9 +48,6 @@
         permittedInsecurePackages = [
           "electron-19.1.9"
         ];
-        packageOverrides = pkgs: {
-          vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
-        };
       };
 
       sharedOverlays = [
@@ -60,22 +55,10 @@
         (import ./overlays)
       ];
 
-      channels.nixpkgs.overlaysBuilder = channels: [
-        (final: prev: {
-          inherit (channels.nixpkgs-unstable) helm-ls eza bun input-leap git-credential-manager;
-          vimPlugins =
-            prev.vimPlugins
-            // {
-              inherit (channels.nixpkgs-unstable.vimPlugins) vim-helm indent-blankline-nvim;
-            };
-        })
-      ];
-
-      channels.nixpkgs-unstable.overlaysBuilder = channels: [
-        (final: prev: {
-          inherit (channels.nixpkgs);
-        })
-      ];
+      channels = {
+        nixpkgs.overlaysBuilder = import ./overlays/stable.nix;
+        nixpkgs-unstable.overlaysBuilder = import ./overlays/unstable.nix;
+      };
 
       hostDefaults = {
         modules = [
@@ -110,26 +93,26 @@
         };
       };
 
-      outputsBuilder = channels: {
-        packages.python-discord-bot-docker = pkgs.dockerTools.buildImage {
-          name = "darktts";
-          tag = "0.1.0";
-          copyToRoot = self.devShells.x86_64-linux.python-discord-bot;
-        };
-
-        devShells.python-discord-bot = channels.nixpkgs.mkShell {
-          packages = with channels.nixpkgs.pkgs; [
-            (python3.withPackages (ps:
-              with ps; [
-                nextcord
-                sqlalchemy
-                google-cloud-texttospeech
-                setuptools
-                psycopg2
-              ]))
-          ];
-        };
-      };
+      # outputsBuilder = channels: {
+      #   packages.python-discord-bot-docker = pkgs.dockerTools.buildImage {
+      #     name = "darktts";
+      #     tag = "0.1.0";
+      #     copyToRoot = self.devShells.x86_64-linux.python-discord-bot;
+      #   };
+      #
+      #   devShells.python-discord-bot = channels.nixpkgs.mkShell {
+      #     packages = with channels.nixpkgs.pkgs; [
+      #       (python3.withPackages (ps:
+      #         with ps; [
+      #           nextcord
+      #           sqlalchemy
+      #           google-cloud-texttospeech
+      #           setuptools
+      #           psycopg2
+      #         ]))
+      #     ];
+      #   };
+      # };
 
       hmModules = {
         neovim = ./users/denis/neovim.nix;
