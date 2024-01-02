@@ -54,5 +54,41 @@ final: prev: {
         };
         meta.homepage = "https://github.com/calops/hmts.nvim";
       };
+
+      pets-nvim = prev.vimUtils.buildVimPlugin {
+        pname = "pets.nvim";
+        version = "2023-03-15";
+        src = prev.fetchFromGitHub {
+          owner = "giusgad";
+          repo = "pets.nvim";
+          rev = "8200520815038a57787d129cc30f9a7575b6802b";
+          sha256 = "sha256-obdjCiNyFCGz8Z6eWPL3nQ+kAAwqfbwbpWmMiABCFHw=";
+        };
+        meta.homepage = "https://github.com/giusgad/pets.nvim/";
+      };
+
+      yaml-companion-nvim = prev.vimUtils.buildVimPlugin {
+        pname = "yaml-companion.nvim";
+        version = "2023-03-04";
+        src = prev.fetchFromGitHub {
+          owner = "someone-stole-my-name";
+          repo = "yaml-companion.nvim";
+          rev = "4de1e1546abc461f62dee02fcac6a02debd6eb9e";
+          sha256 = "sha256-BmX7hyiIMQfcoUl09Y794HrSDq+cj93T+Z5u3e5wqLc=";
+        };
+        meta.homepage = "https://github.com/someone-stole-my-name/yaml-companion.nvim/";
+      };
+
+      nvim-ansible = prev.vimUtils.buildVimPlugin {
+        pname = "nvim-ansible";
+        version = "2023-03-15";
+        src = prev.fetchFromGitHub {
+          owner = "mfussenegger";
+          repo = "nvim-ansible";
+          rev = "d115cb9bb3680c990e2684f58cf333663fff03b8";
+          sha256 = "sha256-mh//2sfwjEtYm95Ihnvv6vy3iW6d8xinkX1uAsNFV7E=";
+        };
+        meta.homepage = "https://github.com/mfussenegger/nvim-ansible";
+      };
     };
 }

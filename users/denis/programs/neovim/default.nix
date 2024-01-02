@@ -16,223 +16,115 @@
     extraLuaConfig = builtins.readFile ./init.lua;
 
     plugins = with pkgs.vimUtils;
-    with pkgs.vimPlugins;
-      [
-        nvim-spectre
-        # {
-        #   plugin = filetype-nvim;
-        #   type = "lua";
-        #   config = builtins.readFile ./plugins/filetype.lua;
-        # }
-        {
-          plugin = hmts-nvim;
-          type = "lua";
-        }
+    with pkgs.vimPlugins; [
+      nvim-spectre
+      # {
+      #   plugin = filetype-nvim;
+      #   type = "lua";
+      #   config = builtins.readFile ./plugins/filetype.lua;
+      # }
 
-        vim-helm # Helm lsp plugin
+      vim-helm # Helm lsp plugin
 
-        plenary-nvim # Required for most of the plugins
-        nvim-web-devicons # Additional icons
-        dressing-nvim # vim.ui interface improvement
+      plenary-nvim # Required for most of the plugins
+      dressing-nvim # vim.ui interface improvement
 
-        {
-          plugin = satellite-nvim; # scrollbar decorations
-          type = "lua";
-          config = "require('satellite').setup()";
-        }
+      nvim-navic # Current code context
+      {
+        plugin = indent-blankline-nvim; # Indention line
+        type = "lua";
+        config = builtins.readFile ./plugins/indent-blankline.lua;
+      }
+      {
+        plugin = gitsigns-nvim; # Show git signs in sidebar
+        type = "lua";
+        config = builtins.readFile ./plugins/gitsigns.lua;
+      }
+      {
+        #FIXME: Doesn't work for now
+        plugin = sqlite-lua; # Required for clipboard manager for persistent clipboard
+        # type = "lua";
+        config = "let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
+        # config = "vim.g.sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'"; # sqlite3 is required by sqlite-lua
+      }
+      {
+        plugin = nvim-neoclip-lua; # Clipboard manager
+        type = "lua";
+        config = builtins.readFile ./plugins/neoclip.lua; # Persistent need be activated separately
+      }
 
-        {
-          plugin = flutter-tools-nvim;
-          type = "lua";
-          config = "require('flutter-tools').setup()";
-        }
+      # {
+      #   plugin = presence-nvim; # Discord presence plugin
+      #   type = "lua";
+      #   config = "require('presence').setup()";
+      # }
+      {
+        plugin = comment-nvim; # Commenting plugin
+        type = "lua";
+        config = "require('Comment').setup()"; # Setup should be called for default keybindings
+      }
+      {
+        plugin = fidget-nvim;
+        type = "lua";
+        config = builtins.readFile ./plugins/fidget.lua;
+      }
+      {
+        plugin = todo-comments-nvim; # Comment highlighting
+        type = "lua";
+        config = "require('todo-comments').setup()";
+      }
+      {
+        plugin = mini-nvim; # Collection of small modules
+        type = "lua";
+        config = builtins.readFile ./plugins/mini.lua; # Each of module need to be activated separately
+      }
+      hologram-nvim
+      {
+        plugin = pets-nvim;
+        type = "lua";
+        config = "require('pets').setup()";
+      }
+      {
+        plugin = tmux-nvim;
+        type = "lua";
+        config = builtins.readFile ./plugins/tmux.lua;
+      }
 
-        barbar-nvim # Tabline plugin
-        nvim-navic # Current code context
-        {
-          plugin = barbecue-nvim; # Context bar
-          type = "lua";
-          config = "require('barbecue').setup()";
-        }
-        {
-          plugin = statuscol-nvim; # Status column
-          type = "lua";
-          config = "require('statuscol').setup()";
-        }
-        {
-          plugin = indent-blankline-nvim; # Indention line
-          type = "lua";
-          config = builtins.readFile ./plugins/indent-blankline.lua;
-        }
-        {
-          plugin = gitsigns-nvim; # Show git signs in sidebar
-          type = "lua";
-          config = builtins.readFile ./plugins/gitsigns.lua;
-        }
-        {
-          plugin = telescope-nvim;
-          type = "lua";
-          config = builtins.readFile ./plugins/telescope.lua;
-        }
-        telescope-fzf-native-nvim
-        {
-          #FIXME: Doesn't work for now
-          plugin = sqlite-lua; # Required for clipboard manager for persistent clipboard
-          # type = "lua";
-          config = "let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
-          # config = "vim.g.sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'"; # sqlite3 is required by sqlite-lua
-        }
-        {
-          plugin = nvim-neoclip-lua; # Clipboard manager
-          type = "lua";
-          config = builtins.readFile ./plugins/neoclip.lua; # Persistent need be activated separately
-        }
+      lsp-status-nvim
 
-        # {
-        #   plugin = presence-nvim; # Discord presence plugin
-        #   type = "lua";
-        #   config = "require('presence').setup()";
-        # }
-        {
-          plugin = comment-nvim; # Commenting plugin
-          type = "lua";
-          config = "require('Comment').setup()"; # Setup should be called for default keybindings
-        }
-        {
-          plugin = fidget-nvim;
-          type = "lua";
-          config = builtins.readFile ./plugins/fidget.lua;
-        }
-        {
-          plugin = todo-comments-nvim; # Comment highlighting
-          type = "lua";
-          config = "require('todo-comments').setup()";
-        }
-        {
-          plugin = mini-nvim; # Collection of small modules
-          type = "lua";
-          config = builtins.readFile ./plugins/mini.lua; # Each of module need to be activated separately
-        }
-        hologram-nvim
-        {
-          plugin = buildVimPlugin {
-            pname = "pets.nvim";
-            version = "2023-03-15";
-            src = pkgs.fetchFromGitHub {
-              owner = "giusgad";
-              repo = "pets.nvim";
-              rev = "8200520815038a57787d129cc30f9a7575b6802b";
-              sha256 = "sha256-obdjCiNyFCGz8Z6eWPL3nQ+kAAwqfbwbpWmMiABCFHw=";
-            };
-            meta.homepage = "https://github.com/giusgad/pets.nvim/";
-          };
-          type = "lua";
-          config = "require('pets').setup()";
-        }
-        {
-          plugin = buildVimPlugin {
-            pname = "knap"; # LaTeX plugin
-            version = "2023-01-21";
-            src = pkgs.fetchFromGitHub {
-              owner = "frabjous";
-              repo = "knap";
-              rev = "8c083d333b8a82421a521539eb1c450b06c90eb6";
-              sha256 = "sha256-lW4QM3kKmxCF/rUj86d3EdAppwBzGomwk5u6N2u9Hbs=";
-            };
-            meta.homepage = "https://github.com/frabjous/knap/";
-          };
-          type = "lua";
-          config = builtins.readFile ./plugins/knap.lua;
-        }
-        {
-          plugin = buildVimPlugin {
-            pname = "tmux.nvim";
-            version = "2023-03-11";
-            src = pkgs.fetchFromGitHub {
-              owner = "aserowy";
-              repo = "tmux.nvim";
-              rev = "9ba03cc5dfb30f1dc9eb50d0796dfdd52c5f454e";
-              sha256 = "sha256-ZBnQFKe8gySFQ9v6j4C/F/mq+bCH1n8G42AlBx6MbXY=";
-            };
-            meta.homepage = "https://github.com/aserowy/tmux.nvim/";
-          };
-          type = "lua";
-          config = builtins.readFile ./plugins/tmux.lua;
-        }
-
-        lsp-status-nvim
-        {
-          plugin = lualine-nvim;
-          type = "lua";
-          config = builtins.readFile ./plugins/lualine.lua;
-        }
-
-        nui-nvim
-        {
-          plugin = nvim-notify;
-          type = "lua";
-          config = builtins.readFile ./plugins/notify.lua;
-        }
-        {
-          plugin = onedark-nvim;
-          type = "lua";
-          config = builtins.readFile ./plugins/onedark.lua;
-        }
-        {
-          plugin = neo-tree-nvim;
-          type = "lua";
-          config = builtins.readFile ./plugins/neo-tree.lua; # Setup should be called for tree be enabled at startup
-        }
-        {
-          plugin = buildVimPlugin {
-            pname = "yaml-companion.nvim";
-            version = "2023-03-04";
-            src = pkgs.fetchFromGitHub {
-              owner = "someone-stole-my-name";
-              repo = "yaml-companion.nvim";
-              rev = "4de1e1546abc461f62dee02fcac6a02debd6eb9e";
-              sha256 = "sha256-BmX7hyiIMQfcoUl09Y794HrSDq+cj93T+Z5u3e5wqLc=";
-            };
-            meta.homepage = "https://github.com/someone-stole-my-name/yaml-companion.nvim/";
-          };
-        }
-        {
-          plugin = neodev-nvim;
-          type = "lua";
-          config = builtins.readFile ./plugins/neodev.lua;
-        }
-        {
-          plugin = trouble-nvim;
-          type = "lua";
-          config = builtins.readFile ./plugins/trouble.lua;
-        }
-        {
-          plugin = which-key-nvim;
-          type = "lua";
-          config = builtins.readFile ./plugins/which_key.lua;
-        }
-        {
-          plugin = legendary-nvim;
-          type = "lua";
-          config = builtins.readFile ./plugins/legendary.lua;
-        }
-      ]
-      # Ansible
-      ++ [
-        {
-          plugin = buildVimPlugin {
-            pname = "nvim-ansible";
-            version = "2023-03-15";
-            src = pkgs.fetchFromGitHub {
-              owner = "mfussenegger";
-              repo = "nvim-ansible";
-              rev = "d115cb9bb3680c990e2684f58cf333663fff03b8";
-              sha256 = "sha256-mh//2sfwjEtYm95Ihnvv6vy3iW6d8xinkX1uAsNFV7E=";
-            };
-            meta.homepage = "https://github.com/mfussenegger/nvim-ansible";
-          };
-        }
-      ];
+      nui-nvim
+      {
+        plugin = nvim-notify;
+        type = "lua";
+        config = builtins.readFile ./plugins/notify.lua;
+      }
+      {
+        plugin = onedark-nvim;
+        type = "lua";
+        config = builtins.readFile ./plugins/onedark.lua;
+      }
+      yaml-companion-nvim
+      {
+        plugin = neodev-nvim;
+        type = "lua";
+        config = builtins.readFile ./plugins/neodev.lua;
+      }
+      {
+        plugin = trouble-nvim;
+        type = "lua";
+        config = builtins.readFile ./plugins/trouble.lua;
+      }
+      {
+        plugin = which-key-nvim;
+        type = "lua";
+        config = builtins.readFile ./plugins/which_key.lua;
+      }
+      {
+        plugin = legendary-nvim;
+        type = "lua";
+        config = builtins.readFile ./plugins/legendary.lua;
+      }
+    ];
 
     extraPackages = with pkgs; [
       git # For git related plugins
@@ -241,23 +133,9 @@
 
       sqlite # Required for neoclip
 
-      # Telescope
-      ripgrep
-      fd
-
       # Mix
       xclip
       vale
-
-      # Go
-      gopls
-      delve
-
-      # LaTeX
-      # texlive.combined.scheme-full # Full LaTeX distribution
-      sioyek # Preview
-      texlab # LSP
-      rubber
     ];
   };
 }

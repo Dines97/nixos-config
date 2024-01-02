@@ -22,8 +22,6 @@
       luasnip
       cmp_luasnip
 
-      omnisharp-extended-lsp-nvim
-
       {
         plugin = null-ls-nvim;
         type = "lua";
@@ -35,16 +33,6 @@
       # Generic
       nodePackages.prettier
 
-      # Helm
-      helm-ls
-
-      # Nix
-      # rnix-lsp
-      # nixpkgs-fmt
-      nil
-      alejandra
-      statix
-
       # Lua
       sumneko-lua-language-server
 
@@ -55,17 +43,10 @@
       # Yaml
       nodePackages.yaml-language-server
 
-      # C#
-      omnisharp-roslyn
-
       # Python
       nodePackages.pyright
       python310Packages.black
       # python310Packages.jedi-language-server
-
-      # Ansible
-      ansible-language-server
-      ansible-lint
 
       # JavaScript
       nodePackages.vue-language-server
