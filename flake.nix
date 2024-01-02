@@ -114,8 +114,8 @@
       #   };
       # };
 
-      overlays = {
-        default = ./overlays;
+      overlays = inputs.fup.lib.exportOverlays {
+        inherit (self) pkgs inputs;
       };
 
       hmModules = {
