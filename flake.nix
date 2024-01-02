@@ -114,9 +114,13 @@
       #   };
       # };
 
-      overlays = inputs.fup.lib.exportOverlays {
-        inherit (self) pkgs inputs;
-      };
+      overlays =
+        inputs.fup.lib.exportOverlays {
+          inherit (self) pkgs inputs;
+        }
+        // {
+          nixpkgs = ./overlays;
+        };
 
       hmModules = {
         neovim = ./users/denis/programs/neovim;
