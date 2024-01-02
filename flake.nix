@@ -114,6 +114,10 @@
       #   };
       # };
 
+      overlays = {
+        default = ./overlays;
+      };
+
       hmModules = {
         neovim = ./users/denis/programs/neovim;
         tmux = ./users/denis/programs/tmux;
