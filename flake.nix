@@ -114,9 +114,7 @@
       #   };
       # };
 
-      overlays = {
-        nixpkgs = ./overlays;
-      };
+      overlay = import ./overlays;
 
       hmModules = {
         neovim = ./users/denis/programs/neovim;
