@@ -214,9 +214,8 @@ in {
 
         # Rust
         # cargo
-        rustc
+        # rustc
         rustup
-
       ]
       ++ lib.optionals (osConfig.services.xserver.displayManager.sessionPackages != []) [
         spotify
@@ -253,6 +252,7 @@ in {
         thunderbird
         notepadqq
         teams-for-linux
+        # teams-for-poor-people
         remote-desktop-manager
 
         (retroarch.override {

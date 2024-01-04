@@ -1,4 +1,15 @@
 final: prev: {
+  teams-for-poor-people = prev.makeDesktopItem {
+    name = "Teams";
+    desktopName = "Teams Web";
+    exec = "${prev.chromium}/bin/chromium --app=\"https://teams.microsoft.com\"";
+    icon = "teams";
+    type = "Application";
+    categories = ["Network" "InstantMessaging"];
+    terminal = false;
+    mimeTypes = ["x-scheme-handler/teams"];
+  };
+
   vaapiIntel = prev.vaapiIntel.override {enableHybridCodec = true;};
   intel-vaapi-driver = prev.intel-vaapi-driver.override {enableHybridCodec = true;};
 
@@ -45,24 +56,24 @@ final: prev: {
 
       hmts-nvim = prev.vimUtils.buildVimPlugin {
         pname = "hmts.nvim"; # Custom treesitter queries for Home Manager nix files, in Neovim
-        version = "2023-08-06";
+        version = "2023-08-28";
         src = prev.fetchFromGitHub {
           owner = "calops";
           repo = "hmts.nvim";
-          rev = "c1a94724b2b343861031fe3a320d5ee3cb8d5167";
-          sha256 = "sha256-lZs6MloTZ81fKFllOW7VTMW3F0gZPtajh7m3vfA9Tiw=";
+          rev = "14fd941d7ec2bb98314a1aacaa2573d97f1629ab";
+          sha256 = "sha256-jUuztOqNBltC3axa7s3CPJz9Cmukfwkf846+Z/gAxCU=";
         };
         meta.homepage = "https://github.com/calops/hmts.nvim";
       };
 
       pets-nvim = prev.vimUtils.buildVimPlugin {
         pname = "pets.nvim";
-        version = "2023-03-15";
+        version = "2024-01-03";
         src = prev.fetchFromGitHub {
           owner = "giusgad";
           repo = "pets.nvim";
-          rev = "8200520815038a57787d129cc30f9a7575b6802b";
-          sha256 = "sha256-obdjCiNyFCGz8Z6eWPL3nQ+kAAwqfbwbpWmMiABCFHw=";
+          rev = "94b4724e031fc3c9b6da19bdef574f44fabcca16";
+          sha256 = "sha256-CtBCiTo26cTU+q/67QSrondNeyoAdVuIXMHZnxHMIm4=";
         };
         meta.homepage = "https://github.com/giusgad/pets.nvim/";
       };

@@ -1,5 +1,9 @@
 require('fidget').setup({
-  text = {
-    spinner = 'dots'
+  progress = {
+    display = {
+      progress_icon = {
+        pattern = 'dots'
+      }
+    }
   }
 })
