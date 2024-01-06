@@ -89,6 +89,16 @@ in {
   # };
 
   environment = {
+    # pathsToLink = ["/include"];
+    # variables = {
+    #   CPATH = "/run/current-system/sw/include";
+    #   LIBRARY_PATH = "/run/current-system/sw/lib";
+    # };
+    #
+    # systemPackages = with pkgs; [
+    #   glib
+    # ];
+
     shells = [pkgs.zsh];
 
     variables = {

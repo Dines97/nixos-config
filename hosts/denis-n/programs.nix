@@ -27,6 +27,8 @@
 
         coreutils # For conda
 
+        # glib
+
         # libbsd # For pulse secure
         # glib
         # gtkmm3

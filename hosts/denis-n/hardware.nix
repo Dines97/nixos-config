@@ -5,6 +5,7 @@
   ...
 }: {
   hardware = {
+    xpadneo.enable = true;
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
 

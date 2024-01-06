@@ -4,6 +4,12 @@
   pkgs,
   ...
 }: {
+  home = {
+    packages = with pkgs; [
+      xsel # tmux-yank required dependency
+    ];
+  };
+
   programs.tmux = {
     enable = true;
     mouse = true;

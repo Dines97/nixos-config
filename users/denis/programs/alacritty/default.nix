@@ -2,7 +2,26 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  alacritty-launch =
+    pkgs.writeScriptBin "alacritty-launch"
+    ''
+       xid=$(${pkgs.xdotool}/bin/xdotool search --class Alacritty)
+
+       if [ -z ''${xid} ]
+       then
+       ${pkgs.alacritty}/bin/alacritty
+       else
+      ${pkgs.xdotool}/bin/xdotool windowactivate ''${xid}
+       fi
+    '';
+in {
+  home = {
+    packages = with pkgs; [
+      alacritty-launch
+    ];
+  };
+
   programs.alacritty = {
     enable = true;
     package = pkgs.alacritty;
