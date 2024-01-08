@@ -41,6 +41,12 @@
         ];
       };
     };
+
+    firefox = {
+      enable = true;
+      # nativeMessagingHosts.packages = [pkgs.gnome-browser-connector];
+    };
+
     rofi = {
       enable = true;
       package = pkgs.rofi-wayland;

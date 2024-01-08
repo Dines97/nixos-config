@@ -1,10 +1,5 @@
 {pkgs, ...}: {
   programs = {
-    firefox = {
-      enable = true;
-      # nativeMessagingHosts.packages = [pkgs.gnome-browser-connector];
-    };
-
     command-not-found.enable = false;
 
     nix-ld = {

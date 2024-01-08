@@ -89,15 +89,23 @@ in {
   # };
 
   environment = {
-    # pathsToLink = ["/include"];
-    # variables = {
-    #   CPATH = "/run/current-system/sw/include";
-    #   LIBRARY_PATH = "/run/current-system/sw/lib";
-    # };
-    #
-    # systemPackages = with pkgs; [
-    #   glib
-    # ];
+    pathsToLink = [
+      "/include"
+      "/lib"
+    ];
+    variables = {
+      CPATH = "/run/current-system/sw/include";
+      LIBRARY_PATH = "/run/current-system/sw/lib";
+      PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
+    };
+
+    extraOutputsToInstall = ["dev"];
+
+    systemPackages = with pkgs; [
+      glib
+      glibc
+      opencv
+    ];
 
     shells = [pkgs.zsh];
 

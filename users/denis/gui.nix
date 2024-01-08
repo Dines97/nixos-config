@@ -41,18 +41,18 @@
         thunderbird
         notepadqq
 
-        (retroarch.override {
-          cores = with libretro; [
-            dolphin
-            ppsspp
-            pcsx2
-            fbneo
-            # mame # NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM
-            snes9x
-            mesen
-            mgba
-          ];
-        })
+        # (retroarch.override {
+        #   cores = with libretro; [
+        #     dolphin
+        #     ppsspp
+        #     pcsx2
+        #     fbneo
+        #     # mame # NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM
+        #     snes9x
+        #     mesen
+        #     mgba
+        #   ];
+        # })
 
         # retroarchFull
 

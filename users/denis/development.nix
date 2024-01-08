@@ -81,6 +81,7 @@ in {
       pkg-config
       glib
       cmake
+      meson
 
       # Haskell
       # cabal-install
