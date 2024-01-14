@@ -18,6 +18,8 @@ final: prev: {
 
   remote-desktop-manager = prev.callPackage ./remote-desktop-manager {};
 
+  asus-touchpad-numpad-driver = prev.callPackage ./asus-touchpad-numpad-driver {};
+
   wezterm = prev.wezterm.overrideAttrs (old: {
     postInstall =
       old.postInstall
@@ -100,6 +102,32 @@ final: prev: {
           sha256 = "sha256-mh//2sfwjEtYm95Ihnvv6vy3iW6d8xinkX1uAsNFV7E=";
         };
         meta.homepage = "https://github.com/mfussenegger/nvim-ansible";
+      };
+    };
+
+  tmuxPlugins =
+    prev.tmuxPlugins
+    // {
+      open = prev.tmuxPlugins.mkTmuxPlugin {
+        pluginName = "open";
+        version = "2022-08-22";
+        src = prev.fetchFromGitHub {
+          owner = "tmux-plugins";
+          repo = "tmux-open";
+          rev = "763d0a852e6703ce0f5090a508330012a7e6788e";
+          hash = "sha256-Thii7D21MKodtjn/MzMjOGbJX8BwnS+fQqAtYv8CjPc=";
+        };
+      };
+
+      suspend = prev.tmuxPlugins.mkTmuxPlugin {
+        pluginName = "suspend";
+        version = "2023-01-15";
+        src = prev.fetchFromGitHub {
+          owner = "MunifTanjim";
+          repo = "tmux-suspend";
+          rev = "1a2f806666e0bfed37535372279fa00d27d50d14";
+          hash = "sha256-+1fKkwDmr5iqro0XeL8gkjOGGB/YHBD25NG+w3iW+0g=";
+        };
       };
     };
 }

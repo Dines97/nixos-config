@@ -47,6 +47,10 @@
       # nativeMessagingHosts.packages = [pkgs.gnome-browser-connector];
     };
 
+    chromium = {
+      enable = true;
+    };
+
     rofi = {
       enable = true;
       package = pkgs.rofi-wayland;

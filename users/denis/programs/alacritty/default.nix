@@ -26,7 +26,9 @@ in {
     enable = true;
     package = pkgs.alacritty;
     settings = {
-      draw_bold_text_with_bright_colors = false;
+      colors = {
+        draw_bold_text_with_bright_colors = false;
+      };
       shell = {
         program = "/bin/sh";
         args = ["-l" "-c" "tmux attach || tmux"];
@@ -38,14 +40,14 @@ in {
           lines = 30;
         };
       };
-      keyboard = {
-        bindings = [
-          {
-            key = "NumpadEnter";
-            chars = "\\x0d";
-          }
-        ];
-      };
+      # keyboard = {
+      #   bindings = [
+      #     {
+      #       key = "NumpadEnter";
+      #       chars = "\\x0d";
+      #     }
+      #   ];
+      # };
       font = {
         builtin_box_drawing = true;
         size = 13.0;

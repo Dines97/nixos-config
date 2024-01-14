@@ -37,6 +37,8 @@
     ];
 in {
   home = {
+    extraOutputsToInstall = ["dev"];
+
     packages = with pkgs; [
       # Kubernetes
       kubectl
@@ -75,13 +77,18 @@ in {
       dotnet-sdk_8
 
       # C/C++
-      gnumake
-      gcc # Required for clion
+      gcc
       gdb
-      pkg-config
-      glib
+
+      gnumake
       cmake
       meson
+
+      pkg-config
+
+      glib
+      glibc
+      opencv
 
       # Haskell
       # cabal-install

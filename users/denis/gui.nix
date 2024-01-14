@@ -82,6 +82,7 @@
         # gnomeExtensions.tray-icons-reloaded
         gnomeExtensions.x11-gestures
         gnomeExtensions.remove-alttab-delay-v2
+        # gnomeExtensions.gamemode-indicator-in-system-settings
         # gnomeExtensions.caffeine
       ]
       # KDE

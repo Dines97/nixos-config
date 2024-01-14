@@ -1,5 +1,9 @@
 {pkgs, ...}: {
   programs = {
+    gamemode = {
+      enable = true;
+    };
+
     command-not-found.enable = false;
 
     nix-ld = {

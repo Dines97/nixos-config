@@ -23,6 +23,7 @@
     plugins = with pkgs; [
       tmuxPlugins.sensible
       tmuxPlugins.yank
+      tmuxPlugins.open
       {
         plugin = tmuxPlugins.mode-indicator;
         extraConfig = ''
@@ -30,16 +31,7 @@
         '';
       }
       {
-        plugin = pkgs.tmuxPlugins.mkTmuxPlugin {
-          pluginName = "suspend";
-          version = "";
-          src = fetchFromGitHub {
-            owner = "MunifTanjim";
-            repo = "tmux-suspend";
-            rev = "1a2f806666e0bfed37535372279fa00d27d50d14";
-            hash = "sha256-+1fKkwDmr5iqro0XeL8gkjOGGB/YHBD25NG+w3iW+0g=";
-          };
-        };
+        plugin = tmuxPlugins.suspend;
         extraConfig = ''
           set -g @suspend_key 'F12'
           set -g @suspend_suspended_options " \

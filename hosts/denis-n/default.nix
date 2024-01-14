@@ -93,19 +93,12 @@ in {
       "/include"
       "/lib"
     ];
+
     variables = {
-      CPATH = "/run/current-system/sw/include";
-      LIBRARY_PATH = "/run/current-system/sw/lib";
-      PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
+      CPATH = "/etc/profiles/per-user/denis/include";
+      LIBRARY_PATH = "/etc/profiles/per-user/denis/lib";
+      PKG_CONFIG_PATH = "/etc/profiles/per-user/denis/lib/pkgconfig";
     };
-
-    extraOutputsToInstall = ["dev"];
-
-    systemPackages = with pkgs; [
-      glib
-      glibc
-      opencv
-    ];
 
     shells = [pkgs.zsh];
 
@@ -132,7 +125,7 @@ in {
   };
 
   # Remove sound.enable or turn it off if you had it set previously, it seems to cause conflicts with pipewire
-  sound.enable = true;
+  sound.enable = false;
 
   virtualisation = {
     docker = {
