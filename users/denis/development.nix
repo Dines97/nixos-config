@@ -67,7 +67,7 @@ in {
         # gke-gcloud-auth-plugin
         anthos-auth
       ]))
-      azure-cli
+      # azure-cli
 
       # Python
       (pkgs.python3.withPackages my-python-packages)

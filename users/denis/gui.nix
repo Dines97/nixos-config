@@ -32,7 +32,7 @@
         obs-studio
         piper
         protonvpn-gui
-        aawmtt
+        # aawmtt
         libreoffice-fresh
         hunspell
         hunspellDicts.uk_UA
