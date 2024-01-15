@@ -5,10 +5,6 @@
   modulesPath,
   ...
 }: {
-  imports = [
-    "${modulesPath}/profiles/minimal.nix"
-  ];
-
   boot = {
     tmp = {
       cleanOnBoot = true;
@@ -52,8 +48,6 @@
       fonts = ["JetBrainsMono" "FiraCode"];
     })
   ];
-
-  environment.noXlibs = false;
 
   wsl = {
     enable = true;

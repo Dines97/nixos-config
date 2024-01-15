@@ -67,8 +67,9 @@
           ./hosts/shared
 
           inputs.nix-ld.nixosModules.nix-ld
-          inputs.nix-index-database.nixosModules.nix-index
         ];
+
+        extraArgs = {inherit inputs;};
       };
 
       hosts = {
