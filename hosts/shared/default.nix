@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   nix = {
@@ -33,6 +34,7 @@
     users.denis = {...}: {
       imports = [
         ../../users/denis
+        # inputs.nix-index-database.hmModules.nix-index
       ];
     };
   };

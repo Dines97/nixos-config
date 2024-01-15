@@ -17,6 +17,7 @@
       wget
       openssl
       ventoy-full
+      xdg-utils
 
       # Hardware
       pciutils
