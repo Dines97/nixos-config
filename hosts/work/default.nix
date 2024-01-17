@@ -77,11 +77,6 @@
 
   networking.hostName = "work";
 
-  programs = {
-    zsh.enable = true;
-    nix-ld.dev.enable = true;
-  };
-
   services = {
     preload = {
       enable = false;
