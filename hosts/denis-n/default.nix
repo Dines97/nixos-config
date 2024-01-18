@@ -132,7 +132,7 @@ in {
       enable = true;
       # enableNvidia = true;
       daemon.settings = {
-        insecure-registries = ["185.254.30.209:5000"];
+        insecure-registries = ["5.178.111.177:5000"];
       };
     };
 
@@ -211,13 +211,6 @@ in {
   #   isNormalUser = true;
   #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   # };
-
-  fonts.packages = with pkgs; [
-    # google-fonts
-    (nerdfonts.override {
-      fonts = ["JetBrainsMono" "FiraCode"];
-    })
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

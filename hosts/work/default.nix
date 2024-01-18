@@ -43,12 +43,6 @@
     };
   };
 
-  fonts.packages = with pkgs; [
-    (nerdfonts.override {
-      fonts = ["JetBrainsMono" "FiraCode"];
-    })
-  ];
-
   wsl = {
     enable = true;
     defaultUser = "denis";

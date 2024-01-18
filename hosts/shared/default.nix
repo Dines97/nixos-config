@@ -128,4 +128,11 @@
     #   enable = false;
     # };
   };
+
+  fonts.packages = with pkgs; [
+    # google-fonts
+    (nerdfonts.override {
+      fonts = ["JetBrainsMono" "FiraCode"];
+    })
+  ];
 }
