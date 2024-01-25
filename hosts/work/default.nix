@@ -83,6 +83,13 @@
       ];
     };
 
+    squid = {
+      enable = true;
+      extraConfig = ''
+        http_access allow all
+      '';
+    };
+
     # resolved = {
     #   enable = true;
     #   llmnr = "true";

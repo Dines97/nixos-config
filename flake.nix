@@ -47,6 +47,7 @@
         allowUnfree = true;
         permittedInsecurePackages = [
           "electron-19.1.9"
+          "squid-6.6"
         ];
       };
 
