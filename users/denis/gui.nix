@@ -5,6 +5,24 @@
   osConfig,
   ...
 }: {
+  # wayland = {
+  #   windowManager = {
+  #     hyprland = {
+  #       enable = true;
+  #       # enableNvidiaPatches = true;
+  #
+  #
+  #       settings = {
+  #         "$mainMod" = "SUPER";
+  #
+  #         "$terminal" = "alacritty";
+  #
+  #         bind = "$mainMod, Q, exec, $terminal";
+  #       };
+  #     };
+  #   };
+  # };
+
   home = {
     packages = with pkgs;
       lib.optionals (osConfig.services.xserver.displayManager.sessionPackages != []) [

@@ -150,6 +150,12 @@ in {
 
   users.extraGroups.vboxusers.members = ["denis"];
 
+  # xdg.portal = {
+  #   wlr = {
+  #     enable = true;
+  #   };
+  # };
+
   networking = {
     hostName = "Denis-N";
     useDHCP = lib.mkDefault true;
@@ -158,6 +164,13 @@ in {
     '';
     networkmanager.enable = true;
     wireless.enable = true;
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+
+      "2606:4700:4700::1111"
+      "2606:4700:4700::1001"
+    ];
 
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
