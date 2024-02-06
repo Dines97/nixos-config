@@ -23,6 +23,7 @@ in {
     "/boot" = {
       device = "/dev/disk/by-uuid/7349-70A0";
       fsType = "vfat";
+      options = ["fmask=0077" "dmask=0077" "defaults"];
     };
   };
 
@@ -94,11 +95,24 @@ in {
       "/lib"
     ];
 
-    variables = {
-      CPATH = "/etc/profiles/per-user/denis/include";
-      LIBRARY_PATH = "/etc/profiles/per-user/denis/lib";
-      PKG_CONFIG_PATH = "/etc/profiles/per-user/denis/lib/pkgconfig";
-    };
+    extraOutputsToInstall = ["dev" "lib"];
+
+    # systemPackages = with pkgs; [
+    #   (opencv.override {enableGtk3 = true;})
+    #   dlib
+    #
+    #   clang
+    #   # rustPlatform.bindgenHook
+    #
+    #   pkg-config
+    # ];
+
+    # variables = {
+    #   CPATH = "/run/current-system/sw/include";
+    #   LIBRARY_PATH = "/run/current-system/sw/lib";
+    #   LIBCLANG_PATH = "/run/current-system/sw/lib";
+    #   PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
+    # };
 
     shells = [pkgs.zsh];
 

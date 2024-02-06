@@ -19,6 +19,7 @@
       history = {
         share = true;
         ignoreDups = true;
+        ignoreAllDups = true;
         expireDuplicatesFirst = true;
       };
 
@@ -44,7 +45,7 @@
 
     firefox = {
       enable = true;
-      # nativeMessagingHosts.packages = [pkgs.gnome-browser-connector];
+      nativeMessagingHosts = [pkgs.gnome-browser-connector];
     };
 
     chromium = {

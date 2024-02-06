@@ -53,6 +53,7 @@
 
     sessionPath = [
       "$HOME/.krew/bin"
+      "$HOME/.cargo/bin"
     ];
 
     shellAliases = {

@@ -9,8 +9,9 @@
   #   windowManager = {
   #     hyprland = {
   #       enable = true;
+  #       systemd.enable = true;
+  #       xwayland.enable = true;
   #       # enableNvidiaPatches = true;
-  #
   #
   #       settings = {
   #         "$mainMod" = "SUPER";

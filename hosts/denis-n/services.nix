@@ -27,11 +27,11 @@
       enable = true;
 
       # Configure keymap in X11
-      layout = "us, ru";
       # xkbOptions = "grp:alt_shift_toggle";
-      # xkb = {
-      #   options = "caps:none";
-      # };
+      xkb = {
+        layout = "us, ru";
+        # options = "caps:none";
+      };
 
       videoDrivers = ["nvidia"];
 

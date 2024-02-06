@@ -7,6 +7,8 @@
     with ps; [
       nextcord
       sqlalchemy
+      google
+      google-api-core
       google-cloud-texttospeech
       setuptools
       psycopg2
@@ -37,8 +39,6 @@
     ];
 in {
   home = {
-    extraOutputsToInstall = ["dev"];
-
     packages = with pkgs; [
       # Kubernetes
       kubectl
@@ -77,18 +77,20 @@ in {
       dotnet-sdk_8
 
       # C/C++
-      gcc
-      gdb
+      # gcc
+      # glibc
+      # clang
+      # libclang
+      #
+      # gdb
+      #
+      # pkg-config
+      # gnumake
+      # cmake
+      # meson
 
-      gnumake
-      cmake
-      meson
-
-      pkg-config
-
-      glib
-      glibc
-      opencv
+      # glib
+      # opencv
 
       # Haskell
       # cabal-install
@@ -112,7 +114,7 @@ in {
       # Rust
       # cargo
       # rustc
-      rustup
+      # rustup
     ];
   };
 }
