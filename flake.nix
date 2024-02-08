@@ -95,32 +95,68 @@
         };
       };
 
-      # outputsBuilder = channels: {
-      #   packages.python-discord-bot-docker = pkgs.dockerTools.buildImage {
-      #     name = "darktts";
-      #     tag = "0.1.0";
-      #     copyToRoot = self.devShells.x86_64-linux.python-discord-bot;
-      #   };
-      #
-      #   devShells.python-discord-bot = channels.nixpkgs.mkShell {
-      #     packages = with channels.nixpkgs.pkgs; [
-      #       (python3.withPackages (ps:
-      #         with ps; [
-      #           nextcord
-      #           sqlalchemy
-      #           google-cloud-texttospeech
-      #           setuptools
-      #           psycopg2
-      #         ]))
-      #     ];
-      #   };
-      # };
+      outputsBuilder = channels: {
+        packages.python-discord-bot-docker = channels.nixpkgs.pkgs.dockerTools.buildImage {
+          name = "darktts";
+          tag = "0.1.0";
+          copyToRoot = self.devShells.x86_64-linux.python-discord-bot;
+        };
+
+        devShells = {
+          rust-cpp = channels.nixpkgs.pkgs.mkShell {
+            nativeBuildInputs = with channels.nixpkgs.pkgs; [
+              rustPlatform.bindgenHook
+            ];
+
+            buildInputs = with channels.nixpkgs.pkgs; [
+              opencv
+            ];
+          };
+
+          linux-hello = channels.nixpkgs.pkgs.mkShell {
+            nativeBuildInputs = with channels.nixpkgs.pkgs; [
+              # rustc
+              # cargo
+
+              clang
+              rustPlatform.bindgenHook
+
+              pkg-config
+            ];
+
+            buildInputs = with channels.nixpkgs.pkgs; [
+              (opencv.override {enableGtk3 = true;})
+              dlib
+              blas
+              lapack
+              openssl
+            ];
+
+            # shellHook = ''
+            #   export CARGO_HOME="${pkgs.cargo}/bin"
+            # '';
+          };
+
+          python-discord-bot = channels.nixpkgs.mkShell {
+            packages = with channels.nixpkgs.pkgs; [
+              (python3.withPackages (ps:
+                with ps; [
+                  nextcord
+                  sqlalchemy
+                  google-cloud-texttospeech
+                  setuptools
+                  psycopg2
+                ]))
+            ];
+          };
+        };
+      };
 
       overlay = import ./overlays;
 
-      hmModules = {
-        neovim = ./users/denis/programs/neovim;
-        tmux = ./users/denis/programs/tmux;
-      };
+      hmModules = inputs.fup.lib.exportModules [
+        ./users/denis/programs/neovim
+        ./users/denis/programs/tmux
+      ];
     };
 }
