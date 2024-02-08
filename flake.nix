@@ -96,7 +96,7 @@
       };
 
       outputsBuilder = channels: {
-        overlays = inputs.fup.lib.exportOverlays channels;
+        overlays = inputs.fup.lib.exportOverlays {inherit (self) pkgs inputs;};
 
         packages.python-discord-bot-docker = channels.nixpkgs.pkgs.dockerTools.buildImage {
           name = "darktts";
