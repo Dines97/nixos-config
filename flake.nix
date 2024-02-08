@@ -96,6 +96,8 @@
       };
 
       outputsBuilder = channels: {
+        overlays = inputs.fup.lib.exportOverlays channels;
+
         packages.python-discord-bot-docker = channels.nixpkgs.pkgs.dockerTools.buildImage {
           name = "darktts";
           tag = "0.1.0";
@@ -151,8 +153,6 @@
           };
         };
       };
-
-      overlay = import ./overlays;
 
       hmModules = inputs.fup.lib.exportModules [
         ./users/denis/programs/neovim
