@@ -34,22 +34,31 @@
       options = "--delete-older-than 7d";
     };
 
-    # buildMachines = [
-    #   {
-    #     hostName = "vodka@5.178.111.177";
-    #     system = "x86_64-linux";
-    #     protocol = "ssh-ng";
-    #     maxJobs = 8;
-    #     speedFactor = 2;
-    #     supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-    #     mandatoryFeatures = [];
-    #   }
-    # ];
-    #
-    # distributedBuilds = true;
-    # extraOptions = ''
-    #   builders-use-substitutes = true
-    # '';
+    buildMachines = [
+      {
+        hostName = "vodka@5.178.111.177";
+        system = "x86_64-linux";
+        protocol = "ssh-ng";
+        maxJobs = 4;
+        speedFactor = 1;
+        # supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+        # mandatoryFeatures = [];
+      }
+      # {
+      #   hostName = "denis@10.147.19.177";
+      #   system = "x86_64-linux";
+      #   protocol = "ssh-ng";
+      #   maxJobs = 4;
+      #   speedFactor = 1;
+      #   # supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+      #   # mandatoryFeatures = [];
+      # }
+    ];
+
+    distributedBuilds = true;
+    extraOptions = ''
+      builders-use-substitutes = true
+    '';
   };
 
   home-manager = {
