@@ -18,6 +18,14 @@
         "auto-allocate-uids"
         "configurable-impure-env"
       ];
+      # require-sigs = false;
+
+      # trusted-public-keys = [
+      #   "ssh-ng://vodka@5.178.111.177"
+      # ];
+      #
+      # trusted-substituters = [
+      # ];
     };
 
     gc = {
@@ -25,6 +33,23 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+
+    # buildMachines = [
+    #   {
+    #     hostName = "vodka@5.178.111.177";
+    #     system = "x86_64-linux";
+    #     protocol = "ssh-ng";
+    #     maxJobs = 8;
+    #     speedFactor = 2;
+    #     supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+    #     mandatoryFeatures = [];
+    #   }
+    # ];
+    #
+    # distributedBuilds = true;
+    # extraOptions = ''
+    #   builders-use-substitutes = true
+    # '';
   };
 
   home-manager = {

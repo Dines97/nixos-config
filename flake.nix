@@ -1,8 +1,9 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs-unstable.url = "git+file:///home/denis/nixpkgs";
+    nixpkgs-unstable.url = "github:K900/nixpkgs/plasma-6";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
@@ -109,6 +110,8 @@
           rust-cpp = channels.nixpkgs.pkgs.mkShell {
             nativeBuildInputs = with channels.nixpkgs.pkgs; [
               rustPlatform.bindgenHook
+
+              pkg-config
             ];
 
             buildInputs = with channels.nixpkgs.pkgs; [
@@ -121,7 +124,7 @@
               # rustc
               # cargo
 
-              clang
+              # clang
               rustPlatform.bindgenHook
 
               pkg-config
