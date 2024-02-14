@@ -11,5 +11,6 @@
     ./helm
     ./latex
     ./nix
+    ./rust
   ];
 }

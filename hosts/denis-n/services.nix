@@ -44,15 +44,15 @@
         #   user = "denis";
         # };
 
-        # gdm.enable = true;
-        sddm.enable = true;
+        gdm.enable = true;
+        # sddm.enable = true;
         # lightdm.enable = true;
       };
 
       desktopManager = {
-        # gnome.enable = true;
+        gnome.enable = true;
         # plasma5.enable = true;
-        plasma6.enable = true;
+        # plasma6.enable = true;
       };
     };
 
