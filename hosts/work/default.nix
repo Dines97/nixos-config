@@ -72,6 +72,14 @@
   networking.hostName = "work";
 
   services = {
+    openssh = {
+      enable = true;
+      openFirewall = true;
+      ports = [
+        22
+      ];
+    };
+
     preload = {
       enable = false;
     };
