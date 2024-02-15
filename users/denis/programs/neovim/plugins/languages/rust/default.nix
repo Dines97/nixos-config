@@ -13,6 +13,7 @@
       {
         plugin = rustaceanvim;
         type = "lua";
+        config = builtins.readFile ./rustaceanvim.lua;
       }
     ];
     extraPackages = with pkgs; [

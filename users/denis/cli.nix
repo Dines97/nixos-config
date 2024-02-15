@@ -26,7 +26,6 @@
       cachix
       appimage-run
       nix-info
-      nix-index
       fup-repl
     ];
   };

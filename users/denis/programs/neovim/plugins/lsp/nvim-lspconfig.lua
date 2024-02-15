@@ -67,14 +67,6 @@ local servers = {
         tsdk = '/etc/profiles/per-user/denis/lib/node_modules/typescript/lib'
       }
     }
-  },
-  rust_analyzer = {
-    procMacro = {
-      enable = true,
-      attributes = {
-        enable = true
-      }
-    }
   }
 
   -- vuels = {
