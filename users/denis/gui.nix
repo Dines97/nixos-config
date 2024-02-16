@@ -83,7 +83,7 @@
         jetbrains.clion
         jetbrains.datagrip
         # jetbrains.goland
-        jetbrains.rust-rover
+        # jetbrains.rust-rover
 
         android-studio
       ]

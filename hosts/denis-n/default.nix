@@ -91,11 +91,15 @@ in {
 
   environment = {
     pathsToLink = [
-      "/include"
-      "/lib"
+      # Required for https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.enableCompletion
+      "/share/zsh"
+      "/share/bash-completion"
+
+      # "/include"
+      # "/lib"
     ];
 
-    extraOutputsToInstall = ["dev" "lib"];
+    # extraOutputsToInstall = ["dev" "lib"];
 
     # systemPackages = with pkgs; [
     #   (opencv.override {enableGtk3 = true;})

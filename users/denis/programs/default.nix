@@ -43,6 +43,21 @@
       };
     };
 
+    command-not-found = {
+      enable = false;
+    };
+
+    nix-index = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    nix-index-database = {
+      comma = {
+        enable = true;
+      };
+    };
+
     firefox = {
       enable = true;
       nativeMessagingHosts = [pkgs.gnome-browser-connector];
@@ -69,7 +84,7 @@
     direnv = {
       enable = true;
       enableZshIntegration = true;
-      # nix-direnv.enable = true;
+      nix-direnv.enable = true;
     };
 
     sioyek = {

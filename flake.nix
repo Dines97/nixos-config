@@ -35,8 +35,10 @@
     };
 
     nix-index-database = {
-      url = "github:Mic92/nix-index-database";
+      url = "github:nix-community/nix-index-database";
     };
+
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
   description = "System configuration";
@@ -54,7 +56,8 @@
       };
 
       sharedOverlays = [
-        inputs.neovim-nightly-overlay.overlay
+        # inputs.neovim-nightly-overlay.overlay
+        inputs.rust-overlay.overlays.default
         (import ./overlays)
       ];
 
@@ -122,10 +125,7 @@
 
           linux-hello = channels.nixpkgs.pkgs.mkShell {
             nativeBuildInputs = with channels.nixpkgs.pkgs; [
-              # rustc
-              # cargo
-
-              # clang
+              rust-bin.stable.latest.default
               rustPlatform.bindgenHook
 
               pkg-config

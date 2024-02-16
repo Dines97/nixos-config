@@ -11,6 +11,7 @@ vim.opt.softtabstop = 2
 vim.opt.shiftround = true
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
+vim.opt.textwidth = 100
 
 vim.opt.undofile = true
 
