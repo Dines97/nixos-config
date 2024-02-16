@@ -10,9 +10,8 @@
     ];
 
     extraPackages = with pkgs; [
-      # Go
-      gopls
-      delve
+      terraform-ls
+      tflint
     ];
   };
 }

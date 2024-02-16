@@ -4,6 +4,8 @@
   ...
 }: {
   programs.neovim = {
+    extraLuaConfig = builtins.readFile ./default.lua;
+
     plugins = with pkgs.vimPlugins; [
       {
         plugin = hmts-nvim;

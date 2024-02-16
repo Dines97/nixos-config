@@ -10,9 +10,9 @@
     ];
 
     extraPackages = with pkgs; [
-      # Go
-      gopls
-      delve
+      nodePackages.pyright
+      python310Packages.black
+      # python310Packages.jedi-language-server
     ];
   };
 }

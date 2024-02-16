@@ -4,6 +4,8 @@
   ...
 }: {
   programs.neovim = {
+    extraLuaConfig = builtins.readFile ./default.lua;
+
     plugins = with pkgs.vimPlugins; [
       {
         plugin = knap;
@@ -11,6 +13,7 @@
         config = builtins.readFile ./knap.lua;
       }
     ];
+
     extraPackages = with pkgs; [
       # LaTeX
       # texlive.combined.scheme-full # Full LaTeX distribution

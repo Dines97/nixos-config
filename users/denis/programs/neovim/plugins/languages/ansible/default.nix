@@ -4,14 +4,16 @@
   ...
 }: {
   programs.neovim = {
+    extraLuaConfig = builtins.readFile ./default.lua;
+
     plugins = with pkgs.vimPlugins; [
-      nvim-ansible
+      nvim-ansible # Filetype plugin for ansible
     ];
 
     extraPackages = with pkgs; [
       # Ansible
       ansible-language-server
-      ansible-lint
+      ansible-lint # Used by ansible-language-server
     ];
   };
 }

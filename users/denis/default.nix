@@ -43,6 +43,7 @@
 
     sessionVariables = {
       PAGER = "less";
+      BROWSER= "firefox";
       EDITOR = "nvim";
       LESS = "-r --mouse";
       GOPATH = "$HOME/go";

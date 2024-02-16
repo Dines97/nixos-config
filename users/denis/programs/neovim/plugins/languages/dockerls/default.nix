@@ -10,9 +10,7 @@
     ];
 
     extraPackages = with pkgs; [
-      # Go
-      gopls
-      delve
+      dockerfile-language-server-nodejs
     ];
   };
 }

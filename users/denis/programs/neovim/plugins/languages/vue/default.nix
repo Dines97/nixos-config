@@ -10,9 +10,8 @@
     ];
 
     extraPackages = with pkgs; [
-      # Go
-      gopls
-      delve
+      nodePackages.vue-language-server
+      nodePackages.volar # Language server for Vue
     ];
   };
 }
