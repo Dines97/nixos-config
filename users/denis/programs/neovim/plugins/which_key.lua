@@ -8,10 +8,10 @@ local mappings = {
     ['1'] = 'which_key_ignore',                                                 -- special label to hide it in the popup
     b = { function() print('bar') end, 'Foobar' }                               -- you can also pass functions!
   },
-  N = {
-    name = 'Neovim',
-    r = { '<cmd>luafile $MYVIMRC<cr>', 'Realod config' }
-  },
+  -- N = {
+  --   name = 'Neovim',
+  --   r = { '<cmd>luafile $MYVIMRC<cr>', 'Realod config' }
+  -- },
   L = {
     name = 'LSP audit',
     i = { '<cmd>LspInfo<cr>', 'Info' },
@@ -21,7 +21,6 @@ local mappings = {
   },
   l = {
     name = 'LSP',
-    c = { function() vim.diagnostic.open_float() end, 'Float' },
     l = { '<cmd>Trouble workspace_diagnostics<cr>', 'List' }
   },
   t = {

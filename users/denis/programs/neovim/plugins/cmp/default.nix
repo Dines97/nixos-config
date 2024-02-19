@@ -1,25 +1,25 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   programs.neovim = {
-    extraLuaConfig = builtins.readFile ./default.lua;
-
     plugins = with pkgs.vimPlugins; [
       {
-        plugin = hmts-nvim;
+        plugin = nvim-cmp;
         type = "lua";
+        config = builtins.readFile ./nvim-cmp.lua;
       }
+      cmp-buffer
+      cmp-nvim-lsp
+      cmp-path
+
+      cmp_luasnip
+      luasnip
     ];
 
     extraPackages = with pkgs; [
-      # Nix
-      # rnix-lsp
-      # nixpkgs-fmt
-      nil
-      alejandra
-      statix
     ];
   };
 }

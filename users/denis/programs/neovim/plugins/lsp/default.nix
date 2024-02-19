@@ -5,30 +5,20 @@
   ...
 }: {
   programs.neovim = {
-    extraLuaConfig = lib.mkBefore (builtins.readFile ./default.lua);
-
     plugins = with pkgs.vimPlugins; [
       {
         plugin = nvim-lspconfig;
         type = "lua";
-        config = builtins.readFile ./nvim-lspconfig.lua;
+        config = lib.mkBefore (builtins.readFile ./nvim-lspconfig.lua);
       }
-      {
-        plugin = nvim-cmp;
-        type = "lua";
-        config = builtins.readFile ./nvim-cmp.lua;
-      }
-      cmp-path
-      cmp-buffer
-      cmp-nvim-lsp
+      otter-nvim # Embedded language lsp features
+      virtual-types-nvim # Virtual text for type annotations
+      workspace-diagnostics-nvim # Full workspace analyze for lsp
 
       luasnip
-      cmp_luasnip
     ];
 
     extraPackages = with pkgs; [
-      # Generic
-      nodePackages.prettier
     ];
   };
 }

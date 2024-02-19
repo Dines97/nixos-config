@@ -17,7 +17,12 @@
       }
     ];
     extraPackages = with pkgs; [
+      graphviz # Crate graph
+
       rust-analyzer
+
+      # lldb # For debugging
+      vscode-extensions.vadimcn.vscode-lldb.adapter
     ];
   };
 }

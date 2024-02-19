@@ -110,53 +110,7 @@
           copyToRoot = self.devShells.x86_64-linux.python-discord-bot;
         };
 
-        devShells = {
-          rust-cpp = channels.nixpkgs.pkgs.mkShell {
-            nativeBuildInputs = with channels.nixpkgs.pkgs; [
-              rustPlatform.bindgenHook
-
-              pkg-config
-            ];
-
-            buildInputs = with channels.nixpkgs.pkgs; [
-              opencv
-            ];
-          };
-
-          linux-hello = channels.nixpkgs.pkgs.mkShell {
-            nativeBuildInputs = with channels.nixpkgs.pkgs; [
-              rust-bin.stable.latest.default
-              rustPlatform.bindgenHook
-
-              pkg-config
-            ];
-
-            buildInputs = with channels.nixpkgs.pkgs; [
-              (opencv.override {enableGtk3 = true;})
-              dlib
-              blas
-              lapack
-              openssl
-            ];
-
-            # shellHook = ''
-            #   export CARGO_HOME="${pkgs.cargo}/bin"
-            # '';
-          };
-
-          python-discord-bot = channels.nixpkgs.mkShell {
-            packages = with channels.nixpkgs.pkgs; [
-              (python3.withPackages (ps:
-                with ps; [
-                  nextcord
-                  sqlalchemy
-                  google-cloud-texttospeech
-                  setuptools
-                  psycopg2
-                ]))
-            ];
-          };
-        };
+        devShells = import ./devShells {inherit channels;};
       };
 
       overlay = import ./overlays;

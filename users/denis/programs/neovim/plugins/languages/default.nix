@@ -22,14 +22,16 @@
 
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
-    ];
-
-    extraPackages = with pkgs; [
       {
         plugin = null-ls-nvim;
         type = "lua";
         config = builtins.readFile ./null-ls-nvim.lua;
       }
+    ];
+
+    extraPackages = with pkgs; [
+      # Generic
+      nodePackages.prettier
     ];
   };
 }

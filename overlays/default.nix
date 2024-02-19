@@ -103,6 +103,18 @@ final: prev: {
         };
         meta.homepage = "https://github.com/mfussenegger/nvim-ansible";
       };
+
+      workspace-diagnostics-nvim  = prev.vimUtils.buildVimPlugin {
+        pname = "workspace-diagnostics-nvim ";
+        version = "2024-02-16";
+        src = prev.fetchFromGitHub {
+          owner = "artemave";
+          repo = "workspace-diagnostics.nvim";
+          rev = "d0110dd1f6c4e4a121d6b3332ac4af6f99282ea5";
+          sha256 = "sha256-ggUFFiR2N+ntkd2HqQU8bcgdhNgKSHj3nnmPMY8o19s=";
+        };
+        meta.homepage = "https://github.com/artemave/workspace-diagnostics.nvim";
+      };
     };
 
   tmuxPlugins =

@@ -10,6 +10,6 @@ require('lspconfig')['nil_ls'].setup({
   capabilities = capabilities
 })
 
-require('lspconfig')['rnix'].setup({
-  capabilities = capabilities
-})
+-- require('lspconfig')['rnix'].setup({
+--   capabilities = capabilities
+-- })

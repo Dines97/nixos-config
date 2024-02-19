@@ -1,14 +1,17 @@
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 local mini_trailspace = require('mini.trailspace')
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 require('which-key').register({
-  ['<leader>'] = {
+  ['<leader>l'] = {
     e = { vim.diagnostic.open_float, 'Open float' },
     q = { vim.diagnostic.setloclist, 'Add buffer diagnostics to the location list' }
   },
-  ['[d'] = { vim.diagnostics.goto_prev, 'Diagnostics: goto prev' },
-  [']d'] = { vim.diagnostics.goto_next, 'Diagnostics: goto next' }
+  ['[d'] = { vim.diagnostic.goto_prev, 'Diagnostics: goto prev' },
+  [']d'] = { vim.diagnostic.goto_next, 'Diagnostics: goto next' }
 })
 
 -- Use LspAttach autocommand to only map the following keys
@@ -19,6 +22,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     local bufnr = ev.buf
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
+
+    require('virtualtypes').on_attach()
+    require('workspace-diagnostics').populate_workspace_diagnostics(client, bufnr)
 
     if client.name == 'omnisharp' then
       client.server_capabilities.semanticTokensProvider = {
@@ -133,7 +139,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
           mini_trailspace.trim()
           mini_trailspace.trim_last_lines()
 
-          vim.lsp.buf.format { async = true }
+          -- Needs to be async false or format could happend after write
+          vim.lsp.buf.format { async = false }
 
           vim.api.nvim_command('write')
         end, 'Format' }

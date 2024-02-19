@@ -10,7 +10,7 @@
     enableRedistributableFirmware = true;
 
     nvidia = {
-      open = true;
+      open = false;
 
       modesetting.enable = true;
       # package = config.boot.kernelPackages.nvidiaPackages.beta;
@@ -29,13 +29,16 @@
       };
 
       powerManagement = {
-        enable = true;
-        finegrained = true;
+        enable = false;
+        finegrained = false;
       };
     };
 
     opengl = {
       enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+
       # driSupport32Bit = true;
       extraPackages = with pkgs; [
         intel-media-driver # LIBVA_DRIVER_NAME=iHD

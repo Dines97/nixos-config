@@ -16,5 +16,9 @@
         config = builtins.readFile ./nvim-treesitter-context.lua;
       }
     ];
+
+    extraPackages = with pkgs; [
+      gcc # For Treesitter
+    ];
   };
 }
