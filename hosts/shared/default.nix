@@ -44,15 +44,15 @@
         # supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
         # mandatoryFeatures = [];
       }
-      # {
-      #   hostName = "denis@10.147.19.177";
-      #   system = "x86_64-linux";
-      #   protocol = "ssh-ng";
-      #   maxJobs = 4;
-      #   speedFactor = 1;
-      #   # supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-      #   # mandatoryFeatures = [];
-      # }
+      {
+        hostName = "denis@dt826.local";
+        system = "x86_64-linux";
+        protocol = "ssh-ng";
+        maxJobs = 4;
+        speedFactor = 1;
+        # supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+        # mandatoryFeatures = [];
+      }
     ];
 
     distributedBuilds = true;
