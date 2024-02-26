@@ -5,10 +5,27 @@
   modulesPath,
   ...
 }: {
+  nix = {
+    settings = {
+      max-jobs = 8;
+    };
+  };
+
   boot = {
     tmp = {
       cleanOnBoot = true;
     };
+  };
+
+  # swapDevices = [
+  #   {
+  #     device = "/var/lib/swapfile";
+  #     size = 8 * 1024;
+  #   }
+  # ];
+
+  zramSwap = {
+    enable = true;
   };
 
   hardware = {
@@ -51,7 +68,7 @@
     # Enable integration with Docker Desktop (needs to be installed)
     docker-desktop.enable = false;
 
-    # nativeSystemd = true;
+    nativeSystemd = true;
 
     wslConf = {
       automount = {
@@ -75,6 +92,7 @@
     openssh = {
       enable = true;
       openFirewall = true;
+      banner = "Are you here?\n";
       ports = [
         22
       ];

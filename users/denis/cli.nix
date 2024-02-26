@@ -18,6 +18,7 @@
       openssl
       ventoy-full
       xdg-utils
+      sshpass
 
       # Hardware
       pciutils

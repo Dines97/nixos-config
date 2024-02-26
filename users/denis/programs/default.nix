@@ -112,6 +112,11 @@
       enableZshIntegration = true;
     };
 
+    # Just for large files
+    vim = {
+      enable = true;
+    };
+
     # vscode = {
     #   enable = true;
     #   package = pkgs.vscode-fhsWithPackages (ps: with ps; [gcc gdb gnumake cmake]);

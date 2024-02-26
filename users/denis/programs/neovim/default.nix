@@ -62,6 +62,7 @@
             require('presence').setup({ enable_line_number = true })
           '';
       }
+
       {
         plugin = comment-nvim; # Commenting plugin
         type = "lua";
