@@ -43,7 +43,7 @@
 
     sessionVariables = {
       PAGER = "less";
-      BROWSER= "firefox";
+      BROWSER = "firefox";
       EDITOR = "nvim";
       LESS = "-r --mouse";
       GOPATH = "$HOME/go";
@@ -55,6 +55,7 @@
     sessionPath = [
       "$HOME/.krew/bin"
       "$HOME/.cargo/bin"
+      "$HOME/go/bin"
     ];
 
     shellAliases = {
@@ -66,6 +67,10 @@
       ll = "eza --long --all --header --time-style=long-iso --git --icons --group-directories-first --group -b";
       cat = "bat";
       nixrebuild = "sudo nix flake update --flake /etc/nixos && sudo nixos-rebuild switch";
+      nixswitch = "sudo nixos-rebuild switch";
+
+      # I am doing this way to much
+      ":q" = "exit";
 
       nconf = "nvim $HOME/.config/nvim/";
       nixconf = "cd /etc/nixos && nvim /etc/nixos/";
