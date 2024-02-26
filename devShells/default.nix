@@ -7,7 +7,14 @@
 
     buildInputs = with channels.nixpkgs.pkgs; [
       (opencv.override {enableGtk3 = true;})
-      (dlib.override {guiSupport = true;})
+      (dlib.override {
+        guiSupport = true;
+
+        sse4Support = true;
+        avxSupport = true;
+
+        cudaSupport = true;
+      })
       blas
       lapack
       # openssl
@@ -29,6 +36,8 @@
   linux-hello = channels.nixpkgs.pkgs.mkShell {
     nativeBuildInputs = with channels.nixpkgs.pkgs; [
       rust-bin.stable.latest.default
+      cargo-flamegraph
+
       rustPlatform.bindgenHook
 
       pkg-config
@@ -40,6 +49,22 @@
       blas
       lapack
       openssl
+
+      xorg.libX11.dev
+
+      xorg.libX11
+      xorg.libXcursor
+      xorg.libXrandr
+      xorg.libXi
+
+      shaderc
+      directx-shader-compiler
+      libGL
+      vulkan-headers
+      vulkan-loader
+      vulkan-tools
+      vulkan-tools-lunarg
+      vulkan-validation-layers
     ];
   };
 

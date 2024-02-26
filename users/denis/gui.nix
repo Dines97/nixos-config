@@ -86,6 +86,8 @@
         # jetbrains.rust-rover
 
         android-studio
+
+        blender
       ]
       # Gnome
       ++ lib.optionals (osConfig.services.xserver.desktopManager.gnome.enable) [
