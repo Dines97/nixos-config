@@ -1,23 +1,28 @@
 {channels, ...}: {
-  rust = channels.nixpkgs.pkgs.mkShell {
+  linux-hello-cpp = channels.nixpkgs.pkgs.mkShell {
     nativeBuildInputs = with channels.nixpkgs.pkgs; [
-      rust-bin.stable.latest.default
-    ];
-
-    buildInputs = with channels.nixpkgs.pkgs; [
-    ];
-  };
-
-  rust-cpp = channels.nixpkgs.pkgs.mkShell {
-    nativeBuildInputs = with channels.nixpkgs.pkgs; [
-      rust-bin.stable.latest.default
-      rustPlatform.bindgenHook
-
+      cmake
       pkg-config
     ];
 
     buildInputs = with channels.nixpkgs.pkgs; [
-      opencv
+      (opencv.override {enableGtk3 = true;})
+      (dlib.override {guiSupport = true;})
+      blas
+      lapack
+      # openssl
+      cereal
+      pam
+    ];
+  };
+
+  rust = channels.nixpkgs.pkgs.mkShell {
+    nativeBuildInputs = with channels.nixpkgs.pkgs; [
+      rust-bin.stable.latest.default
+      rustPlatform.bindgenHook
+    ];
+
+    buildInputs = with channels.nixpkgs.pkgs; [
     ];
   };
 
@@ -36,10 +41,6 @@
       lapack
       openssl
     ];
-
-    # shellHook = ''
-    #   export CARGO_HOME="${pkgs.cargo}/bin"
-    # '';
   };
 
   python-discord-bot = channels.nixpkgs.mkShell {

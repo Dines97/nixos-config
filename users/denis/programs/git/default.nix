@@ -27,9 +27,9 @@
       };
       lfs.enable = true;
       ignores = lib.splitString "\n" (builtins.readFile (builtins.fetchurl {
-        url = "https://www.toptal.com/developers/gitignore/api/linux,windows,macos,jetbrains,jetbrains+all,jetbrains+iml,vim,visualstudio,visualstudiocode,rider,intellij,intellij+all,intellij+iml,pycharm,pycharm+all,pycharm+iml";
+        url = "https://www.toptal.com/developers/gitignore/api/linux,windows,macos,jetbrains,jetbrains+all,jetbrains+iml,vim,visualstudio,visualstudiocode,rider,intellij,intellij+all,intellij+iml,pycharm,pycharm+all,pycharm+iml,direnv";
         name = "gitignore";
-        sha256 = "sha256:00qj9fyhg9baajrrqd4hnr906wrzlvgk0vdphyfn1l02napdldwr";
+        sha256 = "sha256:1iy56spzvdmmd1f1b6i25s0y6jjvb0cj61i2lz06xq6164ingbsx";
       }));
     };
   };

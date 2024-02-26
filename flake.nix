@@ -50,8 +50,9 @@
       channelsConfig = {
         allowUnfree = true;
         permittedInsecurePackages = [
-          "electron-19.1.9"
-          "squid-6.6"
+          "electron-19.1.9" # balena etcher
+          "squid-6.6" # squid reverse proxy
+          "freeimage-unstable-2021-11-01" # mega sync
         ];
       };
 
