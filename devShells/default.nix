@@ -1,11 +1,13 @@
-{channels, ...}: {
-  linux-hello-cpp = channels.nixpkgs.pkgs.mkShell {
-    nativeBuildInputs = with channels.nixpkgs.pkgs; [
+{channels, ...}: let
+  default = channels.nixpkgs-unstable;
+in {
+  linux-hello-cpp = default.pkgs.mkShell {
+    nativeBuildInputs = with default.pkgs; [
       cmake
       pkg-config
     ];
 
-    buildInputs = with channels.nixpkgs.pkgs; [
+    buildInputs = with default.pkgs; [
       (opencv.override {enableGtk3 = true;})
       (dlib.override {
         guiSupport = true;
@@ -23,18 +25,18 @@
     ];
   };
 
-  rust = channels.nixpkgs.pkgs.mkShell {
-    nativeBuildInputs = with channels.nixpkgs.pkgs; [
+  rust = default.pkgs.mkShell {
+    nativeBuildInputs = with default.pkgs; [
       rust-bin.stable.latest.default
       rustPlatform.bindgenHook
     ];
 
-    buildInputs = with channels.nixpkgs.pkgs; [
+    buildInputs = with default.pkgs; [
     ];
   };
 
-  linux-hello = channels.nixpkgs.pkgs.mkShell {
-    nativeBuildInputs = with channels.nixpkgs.pkgs; [
+  linux-hello = default.pkgs.mkShell {
+    nativeBuildInputs = with default.pkgs; [
       rust-bin.stable.latest.default
       cargo-flamegraph
 
@@ -43,33 +45,24 @@
       pkg-config
     ];
 
-    buildInputs = with channels.nixpkgs.pkgs; [
+    buildInputs = with default.pkgs; [
       (opencv.override {enableGtk3 = true;})
-      (dlib.override {guiSupport = true;})
+      (dlib.override {
+        guiSupport = true;
+
+        sse4Support = true;
+        avxSupport = true;
+
+        cudaSupport = true;
+      })
       blas
       lapack
-      openssl
-
       xorg.libX11.dev
-
-      xorg.libX11
-      xorg.libXcursor
-      xorg.libXrandr
-      xorg.libXi
-
-      shaderc
-      directx-shader-compiler
-      libGL
-      vulkan-headers
-      vulkan-loader
-      vulkan-tools
-      vulkan-tools-lunarg
-      vulkan-validation-layers
     ];
   };
 
-  python-discord-bot = channels.nixpkgs.mkShell {
-    packages = with channels.nixpkgs.pkgs; [
+  python-discord-bot = default.mkShell {
+    packages = with default.pkgs; [
       (python3.withPackages (ps:
         with ps; [
           nextcord

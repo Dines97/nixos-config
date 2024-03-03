@@ -31,12 +31,12 @@ final: prev: {
   });
 
   # input-leap = prev.input-leap.overrideAttrs (old: {
-  #   version = "2023-11-21";
+  #   version = "2024-02-22";
   #   src = prev.fetchFromGitHub {
   #     owner = "input-leap";
   #     repo = "input-leap";
-  #     rev = "3e681454b737633a70f2f3b789046a5cb1946708";
-  #     hash = "sha256-OZMVz075oC7UQI7F9uDz8F6eBr1WN4aYxLFq9bc3M6g=";
+  #     rev = "b3308fc505d34b4c3825938aa498291ec02ede5c";
+  #     hash = "sha256-vOQgVWLIVl8zJ7ytlRQxJl/aoxoMO7jU5mBAYBvS6uc=";
   #     fetchSubmodules = true;
   #   };
   # });
@@ -104,7 +104,7 @@ final: prev: {
         meta.homepage = "https://github.com/mfussenegger/nvim-ansible";
       };
 
-      workspace-diagnostics-nvim  = prev.vimUtils.buildVimPlugin {
+      workspace-diagnostics-nvim = prev.vimUtils.buildVimPlugin {
         pname = "workspace-diagnostics-nvim ";
         version = "2024-02-16";
         src = prev.fetchFromGitHub {

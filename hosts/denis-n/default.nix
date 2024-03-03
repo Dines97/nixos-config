@@ -139,7 +139,7 @@ in {
   qt = {
     enable = true;
     style = "adwaita-dark";
-    platformTheme = "gnome";
+    # platformTheme = "gnome";
   };
 
   # Remove sound.enable or turn it off if you had it set previously, it seems to cause conflicts with pipewire

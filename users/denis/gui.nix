@@ -37,6 +37,7 @@
         vlc
         qbittorrent
         flameshot
+        # gwe
 
         vimix-gtk-themes
         vimix-icon-theme
@@ -74,6 +75,8 @@
         # })
 
         # retroarchFull
+
+        openlens
 
         # JetBrains
         jetbrains.rider
