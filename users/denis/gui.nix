@@ -37,6 +37,7 @@
         vlc
         qbittorrent
         flameshot
+        # gwe
 
         vimix-gtk-themes
         vimix-icon-theme
@@ -75,6 +76,8 @@
 
         # retroarchFull
 
+        openlens
+
         # JetBrains
         jetbrains.rider
         jetbrains.webstorm
@@ -86,6 +89,8 @@
         # jetbrains.rust-rover
 
         android-studio
+
+        blender
       ]
       # Gnome
       ++ lib.optionals (osConfig.services.xserver.desktopManager.gnome.enable) [

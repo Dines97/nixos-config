@@ -103,15 +103,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
       }
     end
 
-    require('notify')(client.name .. ': attached', 'info', {
-      title = 'LSP'
-    })
+    vim.notify(client.name .. ': attached', vim.log.levels.INFO, { title = 'LSP' })
 
     if client.server_capabilities.documentSymbolProvider then
       require('nvim-navic').attach(client, bufnr)
-      require('notify')('Navic enabled', 'info', {
-        title = 'LSP'
-      })
+      vim.notify('Navic enabled', vim.log.levels.INFO, { title = 'LSP' })
     end
 
     -- Enable completion triggered by <c-x><c-o>

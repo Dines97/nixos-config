@@ -76,22 +76,6 @@ in {
       # Dotnet
       dotnet-sdk_8
 
-      # C/C++
-      # gcc
-      # glibc
-      # clang
-      # libclang
-      #
-      # gdb
-      #
-      # pkg-config
-      # gnumake
-      # cmake
-      # meson
-
-      # glib
-      # opencv
-
       # Haskell
       # cabal-install
       # ghc
@@ -99,9 +83,9 @@ in {
       # haskellPackages.haskell-language-server
 
       # JavaScript
-      bun
-      nodejs_20
-      typescript # For volar in neovim to use
+      # bun
+      # nodejs_20
+      # typescript # For volar in neovim to use
 
       # Flutter
       flutter
@@ -110,11 +94,6 @@ in {
       (openjdk17.override {enableJavaFX = true;})
       # openjdk11
       gradle
-
-      # Rust
-      # cargo
-      # rustc
-      # rustup
     ];
   };
 }

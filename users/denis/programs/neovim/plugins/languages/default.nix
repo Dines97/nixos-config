@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./ansible
+    ./c
     ./csharp
     ./dockerls
     ./flutter

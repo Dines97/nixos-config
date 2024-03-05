@@ -7,10 +7,11 @@
     extraLuaConfig = builtins.readFile ./default.lua;
 
     plugins = with pkgs.vimPlugins; [
-      omnisharp-extended-lsp-nvim
     ];
+
     extraPackages = with pkgs; [
-      omnisharp-roslyn
+      # For clangd
+      clang-tools
     ];
   };
 }
