@@ -42,6 +42,7 @@ in {
 
       rustPlatform.bindgenHook
 
+      cmake
       pkg-config
     ];
 
@@ -55,9 +56,32 @@ in {
 
         cudaSupport = true;
       })
+
+      # opencv
+      # dlib
+
       blas
       lapack
       xorg.libX11.dev
+      # cudatoolkit
+    ];
+  };
+
+  node20 = default.mkShell {
+    nativeBuildInputs = with default.pkgs; [
+      nodejs_20
+
+      # JavaScript
+      # bun
+      # typescript # For volar in neovim to use
+    ];
+  };
+
+  bun = default.mkShell {
+    nativeBuildInputs = with default.pkgs; [
+      nodejs_20 # Required for .npmrc auth
+
+      bun
     ];
   };
 

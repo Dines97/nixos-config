@@ -4,10 +4,16 @@
 -- require('mini.comment').setup()
 
 -- Underline same words
-require('mini.cursorword').setup()
+-- require('mini.cursorword').setup()
 
 -- Move selected text with alt+hjkl
 require('mini.move').setup()
 
 -- Remove trailing whitespaces
 require('mini.trailspace').setup()
+
+-- require('mini.notify').setup({
+--   lsp_progress = {
+--     enable = false
+--   }
+-- })
