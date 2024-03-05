@@ -52,6 +52,7 @@
         permittedInsecurePackages = [
           "electron-19.1.9" # balena etcher
           "squid-6.6" # squid reverse proxy
+          "squid-6.7"
           "freeimage-unstable-2021-11-01" # mega sync
         ];
       };
