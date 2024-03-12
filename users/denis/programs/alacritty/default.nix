@@ -3,18 +3,18 @@
   pkgs,
   ...
 }: let
-  alacritty-launch =
-    pkgs.writeScriptBin "alacritty-launch"
-    ''
-       xid=$(${pkgs.xdotool}/bin/xdotool search --class Alacritty)
+  alacritty-launch = pkgs.writeScriptBin "alacritty-launch" ''
+    #!/usr/bin/env bash
 
-       if [ -z ''${xid} ]
-       then
-       ${pkgs.alacritty}/bin/alacritty
-       else
+    xid=$(${pkgs.xdotool}/bin/xdotool search --class Alacritty)
+
+    if [ -z ''${xid} ]
+    then
+      ${pkgs.alacritty}/bin/alacritty
+    else
       ${pkgs.xdotool}/bin/xdotool windowactivate ''${xid}
-       fi
-    '';
+    fi
+  '';
 in {
   home = {
     packages = with pkgs; [

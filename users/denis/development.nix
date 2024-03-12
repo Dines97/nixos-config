@@ -2,42 +2,7 @@
   pkgs,
   config,
   ...
-}: let
-  my-python-packages = ps:
-    with ps; [
-      nextcord
-      sqlalchemy
-      google
-      google-api-core
-      google-cloud-texttospeech
-      setuptools
-      psycopg2
-
-      pandas
-      requests
-      # other python packages
-      fastapi
-      uvicorn
-
-      asgiref
-      async-timeout
-      certifi
-      charset-normalizer
-      click
-      django
-      idna
-      importlib-metadata
-      pysocks
-      python-dotenv
-      redis
-      six
-      spotipy
-      sqlparse
-      typing-extensions
-      urllib3
-      zipp
-    ];
-in {
+}: {
   home = {
     packages = with pkgs; [
       # Kubernetes
@@ -70,8 +35,7 @@ in {
       # azure-cli
 
       # Python
-      (pkgs.python3.withPackages my-python-packages)
-      conda
+      # conda
 
       # Dotnet
       dotnet-sdk_8
