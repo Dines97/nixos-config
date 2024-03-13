@@ -48,7 +48,7 @@
 
       channelsConfig = {
         allowUnfree = true;
-        cudaSupport = true;
+        # cudaSupport = true;
         permittedInsecurePackages = [
           "electron-19.1.9" # balena etcher
           "squid-6.6" # squid reverse proxy
@@ -102,18 +102,7 @@
         };
       };
 
-      outputsBuilder = channels: {
-        # overlays = inputs.fup.lib.exportOverlays {inherit (self) pkgs inputs;};
-        # packages = inputs.fup.lib.exportPackages self.overlays channels;
-
-        packages.python-discord-bot-docker = channels.nixpkgs.pkgs.dockerTools.buildImage {
-          name = "darktts";
-          tag = "0.1.0";
-          copyToRoot = self.devShells.x86_64-linux.python-discord-bot;
-        };
-
-        devShells = import ./devShells {inherit channels;};
-      };
+      outputsBuilder = channels: import ./outputs {inherit self channels;};
 
       overlay = import ./overlays;
 
