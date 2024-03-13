@@ -51,6 +51,7 @@ in {
       skaffold
       minikube
       docker-machine-kvm2 # Minikube driver
+      pv-migrate
 
       # DevOps
       docker-compose
