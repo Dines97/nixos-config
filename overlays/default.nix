@@ -30,16 +30,45 @@ final: prev: {
       '';
   });
 
-  # input-leap = prev.input-leap.overrideAttrs (old: {
-  #   version = "2024-02-22";
-  #   src = prev.fetchFromGitHub {
-  #     owner = "input-leap";
-  #     repo = "input-leap";
-  #     rev = "b3308fc505d34b4c3825938aa498291ec02ede5c";
-  #     hash = "sha256-vOQgVWLIVl8zJ7ytlRQxJl/aoxoMO7jU5mBAYBvS6uc=";
-  #     fetchSubmodules = true;
+  # input-leap =
+  #   (prev.input-leap.overrideAttrs (old: {
+  #     version = "2024-02-22";
+  #     src = prev.fetchFromGitHub {
+  #       owner = "input-leap";
+  #       repo = "input-leap";
+  #       rev = "9c8861819ec2aaed41d7e896471ee4cd47967d48";
+  #       hash = "sha256-7O+Bmb8mn7X9Ep2vIblSjHNTfimo85NihyakIG3eVSc=";
+  #       fetchSubmodules = true;
+  #     };
+  #   }))
+  #   .override {
+  #     libportal = prev.libportal.overrideAttrs (old: {
+  #       version = "2024-03-07";
+  #       src = prev.fetchFromGitHub {
+  #         owner = "flatpak";
+  #         repo = "libportal";
+  #         rev = "7c408fbaac7eaad5359a78083ac04cc2abd06674";
+  #         hash = "sha256-R3v/+j9+8bYLjUhnE3qf0Rer+o9Co0oN8KY8nxGBBNY=";
+  #         fetchSubmodules = true;
+  #       };
+  #
+  #       nativeBuildInputs =
+  #         old.nativeBuildInputs
+  #         ++ [
+  #           prev.qt6.qtbase
+  #         ];
+  #
+  #       # propagatedBuildInputs =
+  #       #   old.propagatedBuildInputs
+  #       #   ++ [
+  #       #     prev.qt6.qtbase
+  #       #   ];
+  #
+  #       buildInputs = [
+  #         prev.qt6.qtbase
+  #       ];
+  #     });
   #   };
-  # });
 
   vimPlugins =
     prev.vimPlugins
