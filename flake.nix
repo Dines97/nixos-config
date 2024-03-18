@@ -51,8 +51,7 @@
         # cudaSupport = true;
         permittedInsecurePackages = [
           "electron-19.1.9" # balena etcher
-          "squid-6.6" # squid reverse proxy
-          "squid-6.7"
+          "squid-6.8" # squid reverse proxy
           "freeimage-unstable-2021-11-01" # mega sync
         ];
       };
