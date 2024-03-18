@@ -37,6 +37,7 @@
         vlc
         qbittorrent
         flameshot
+        okular
         # gwe
 
         vimix-gtk-themes

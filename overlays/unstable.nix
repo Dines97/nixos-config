@@ -1,5 +1,5 @@
 channels: [
   (final: prev: {
-    inherit (channels.nixpkgs);
+    inherit (channels.nixpkgs) etcher;
   })
 ]

@@ -10,7 +10,8 @@
     enableRedistributableFirmware = true;
 
     nvidia = {
-      open = false;
+      # Theory: Breaks gnome night light
+      # open = true;
 
       modesetting.enable = true;
       # package = config.boot.kernelPackages.nvidiaPackages.beta;
@@ -18,7 +19,11 @@
       forceFullCompositionPipeline = true;
 
       prime = {
-        offload.enable = true;
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
+
         # sync.enable = true;
 
         # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
@@ -29,9 +34,13 @@
       };
 
       powerManagement = {
-        enable = false;
-        finegrained = false;
+        enable = true;
+        finegrained = true;
       };
+
+      # dynamicBoost = {
+      #   enable = true;
+      # };
     };
 
     opengl = {
@@ -56,6 +65,6 @@
       extraConfig = "unload-module module-combine-sink";
     };
 
-    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    cpu.intel.updateMicrocode = true;
   };
 }

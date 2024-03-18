@@ -23,7 +23,7 @@
       terraform
       infracost
       (ansible.override {windowsSupport = true;})
-      vagrant
+      # vagrant
 
       # Database
       postgresql
