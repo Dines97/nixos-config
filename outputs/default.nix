@@ -85,6 +85,16 @@ in {
         # cudatoolkit
       ];
     };
+    node20-python = default.mkShell {
+      nativeBuildInputs = with default.pkgs; [
+        nodejs_20
+        python2
+
+        # JavaScript
+        # bun
+        # typescript # For volar in neovim to use
+      ];
+    };
 
     node20 = default.mkShell {
       nativeBuildInputs = with default.pkgs; [
@@ -134,6 +144,7 @@ in {
             # other python packages
             fastapi
             uvicorn
+            websockets
 
             asgiref
             async-timeout

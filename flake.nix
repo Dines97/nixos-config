@@ -53,6 +53,8 @@
           "electron-19.1.9" # balena etcher
           "squid-6.8" # squid reverse proxy
           "freeimage-unstable-2021-11-01" # mega sync
+
+          "python-2.7.18.7"
         ];
       };
 
