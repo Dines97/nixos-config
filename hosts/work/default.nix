@@ -120,31 +120,6 @@
     #   enable = true;
     #   llmnr = "true";
     # };
-
-    vault = {
-      enable = true;
-      package = pkgs.vault-bin;
-      storageBackend = "raft";
-      # storagePath = "/home/denis/vault20240311/vault/data/";
-      address = "0.0.0.0:8200";
-
-      storageConfig = ''
-        node_id = "node1"
-      '';
-
-      listenerExtraConfig = ''
-        tls_disable = 1
-      '';
-
-      extraConfig = ''
-        disable_mlock = true
-
-        api_addr = "http://0.0.0.0:8200"
-        cluster_addr = "http://127.0.0.1:8201"
-        ui = true
-
-      '';
-    };
   };
 
   system.stateVersion = "23.11";
