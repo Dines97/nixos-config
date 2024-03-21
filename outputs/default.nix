@@ -89,6 +89,7 @@ in {
       nativeBuildInputs = with default.pkgs; [
         nodejs_20
         python2
+        yarn
 
         # JavaScript
         # bun

@@ -66,8 +66,9 @@
       ls = "eza";
       ll = "eza --long --all --header --time-style=long-iso --git --icons --group-directories-first --group -b";
       cat = "bat";
-      nixrebuild = "sudo nix flake update --flake /etc/nixos && sudo nixos-rebuild switch";
-      nixswitch = "sudo nixos-rebuild switch";
+
+      nixupdate = "nh os switch --ask --update /etc/nixos";
+      nixswitch = "nh os switch --ask /etc/nixos";
 
       # I am doing this way to much
       ":q" = "exit";

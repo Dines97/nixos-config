@@ -15,8 +15,8 @@
       experimental-features = [
         "nix-command"
         "flakes"
-        "auto-allocate-uids"
-        "configurable-impure-env"
+        # "auto-allocate-uids"
+        # "configurable-impure-env"
       ];
       # require-sigs = false;
 
@@ -64,6 +64,9 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+    extraSpecialArgs = {
+      inherit inputs;
+    };
 
     users.denis = {...}: {
       imports = [

@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }: {
   home = {
@@ -28,6 +29,11 @@
       appimage-run
       nix-info
       fup-repl
+
+      # nix-output-monitor
+      # nh
+      (inputs.nom.packages."x86_64-linux".default)
+      (inputs.nh.packages."x86_64-linux".default)
     ];
   };
 }
