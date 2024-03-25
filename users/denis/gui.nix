@@ -91,7 +91,7 @@
 
         android-studio
 
-        blender
+        # blender
       ]
       # Gnome
       ++ lib.optionals (osConfig.services.xserver.desktopManager.gnome.enable) [

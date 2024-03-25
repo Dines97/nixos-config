@@ -7,6 +7,7 @@
     extraLuaConfig = builtins.readFile ./default.lua;
 
     plugins = with pkgs.vimPlugins; [
+      yaml-companion-nvim
     ];
 
     extraPackages = with pkgs; [

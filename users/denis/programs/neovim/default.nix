@@ -53,15 +53,15 @@
         config = builtins.readFile ./plugins/neoclip.lua; # Persistent need be activated separately
       }
 
-     # {
-     #   plugin = presence-nvim; # Discord presence plugin
-     #   type = "lua";
-     #   config =
-     #     # lua
-     #     ''
-     #       require('presence').setup({ enable_line_number = true })
-     #     '';
-     # }
+      # {
+      #   plugin = presence-nvim; # Discord presence plugin
+      #   type = "lua";
+      #   config =
+      #     # lua
+      #     ''
+      #       require('presence').setup({ enable_line_number = true })
+      #     '';
+      # }
 
       {
         plugin = comment-nvim; # Commenting plugin
@@ -108,7 +108,6 @@
         type = "lua";
         config = builtins.readFile ./plugins/onedark.lua;
       }
-      yaml-companion-nvim
       {
         plugin = neodev-nvim;
         type = "lua";
