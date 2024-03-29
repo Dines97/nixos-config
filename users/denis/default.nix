@@ -67,8 +67,8 @@
       ll = "eza --long --all --header --time-style=long-iso --git --icons --group-directories-first --group -b";
       cat = "bat";
 
-      nixupdate = "nh os switch --ask --update /etc/nixos";
-      nixswitch = "nh os switch --ask /etc/nixos";
+      nixupdate = "nh os switch --update /etc/nixos";
+      nixswitch = "nh os switch /etc/nixos";
 
       # I am doing this way to much
       ":q" = "exit";

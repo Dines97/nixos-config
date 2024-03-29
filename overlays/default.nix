@@ -30,6 +30,15 @@ final: prev: {
       '';
   });
 
+  # azure-cli = prev.azure-cli.overrideAttrs (old: {
+  #   propagatedBuildInputs = with prev.python311Packages;
+  #     old.propagatedBuildInputs
+  #     ++ [
+  #       aioazuredevops
+  #       vsts
+  #     ];
+  # });
+
   # input-leap =
   #   (prev.input-leap.overrideAttrs (old: {
   #     version = "2024-02-22";

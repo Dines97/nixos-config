@@ -33,7 +33,7 @@
         # gke-gcloud-auth-plugin
         anthos-auth
       ]))
-      # azure-cli
+      azure-cli
 
       # Python
       # conda
