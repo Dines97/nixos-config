@@ -17,6 +17,8 @@
       minikube
       docker-machine-kvm2 # Minikube driver
       pv-migrate
+      jq
+      yq-go
 
       # DevOps
       docker-compose
