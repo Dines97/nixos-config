@@ -102,6 +102,8 @@
     rtkit.enable = true;
 
     sudo = {
+      wheelNeedsPassword = true;
+
       extraRules = [
         {
           users = ["denis"];

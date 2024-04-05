@@ -17,6 +17,7 @@
 
     plugins = with pkgs.vimUtils;
     with pkgs.vimPlugins; [
+      nvim-nio # A library for asynchronous IO in Neovim
       nvim-spectre
       # {
       #   plugin = filetype-nvim;
