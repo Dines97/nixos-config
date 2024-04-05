@@ -76,7 +76,7 @@
       };
 
       network = {
-        # generateResolvConf = false;
+        generateResolvConf = true;
       };
     };
 
@@ -86,7 +86,9 @@
     ];
   };
 
-  networking.hostName = "work";
+  networking = {
+    hostName = "work";
+  };
 
   services = {
     openssh = {

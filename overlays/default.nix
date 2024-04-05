@@ -143,7 +143,7 @@ final: prev: {
       };
 
       workspace-diagnostics-nvim = prev.vimUtils.buildVimPlugin {
-        pname = "workspace-diagnostics-nvim ";
+        pname = "workspace-diagnostics-nvim";
         version = "2024-02-16";
         src = prev.fetchFromGitHub {
           owner = "artemave";
@@ -152,6 +152,18 @@ final: prev: {
           sha256 = "sha256-ggUFFiR2N+ntkd2HqQU8bcgdhNgKSHj3nnmPMY8o19s=";
         };
         meta.homepage = "https://github.com/artemave/workspace-diagnostics.nvim";
+      };
+
+      nvim-nio = prev.vimUtils.buildVimPlugin {
+        pname = "nvim-nio";
+        version = "2024-04-04";
+        src = prev.fetchFromGitHub {
+          owner = "nvim-neotest";
+          repo = "nvim-nio";
+          rev = "5800f585def265d52f1d8848133217c800bcb25d";
+          sha256 = "sha256-ZRYclqsgAvlRBwb59XHlqVat7CxUJTH1rD6QLwh1ang=";
+        };
+        meta.homepage = "https://github.com/nvim-neotest/nvim-nio";
       };
     };
 
