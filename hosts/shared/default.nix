@@ -3,7 +3,13 @@
   lib,
   inputs,
   ...
-}: {
+}: let
+  # Not sure if this is working
+  emptyFlakeRegistry = pkgs.writeText "flake-registry.json" (builtins.toJSON {
+    flakes = [];
+    version = 2;
+  });
+in {
   nix = {
     generateNixPathFromInputs = true;
     linkInputs = true;
@@ -58,6 +64,7 @@
     distributedBuilds = true;
     extraOptions = ''
       builders-use-substitutes = true
+      flake-registry = ${emptyFlakeRegistry}
     '';
   };
 
@@ -71,13 +78,14 @@
     users.denis = {...}: {
       imports = [
         ../../users/denis
-        inputs.nix-index-database.hmModules.nix-index
+        # inputs.nix-index-database.hmModules.nix-index
       ];
     };
   };
 
   users = {
     mutableUsers = false;
+    defaultUserShell = pkgs.zsh;
     users = {
       root = {
         isSystemUser = true;

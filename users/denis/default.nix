@@ -54,7 +54,6 @@
 
     sessionPath = [
       "$HOME/.krew/bin"
-      "$HOME/.cargo/bin"
       "$HOME/go/bin"
     ];
 
@@ -79,15 +78,5 @@
       aconf = "nvim $HOME/.config/awesome/";
       hconf = "nvim $HOME/.config/hypr/";
     };
-
-    packages = with pkgs; [
-      # Xmonad
-      # haskellPackages.xmobar
-      # feh
-
-      # xdotool
-      # gnupg
-      # pinentry
-    ];
   };
 }

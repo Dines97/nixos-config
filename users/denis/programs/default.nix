@@ -10,53 +10,24 @@
     ./neovim
     ./tmux
     ./wezterm
+    ./zsh
   ];
 
   programs = {
-    zsh = {
-      enable = true;
-      # enableSyntaxHighlighting = true;
-      history = {
-        share = true;
-        ignoreDups = true;
-        ignoreAllDups = true;
-        expireDuplicatesFirst = true;
-      };
-
-      localVariables = {
-        ZSH_TMUX_AUTOSTART = true;
-        ZSH_TMUX_CONFIG = "$HOME/.config/tmux/tmux.conf";
-      };
-
-      oh-my-zsh = {
-        enable = true;
-        plugins = ["git" "kubectx" "tmux"];
-        theme = "robbyrussell";
-      };
-      zplug = {
-        enable = true;
-        plugins = [
-          {
-            name = "zsh-users/zsh-syntax-highlighting";
-          }
-        ];
-      };
-    };
-
     command-not-found = {
       enable = false;
     };
 
-    nix-index = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    # nix-index = {
+    #   enable = true;
+    #   enableZshIntegration = true;
+    # };
 
-    nix-index-database = {
-      comma = {
-        enable = true;
-      };
-    };
+    # nix-index-database = {
+    #   comma = {
+    #     enable = true;
+    #   };
+    # };
 
     firefox = {
       enable = true;
@@ -83,6 +54,7 @@
 
     direnv = {
       enable = true;
+      enableBashIntegration = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
     };

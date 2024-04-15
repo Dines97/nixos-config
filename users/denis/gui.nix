@@ -26,7 +26,7 @@
 
   home = {
     packages = with pkgs;
-      lib.optionals (osConfig.services.xserver.displayManager.sessionPackages != []) [
+      lib.optionals (osConfig.services.displayManager.sessionPackages != []) [
         (discord.override {nss = nss_latest;})
         spotify
         etcher
@@ -89,7 +89,7 @@
         # jetbrains.goland
         # jetbrains.rust-rover
 
-        android-studio
+        # android-studio
 
         # blender
       ]
@@ -106,7 +106,10 @@
 
         # gnomeExtensions.tray-icons-reloaded
         gnomeExtensions.x11-gestures
-        gnomeExtensions.remove-alttab-delay-v2
+
+        # TODO: Readd
+        # gnomeExtensions.remove-alttab-delay-v2
+
         # gnomeExtensions.gamemode-indicator-in-system-settings
         # gnomeExtensions.caffeine
       ]

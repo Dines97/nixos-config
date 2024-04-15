@@ -94,36 +94,9 @@ in {
       # Required for https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.enableCompletion
       "/share/zsh"
       "/share/bash-completion"
-
-      # "/include"
-      # "/lib"
     ];
 
-    # extraOutputsToInstall = ["dev" "lib"];
-
-    # systemPackages = with pkgs; [
-    #   (opencv.override {enableGtk3 = true;})
-    #   dlib
-    #
-    #   clang
-    #   # rustPlatform.bindgenHook
-    #
-    #   pkg-config
-    # ];
-
-    # variables = {
-    #   CPATH = "/run/current-system/sw/include";
-    #   LIBRARY_PATH = "/run/current-system/sw/lib";
-    #   LIBCLANG_PATH = "/run/current-system/sw/lib";
-    #   PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
-    # };
-
     shells = [pkgs.zsh];
-
-    variables = {
-      JAVA_HOME = "${pkgs.jdk}/lib/openjdk";
-      # GTK_THEME = "Vimix-dark-doder";
-    };
 
     gnome.excludePackages =
       (with pkgs; [

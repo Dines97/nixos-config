@@ -2,13 +2,35 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nixpkgs-unstable.url = "github:NixOS/nixpkgs";
-    # nixpkgs-unstable.url = "git+file:///home/denis/nixpkgs";
+    # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    home-manager-unstable = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    fup.url = "github:gytis-ivaskevicius/flake-utils-plus/master";
+
+    wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+
+    # hyprland.url = "github:hyprwm/Hyprland";
+
+    nix-ld = {
+      url = "github:Mic92/nix-ld";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     nom = {
       url = "github:maralorn/nix-output-monitor";
@@ -20,34 +42,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    home-manager-unstable = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    # nix-index-database = {
+    #   url = "github:nix-community/nix-index-database";
+    # };
 
-    wsl = {
-      url = "github:nix-community/NixOS-WSL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
-
-    fup.url = "github:gytis-ivaskevicius/flake-utils-plus/master";
-
-    # hyprland.url = "github:hyprwm/Hyprland";
-
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-
-    nix-ld = {
-      url = "github:Mic92/nix-ld";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-    };
-
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    # rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
   description = "System configuration";
@@ -71,7 +70,7 @@
 
       sharedOverlays = [
         # inputs.neovim-nightly-overlay.overlay
-        inputs.rust-overlay.overlays.default
+        # inputs.rust-overlay.overlays.default
         (import ./overlays)
       ];
 
