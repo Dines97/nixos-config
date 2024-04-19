@@ -4,10 +4,10 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # home-manager = {
+    #   url = "github:nix-community/home-manager/release-23.11";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     home-manager-unstable = {
       url = "github:nix-community/home-manager/master";
@@ -18,7 +18,7 @@
 
     wsl = {
       url = "github:nix-community/NixOS-WSL";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
@@ -27,7 +27,7 @@
 
     nix-ld = {
       url = "github:Mic92/nix-ld";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -69,7 +69,7 @@
       };
 
       sharedOverlays = [
-        # inputs.neovim-nightly-overlay.overlay
+        inputs.neovim-nightly-overlay.overlay
         # inputs.rust-overlay.overlays.default
         (import ./overlays)
       ];

@@ -81,10 +81,10 @@
 
         # JetBrains
         jetbrains.rider
-        jetbrains.webstorm
-        jetbrains.idea-ultimate
+        # jetbrains.webstorm
+        # jetbrains.idea-ultimate
         jetbrains.pycharm-professional
-        jetbrains.clion
+        # jetbrains.clion
         jetbrains.datagrip
         # jetbrains.goland
         # jetbrains.rust-rover
