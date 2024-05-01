@@ -15,13 +15,9 @@ in {
       copyToRoot = self.devShells.x86_64-linux.python-discord-bot;
     };
 
-    # system = "x86_64-linux";
-    # pkgs = nixpkgs.legacyPackages.${system};
     homeConfigurations."vodka" = self.inputs.home-manager-unstable.lib.homeManagerConfiguration {
       inherit (channels.nixpkgs-unstable) pkgs;
 
-      # Specify your home configuration modules here, for example,
-      # the path to your home.nix.
       modules = [
         ../users/denis
         {
@@ -38,23 +34,7 @@ in {
       extraSpecialArgs = {
         inherit (self) inputs;
       };
-
-      # Optionally use extraSpecialArgs
-      # to pass through arguments to home.nix
     };
-  };
-
-  # system = "x86_64-linux";
-  # pkgs = nixpkgs.legacyPackages.${system};
-  homeConfigurations."vodka" = channels.home-manager.lib.homeManagerConfiguration {
-    inherit (channels.nixpkgs-unstable) pkgs;
-
-    # Specify your home configuration modules here, for example,
-    # the path to your home.nix.
-    modules = [./home.nix];
-
-    # Optionally use extraSpecialArgs
-    # to pass through arguments to home.nix
   };
 
   devShells = {
