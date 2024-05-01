@@ -8,10 +8,40 @@ in {
   # overlays = inputs.fup.lib.exportOverlays {inherit (self) pkgs inputs;};
   # packages = inputs.fup.lib.exportPackages self.overlays channels;
 
-  packages.python-discord-bot-docker = default.pkgs.dockerTools.buildImage {
-    name = "darktts";
-    tag = "0.1.0";
-    copyToRoot = self.devShells.x86_64-linux.python-discord-bot;
+  packages = {
+    python-discord-bot-docker = default.pkgs.dockerTools.buildImage {
+      name = "darktts";
+      tag = "0.1.0";
+      copyToRoot = self.devShells.x86_64-linux.python-discord-bot;
+    };
+
+    # system = "x86_64-linux";
+    # pkgs = nixpkgs.legacyPackages.${system};
+    homeConfigurations."vodka" = self.inputs.home-manager-unstable.lib.homeManagerConfiguration {
+      inherit (channels.nixpkgs-unstable) pkgs;
+
+      # Specify your home configuration modules here, for example,
+      # the path to your home.nix.
+      modules = [
+        ../users/denis
+        {
+          home = {
+            username = "vodka";
+            homeDirectory = "/home/vodka";
+          };
+          programs = {
+            home-manager.enable = true;
+          };
+        }
+      ];
+
+      extraSpecialArgs = {
+        inherit (self) inputs;
+      };
+
+      # Optionally use extraSpecialArgs
+      # to pass through arguments to home.nix
+    };
   };
 
   devShells = {

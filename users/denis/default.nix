@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  osConfig,
   ...
 }: {
   imports = [
@@ -38,7 +37,7 @@
   # };
 
   home = {
-    username = "denis";
+    username = lib.mkDefault "denis";
     stateVersion = "23.11";
 
     sessionVariables = {
