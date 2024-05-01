@@ -94,7 +94,7 @@
         # blender
       ]
       # Gnome
-      ++ lib.optionals (osConfig.services.xserver.desktopManager.gnome.enable) [
+      ++ lib.optionals (osConfig != null && osConfig.services.xserver.desktopManager.gnome.enable) [
         gnome.gnome-tweaks
         gnome.gnome-keyring
         gnome.dconf-editor
@@ -114,7 +114,7 @@
         # gnomeExtensions.caffeine
       ]
       # KDE
-      ++ lib.optionals (osConfig.services.xserver.desktopManager.plasma5.enable) [
+      ++ lib.optionals (osConfig != null && osConfig.services.xserver.desktopManager.plasma5.enable) [
         kate
         ark
         libsForQt5.kwalletmanager

@@ -37,6 +37,7 @@ in {
 
       extraSpecialArgs = {
         inherit (self) inputs;
+        osConfig = null;
       };
 
       # Optionally use extraSpecialArgs
