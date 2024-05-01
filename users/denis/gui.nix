@@ -2,7 +2,7 @@
   pkgs,
   config,
   lib,
-  osConfig,
+  osConfig ? null,
   ...
 }: {
   # wayland = {
@@ -26,7 +26,7 @@
 
   home = {
     packages = with pkgs;
-      lib.optionals (osConfig.services.displayManager.sessionPackages != []) [
+      lib.optionals (osConfig != null && osConfig.services.displayManager.sessionPackages != []) [
         (discord.override {nss = nss_latest;})
         spotify
         etcher

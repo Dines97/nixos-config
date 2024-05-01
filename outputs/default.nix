@@ -14,6 +14,19 @@ in {
     copyToRoot = self.devShells.x86_64-linux.python-discord-bot;
   };
 
+  # system = "x86_64-linux";
+  # pkgs = nixpkgs.legacyPackages.${system};
+  homeConfigurations."vodka" = channels.home-manager.lib.homeManagerConfiguration {
+    inherit (channels.nixpkgs-unstable) pkgs;
+
+    # Specify your home configuration modules here, for example,
+    # the path to your home.nix.
+    modules = [./home.nix];
+
+    # Optionally use extraSpecialArgs
+    # to pass through arguments to home.nix
+  };
+
   devShells = {
     linux-hello-cpp = default.pkgs.mkShell {
       nativeBuildInputs = with default.pkgs; [
