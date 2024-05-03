@@ -11,6 +11,8 @@
   });
 in {
   nix = {
+    package = pkgs.nixVersions.latest;
+
     generateNixPathFromInputs = true;
     linkInputs = true;
 

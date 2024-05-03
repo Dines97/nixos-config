@@ -5,10 +5,11 @@
   ...
 }: {
   imports = [
+    ./gui
     ./programs
+
     ./cli.nix
     ./development.nix
-    ./gui.nix
     ./work.nix
   ];
 
