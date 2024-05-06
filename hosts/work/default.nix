@@ -9,6 +9,11 @@
     settings = {
       max-jobs = 8;
     };
+    sshServe = {
+      enable = true;
+      protocol = "ssh";
+      write = true;
+    };
   };
 
   boot = {
@@ -63,12 +68,17 @@
   wsl = {
     enable = true;
     defaultUser = "denis";
-    # startMenuLaunchers = true;
+    startMenuLaunchers = false;
 
     # Enable integration with Docker Desktop (needs to be installed)
     docker-desktop.enable = false;
 
     nativeSystemd = true;
+
+    interop = {
+      includePath = false;
+      register = false;
+    };
 
     wslConf = {
       automount = {
@@ -78,12 +88,17 @@
       network = {
         generateResolvConf = true;
       };
+
+      interop = {
+        enabled = false;
+        appendWindowsPath = false;
+      };
     };
 
-    extraBin = [
-      {src = "/etc/profiles/per-user/denis/bin/node";}
-      {src = "/etc/profiles/per-user/denis/bin/npm";}
-    ];
+    # extraBin = [
+    #   {src = "/etc/profiles/per-user/denis/bin/node";}
+    #   {src = "/etc/profiles/per-user/denis/bin/npm";}
+    # ];
   };
 
   networking = {

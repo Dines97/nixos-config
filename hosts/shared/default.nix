@@ -19,7 +19,7 @@ in {
     settings = {
       auto-optimise-store = true;
       sandbox = true;
-      trusted-users = ["root" "@users"];
+      trusted-users = ["root" "nix-ssh" "@users"];
       experimental-features = [
         "nix-command"
         "flakes"
