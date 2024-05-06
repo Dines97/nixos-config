@@ -69,7 +69,7 @@
       };
 
       sharedOverlays = [
-        inputs.neovim-nightly-overlay.overlay
+        # inputs.neovim-nightly-overlay.overlay
         # inputs.rust-overlay.overlays.default
         (import ./overlays)
       ];

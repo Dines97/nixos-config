@@ -1,6 +1,42 @@
 local wezterm = require('wezterm')
 
+local direction_keys = {
+  h = 'Left',
+  j = 'Down',
+  k = 'Up',
+  l = 'Right'
+}
+
+local function is_vim(pane)
+  -- this is set by the plugin, and unset on ExitPre in Neovim
+  return pane:get_user_vars().IS_NVIM == 'true'
+end
+
+local function split_nav(resize_or_move, key)
+  return {
+    key = key,
+    mods = resize_or_move == 'resize' and 'META' or 'CTRL',
+    action = wezterm.action_callback(function(win, pane)
+      if is_vim(pane) then
+        -- pass the keys through to vim/nvim
+        win:perform_action({
+          SendKey = { key = key, mods = resize_or_move == 'resize' and 'META' or 'CTRL' }
+        }, pane)
+      else
+        if resize_or_move == 'resize' then
+          win:perform_action({ AdjustPaneSize = { direction_keys[key], 1 } }, pane)
+        else
+          win:perform_action({ ActivatePaneDirection = direction_keys[key] }, pane)
+        end
+      end
+    end)
+  }
+end
+
+-- local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
+
 local config = wezterm.config_builder()
+-- smart_splits.apply_to_config(config)
 
 config.color_scheme = 'Afterglow'
 config.font = wezterm.font('JetBrainsMono Nerd Font Mono')
@@ -20,10 +56,10 @@ config.unix_domains = {
 config.default_gui_startup_args = { 'connect', 'unix' }
 
 config.window_padding = {
-  left = 0,
-  right = 0,
-  top = 0,
-  bottom = 0
+  left = 1,
+  right = 1,
+  top = 1,
+  bottom = 1
 }
 
 config.tab_bar_at_bottom = true
@@ -48,19 +84,19 @@ config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.use_fancy_tab_bar = false
 
 config.keys = {
-  -- Resize
-  { key = 'LeftArrow',  mods = 'CTRL',   action = wezterm.action.AdjustPaneSize({ 'Left', 1 }) },
-  { key = 'RightArrow', mods = 'CTRL',   action = wezterm.action.AdjustPaneSize({ 'Right', 1 }) },
-  { key = 'DownArrow',  mods = 'CTRL',   action = wezterm.action.AdjustPaneSize({ 'Down', 1 }) },
-  { key = 'UpArrow',    mods = 'CTRL',   action = wezterm.action.AdjustPaneSize({ 'Up', 1 }) },
+  -- move between split panes
+  split_nav('move', 'h'),
+  split_nav('move', 'j'),
+  split_nav('move', 'k'),
+  split_nav('move', 'l'),
+  -- resize panes
+  split_nav('resize', 'h'),
+  split_nav('resize', 'j'),
+  split_nav('resize', 'k'),
+  split_nav('resize', 'l'),
 
-  -- Move
-  { key = 'h',          mods = 'CTRL',   action = wezterm.action.ActivatePaneDirection('Prev') },
-  { key = 'j',          mods = 'CTRL',   action = wezterm.action.ActivatePaneDirection('Down') },
-  { key = 'k',          mods = 'CTRL',   action = wezterm.action.ActivatePaneDirection('Up') },
-  { key = 'l',          mods = 'CTRL',   action = wezterm.action.ActivatePaneDirection('Next') },
-  { key = 'd',          mods = 'CTRL',   action = wezterm.action { CloseCurrentPane = { confirm = false } } },
-  { key = 'c',          mods = 'LEADER', action = wezterm.action.SpawnTab('DefaultDomain') },
+  { key = 'd', mods = 'CTRL',   action = wezterm.action { CloseCurrentPane = { confirm = false } } },
+  { key = 'c', mods = 'LEADER', action = wezterm.action.SpawnTab('DefaultDomain') },
   {
     key = '\"',
     mods = 'LEADER|SHIFT',

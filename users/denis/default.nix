@@ -61,7 +61,8 @@
       o = "xdg-open";
       gs = "git status";
       gt = "git log --all --decorate --oneline --graph";
-      reset = "clear; tmux clear-history";
+      reset = "clear";
+      # reset = "clear; tmux clear-history";
       ls = "eza";
       ll = "eza --long --all --header --time-style=long-iso --git --icons --group-directories-first --group -b";
       cat = "bat";

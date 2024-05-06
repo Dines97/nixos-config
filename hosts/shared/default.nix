@@ -26,6 +26,9 @@ in {
         # "auto-allocate-uids"
         # "configurable-impure-env"
       ];
+      substituters = lib.mkBefore [
+        "ssh://denis@dt826.local"
+      ];
       # require-sigs = false;
 
       # trusted-public-keys = [
