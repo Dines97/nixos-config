@@ -90,11 +90,6 @@
         type = "lua";
         config = "require('pets').setup()";
       }
-      {
-        plugin = tmux-nvim;
-        type = "lua";
-        config = builtins.readFile ./plugins/tmux.lua;
-      }
 
       lsp-status-nvim
 

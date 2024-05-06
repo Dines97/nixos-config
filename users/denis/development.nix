@@ -19,6 +19,7 @@
       pv-migrate
       jq
       yq-go
+      talosctl
 
       # DevOps
       docker-compose

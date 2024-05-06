@@ -10,7 +10,7 @@
 
     if [ -z ''${xid} ]
     then
-      ${pkgs.alacritty}/bin/alacritty
+      alacritty
     else
       ${pkgs.xdotool}/bin/xdotool windowactivate ''${xid}
     fi

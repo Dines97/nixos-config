@@ -15,14 +15,9 @@
       expireDuplicatesFirst = true;
     };
 
-    localVariables = {
-      ZSH_TMUX_AUTOSTART = true;
-      ZSH_TMUX_CONFIG = "$HOME/.config/tmux/tmux.conf";
-    };
-
     oh-my-zsh = {
       enable = true;
-      plugins = ["git" "kubectx" "tmux" "rust"];
+      plugins = ["git" "kubectx"];
       theme = "robbyrussell";
     };
 
