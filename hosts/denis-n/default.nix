@@ -9,6 +9,7 @@ in {
   imports = [
     ./services.nix
     ./hardware.nix
+    ./nix.nix
     ./boot.nix
     ./programs.nix
     # ./specialisation.nix

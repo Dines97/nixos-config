@@ -81,7 +81,6 @@
 
       hostDefaults = {
         modules = [
-          ./cachix.nix
           ./modules/default.nix
           ./hosts/shared
 

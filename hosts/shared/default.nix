@@ -3,75 +3,11 @@
   lib,
   inputs,
   ...
-}: let
-  # Not sure if this is working
-  emptyFlakeRegistry = pkgs.writeText "flake-registry.json" (builtins.toJSON {
-    flakes = [];
-    version = 2;
-  });
-in {
-  nix = {
-    package = pkgs.nixVersions.git;
-
-    generateNixPathFromInputs = true;
-    linkInputs = true;
-
-    settings = {
-      auto-optimise-store = true;
-      sandbox = true;
-      trusted-users = ["root" "@users"];
-      experimental-features = [
-        "nix-command"
-        "flakes"
-        # "auto-allocate-uids"
-        # "configurable-impure-env"
-      ];
-      substituters = lib.mkBefore [
-        "ssh://denis@dt826.local"
-      ];
-      # require-sigs = false;
-
-      # trusted-public-keys = [
-      #   "ssh-ng://vodka@5.178.111.177"
-      # ];
-      #
-      # trusted-substituters = [
-      # ];
-    };
-
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-
-    buildMachines = [
-      {
-        hostName = "denis@dt826.local";
-        system = "x86_64-linux";
-        protocol = "ssh-ng";
-        maxJobs = 8;
-        speedFactor = 4;
-        # supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-        # mandatoryFeatures = [];
-      }
-      # {
-      #   hostName = "vodka@5.178.111.177";
-      #   system = "x86_64-linux";
-      #   protocol = "ssh-ng";
-      #   maxJobs = 4;
-      #   speedFactor = 2;
-      #   # supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-      #   # mandatoryFeatures = [];
-      # }
-    ];
-
-    distributedBuilds = true;
-    extraOptions = ''
-      builders-use-substitutes = true
-      flake-registry = ${emptyFlakeRegistry}
-    '';
-  };
+}: {
+  imports = [
+    ./cachix.nix
+    ./nix.nix
+  ];
 
   home-manager = {
     useGlobalPkgs = true;

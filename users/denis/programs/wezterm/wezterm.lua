@@ -43,9 +43,10 @@ config.font = wezterm.font('JetBrainsMono Nerd Font Mono')
 config.window_background_opacity = 0.9
 config.initial_cols = 140
 config.initial_rows = 30
-config.font_size = 14.0
+config.font_size = 13.0
 config.check_for_updates = false
 config.exit_behavior = 'Close'
+config.audible_bell = 'Disabled'
 
 config.unix_domains = {
   {
@@ -56,10 +57,10 @@ config.unix_domains = {
 config.default_gui_startup_args = { 'connect', 'unix' }
 
 config.window_padding = {
-  left = 1,
-  right = 1,
-  top = 1,
-  bottom = 1
+  left   = '0',
+  right  = '0',
+  top    = '0',
+  bottom = '0'
 }
 
 config.tab_bar_at_bottom = true
