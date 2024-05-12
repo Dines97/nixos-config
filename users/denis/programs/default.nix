@@ -10,6 +10,7 @@
     ./neovim
     ./tmux
     ./wezterm
+    ./zellij
     ./zsh
   ];
 

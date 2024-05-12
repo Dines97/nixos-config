@@ -70,6 +70,9 @@
       nixupdate = "nh os switch --update /etc/nixos";
       nixswitch = "nh os switch /etc/nixos";
 
+      hmupdate = "nh home switch --update";
+      hmswitch = "nh home switch";
+
       # I am doing this way to much
       ":q" = "exit";
 
