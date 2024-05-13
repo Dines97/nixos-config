@@ -42,9 +42,9 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    # nix-index-database = {
-    #   url = "github:nix-community/nix-index-database";
-    # };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+    };
 
     # rust-overlay.url = "github:oxalica/rust-overlay";
   };

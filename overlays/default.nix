@@ -20,16 +20,6 @@ final: prev: {
 
   asus-touchpad-numpad-driver = prev.callPackage ./asus-touchpad-numpad-driver {};
 
-  wezterm = prev.wezterm.overrideAttrs (old: {
-    postInstall =
-      old.postInstall
-      + ''
-        substituteInPlace $out/share/applications/org.wezfurlong.wezterm.desktop --replace \
-        "Exec=wezterm start --cwd ." \
-        "Exec=wezterm"
-      '';
-  });
-
   # azure-cli = prev.azure-cli.overrideAttrs (old: {
   #   propagatedBuildInputs = with prev.python311Packages;
   #     old.propagatedBuildInputs
@@ -41,14 +31,22 @@ final: prev: {
 
   # input-leap =
   #   (prev.input-leap.overrideAttrs (old: {
-  #     version = "2024-02-22";
+  #     version = "2024-03-25";
   #     src = prev.fetchFromGitHub {
   #       owner = "input-leap";
   #       repo = "input-leap";
-  #       rev = "9c8861819ec2aaed41d7e896471ee4cd47967d48";
-  #       hash = "sha256-7O+Bmb8mn7X9Ep2vIblSjHNTfimo85NihyakIG3eVSc=";
+  #       rev = "a1864cba75342ad289699b9ec56de28a957a6e54";
+  #       hash = "sha256-ToOZ00WOL6nYBmshFt6WWneiX0+/2moP/KvuES37pgE=";
   #       fetchSubmodules = true;
   #     };
+  #
+  #     buildInputs = with prev;
+  #       old.buildInputs
+  #       ++ [
+  #         libuuid
+  #         libselinux
+  #         libsepol
+  #       ];
   #   }))
   #   .override {
   #     libportal = prev.libportal.overrideAttrs (old: {

@@ -19,7 +19,7 @@
     users.denis = {...}: {
       imports = [
         ../../users/denis
-        # inputs.nix-index-database.hmModules.nix-index
+        inputs.nix-index-database.hmModules.nix-index
       ];
     };
   };

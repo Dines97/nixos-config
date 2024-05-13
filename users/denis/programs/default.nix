@@ -19,16 +19,16 @@
       enable = false;
     };
 
-    # nix-index = {
-    #   enable = true;
-    #   enableZshIntegration = true;
-    # };
+    nix-index = {
+      enable = true;
+      enableZshIntegration = true;
+    };
 
-    # nix-index-database = {
-    #   comma = {
-    #     enable = true;
-    #   };
-    # };
+    nix-index-database = {
+      comma = {
+        enable = true;
+      };
+    };
 
     firefox = {
       enable = true;
