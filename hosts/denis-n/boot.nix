@@ -1,5 +1,11 @@
 {...}: {
   boot = {
+    kernel = {
+      sysctl = {
+        "kernel.sysrq" = 1;
+      };
+    };
+
     initrd = {
       availableKernelModules = ["xhci_pci" "nvme" "rtsx_usb_sdmmc"];
       kernelModules = [];

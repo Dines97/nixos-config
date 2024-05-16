@@ -45,8 +45,6 @@
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
     };
-
-    # rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
   description = "System configuration";
@@ -69,8 +67,7 @@
       };
 
       sharedOverlays = [
-        # inputs.neovim-nightly-overlay.overlay
-        # inputs.rust-overlay.overlays.default
+        inputs.neovim-nightly-overlay.overlay
         (import ./overlays)
       ];
 
