@@ -34,6 +34,8 @@
       # nh
       (inputs.nom.packages."x86_64-linux".default)
       (inputs.nh.packages."x86_64-linux".default)
+
+      onefetch
     ];
   };
 }
