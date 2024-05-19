@@ -67,7 +67,7 @@
       };
 
       sharedOverlays = [
-        inputs.neovim-nightly-overlay.overlay
+        # inputs.neovim-nightly-overlay.overlay
         (import ./overlays)
       ];
 

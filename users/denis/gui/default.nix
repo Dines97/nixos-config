@@ -41,6 +41,7 @@ in {
         obs-studio
         piper
         protonvpn-gui
+        mullvad-vpn
         # aawmtt
         libreoffice-fresh
         hunspell

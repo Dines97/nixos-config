@@ -20,6 +20,8 @@
     ];
 
     extraPackages = with pkgs; [
+      # Required for luasnip
+      luajitPackages.jsregexp
     ];
   };
 }

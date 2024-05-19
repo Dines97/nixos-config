@@ -1,6 +1,9 @@
 vim.g.mapleader = ' '
 
-vim.opt.timeoutlen = 0
+-- Required to fix empty which key screen
+vim.o.timeout = true
+vim.o.timeoutlen = 300
+
 vim.opt.mouse = 'a'
 vim.opt.number = true
 vim.opt.relativenumber = true
