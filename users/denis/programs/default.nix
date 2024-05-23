@@ -94,5 +94,9 @@
     #   enable = true;
     #   package = pkgs.vscode-fhsWithPackages (ps: with ps; [gcc gdb gnumake cmake]);
     # };
+
+    helix = {
+      enable = true;
+    };
   };
 }

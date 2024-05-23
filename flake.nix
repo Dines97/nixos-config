@@ -1,8 +1,15 @@
 {
+  nixConfig = {
+    # Not sure if this is working
+    flake-registry = "";
+  };
+
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+
+    "nixpkgs-24.05".url = "github:NixOS/nixpkgs/nixos-24.05";
+    "nixpkgs-23.11".url = "github:NixOS/nixpkgs/nixos-23.11";
 
     # home-manager = {
     #   url = "github:nix-community/home-manager/release-23.11";
