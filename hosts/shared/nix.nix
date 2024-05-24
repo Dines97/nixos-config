@@ -12,8 +12,8 @@ in {
   nix = {
     package = pkgs.nixVersions.git;
 
-    generateNixPathFromInputs = true;
-    linkInputs = true;
+    # generateNixPathFromInputs = true;
+    # linkInputs = true;
 
     settings = {
       auto-optimise-store = true;
