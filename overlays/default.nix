@@ -20,15 +20,6 @@ final: prev: {
 
   asus-touchpad-numpad-driver = prev.callPackage ./asus-touchpad-numpad-driver {};
 
-  # azure-cli = prev.azure-cli.overrideAttrs (old: {
-  #   propagatedBuildInputs = with prev.python311Packages;
-  #     old.propagatedBuildInputs
-  #     ++ [
-  #       aioazuredevops
-  #       vsts
-  #     ];
-  # });
-
   # input-leap =
   #   (prev.input-leap.overrideAttrs (old: {
   #     version = "2024-03-25";
