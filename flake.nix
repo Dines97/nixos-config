@@ -49,8 +49,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
+    nix-index-database.url = "github:nix-community/nix-index-database";
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 
@@ -89,6 +92,7 @@
           ./hosts/shared
 
           inputs.nix-ld.nixosModules.nix-ld
+          inputs.sops-nix.nixosModules.sops
         ];
 
         extraArgs = {inherit inputs;};

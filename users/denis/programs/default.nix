@@ -98,5 +98,11 @@
     helix = {
       enable = true;
     };
+
+    gpg = {
+      enable = true;
+      mutableKeys = false;
+      mutableTrust = false;
+    };
   };
 }

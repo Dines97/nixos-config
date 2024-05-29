@@ -34,11 +34,13 @@
       postgresql
 
       # Cloud
-      (pkgs.google-cloud-sdk.withExtraComponents (with pkgs.google-cloud-sdk.components; [
+      (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [
         # gke-gcloud-auth-plugin
         anthos-auth
       ]))
-      azure-cli
+      (azure-cli.withExtensions (with azure-cli.extensions; [
+        azure-devops
+      ]))
 
       # Python
       # conda
