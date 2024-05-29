@@ -20,6 +20,8 @@
       jq
       yq-go
       talosctl
+      argo
+      argocd
 
       # DevOps
       docker-compose
