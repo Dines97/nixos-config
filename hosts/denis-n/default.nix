@@ -7,11 +7,12 @@
   user-name = "denis";
 in {
   imports = [
-    ./services.nix
+    ./audio.nix
+    ./boot.nix
     ./hardware.nix
     ./nix.nix
-    ./boot.nix
     ./programs.nix
+    ./services.nix
     # ./specialisation.nix
   ];
 
@@ -116,9 +117,6 @@ in {
     # platformTheme = "gnome";
   };
 
-  # Remove sound.enable or turn it off if you had it set previously, it seems to cause conflicts with pipewire
-  sound.enable = false;
-
   virtualisation = {
     docker = {
       enable = true;
@@ -206,10 +204,6 @@ in {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
   # };
-
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.jane = {

@@ -1,5 +1,8 @@
-{...}: {
+{pkgs, ...}: {
   services = {
+    # pcscd.enable = true;
+    # dbus.packages = [pkgs.gcr pkgs.gcr_4];
+
     gvfs.enable = true;
 
     flatpak.enable = true;
@@ -111,15 +114,6 @@
 
     # Enable CUPS to print documents.
     printing.enable = true;
-
-    pipewire = {
-      enable = true;
-      alsa.enable = false;
-      alsa.support32Bit = false;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      jack.enable = false;
-    };
 
     # Enable the OpenSSH daemon.
     openssh = {

@@ -8,8 +8,8 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
-    "nixpkgs-24.05".url = "github:NixOS/nixpkgs/nixos-24.05";
-    "nixpkgs-23.11".url = "github:NixOS/nixpkgs/nixos-23.11";
+    # "nixpkgs-24.05".url = "github:NixOS/nixpkgs/nixos-24.05";
+    # "nixpkgs-23.11".url = "github:NixOS/nixpkgs/nixos-23.11";
 
     # home-manager = {
     #   url = "github:nix-community/home-manager/release-23.11";
@@ -67,17 +67,12 @@
         allowUnfree = true;
         # cudaSupport = true;
         permittedInsecurePackages = [
-          "electron-19.1.9" # balena etcher
           "squid-6.8" # squid reverse proxy
-          "freeimage-unstable-2021-11-01" # mega sync
-
-          "python-2.7.18.7"
-          "nodejs-14.21.3"
         ];
       };
 
       sharedOverlays = [
-        # inputs.neovim-nightly-overlay.overlay
+        inputs.neovim-nightly-overlay.overlays.default
         (import ./overlays)
       ];
 

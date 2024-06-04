@@ -17,7 +17,7 @@ in {
       packages = with pkgs; [
         (discord.override {nss = nss_latest;})
         spotify
-        etcher
+        # etcher
         # barrier
         input-leap
         megasync
@@ -26,6 +26,13 @@ in {
         qbittorrent
         flameshot
         okular
+
+        # Pipewire gui
+        coppwr
+        helvum
+        qpwgraph
+        pwvucontrol
+
         # gwe
 
         vimix-gtk-themes

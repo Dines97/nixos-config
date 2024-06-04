@@ -106,8 +106,8 @@ config.keys = {
   {
     key = '%',
     mods = 'LEADER|SHIFT',
-    action = wezterm.action { SplitHorizontal = {
-      domain = 'CurrentPaneDomain' } }
-  } }
+    action = wezterm.action { SplitHorizontal = { domain = 'CurrentPaneDomain' } }
+  }
+}
 
 return config

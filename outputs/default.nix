@@ -8,6 +8,8 @@ in {
   # overlays = inputs.fup.lib.exportOverlays {inherit (self) pkgs inputs;};
   # packages = inputs.fup.lib.exportPackages self.overlays channels;
 
+  formatter = default.alejandra;
+
   packages = {
     python-discord-bot-docker = default.pkgs.dockerTools.buildImage {
       name = "darktts";
@@ -16,7 +18,7 @@ in {
     };
 
     homeConfigurations."vodka" = self.inputs.home-manager-unstable.lib.homeManagerConfiguration {
-      inherit (channels.nixpkgs-unstable) pkgs;
+      inherit (default) pkgs;
 
       modules = [
         ../users/denis

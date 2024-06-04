@@ -20,6 +20,7 @@
       ventoy-full
       xdg-utils
       sshpass
+      # pinentry
 
       # Hardware
       pciutils
@@ -35,6 +36,7 @@
       (inputs.nom.packages."x86_64-linux".default)
       (inputs.nh.packages."x86_64-linux".default)
 
+      neofetch
       onefetch
     ];
   };

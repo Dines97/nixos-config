@@ -60,11 +60,6 @@
       ];
     };
 
-    pulseaudio = {
-      enable = false;
-      extraConfig = "unload-module module-combine-sink";
-    };
-
     cpu.intel.updateMicrocode = true;
   };
 }
