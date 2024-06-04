@@ -22,6 +22,7 @@
       talosctl
       argo
       argocd
+      skopeo
 
       # DevOps
       docker-compose
