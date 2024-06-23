@@ -26,7 +26,12 @@
       plugins = [
         {
           name = "zsh-users/zsh-syntax-highlighting";
+          tags = ["as:plugin"];
         }
+        # {
+        #   name = "dracula/zsh";
+        #   tags = ["as:theme"];
+        # }
       ];
     };
   };

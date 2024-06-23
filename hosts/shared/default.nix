@@ -20,6 +20,7 @@
       imports = [
         ../../users/denis
         inputs.nix-index-database.hmModules.nix-index
+        inputs.nixvim.homeManagerModules.nixvim
       ];
     };
   };
@@ -114,6 +115,15 @@
 
     command-not-found = {
       enable = false;
+    };
+
+    nh = {
+      enable = true;
+      clean = {
+        enable = true;
+        extraArgs = "--nogc --nogcroots";
+        dates = "weekly";
+      };
     };
   };
 

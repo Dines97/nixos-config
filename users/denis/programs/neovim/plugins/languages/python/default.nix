@@ -10,7 +10,7 @@
     ];
 
     extraPackages = with pkgs; [
-      nodePackages.pyright
+      pyright
       # python310Packages.black
       # python310Packages.jedi-language-server
     ];

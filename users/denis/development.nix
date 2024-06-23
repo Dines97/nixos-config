@@ -29,7 +29,7 @@
       terraform
       infracost
       (ansible.override {windowsSupport = true;})
-      vagrant
+      # vagrant
 
       # Database
       postgresql
@@ -61,7 +61,7 @@
       # typescript # For volar in neovim to use
 
       # Flutter
-      flutter
+      # flutter
 
       # Java
       (openjdk17.override {enableJavaFX = true;})

@@ -26,6 +26,8 @@ in {
         qbittorrent
         flameshot
         okular
+        bottles
+        easyeffects
 
         # Pipewire gui
         coppwr
@@ -35,8 +37,18 @@ in {
 
         # gwe
 
-        vimix-gtk-themes
-        vimix-icon-theme
+        (vimix-gtk-themes.override {
+          themeVariants = ["doder"];
+          colorVariants = ["dark"];
+          sizeVariants = ["compact"];
+          # tweaks = ["flat" "grey" "mix" "translucent"];
+        })
+        (vimix-icon-theme.override {
+          colorVariants = ["Black"];
+        })
+
+        # dracula-theme
+        # dracula-icon-theme
 
         remmina
         # rdesktop
@@ -50,10 +62,12 @@ in {
         protonvpn-gui
         mullvad-vpn
         # aawmtt
-        libreoffice-fresh
+
+        libreoffice-qt
         hunspell
-        hunspellDicts.uk_UA
-        hunspellDicts.th_TH
+        hunspellDicts.en_US-large
+        hunspellDicts.ru_RU
+        hunspellDicts.tr_TR
 
         thunderbird
         notepadqq

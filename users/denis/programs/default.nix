@@ -7,7 +7,8 @@
   imports = [
     ./alacritty
     ./git
-    ./neovim
+    # ./neovim
+    ./nixvim
     ./tmux
     ./wezterm
     ./zellij

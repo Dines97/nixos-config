@@ -38,7 +38,7 @@ end
 local config = wezterm.config_builder()
 -- smart_splits.apply_to_config(config)
 
-config.color_scheme = 'Afterglow'
+config.color_scheme = 'One Half Black (Gogh)'
 config.font = wezterm.font('JetBrainsMono Nerd Font Mono')
 config.window_background_opacity = 0.9
 config.initial_cols = 140

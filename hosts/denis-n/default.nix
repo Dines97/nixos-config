@@ -109,6 +109,10 @@ in {
         gnome-terminal
         gnome-shell-extensions
       ]);
+
+    sessionVariables = {
+      GTK_THEME = "vimix-dark-compact-doder";
+    };
   };
 
   qt = {

@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   boot = {
     kernel = {
       sysctl = {
@@ -49,8 +49,7 @@
 
     supportedFilesystems = ["ntfs" "exfat"];
 
-    # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
-    # kernelPackages = pkgs.linuxKernel.packages.linux_testing;
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
     plymouth = {
       enable = true;

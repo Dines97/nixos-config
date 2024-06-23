@@ -22,6 +22,8 @@ in {
     ];
   };
 
+  home.file.".config/wezterm/colors/dracula.toml".source = ./dracula.toml;
+
   programs.wezterm = {
     enable = true;
     extraConfig = builtins.readFile ./wezterm.lua;

@@ -21,6 +21,7 @@
       xdg-utils
       sshpass
       # pinentry
+      gitoxide
 
       # Hardware
       pciutils

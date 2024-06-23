@@ -9,7 +9,7 @@
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
     # "nixpkgs-24.05".url = "github:NixOS/nixpkgs/nixos-24.05";
-    # "nixpkgs-23.11".url = "github:NixOS/nixpkgs/nixos-23.11";
+    "nixpkgs-23.11".url = "github:NixOS/nixpkgs/nixos-23.11";
 
     # home-manager = {
     #   url = "github:nix-community/home-manager/release-23.11";
@@ -55,6 +55,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   description = "System configuration";
@@ -73,6 +78,8 @@
 
       sharedOverlays = [
         inputs.neovim-nightly-overlay.overlays.default
+        inputs.nh.overlays.default
+        # inputs.nom.overlays.default
         (import ./overlays)
       ];
 

@@ -16,12 +16,12 @@
         gnomeExtensions.appindicator
         gnomeExtensions.auto-select-headset
         gnomeExtensions.user-themes
-
-        # gnomeExtensions.tray-icons-reloaded
         gnomeExtensions.x11-gestures
 
+        # gnomeExtensions.tray-icons-reloaded
+
         # TODO: Readd
-        # gnomeExtensions.remove-alttab-delay-v2
+        # gnomeExtensions.remove-alttab-delay-fork
 
         # gnomeExtensions.gamemode-indicator-in-system-settings
         # gnomeExtensions.caffeine
