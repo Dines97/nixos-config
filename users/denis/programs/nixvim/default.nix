@@ -12,6 +12,27 @@
     enable = true;
     defaultEditor = true;
 
+    withNodeJs = true;
+    withRuby = true;
+
+    extraPackages = with pkgs; [
+      luajitPackages.jsregexp
+    ];
+
+    clipboard = {
+      providers = {
+        wl-copy = {
+          enable = true;
+        };
+        xclip = {
+          enable = true;
+        };
+        xsel = {
+          enable = true;
+        };
+      };
+    };
+
     extraConfigLuaPre = ''
       local luasnip = require("luasnip")
       local notify = require('notify')

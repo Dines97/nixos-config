@@ -119,5 +119,8 @@
         ];
       };
     };
+    trouble = {
+      enable = true;
+    };
   };
 }
