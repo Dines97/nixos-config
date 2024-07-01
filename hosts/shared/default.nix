@@ -20,6 +20,7 @@
       imports = [
         ../../users/denis
         inputs.nix-index-database.hmModules.nix-index
+
         inputs.nixvim.homeManagerModules.nixvim
       ];
     };

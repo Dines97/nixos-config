@@ -21,6 +21,7 @@
             };
           }
           x) [
+          # vim.diagnostic
           {
             action.__raw = "vim.diagnostic.open_float";
             key = "<leader>de";
@@ -41,6 +42,8 @@
             key = "]d";
             options.desc = "Goto next";
           }
+
+          # vim.lsp.buf
           {
             action.__raw = "vim.lsp.buf.declaration";
             key = "<leader>lD";
@@ -89,8 +92,10 @@
           {
             action.__raw = ''
               function()
-                -- mini_trailspace.trim()
-                -- mini_trailspace.trim_last_lines()
+                local mini_trailspace = require('mini.trailspace')
+
+                mini_trailspace.trim()
+                mini_trailspace.trim_last_lines()
 
                 -- Needs to be async false or format could happend after write
                 vim.lsp.buf.format { async = false }
@@ -101,6 +106,9 @@
             key = "<leader>lf";
             options.desc = "Format";
           }
+
+          # vim.lsp.buf.
+          # workspace
           {
             action.__raw = "vim.lsp.buf.add_workspace_folder";
             key = "<leader>wa";
@@ -112,7 +120,7 @@
             options.desc = "Remove workspace folder";
           }
           {
-            action.__raw = "function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end";
+            action.__raw = "function() vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders())) end";
             key = "<leader>wl";
             options.desc = "List workspace folder";
           }
@@ -121,6 +129,12 @@
     };
     trouble = {
       enable = true;
+    };
+    navic = {
+      enable = true;
+      lsp = {
+        autoAttach = true;
+      };
     };
   };
 }

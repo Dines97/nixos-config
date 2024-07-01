@@ -9,7 +9,7 @@
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
     # "nixpkgs-24.05".url = "github:NixOS/nixpkgs/nixos-24.05";
-    "nixpkgs-23.11".url = "github:NixOS/nixpkgs/nixos-23.11";
+    # "nixpkgs-23.11".url = "github:NixOS/nixpkgs/nixos-23.11";
 
     # home-manager = {
     #   url = "github:nix-community/home-manager/release-23.11";
@@ -57,7 +57,7 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim";
+      url = "github:Dines97/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };

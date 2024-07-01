@@ -4,6 +4,11 @@
   ...
 }: {
   programs.nixvim.plugins = {
+    # All around ui improvement
+    dressing = {
+      enable = true;
+    };
+
     # Notification
     notify = {
       enable = true;
@@ -29,7 +34,7 @@
     neo-tree = {
       enable = true;
       eventHandlers = {
-        # enter input popup with normal mode by default.
+        # enter input pop up with normal mode by default.
         neo_tree_popup_input_ready = ''
           function(input)
             vim.cmd('stopinsert')
@@ -65,6 +70,10 @@
     statuscol = {
       enable = true;
     };
+
+    # lsp-status = {
+    #   enable = true;
+    # };
 
     # Bottom line
     lualine = {

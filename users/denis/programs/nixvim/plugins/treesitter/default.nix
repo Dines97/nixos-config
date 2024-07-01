@@ -11,6 +11,7 @@
       incrementalSelection = {
         enable = true;
       };
+      gccPackage = pkgs.gcc;
     };
 
     treesitter-context = {

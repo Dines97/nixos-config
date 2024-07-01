@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./colorschemes
+    ./keymaps
     ./plugins
   ];
 
@@ -12,11 +13,22 @@
     enable = true;
     defaultEditor = true;
 
+    package = pkgs.neovim-unwrapped;
+
     withNodeJs = true;
     withRuby = true;
 
+    luaLoader = {
+      enable = true;
+    };
+
     extraPackages = with pkgs; [
+      # TODO: Check if luasnip works
       luajitPackages.jsregexp
+
+      # For telescope
+      ripgrep
+      fd
     ];
 
     clipboard = {
@@ -43,6 +55,7 @@
     globals = {
       mapleader = " ";
     };
+
     opts = {
       timeout = true;
       timeoutlen = 300;
@@ -60,6 +73,9 @@
       textwidth = 100;
 
       undofile = true;
+
+      spelllang = "en_us";
+      spell = true;
     };
   };
 }
