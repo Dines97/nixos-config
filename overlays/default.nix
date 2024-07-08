@@ -154,6 +154,18 @@ final: prev: {
         };
         meta.homepage = "https://github.com/nvim-neotest/nvim-nio";
       };
+
+      nvim-lsp-endhints = prev.vimUtils.buildVimPlugin {
+        pname = "nvim-lsp-endhints";
+        version = "2024-07-04";
+        src = prev.fetchFromGitHub {
+          owner = "chrisgrieser";
+          repo = "nvim-lsp-endhints";
+          rev = "3a259c593bcd90f5a9b88e1803656c2cea0f3da1";
+          sha256 = "sha256-et8nebIP76PqsGsWpTjOwLaD9wcOqqZyDa++vuQpWco=";
+        };
+        meta.homepage = "https://github.com/chrisgrieser/nvim-lsp-endhints";
+      };
     };
 
   tmuxPlugins =

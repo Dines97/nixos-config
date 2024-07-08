@@ -22,6 +22,11 @@
       enable = true;
     };
 
+    extraConfigLuaPost = ''
+      vim.api.nvim_command("redraw!")
+      vim.cmd("redraw!")
+    '';
+
     extraPackages = with pkgs; [
       # TODO: Check if luasnip works
       luajitPackages.jsregexp
@@ -45,20 +50,14 @@
       };
     };
 
-    extraConfigLuaPre = ''
-      local luasnip = require("luasnip")
-      local notify = require('notify')
-      local stages = require('notify.stages.static')('top_down')
-      vim.notify = notify
-    '';
-
     globals = {
       mapleader = " ";
     };
 
     opts = {
       timeout = true;
-      timeoutlen = 300;
+      timeoutlen = 0;
+      # timeoutlen = 300;
 
       mouse = "a";
       number = true;

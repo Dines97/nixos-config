@@ -2,14 +2,8 @@
   programs.nixvim.plugins = {
     none-ls = {
       sources = {
-        formatting = {
-          isort = {
-            enable = true;
-          };
-          black = {
-            enable = true;
-          };
-        };
+        formatting.isort.enable = true;
+        formatting.black.enable = true;
       };
     };
     lsp = {

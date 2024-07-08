@@ -19,9 +19,10 @@
   programs.nixvim = {
     extraPlugins = with pkgs.vimPlugins; [
       legendary-nvim
+      # nvim-lsp-endhints
     ];
 
-    extraConfigLua = builtins.readFile ./legendary.lua;
+    extraConfigLua = builtins.readFile ./default.lua;
 
     plugins = {
       comment = {
@@ -30,10 +31,6 @@
 
       mini = {
         enable = true;
-        modules = {
-          move = {};
-          trailspace = {};
-        };
       };
     };
   };

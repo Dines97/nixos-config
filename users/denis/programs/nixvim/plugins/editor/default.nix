@@ -3,17 +3,34 @@
   pkgs,
   ...
 }: {
-  programs.nixvim.plugins = {
-    gitsigns = {
-      enable = true;
+  programs.nixvim = {
+    opts = {
+      colorcolumn = "100";
     };
 
-    indent-blankline = {
-      enable = true;
-    };
+    plugins = {
+      gitsigns = {
+        enable = true;
+      };
 
-    virt-column = {
-      enable = true;
+      indent-blankline = {
+        enable = true;
+      };
+
+      virt-column = {
+        enable = true;
+      };
+
+      mini = {
+        modules = {
+          move = {};
+          trailspace = {};
+        };
+      };
+
+      todo-comments = {
+        enable = true;
+      };
     };
   };
 }

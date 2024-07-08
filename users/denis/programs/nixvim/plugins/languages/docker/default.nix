@@ -1,5 +1,10 @@
 {
   programs.nixvim.plugins = {
+    none-ls = {
+      sources = {
+        diagnostics.hadolint.enable = true;
+      };
+    };
     lsp = {
       servers = {
         dockerls = {

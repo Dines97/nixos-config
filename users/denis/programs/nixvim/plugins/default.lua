@@ -8,3 +8,6 @@ require('legendary').setup({
     { '<S-l>', ':BufferNext<CR>' }
   }
 })
+
+
+-- require('nvim-lsp-endhints').setup({})

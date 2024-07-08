@@ -14,8 +14,9 @@
       gccPackage = pkgs.gcc;
     };
 
+    # FIX: Error out when scrolling upward
     treesitter-context = {
-      enable = true;
+      enable = false;
       settings = {
         max_lines = 3; # How many lines the window should span. Values <= 0 mean no limit.
         multiline_threshold = 1; # Maximum number of lines to show for a single context
