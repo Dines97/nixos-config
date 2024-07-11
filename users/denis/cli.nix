@@ -21,7 +21,8 @@
       xdg-utils
       sshpass
       # pinentry
-      gitoxide
+      gitoxide # Git cli written in rust
+      dig # DNS utils
 
       # Hardware
       pciutils
