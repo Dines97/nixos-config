@@ -8,7 +8,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
-    # "nixpkgs-24.05".url = "github:NixOS/nixpkgs/nixos-24.05";
+    "nixpkgs-24.05".url = "github:NixOS/nixpkgs/nixos-24.05";
     # "nixpkgs-23.11".url = "github:NixOS/nixpkgs/nixos-23.11";
 
     # home-manager = {
@@ -77,6 +77,7 @@
       };
 
       sharedOverlays = [
+        inputs.nix-ld.overlays.default
         inputs.neovim-nightly-overlay.overlays.default
         inputs.nh.overlays.default
         # inputs.nom.overlays.default
@@ -93,7 +94,6 @@
           ./modules/default.nix
           ./hosts/shared
 
-          inputs.nix-ld.nixosModules.nix-ld
           inputs.sops-nix.nixosModules.sops
         ];
 

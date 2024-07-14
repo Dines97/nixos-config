@@ -74,7 +74,7 @@
 
     nix-ld = {
       enable = true;
-      dev.enable = false;
+      package = pkgs.nix-ld-rs;
 
       # libraries = with pkgs; [
       #   zlib

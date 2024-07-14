@@ -152,6 +152,7 @@ in {
 
   networking = {
     hostName = "Denis-N";
+    usePredictableInterfaceNames = true;
     useDHCP = lib.mkDefault true;
     extraHosts = ''
       185.254.30.209 kubernetes.fridge.io

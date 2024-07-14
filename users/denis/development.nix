@@ -7,6 +7,9 @@
     packages = with pkgs; [
       # Kubernetes
       kubectl
+      kubectx
+      kubeswitch
+
       kubernetes-helm
       kube3d
       kind

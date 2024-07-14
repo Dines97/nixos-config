@@ -35,8 +35,8 @@
 
       # nix-output-monitor
       # nh
-      (inputs.nom.packages."x86_64-linux".default)
-      (inputs.nh.packages."x86_64-linux".default)
+      inputs.nom.packages."x86_64-linux".default
+      inputs.nh.packages."x86_64-linux".default
 
       neofetch
       onefetch

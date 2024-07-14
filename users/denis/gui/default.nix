@@ -26,8 +26,9 @@ in {
         qbittorrent
         flameshot
         okular
-        bottles
+        # bottles
         easyeffects
+        mission-center
 
         # Pipewire gui
         coppwr

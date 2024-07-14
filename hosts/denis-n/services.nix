@@ -1,5 +1,16 @@
 {pkgs, ...}: {
   services = {
+    rke2 = {
+      enable = true;
+      nodeIP = "192.168.1.105";
+      disable = [
+        "rke2-ingress-nginx"
+        "rke2-snapshot-controller"
+        "rke2-snapshot-controller-crd"
+        "rke2-snapshot-validation-webhook"
+      ];
+    };
+
     # pcscd.enable = true;
     # dbus.packages = [pkgs.gcr pkgs.gcr_4];
 
@@ -103,7 +114,7 @@
       nssmdns4 = true;
       ipv4 = true;
       ipv6 = false;
-      # allowInterfaces = ["enp0s20f0u1u2"];
+      allowInterfaces = ["enp0s20f0u1"];
       publish = {
         enable = true;
         addresses = true;

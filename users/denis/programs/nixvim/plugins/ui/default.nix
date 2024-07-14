@@ -8,6 +8,9 @@
       local notify = require('notify')
       local stages = require('notify.stages.static')('top_down')
       vim.notify = notify
+
+      -- Dashboard fix
+      vim.cmd('au FileType dashboard lua vim.b.minitrailspace_disable = true')
     '';
 
     plugins = {
@@ -129,6 +132,15 @@
             {name = "filetype";}
           ];
         };
+      };
+
+      # Start screen plugin
+      # dashboard = {
+      #   enable = true;
+      # };
+      alpha = {
+        enable = true;
+        theme = "startify";
       };
     };
   };
