@@ -48,6 +48,7 @@
 
       # Python
       # conda
+      python3
 
       # Dotnet
       dotnet-sdk_8

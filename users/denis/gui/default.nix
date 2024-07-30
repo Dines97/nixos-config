@@ -47,6 +47,7 @@ in {
         (vimix-icon-theme.override {
           colorVariants = ["Black"];
         })
+        vimix-cursor-theme
 
         # dracula-theme
         # dracula-icon-theme

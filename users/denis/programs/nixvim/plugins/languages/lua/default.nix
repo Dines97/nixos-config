@@ -2,7 +2,7 @@
   programs.nixvim.plugins = {
     lsp = {
       servers = {
-        lua_ls = {
+        lua-ls = {
           enable = true;
           settings = {
             diagnostics = {

@@ -64,14 +64,16 @@
       reset = "clear";
       # reset = "clear; tmux clear-history";
       ls = "eza";
-      ll = "eza --long --all --header --time-style=long-iso --git --icons --group-directories-first --group -b";
+      ll = "eza --long --all --header --time-style=long-iso --git --icons --group-directories-first --group --binary";
       cat = "bat";
+      k = "kubectl";
+      spot = "spotify_player";
 
       nixupdate = "nh os switch --update /etc/nixos";
       nixswitch = "nh os switch /etc/nixos";
 
-      hmupdate = "nh home switch --update";
-      hmswitch = "nh home switch";
+      hmupdate = "nh home switch --update ~/.config/home-manager";
+      hmswitch = "nh home switch ~/.config/home-manager";
 
       # I am doing this way to much
       ":q" = "exit";

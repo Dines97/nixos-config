@@ -8,9 +8,9 @@
   config = lib.mkIf (osConfig != null && osConfig.services.xserver.desktopManager.gnome.enable) {
     home = {
       packages = with pkgs; [
-        gnome.gnome-tweaks
-        gnome.gnome-keyring
-        gnome.dconf-editor
+        gnome-tweaks
+        gnome-keyring
+        dconf-editor
 
         gnomeExtensions.app-icons-taskbar
         gnomeExtensions.appindicator

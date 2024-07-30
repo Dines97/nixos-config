@@ -23,6 +23,9 @@
       # pinentry
       gitoxide # Git cli written in rust
       dig # DNS utils
+      spotify-player
+      ncspot
+      # spotify-tui
 
       # Hardware
       pciutils

@@ -5,6 +5,8 @@
 }: {
   programs.nixvim = {
     extraConfigLuaPre = ''
+      -- local minimap = require('mini.map')
+
       local notify = require('notify')
       local stages = require('notify.stages.static')('top_down')
       vim.notify = notify
@@ -12,6 +14,10 @@
       -- Dashboard fix
       vim.cmd('au FileType dashboard lua vim.b.minitrailspace_disable = true')
     '';
+
+    # extraConfigLuaPost = ''
+    #   minimap.open()
+    # '';
 
     plugins = {
       # All around ui improvement
@@ -88,11 +94,19 @@
       mini = {
         modules = {
           animate = {
-            # NOTE: To slow
+            # NOTE: Too slow
             scroll = {
               enable = false;
             };
           };
+          # map = {
+          #   integrations = [
+          #     {__raw = "minimap.gen_integration.builtin_search()";}
+          #     {__raw = "minimap.gen_integration.diagnostic()";}
+          #     {__raw = "minimap.gen_integration.diff()";}
+          #     {__raw = "minimap.gen_integration.gitsigns()";}
+          #   ];
+          # };
         };
       };
 
@@ -101,14 +115,14 @@
         enable = true;
         globalstatus = true;
         theme = "onedark";
-        componentSeparators = {
-          left = "";
-          right = "";
-        };
-        sectionSeparators = {
-          left = "";
-          right = "";
-        };
+        # componentSeparators = {
+        #   left = "";
+        #   right = "";
+        # };
+        # sectionSeparators = {
+        #   left = "";
+        #   right = "";
+        # };
 
         sections = {
           lualine_c = [

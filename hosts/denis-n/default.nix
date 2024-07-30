@@ -103,10 +103,10 @@ in {
     gnome.excludePackages =
       (with pkgs; [
         gnome-tour
-      ])
-      ++ (with pkgs.gnome; [
         epiphany
         gnome-terminal
+      ])
+      ++ (with pkgs.gnome; [
         gnome-shell-extensions
       ]);
 

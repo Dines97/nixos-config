@@ -112,5 +112,10 @@
       enable = true;
       pinentryPackage = pkgs.pinentry-gnome3;
     };
+
+    spotifyd = {
+      enable = true;
+      # package = pkgs.spotifyd.override {withKeyring = true;};
+    };
   };
 }

@@ -1,8 +1,48 @@
 {pkgs, ...}: {
+  virtualisation = {
+    oci-containers = {
+      containers = {
+        flaresolverr = {
+          image = "ghcr.io/flaresolverr/flaresolverr:latest";
+          ports = [
+            "8191:8191"
+          ];
+          environment = {
+            LOG_LEVEL = "info";
+          };
+        };
+      };
+    };
+  };
+
   services = {
+    # 9696
+    prowlarr = {
+      enable = true;
+    };
+
+    # 8686
+    lidarr = {
+      enable = true;
+    };
+
+    # show
+    # 8989
+    # sonarr = {
+    #   enable = true;
+    # };
+
+    # 8191
+    # flaresolverr = {
+    #   enable = true;
+    # };
+
     rke2 = {
       enable = true;
       nodeIP = "192.168.1.105";
+      extraFlags = [
+        "--disable-cloud-controller"
+      ];
       disable = [
         "rke2-ingress-nginx"
         "rke2-snapshot-controller"
@@ -36,6 +76,9 @@
       model = "ux433fa";
     };
 
+    # Enable touchpad support (enabled default in most desktopManager).
+    libinput.enable = true;
+
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
@@ -48,9 +91,6 @@
       };
 
       videoDrivers = ["nvidia"];
-
-      # Enable touchpad support (enabled default in most desktopManager).
-      libinput.enable = true;
 
       displayManager = {
         # autoLogin = {
