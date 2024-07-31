@@ -7,7 +7,7 @@
       enable = true;
       settings = {
         server = {
-          settings = {
+          default_settings = {
             rust-analyzer = {
               procMacro = {
                 enable = true;

@@ -27,7 +27,7 @@ in {
         flameshot
         okular
         # bottles
-        easyeffects
+        # easyeffects
         mission-center
 
         # Pipewire gui
