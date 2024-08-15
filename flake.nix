@@ -39,11 +39,6 @@
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
-    nom = {
-      url = "github:maralorn/nix-output-monitor";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     nh = {
       url = "github:viperML/nh";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -64,9 +59,10 @@
 
   description = "System configuration";
 
-  outputs = {self, ...} @ inputs:
+  outputs = inputs:
     inputs.fup.lib.mkFlake {
-      inherit self inputs;
+      inherit (inputs) self;
+      inherit inputs;
 
       channelsConfig = {
         allowUnfree = true;
@@ -80,7 +76,6 @@
         inputs.nix-ld.overlays.default
         inputs.neovim-nightly-overlay.overlays.default
         inputs.nh.overlays.default
-        # inputs.nom.overlays.default
         (import ./overlays)
       ];
 
@@ -96,8 +91,6 @@
 
           inputs.sops-nix.nixosModules.sops
         ];
-
-        extraArgs = {inherit inputs;};
       };
 
       hosts = {
@@ -122,7 +115,11 @@
         };
       };
 
-      outputsBuilder = channels: import ./outputs {inherit self channels;};
+      outputsBuilder = channels:
+        import ./outputs {
+          inherit (inputs) self;
+          inherit channels;
+        };
 
       overlay = import ./overlays;
 

@@ -49,6 +49,11 @@
       # File explorer
       neo-tree = {
         enable = true;
+        filesystem = {
+          scanMode = "deep";
+          useLibuvFileWatcher = true;
+        };
+
         eventHandlers = {
           # enter input pop up with normal mode by default.
           neo_tree_popup_input_ready = ''

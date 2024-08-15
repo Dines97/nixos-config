@@ -34,7 +34,6 @@ in {
       ];
 
       extraSpecialArgs = {
-        inherit (self) inputs;
         osConfig = null;
       };
     };

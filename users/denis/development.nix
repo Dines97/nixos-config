@@ -13,7 +13,6 @@
       kubernetes-helm
       kube3d
       kind
-      k9s
       kubebuilder
       cue
       skaffold

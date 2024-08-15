@@ -38,7 +38,7 @@
     # };
 
     rke2 = {
-      enable = true;
+      enable = false;
       nodeIP = "192.168.1.105";
       extraFlags = [
         "--disable-cloud-controller"

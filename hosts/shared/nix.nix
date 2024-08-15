@@ -38,7 +38,6 @@ in {
       # ];
     };
 
-
     # Replaced by nh
     # gc = {
     #   automatic = true;

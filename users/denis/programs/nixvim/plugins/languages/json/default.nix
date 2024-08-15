@@ -1,11 +1,11 @@
 {
   programs.nixvim.plugins = {
-    helm = {
-      enable = true;
+    schemastore = {
+      json.enable = true;
     };
     lsp = {
       servers = {
-        helm-ls = {
+        jsonls = {
           enable = true;
         };
       };

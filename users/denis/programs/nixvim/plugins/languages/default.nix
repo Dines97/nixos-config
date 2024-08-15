@@ -9,6 +9,7 @@
     ./csharp
     ./docker
     ./helm
+    ./json
     ./latex
     ./lua
     ./nix

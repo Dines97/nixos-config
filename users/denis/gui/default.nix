@@ -16,6 +16,7 @@ in {
     home = {
       packages = with pkgs; [
         (discord.override {nss = nss_latest;})
+        vesktop
         spotify
         # etcher
         # barrier

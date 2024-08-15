@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./ai
     ./cmp
     ./editor
     ./keymaps

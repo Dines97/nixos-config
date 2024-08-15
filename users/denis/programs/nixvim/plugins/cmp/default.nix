@@ -45,6 +45,7 @@
             {name = "path";}
             {name = "luasnip";}
             {name = "buffer";}
+            {name = "copilot";}
           ];
         };
       };

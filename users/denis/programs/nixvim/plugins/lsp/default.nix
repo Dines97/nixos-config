@@ -9,6 +9,11 @@
       none-ls = {
         enable = true;
       };
+
+      schemastore = {
+        enable = true;
+      };
+
       lsp = {
         enable = true;
         inlayHints = true;

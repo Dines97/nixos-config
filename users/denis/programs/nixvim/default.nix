@@ -6,6 +6,7 @@
   imports = [
     ./colorschemes
     ./keymaps
+    # ./modules
     ./plugins
   ];
 
@@ -73,8 +74,8 @@
 
       undofile = true;
 
-      spelllang = "en_us";
-      spell = true;
+      # spelllang = "en_us";
+      # spell = true;
     };
   };
 }

@@ -12,16 +12,17 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = {
-      inherit inputs;
-    };
+
+    sharedModules = [
+      inputs.nix-index-database.hmModules.nix-index
+      inputs.nixvim.homeManagerModules.nixvim
+
+      # ../../users/denis/programs/nixvim/modules/default.nix
+    ];
 
     users.denis = {...}: {
       imports = [
         ../../users/denis
-        inputs.nix-index-database.hmModules.nix-index
-
-        inputs.nixvim.homeManagerModules.nixvim
       ];
     };
   };
