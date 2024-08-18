@@ -6,9 +6,11 @@
 
   inputs = {
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
+
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
-    # "nixpkgs-24.05".url = "github:NixOS/nixpkgs/nixos-24.05";
+    "nixpkgs-24.05".url = "github:NixOS/nixpkgs/nixos-24.05";
     # "nixpkgs-23.11".url = "github:NixOS/nixpkgs/nixos-23.11";
 
     # home-manager = {
