@@ -20,6 +20,8 @@
       # ../../users/denis/programs/nixvim/modules/default.nix
     ];
 
+    backupFileExtension = "home-manager.backup";
+
     users.denis = {...}: {
       imports = [
         ../../users/denis
