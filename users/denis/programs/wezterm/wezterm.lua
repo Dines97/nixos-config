@@ -48,6 +48,9 @@ config.check_for_updates = false
 config.exit_behavior = 'Close'
 config.audible_bell = 'Disabled'
 
+--TODO: Remove this temporary fix for square font in wezterm
+config.front_end = 'WebGpu'
+
 config.unix_domains = {
   {
     name = 'unix'
