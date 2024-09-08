@@ -3,9 +3,7 @@
   lib,
   config,
   ...
-}: let
-  user-name = "denis";
-in {
+}: {
   imports = [
     ./audio.nix
     ./boot.nix
@@ -39,58 +37,6 @@ in {
 
   powerManagement.cpuFreqGovernor = "ondemand";
 
-  # containers = {
-  #   recursive = {
-  #     config = {
-  #       config,
-  #       pkgs,
-  #       ...
-  #     }: {
-  #       containers = {
-  #         recursive = {
-  #           config = {
-  #             config,
-  #             pkgs,
-  #             ...
-  #           }: {
-  #             containers = {
-  #               recursive = {
-  #                 config = {
-  #                   config,
-  #                   pkgs,
-  #                   ...
-  #                 }: {
-  #                   containers = {
-  #                     recursive = {
-  #                       config = {
-  #                         config,
-  #                         pkgs,
-  #                         ...
-  #                       }: {
-  #                         containers = {
-  #                           recursive = {
-  #                             config = {
-  #                               config,
-  #                               pkgs,
-  #                               ...
-  #                             }: {
-  #                               services.postgresql.enable = true;
-  #                             };
-  #                           };
-  #                         };
-  #                       };
-  #                     };
-  #                   };
-  #                 };
-  #               };
-  #             };
-  #           };
-  #         };
-  #       };
-  #     };
-  #   };
-  # };
-
   environment = {
     pathsToLink = [
       # Required for https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.enableCompletion
@@ -100,15 +46,12 @@ in {
 
     shells = [pkgs.zsh];
 
-    gnome.excludePackages =
-      (with pkgs; [
-        gnome-tour
-        epiphany
-        gnome-terminal
-      ])
-      ++ (with pkgs.gnome; [
-        gnome-shell-extensions
-      ]);
+    gnome.excludePackages = with pkgs; [
+      gnome-tour
+      epiphany
+      gnome-terminal
+      gnome-shell-extensions
+    ];
 
     sessionVariables = {
       GTK_THEME = "vimix-dark-compact-doder";
@@ -123,11 +66,8 @@ in {
 
   virtualisation = {
     docker = {
-      enable = true;
+      enable = false;
       # enableNvidia = true;
-      daemon.settings = {
-        insecure-registries = ["5.178.111.177:5000"];
-      };
     };
 
     podman = {
@@ -155,7 +95,6 @@ in {
     usePredictableInterfaceNames = true;
     useDHCP = lib.mkDefault true;
     extraHosts = ''
-      185.254.30.209 kubernetes.fridge.io
     '';
     networkmanager.enable = true;
     wireless.enable = true;

@@ -10,8 +10,7 @@
     enableRedistributableFirmware = true;
 
     nvidia = {
-      # Theory: Breaks gnome night light
-      # open = true;
+      open = true;
 
       modesetting.enable = true;
       # package = config.boot.kernelPackages.nvidiaPackages.beta;

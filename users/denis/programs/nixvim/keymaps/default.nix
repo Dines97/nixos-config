@@ -10,17 +10,15 @@
     ./telescope.nix
   ];
 
-  programs.nixvim.keymaps =
-    lib.lists.map (x:
-      lib.attrsets.recursiveUpdate {
-        mode = ["n"];
-        options = {
-          silent = true;
-          noremap = true;
-          nowait = true;
-        };
-      }
-      x)
-    [
-    ];
+  # nnoremap Y "+y$
+  programs.nixvim.keymaps = [
+    {
+      key = "Y";
+      action = "\"+y";
+    }
+    {
+      key = "P";
+      action = "\"+p";
+    }
+  ];
 }

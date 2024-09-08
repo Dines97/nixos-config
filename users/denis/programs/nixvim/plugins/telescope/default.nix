@@ -28,10 +28,10 @@
 
     neoclip = {
       enable = true;
-      settings = {
-        enable_persistent_history = true;
-        continuous_sync = true;
-      };
+      # settings = {
+      #   enable_persistent_history = true;
+      #   continuous_sync = true;
+      # };
     };
   };
 }

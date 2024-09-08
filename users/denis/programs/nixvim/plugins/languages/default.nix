@@ -13,6 +13,7 @@
     ./latex
     ./lua
     ./nix
+    ./protobuf
     ./python
     ./rust
     ./terraform

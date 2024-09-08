@@ -8,9 +8,9 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
 
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
-    "nixpkgs-24.05".url = "github:NixOS/nixpkgs/nixos-24.05";
+    # "nixpkgs-24.05".url = "github:NixOS/nixpkgs/nixos-24.05";
     # "nixpkgs-23.11".url = "github:NixOS/nixpkgs/nixos-23.11";
 
     # home-manager = {
@@ -71,12 +71,12 @@
         # cudaSupport = true;
         permittedInsecurePackages = [
           "squid-6.8" # squid reverse proxy
+          "electron-29.4.6"
         ];
       };
 
       sharedOverlays = [
         inputs.nix-ld.overlays.default
-        inputs.neovim-nightly-overlay.overlays.default
         inputs.nh.overlays.default
         (import ./overlays)
       ];
@@ -124,10 +124,5 @@
         };
 
       overlay = import ./overlays;
-
-      hmModules = inputs.fup.lib.exportModules [
-        ./users/denis/programs/neovim
-        ./users/denis/programs/tmux
-      ];
     };
 }

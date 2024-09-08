@@ -20,6 +20,10 @@
     # '';
 
     plugins = {
+      noice = {
+        enable = false;
+      };
+
       # All around ui improvement
       dressing = {
         enable = true;
@@ -118,38 +122,39 @@
       # Bottom line
       lualine = {
         enable = true;
-        globalstatus = true;
-        theme = "onedark";
-        # componentSeparators = {
-        #   left = "";
-        #   right = "";
-        # };
-        # sectionSeparators = {
-        #   left = "";
-        #   right = "";
-        # };
-
-        sections = {
-          lualine_c = [
-            {
-              name = "filename";
-              extraConfig.path = 1;
-            }
-          ];
-          lualine_x = [
-            {name = "encoding";}
-            {
-              name = "fileformat";
-              extraConfig = {
+        settings = {
+          options = {
+            globalstatus = true;
+            theme = "onedark";
+            # componentSeparators = {
+            #   left = "";
+            #   right = "";
+            # };
+            # sectionSeparators = {
+            #   left = "";
+            #   right = "";
+            # };
+          };
+          sections = {
+            lualine_c = [
+              {
+                __unkeyed-1 = "filename";
+                path = 1;
+              }
+            ];
+            lualine_x = [
+              "encoding"
+              {
+                __unkeyed-1 = "fileformat";
                 symbols = {
                   unix = "LF";
                   dos = "CRLF";
                   mac = "CR";
                 };
-              };
-            }
-            {name = "filetype";}
-          ];
+              }
+              "filetype"
+            ];
+          };
         };
       };
 

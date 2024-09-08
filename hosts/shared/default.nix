@@ -27,6 +27,10 @@
         ../../users/denis
       ];
     };
+
+    extraSpecialArgs = {
+      inherit inputs;
+    };
   };
 
   users = {

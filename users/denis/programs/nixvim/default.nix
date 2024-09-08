@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -14,7 +15,7 @@
     enable = true;
     defaultEditor = true;
 
-    package = pkgs.neovim-unwrapped;
+    # package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 
     withNodeJs = true;
     withRuby = true;

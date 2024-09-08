@@ -16,6 +16,8 @@
   };
 
   services = {
+    fwupd.enable = true;
+
     # 9696
     prowlarr = {
       enable = true;
