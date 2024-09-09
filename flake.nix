@@ -70,7 +70,7 @@
         allowUnfree = true;
         # cudaSupport = true;
         permittedInsecurePackages = [
-          "squid-6.8" # squid reverse proxy
+          "squid-6.10" # squid reverse proxy
         ];
       };
 

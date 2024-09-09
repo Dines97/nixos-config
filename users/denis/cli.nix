@@ -15,6 +15,7 @@
       ncdu
       htop
       wget
+      inetutils
       openssl
       ventoy-full
       xdg-utils
