@@ -151,8 +151,10 @@
       # LSP context in win bar
       navic = {
         enable = true;
-        lsp = {
-          autoAttach = true;
+        settings = {
+          lsp = {
+            auto_attach = true;
+          };
         };
       };
 

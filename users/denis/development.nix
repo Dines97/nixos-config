@@ -5,6 +5,11 @@
 }: {
   home = {
     packages = with pkgs; [
+      gnumake
+      just
+
+      sccache # Build cache
+
       # Kubernetes
       kubectl
       kubectx

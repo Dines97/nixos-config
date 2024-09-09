@@ -79,8 +79,6 @@
       };
     };
 
-    go.enable = true;
-
     hstr = {
       enable = true;
       enableZshIntegration = true;

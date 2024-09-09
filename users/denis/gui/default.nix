@@ -57,7 +57,7 @@ in {
         # rdesktop
         # libsForQt5.krdc
 
-        gnome.gnome-boxes
+        gnome-boxes
         gparted
         autokey
         obs-studio
@@ -90,7 +90,7 @@ in {
 
         # retroarchFull
 
-        openlens
+        lens
 
         # JetBrains
         jetbrains.rider

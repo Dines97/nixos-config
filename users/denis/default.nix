@@ -50,6 +50,8 @@
 
       DOTNET_CLI_UI_LANGUAGE = "en";
       LANG = "en_US.UTF-8";
+
+      RUSTC_WRAPPER = "sccache";
     };
 
     sessionPath = [
