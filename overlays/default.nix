@@ -20,6 +20,10 @@ final: prev: {
 
   asus-touchpad-numpad-driver = prev.callPackage ./asus-touchpad-numpad-driver {};
 
+  # input-leap = prev.qt6Packages.callPackage ./input-leap {
+  #   avahi = prev.avahi.override {withLibdnssdCompat = true;};
+  # };
+
   # input-leap =
   #   (prev.input-leap.overrideAttrs (old: {
   #     version = "2024-03-25";

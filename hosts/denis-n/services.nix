@@ -116,14 +116,14 @@
       enable = false;
       openFirewall = false;
       # securityType = "user";
-      extraConfig = ''
-        workgroup = WORKGROUP
-        server string = smbnix
-        netbios name = smbnix
-        hosts allow = 192.168. 10.147.19. 127.0.0.1 localhost
-        hosts deny = 0.0.0.0/0
-      '';
-      shares = {
+      settings = {
+        global = {
+          workgroup = "WORKGROUP";
+          "server string" = "smbnix";
+          "netbios name" = "smbnix";
+          "hosts allow" = "192.168. 10.147.19. 127.0.0.1 localhost";
+          "hosts deny" = "0.0.0.0/0";
+        };
         public = {
           path = "/home/denis/shared";
           browseable = "yes";

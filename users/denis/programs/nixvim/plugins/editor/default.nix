@@ -24,7 +24,26 @@
       mini = {
         modules = {
           move = {};
-          trailspace = {};
+          # trailspace = {};
+        };
+      };
+
+      trim = {
+        enable = true;
+        settings = {
+          ft_blocklist = [
+            "TelescopePrompt"
+          ];
+          highlight = true;
+
+          trim_last_line = false;
+          patterns = [
+            # Remove trailing lines
+            ''[[%s/\($\n\s*\)\+\%$//]]''
+
+            # Keep one line at the end of file
+            ''[[%s/\%$/\r/]]''
+          ];
         };
       };
 
@@ -34,3 +53,4 @@
     };
   };
 }
+

@@ -34,11 +34,6 @@
 
     # hyprland.url = "github:hyprwm/Hyprland";
 
-    nix-ld = {
-      url = "github:Mic92/nix-ld";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     nh = {
@@ -76,7 +71,6 @@
       };
 
       sharedOverlays = [
-        inputs.nix-ld.overlays.default
         inputs.nh.overlays.default
         (import ./overlays)
       ];

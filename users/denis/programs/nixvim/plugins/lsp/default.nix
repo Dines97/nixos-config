@@ -100,10 +100,9 @@
             {
               action.__raw = ''
                 function()
-                  local mini_trailspace = require('mini.trailspace')
-
-                  mini_trailspace.trim()
-                  mini_trailspace.trim_last_lines()
+                  -- local mini_trailspace = require('mini.trailspace')
+                  -- mini_trailspace.trim()
+                  -- mini_trailspace.trim_last_lines()
 
                   -- Needs to be async false or format could happend after write
                   vim.lsp.buf.format { async = false }

@@ -28,7 +28,7 @@ in {
         flameshot
         okular
         # bottles
-        # easyeffects
+        easyeffects
         mission-center
 
         # Pipewire gui
@@ -36,6 +36,9 @@ in {
         helvum
         qpwgraph
         pwvucontrol
+
+        waycheck
+        bustle
 
         # gwe
 
