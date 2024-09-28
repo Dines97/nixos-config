@@ -20,6 +20,10 @@
     # '';
 
     plugins = {
+      web-devicons = {
+        enable = true;
+      };
+
       noice = {
         enable = false;
       };
@@ -169,3 +173,4 @@
     };
   };
 }
+

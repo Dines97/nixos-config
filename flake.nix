@@ -32,7 +32,7 @@
 
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
-    # hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
@@ -120,3 +120,4 @@
       overlay = import ./overlays;
     };
 }
+

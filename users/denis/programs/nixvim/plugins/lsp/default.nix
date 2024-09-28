@@ -100,13 +100,8 @@
             {
               action.__raw = ''
                 function()
-                  -- local mini_trailspace = require('mini.trailspace')
-                  -- mini_trailspace.trim()
-                  -- mini_trailspace.trim_last_lines()
-
-                  -- Needs to be async false or format could happend after write
+                  -- Needs to be async false or format could happen after write
                   vim.lsp.buf.format { async = false }
-
                   vim.api.nvim_command('write')
                 end
               '';
@@ -177,3 +172,4 @@
     };
   };
 }
+

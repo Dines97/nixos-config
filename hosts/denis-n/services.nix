@@ -113,14 +113,11 @@
     };
 
     samba = {
-      enable = false;
-      openFirewall = false;
+      enable = true;
+      openFirewall = true;
       # securityType = "user";
       settings = {
         global = {
-          workgroup = "WORKGROUP";
-          "server string" = "smbnix";
-          "netbios name" = "smbnix";
           "hosts allow" = "192.168. 10.147.19. 127.0.0.1 localhost";
           "hosts deny" = "0.0.0.0/0";
         };
@@ -193,3 +190,4 @@
     };
   };
 }
+
