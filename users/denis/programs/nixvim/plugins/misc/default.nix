@@ -4,9 +4,9 @@
   ...
 }: {
   programs.nixvim.plugins = {
-    presence-nvim = {
-      enable = true;
-    };
+    # presence-nvim = {
+    #   enable = true;
+    # };
 
     rest = {
       enable = true;
@@ -14,3 +14,4 @@
     };
   };
 }
+

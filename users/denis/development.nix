@@ -30,6 +30,7 @@
       argo
       argocd
       skopeo
+      rclone
 
       # DevOps
       docker-compose
@@ -78,3 +79,4 @@
     ];
   };
 }
+

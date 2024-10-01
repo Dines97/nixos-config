@@ -36,6 +36,8 @@
       # For telescope
       ripgrep
       fd
+      # TODO: Find a way to remove it without breaking presence plugin
+      discord
     ];
 
     clipboard = {
@@ -80,3 +82,4 @@
     };
   };
 }
+
