@@ -8,7 +8,6 @@ local function has_server_capability(bufnr, capability)
   return false
 end
 
-
 require('legendary').setup({
   extensions = {
     smart_splits = {}
@@ -17,8 +16,8 @@ require('legendary').setup({
     { '<S-Tab>',    '<cmd>BufferPrevious<cr>',                                                   mode = { 'n' },      description = 'Previous buffer' },
     { '<Tab>',      '<cmd>BufferNext<cr>',                                                       mode = { 'n' },      description = 'Next buffer' },
 
-    { 'Y',          '"+y',                                                                       mode = { 'n', 'x' }, description = 'Copy to system clipboard' },
-    { 'P',          '"+p',                                                                       mode = { 'n', 'x' }, description = 'Paste from system clipboard' },
+    { '<C-y>',      '"+y',                                                                       mode = { 'n', 'x' }, description = 'Copy to system clipboard' },
+    { '<C-p>',      '"+p',                                                                       mode = { 'n', 'x' }, description = 'Paste from system clipboard' },
 
     { '<leader>eo', '<cmd>Neotree source=filesystem reveal=true position=left toggle=true<cr>',  mode = { 'n' },      description = 'Open' },
     { '<leader>ef', '<cmd>Neotree source=filesystem reveal=true position=float toggle=true<cr>', mode = { 'n' },      description = 'Float' },
@@ -40,105 +39,15 @@ require('legendary').setup({
     { ']d',         vim.diagnostic.goto_next,                                                    mode = { 'n' },      description = 'Goto next' },
 
     -- vim.lsp.buf
-    {
-      '<leader>lD',
-      vim.lsp.buf.declaration,
-      mode = { 'n' },
-      description = 'Declaration',
-      filters = {
-        function(item, context)
-          return has_server_capability(context.buf, 'declarationProvider')
-        end
-      }
-    },
-    {
-      '<leader>ld',
-      vim.lsp.buf.definition,
-      mode = { 'n' },
-      description = 'Definition',
-      filters = {
-        function(item, context)
-          return has_server_capability(context.buf, 'definitionProvider')
-        end
-      }
-    },
-    {
-      '<leader>li',
-      vim.lsp.buf.implementation,
-      mode = { 'n' },
-      description = 'Implementation',
-      filters = {
-        function(item, context)
-          return has_server_capability(context.buf, 'implementationProvider')
-        end
-      }
-    },
-    {
-      '<leader>lR',
-      vim.lsp.buf.references,
-      mode = { 'n' },
-      description = 'References',
-      filters = {
-        function(item, context)
-          return has_server_capability(context.buf, 'referencesProvider')
-        end
-      }
-    },
-    {
-      '<leader>lt',
-      vim.lsp.buf.type_definition,
-      mode = { 'n' },
-      description = 'Type definition',
-      filters = {
-        function(item, context)
-          return has_server_capability(context.buf, 'typeDefinitionProvider')
-        end
-      }
-    },
-    {
-      '<leader>lk',
-      vim.lsp.buf.signature_help,
-      mode = { 'n' },
-      description = 'Signature help',
-      filters = {
-        function(item, context)
-          return has_server_capability(context.buf, 'signatureHelpProvider')
-        end
-      }
-    },
-    {
-      '<leader>lK',
-      vim.lsp.buf.hover,
-      mode = { 'n' },
-      description = 'Hover',
-      filters = {
-        function(item, context)
-          return has_server_capability(context.buf, 'hoverProvider')
-        end
-      }
-    },
-    {
-      '<leader>lr',
-      vim.lsp.buf.rename,
-      mode = { 'n' },
-      description = 'Rename',
-      filters = {
-        function(item, context)
-          return has_server_capability(context.buf, 'renameProvider')
-        end
-      }
-    },
-    {
-      '<leader>la',
-      vim.lsp.buf.code_action,
-      mode = { 'n' },
-      description = 'Code action',
-      filters = {
-        function(item, context)
-          return has_server_capability(context.buf, 'codeActionProvider')
-        end
-      }
-    },
+    { '<leader>lD', vim.lsp.buf.declaration,                                                     mode = { 'n' },      description = 'Declaration' },
+    { '<leader>ld', vim.lsp.buf.definition,                                                      mode = { 'n' },      description = 'Definition' },
+    { '<leader>li', vim.lsp.buf.implementation,                                                  mode = { 'n' },      description = 'Implementation' },
+    { '<leader>lR', vim.lsp.buf.references,                                                      mode = { 'n' },      description = 'References' },
+    { '<leader>lt', vim.lsp.buf.type_definition,                                                 mode = { 'n' },      description = 'Type definition' },
+    { '<leader>lk', vim.lsp.buf.signature_help,                                                  mode = { 'n' },      description = 'Signature help' },
+    { '<leader>lK', vim.lsp.buf.hover,                                                           mode = { 'n' },      description = 'Hover' },
+    { '<leader>lr', vim.lsp.buf.rename,                                                          mode = { 'n' },      description = 'Rename' },
+    { '<leader>la', vim.lsp.buf.code_action,                                                     mode = { 'n' },      description = 'Code action' },
     {
       '<leader>lf',
       function()
@@ -147,12 +56,7 @@ require('legendary').setup({
         vim.api.nvim_command('write')
       end,
       mode = { 'n' },
-      description = 'Format',
-      filters = {
-        function(item, context)
-          return has_server_capability(context.buf, 'documentFormattingProvider')
-        end
-      }
+      description = 'Format'
     },
     {
       '<leader>lv',
@@ -183,10 +87,14 @@ require('legendary').setup({
         mini_trailspace.trim()
         mini_trailspace.trim_last_lines()
 
-        local save = vim.fn.winsaveview()
-        -- TODO: Check this regex for correctnes
-        vim.cmd([[keeppatterns %s/\%$/\r/e]])
-        vim.fn.winrestview(save)
+        -- local curpos = vim.api.nvim_win_get_cursor(0)
+        -- -- TODO: Check this regex for correctnes
+        -- vim.cmd([[keeppatterns %s/\%$/\r/e]])
+        -- vim.api.nvim_win_set_cursor(0, curpos)
+
+        local n_lines = vim.api.nvim_buf_line_count(0)
+        local last_nonblank = vim.fn.prevnonblank(n_lines)
+        vim.api.nvim_buf_set_lines(0, last_nonblank, last_nonblank, true, { '' })
       end,
       description = 'Trim whitespaces but keep one empty line at the end of file'
     } }
