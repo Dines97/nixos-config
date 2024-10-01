@@ -6,7 +6,6 @@
 }: {
   imports = [
     ./colorschemes
-    ./keymaps
     # ./modules
     ./plugins
   ];

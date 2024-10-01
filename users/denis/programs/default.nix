@@ -16,6 +16,12 @@
   ];
 
   programs = {
+    zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
+
     command-not-found = {
       enable = false;
     };
@@ -117,3 +123,4 @@
     };
   };
 }
+

@@ -31,6 +31,7 @@
       argocd
       skopeo
       rclone
+      nerdctl
 
       # DevOps
       docker-compose

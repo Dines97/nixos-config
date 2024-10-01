@@ -33,6 +33,11 @@
       mini = {
         enable = true;
       };
+
+      sqlite-lua = {
+        enable = true;
+      };
     };
   };
 }
+
