@@ -20,6 +20,8 @@
   programs.nixvim = {
     extraPlugins = with pkgs.vimPlugins; [
       legendary-nvim
+      pest-vim
+      satellite-nvim
       # nvim-lsp-endhints
     ];
 

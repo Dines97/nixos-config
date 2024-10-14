@@ -51,13 +51,14 @@ config.audible_bell = 'Disabled'
 --TODO: Remove this temporary fix for square font in wezterm
 config.front_end = 'WebGpu'
 
-config.unix_domains = {
-  {
-    name = 'unix'
-  }
-}
-
-config.default_gui_startup_args = { 'connect', 'unix' }
+--TODO: Until better times disable tmux
+-- config.unix_domains = {
+--   {
+--     name = 'unix'
+--   }
+-- }
+--
+-- config.default_gui_startup_args = { 'connect', 'unix' }
 
 config.window_padding = {
   left   = '0',
@@ -66,8 +67,10 @@ config.window_padding = {
   bottom = '0'
 }
 
+config.use_resize_increments = true
+
 config.tab_bar_at_bottom = true
-config.window_close_confirmation = 'NeverPrompt'
+-- config.window_close_confirmation = 'NeverPrompt'
 
 config.skip_close_confirmation_for_processes_named = {
   'bash',
@@ -99,7 +102,7 @@ config.keys = {
   split_nav('resize', 'k'),
   split_nav('resize', 'l'),
 
-  { key = 'd', mods = 'CTRL',   action = wezterm.action { CloseCurrentPane = { confirm = false } } },
+  { key = 'o', mods = 'LEADER', action = wezterm.action.RotatePanes 'Clockwise' },
   { key = 'c', mods = 'LEADER', action = wezterm.action.SpawnTab('DefaultDomain') },
   {
     key = '\"',

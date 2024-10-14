@@ -13,6 +13,7 @@
     ./latex
     ./lua
     ./nix
+    ./pest
     ./protobuf
     ./python
     ./rust
@@ -50,3 +51,4 @@
     };
   };
 }
+

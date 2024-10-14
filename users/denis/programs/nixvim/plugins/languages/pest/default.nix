@@ -1,11 +1,8 @@
 {
   programs.nixvim.plugins = {
-    helm = {
-      enable = true;
-    };
     lsp = {
       servers = {
-        helm_ls = {
+        pest_ls = {
           enable = true;
         };
       };
