@@ -7,14 +7,15 @@
       yaml.enable = true;
     };
     lsp = {
-      preConfig = ''
-        local aaaaaaaaaaaa = "Hello there";
-      '';
-    };
-    lsp = {
       servers = {
         yamlls = {
           enable = true;
+          # filetypes = [
+          #   "yaml"
+          #   "yaml.docker-compose"
+          #   "yaml.gitlab"
+          #   "helm"
+          # ];
           settings = {
             format.enable = true;
           };
@@ -23,3 +24,4 @@
     };
   };
 }
+

@@ -60,6 +60,7 @@
         filesystem = {
           scanMode = "deep";
           useLibuvFileWatcher = true;
+          hijackNetrwBehavior = "disabled";
         };
 
         eventHandlers = {
@@ -69,6 +70,9 @@
               vim.cmd('stopinsert')
             end
           '';
+        };
+        window.mappings = {
+          "<esc>" = "none";
         };
       };
 
@@ -106,6 +110,7 @@
 
       mini = {
         modules = {
+          files = {};
           animate = {
             # NOTE: Too slow
             scroll = {

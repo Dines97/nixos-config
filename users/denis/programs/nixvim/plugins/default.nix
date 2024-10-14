@@ -21,6 +21,7 @@
     extraPlugins = with pkgs.vimPlugins; [
       legendary-nvim
       # nvim-lsp-endhints
+      grug-far-nvim
     ];
 
     extraConfigLua = builtins.readFile ./default.lua;

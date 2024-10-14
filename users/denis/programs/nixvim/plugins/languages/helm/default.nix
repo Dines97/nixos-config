@@ -7,8 +7,16 @@
       servers = {
         helm-ls = {
           enable = true;
+          settings = {
+            # yamlls = {
+            #   settings = {
+            #     format.enable = true;
+            #   };
+            # };
+          };
         };
       };
     };
   };
 }
+

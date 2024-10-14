@@ -1,3 +1,6 @@
+require('grug-far').setup({});
+
+
 local function has_server_capability(bufnr, capability)
   local clients = vim.lsp.get_clients({ bufnr = bufnr })
   for _, client in ipairs(clients) do
@@ -13,6 +16,8 @@ require('legendary').setup({
     smart_splits = {}
   },
   keymaps = {
+    { '\\',         '<Nop>',                                                                     mode = { 'n' } },
+
     { '<S-Tab>',    '<cmd>BufferPrevious<cr>',                                                   mode = { 'n' },      description = 'Previous buffer' },
     { '<Tab>',      '<cmd>BufferNext<cr>',                                                       mode = { 'n' },      description = 'Next buffer' },
 
@@ -21,6 +26,7 @@ require('legendary').setup({
 
     { '<leader>eo', '<cmd>Neotree source=filesystem reveal=true position=left toggle=true<cr>',  mode = { 'n' },      description = 'Open' },
     { '<leader>ef', '<cmd>Neotree source=filesystem reveal=true position=float toggle=true<cr>', mode = { 'n' },      description = 'Float' },
+    { '<leader>em', MiniFiles.open,                                                              mode = { 'n' },      description = 'MiniFiles' },
 
     { '<leader>Li', '<cmd>LspInfo<cr>',                                                          mode = { 'n' },      description = 'Info' },
     { '<leader>Ls', '<cmd>LspStart<cr>',                                                         mode = { 'n' },      description = 'Start' },

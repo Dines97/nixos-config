@@ -23,6 +23,10 @@
       enable = true;
     };
 
+    # extraConfigLuaPre = ''
+    #   vim.keymap.set("", "\\", "<Nop>", { noremap = true, silent = true })
+    # '';
+
     extraConfigLuaPost = ''
       vim.api.nvim_command("redraw!")
       vim.cmd("redraw!")
@@ -55,6 +59,7 @@
 
     globals = {
       mapleader = " ";
+      maplocalleader = "\\";
     };
 
     opts = {

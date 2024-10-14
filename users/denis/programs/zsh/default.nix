@@ -17,9 +17,17 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = ["git" "kubectx"];
+      plugins = [
+        "git"
+        # "kubectx"
+        "kube-ps1"
+      ];
       theme = "robbyrussell";
     };
+
+    initExtra = ''
+      RPS1='$(kube_ps1)'
+    '';
 
     zplug = {
       enable = true;
@@ -36,3 +44,4 @@
     };
   };
 }
+

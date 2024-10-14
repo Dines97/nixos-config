@@ -25,15 +25,15 @@
         modules = {
           move = {
             mappings = {
-              left = "<C-S-h>";
-              down = "<C-S-j>";
-              up = "<C-S-k>";
-              right = "<C-S-l>";
+              left = "<C-Left>";
+              down = "<C-Down>";
+              up = "<C-Up>";
+              right = "<C-Right>";
 
-              line_left = "<C-S-h>";
-              line_down = "<C-S-j>";
-              line_up = "<C-S-k>";
-              line_right = "<C-S-l>";
+              line_left = "<C-Left>";
+              line_down = "<C-Down>";
+              line_up = "<C-Up>";
+              line_right = "<C-Right>";
             };
           };
           trailspace = {};

@@ -22,6 +22,16 @@
                 keys = "<leader>";
               }
 
+              # Local leader triggers
+              {
+                mode = "n";
+                keys = "<localleader>";
+              }
+              {
+                mode = "x";
+                keys = "<localleader>";
+              }
+
               # Built-in completion
               {
                 mode = "i";
