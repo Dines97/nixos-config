@@ -5,7 +5,7 @@
     };
     lsp = {
       servers = {
-        helm-ls = {
+        helm_ls = {
           enable = true;
           settings = {
             # yamlls = {

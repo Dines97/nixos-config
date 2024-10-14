@@ -16,6 +16,8 @@
   };
 
   services = {
+    cloudflare-warp.enable = true;
+
     fwupd.enable = true;
 
     # 9696

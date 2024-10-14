@@ -67,6 +67,7 @@ in {
         obs-studio
         piper
         protonvpn-gui
+        # cloudflare-warp
         mullvad-vpn
         # aawmtt
 

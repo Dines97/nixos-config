@@ -89,6 +89,22 @@
         };
       };
 
+      oil = {
+        enable = true;
+        settings = {
+          delete_to_trash = true;
+          keymaps = {
+            "<C-h>" = false;
+            "<C-j>" = false;
+            "<C-k>" = false;
+            "<C-l>" = false;
+          };
+          win_options = {
+            spell = true;
+          };
+        };
+      };
+
       # Tab bar
       barbar = {
         enable = true;

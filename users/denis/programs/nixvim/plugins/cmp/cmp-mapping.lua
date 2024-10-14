@@ -11,7 +11,7 @@ cmp.mapping.preset.insert({
     end
   end,
   ['<Tab>'] = function(fallback)
-    if cmp.visible() then
+    if cmp.visible() and cmp.get_active_entry() then
       cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
     elseif luasnip.locally_jumpable(1) then
       luasnip.jump(1)
@@ -20,7 +20,7 @@ cmp.mapping.preset.insert({
     end
   end,
   ['<S-Tab>'] = function(fallback)
-    if cmp.visible() then
+    if cmp.visible() and cmp.get_active_entry() then
       cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
     elseif luasnip.locally_jumpable(-1) then
       luasnip.jump(-1)

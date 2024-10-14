@@ -106,6 +106,9 @@
       "2606:4700:4700::1001"
     ];
 
+    # dhcpcd.extraConfig = "nohook resolv.conf";
+    # networkmanager.dns = "none";
+
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     firewall = {
