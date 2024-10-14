@@ -126,7 +126,11 @@
 
       mini = {
         modules = {
-          files = {};
+          files = {
+            options = {
+              use_as_default_explorer = false;
+            };
+          };
           animate = {
             # NOTE: Too slow
             scroll = {

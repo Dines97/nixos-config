@@ -100,7 +100,7 @@ require('legendary').setup({
     -- explorer
     { '<leader>eo',  '<cmd>Neotree source=filesystem reveal=true toggle=true position=left<cr>',  mode = { 'n' },      description = 'Open' },
     { '<leader>ef',  '<cmd>Neotree source=filesystem reveal=true toggle=true position=float<cr>', mode = { 'n' },      description = 'Float' },
-    { '<leader>em',  require('mini.files').open(),                                                mode = { 'n' },      description = 'MiniFiles' },
+    { '<leader>em',  require('mini.files').open,                                                mode = { 'n' },      description = 'MiniFiles' },
     { '<leader>ei',  '<cmd>Oil<cr>',                                                              mode = { 'n' },      description = 'Oil' },
 
     -- lsp audit
