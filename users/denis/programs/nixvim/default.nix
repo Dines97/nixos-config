@@ -43,6 +43,12 @@
       discord
     ];
 
+    performance = {
+      byteCompileLua = {
+        enable = false;
+      };
+    };
+
     clipboard = {
       providers = {
         wl-copy = {

@@ -92,6 +92,7 @@
 
       hosts = {
         Denis-N = {
+          # channelName = "nixpkgs-master";
           channelName = "nixpkgs-unstable";
           system = "x86_64-linux";
           modules = [

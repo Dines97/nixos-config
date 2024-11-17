@@ -93,23 +93,23 @@
   networking = {
     hostName = "Denis-N";
     usePredictableInterfaceNames = true;
-    useDHCP = lib.mkDefault true;
+
+    networkmanager = {
+      enable = true;
+      dns = "none";
+    };
+    wireless.enable = true;
+
+    useDHCP = false;
+    dhcpcd.enable = false;
+    # dhcpcd.extraConfig = "nohook resolv.conf";
+
     extraHosts = ''
     '';
-    networkmanager.enable = true;
-    wireless.enable = true;
+
     nameservers = [
-      "1.1.1.1"
-      "1.0.0.1"
-
-      "2606:4700:4700::1111"
-      "2606:4700:4700::1001"
+      "127.0.0.1"
     ];
-
-    # dhcpcd.extraConfig = "nohook resolv.conf";
-    # networkmanager.dns = "none";
-
-    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     firewall = {
       enable = true;
@@ -120,7 +120,9 @@
       ];
       allowedUDPPorts = [
         3702 #wsdd
+        51820 #wireguard
       ];
+      checkReversePath = false;
     };
 
     # Configure network proxy if necessary

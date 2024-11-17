@@ -3,3 +3,4 @@ channels: [
     # inherit (channels."nixpkgs-master") teams-for-linux;
   })
 ]
+

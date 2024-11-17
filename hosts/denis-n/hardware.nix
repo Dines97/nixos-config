@@ -10,7 +10,7 @@
     enableRedistributableFirmware = true;
 
     nvidia = {
-      open = true;
+      # open = true;
 
       modesetting.enable = true;
       # package = config.boot.kernelPackages.nvidiaPackages.beta;
@@ -40,6 +40,8 @@
       # dynamicBoost = {
       #   enable = true;
       # };
+
+      package = config.boot.kernelPackages.nvidiaPackages.production;
     };
 
     graphics = {
@@ -62,3 +64,4 @@
     cpu.intel.updateMicrocode = true;
   };
 }
+

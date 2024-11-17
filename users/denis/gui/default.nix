@@ -19,6 +19,7 @@ in {
         (discord.override {nss = nss_latest;})
         vesktop
         spotify
+        nicotine-plus
         # etcher
         # barrier
         input-leap
@@ -30,7 +31,8 @@ in {
         okular
         # bottles
         easyeffects
-        mission-center
+        # mission-center
+        gimp
 
         # Pipewire gui
         coppwr
@@ -66,7 +68,9 @@ in {
         autokey
         obs-studio
         piper
+        # mozillavpn
         protonvpn-gui
+        protonvpn-cli
         # cloudflare-warp
         mullvad-vpn
         # aawmtt

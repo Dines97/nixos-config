@@ -24,6 +24,7 @@
       satellite-nvim
       # nvim-lsp-endhints
       grug-far-nvim
+      kubectl-nvim
     ];
 
     extraConfigLua = builtins.readFile ./default.lua;

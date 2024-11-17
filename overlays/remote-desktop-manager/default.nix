@@ -9,7 +9,7 @@
   libSM,
   cups,
   vte,
-  kerberos,
+  krb5,
   lttng-ust_2_12,
   webkitgtk,
   libsoup,
@@ -41,7 +41,7 @@ in
       libSM
       cups
       vte
-      kerberos
+      krb5
       lttng-ust_2_12
       webkitgtk
       libsoup
@@ -71,3 +71,4 @@ in
       description = "Remote Desktop Manager (RDM) centralizes all remote connections on a single platform that is securely shared between users and across the entire team.";
     };
   }
+

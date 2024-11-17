@@ -27,26 +27,12 @@
         "waybar"
       ];
 
-      bind =
-        [
-          "$mainMod, F, exec, $browser"
+      bind = [
+        "$mainMod, F, exec, $browser"
 
-          "$mainMod, Q, exec, $terminal"
-          "$mainMod, Return, exec, $terminal"
-        ]
-        ++ (
-          # workspaces
-          # binds $mainMod + [shift +] {1..9} to [move to] workspace {1..9}
-          builtins.concatLists (builtins.genList (
-              i: let
-                ws = i + 1;
-              in [
-                "$mainMod, code:1${toString i}, workspace, ${toString ws}"
-                "$mainMod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-              ]
-            )
-            9)
-        );
+        "$mainMod, Q, exec, $terminal"
+        "$mainMod, Return, exec, $terminal"
+      ];
     };
   };
 }

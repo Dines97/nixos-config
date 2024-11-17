@@ -16,6 +16,18 @@
   ];
 
   programs = {
+    beets = {
+      enable = true;
+      settings = {
+        import = {
+          write = "yes"; # Wrtie metadata
+
+          copy = "yes"; # Copy instead of move
+          move = "no"; # " "
+        };
+      };
+    };
+
     zoxide = {
       enable = true;
       enableBashIntegration = true;

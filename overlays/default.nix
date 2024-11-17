@@ -170,6 +170,18 @@ final: prev: {
         };
         meta.homepage = "https://github.com/chrisgrieser/nvim-lsp-endhints";
       };
+
+      kubectl-nvim = prev.vimUtils.buildVimPlugin {
+        pname = "kubectl-nvim";
+        version = "2024-10-27";
+        src = prev.fetchFromGitHub {
+          owner = "Ramilito";
+          repo = "kubectl.nvim";
+          rev = "23e01f316900cae29bdbb21c8cd92bb9fc8c7eb9";
+          sha256 = "sha256-7iJ7tkOXSdPRdAYkXl9yYkwp2DaJ37cXHdSJH6PAQiE=";
+        };
+        meta.homepage = "https://github.com/Ramilito/kubectl.nvim";
+      };
     };
 
   tmuxPlugins =
@@ -198,3 +210,4 @@ final: prev: {
       };
     };
 }
+

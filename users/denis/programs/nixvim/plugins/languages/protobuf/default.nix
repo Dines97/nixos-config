@@ -2,10 +2,11 @@
   programs.nixvim.plugins = {
     lsp = {
       servers = {
-        bufls = {
-          enable = true;
-        };
+        # bufls = {
+        #   enable = true;
+        # };
       };
     };
   };
 }
+
