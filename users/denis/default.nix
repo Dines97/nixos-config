@@ -72,7 +72,7 @@
       spot = "spotify_player";
       cd = "z";
 
-      nixupdate = "nh os switch --update /etc/nixos";
+      nixupdate = "nix flake update --flake /etc/nixos && nh os switch /etc/nixos";
       nixswitch = "nh os switch /etc/nixos";
 
       hmupdate = "nh home switch --update ~/.config/home-manager";
