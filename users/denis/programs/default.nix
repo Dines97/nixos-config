@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }: {
   imports = [
@@ -16,6 +17,11 @@
   ];
 
   programs = {
+    lan-mouse = {
+      enable = true;
+      systemd = false;
+      package = inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    };
     beets = {
       enable = true;
       settings = {
@@ -120,6 +126,10 @@
       enable = true;
       mutableKeys = false;
       mutableTrust = false;
+    };
+
+    go = {
+      enable = true;
     };
   };
 

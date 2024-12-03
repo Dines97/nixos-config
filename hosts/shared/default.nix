@@ -16,6 +16,7 @@
     sharedModules = [
       inputs.nix-index-database.hmModules.nix-index
       inputs.nixvim.homeManagerModules.nixvim
+      inputs.lan-mouse.homeManagerModules.default
 
       # ../../users/denis/programs/nixvim/modules/default.nix
     ];
@@ -136,9 +137,8 @@
 
   fonts.packages = with pkgs; [
     # google-fonts
-    (nerdfonts.override {
-      fonts = ["JetBrainsMono" "FiraCode"];
-    })
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
   ];
 }
 

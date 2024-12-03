@@ -16,6 +16,10 @@
   };
 
   services = {
+    mozillavpn = {
+      enable = true;
+    };
+
     dnscrypt-proxy2 = {
       enable = true;
       settings = {
@@ -103,6 +107,10 @@
 
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = true;
+
+    # displayManager = {
+    #   enable = false;
+    # };
 
     xserver = {
       # Enable the X11 windowing system.

@@ -32,10 +32,16 @@
 
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     nh = {
       url = "github:viperML/nh";
@@ -53,6 +59,11 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    lan-mouse = {
+      url = "github:feschber/lan-mouse";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   description = "System configuration";
@@ -68,6 +79,13 @@
         permittedInsecurePackages = [
           "squid-6.10" # squid reverse proxy
           "electron-29.4.6"
+
+          "dotnet-sdk-7.0.410"
+          "dotnet-sdk-wrapped-7.0.410"
+          "dotnet-core-combined"
+
+          "dotnet-sdk-6.0.428"
+          "dotnet-sdk-wrapped-6.0.428"
         ];
       };
 

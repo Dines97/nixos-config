@@ -3,6 +3,7 @@
   config,
   lib,
   osConfig ? null,
+  inputs,
   ...
 }: let
   condition = osConfig != null && osConfig.services.displayManager.sessionPackages != [];
@@ -27,6 +28,7 @@ in {
         fsearch
         vlc
         qbittorrent
+        tor-browser
         flameshot
         okular
         # bottles

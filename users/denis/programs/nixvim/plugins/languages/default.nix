@@ -10,6 +10,7 @@
     ./docker
     ./helm
     ./json
+    ./jsonnet
     ./latex
     ./lua
     ./nix

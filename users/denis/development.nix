@@ -33,6 +33,9 @@
       rclone
       nerdctl
 
+      jsonnet
+      jsonnet-bundler
+
       # DevOps
       docker-compose
       terraform

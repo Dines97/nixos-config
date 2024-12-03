@@ -119,8 +119,9 @@
         5357 # wsdd
       ];
       allowedUDPPorts = [
-        3702 #wsdd
-        51820 #wireguard
+        3702 # wsdd
+        51820 # wireguard
+        4242 # lan-mouse
       ];
       checkReversePath = false;
     };
