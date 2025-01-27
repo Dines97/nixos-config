@@ -1,6 +1,6 @@
 {
   programs.nixvim.plugins = {
-    crates-nvim = {
+    crates = {
       enable = true;
     };
     rustaceanvim = {
@@ -22,3 +22,4 @@
     };
   };
 }
+

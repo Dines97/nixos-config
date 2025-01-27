@@ -17,7 +17,7 @@
     enable = true;
     systemd.enable = false;
     # set the flake package
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     settings = {
       "$mainMod" = "SUPER";
 

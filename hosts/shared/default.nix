@@ -139,6 +139,7 @@
     # google-fonts
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
+    mplus-outline-fonts.githubRelease
   ];
 }
 

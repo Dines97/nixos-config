@@ -14,6 +14,8 @@
     # ./specialisation.nix
   ];
 
+  nixpkgs.hostPlatform = "x86_64-linux";
+
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/5aba8042-ca71-4a29-88f3-a77bb99f608f";
@@ -96,20 +98,20 @@
 
     networkmanager = {
       enable = true;
-      dns = "none";
+      # dns = "none";
     };
     wireless.enable = true;
 
     useDHCP = false;
     dhcpcd.enable = false;
-    # dhcpcd.extraConfig = "nohook resolv.conf";
+    dhcpcd.extraConfig = "nohook resolv.conf";
 
     extraHosts = ''
     '';
 
-    nameservers = [
-      "127.0.0.1"
-    ];
+    # nameservers = [
+    #   "127.0.0.1"
+    # ];
 
     firewall = {
       enable = true;

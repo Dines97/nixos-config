@@ -113,6 +113,7 @@
           # channelName = "nixpkgs-master";
           channelName = "nixpkgs-unstable";
           system = "x86_64-linux";
+          # hostPlatform = "x86_64-linux";
           modules = [
             ./hosts/denis-n
             inputs.home-manager-unstable.nixosModules.home-manager

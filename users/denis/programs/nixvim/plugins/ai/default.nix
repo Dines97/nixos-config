@@ -7,15 +7,17 @@
     plugins = {
       copilot-lua = {
         enable = true;
-        filetypes = {
-          "*" = true;
-        };
+        settings = {
+          filetypes = {
+            "*" = true;
+          };
 
-        panel = {
-          enabled = false;
-        };
-        suggestion = {
-          enabled = false;
+          panel = {
+            enabled = false;
+          };
+          suggestion = {
+            enabled = false;
+          };
         };
       };
 
@@ -25,3 +27,4 @@
     };
   };
 }
+

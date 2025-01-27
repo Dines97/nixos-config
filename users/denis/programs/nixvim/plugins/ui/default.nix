@@ -79,11 +79,13 @@
       # Right bottom progress notification
       fidget = {
         enable = true;
-        progress = {
-          display = {
-            doneTtl = 5;
-            progressIcon = {
-              pattern = "dots";
+        settings = {
+          progress = {
+            display = {
+              done_ttl = 5;
+              progress_icon = {
+                pattern = "dots";
+              };
             };
           };
         };
