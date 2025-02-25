@@ -9,9 +9,6 @@
       lazyLoad = {
         enable = false;
       };
-      settings = {
-        global_keymaps = true;
-      };
     };
 
     presence-nvim = {
