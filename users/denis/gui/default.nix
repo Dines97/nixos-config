@@ -30,7 +30,7 @@ in {
         qbittorrent
         tor-browser
         flameshot
-        okular
+        kdePackages.okular
         # bottles
         easyeffects
         # mission-center
@@ -54,7 +54,7 @@ in {
           # tweaks = ["flat" "grey" "mix" "translucent"];
         })
         (vimix-icon-theme.override {
-          colorVariants = ["Black"];
+          # colorVariants = ["Black"];
         })
         vimix-cursor-theme
 
@@ -104,12 +104,12 @@ in {
         lens
 
         # JetBrains
-        jetbrains.rider
+        # jetbrains.rider
         # jetbrains.webstorm
         # jetbrains.idea-ultimate
-        jetbrains.pycharm-professional
+        # jetbrains.pycharm-professional
         # jetbrains.clion
-        jetbrains.datagrip
+        # jetbrains.datagrip
         # jetbrains.goland
         # jetbrains.rust-rover
 

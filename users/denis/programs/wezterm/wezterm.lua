@@ -52,13 +52,13 @@ config.audible_bell = 'Disabled'
 config.front_end = 'WebGpu'
 
 --TODO: Until better times disable tmux
--- config.unix_domains = {
---   {
---     name = 'unix'
---   }
--- }
---
--- config.default_gui_startup_args = { 'connect', 'unix' }
+config.unix_domains = {
+  {
+    name = 'unix'
+  }
+}
+
+config.default_gui_startup_args = { 'connect', 'unix' }
 
 config.window_padding = {
   left   = '0',

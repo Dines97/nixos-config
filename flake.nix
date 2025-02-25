@@ -10,8 +10,7 @@
 
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
-    # "nixpkgs-24.05".url = "github:NixOS/nixpkgs/nixos-24.05";
-    # "nixpkgs-23.11".url = "github:NixOS/nixpkgs/nixos-23.11";
+    "nixpkgs-24.11".url = "github:NixOS/nixpkgs/nixos-24.05";
 
     # home-manager = {
     #   url = "github:nix-community/home-manager/release-23.11";
@@ -32,10 +31,10 @@
 
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    # hyprland = {
+    #   url = "github:hyprwm/Hyprland";
+    #   inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # };
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     neovim-nightly-overlay = {
@@ -57,7 +56,7 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     lan-mouse = {
@@ -91,6 +90,7 @@
 
       sharedOverlays = [
         inputs.nh.overlays.default
+        # inputs.neovim-nightly-overlay.overlays.default
         (import ./overlays)
       ];
 

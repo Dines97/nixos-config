@@ -18,7 +18,7 @@ with lib.hm.gvariant; {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       gtk-theme = "vimix-dark-compact-doder";
-      icon-theme = "Vimix-Black-dark";
+      icon-theme = "Vimix-black-dark";
     };
 
     # "org/gnome/desktop/peripherals/keyboard" = {

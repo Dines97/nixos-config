@@ -4,9 +4,19 @@
   ...
 }: {
   programs.nixvim.plugins = {
-    # presence-nvim = {
-    #   enable = true;
-    # };
+    kulala = {
+      enable = true;
+      lazyLoad = {
+        enable = false;
+      };
+      settings = {
+        global_keymaps = true;
+      };
+    };
+
+    presence-nvim = {
+      enable = true;
+    };
 
     rest = {
       enable = true;

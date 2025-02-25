@@ -42,21 +42,24 @@
     stateVersion = "24.05";
 
     sessionVariables = {
+      LANG = "en_US.UTF-8";
+
       PAGER = "less";
       BROWSER = "firefox";
       EDITOR = "nvim";
       LESS = "-r --mouse";
       GOPATH = "$HOME/go";
 
-      DOTNET_CLI_UI_LANGUAGE = "en";
-      LANG = "en_US.UTF-8";
-
       RUSTC_WRAPPER = "sccache";
+
+      DOTNET_ROOT = "${pkgs.dotnet-sdk}/share/dotnet";
+      DOTNET_CLI_UI_LANGUAGE = "en";
     };
 
     sessionPath = [
       "$HOME/.krew/bin"
       "$HOME/go/bin"
+      "$HOME/.dotnet/tools"
     ];
 
     shellAliases = {
