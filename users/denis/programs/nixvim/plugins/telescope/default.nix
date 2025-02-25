@@ -11,6 +11,12 @@
           sorting_strategy = "ascending";
           sorter.__raw = "require('telescope.sorters').get_fuzzy_file";
         };
+        pickers = {
+          live_grep = {
+            sort_lastused = true;
+            sorting_strategy = "ascending";
+          };
+        };
       };
 
       extensions = {
@@ -35,3 +41,4 @@
     };
   };
 }
+

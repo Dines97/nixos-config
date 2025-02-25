@@ -5,7 +5,7 @@
   osConfig ? null,
   ...
 }: {
-  imports = [./dconf.nix];
+  # imports = [./dconf.nix];
 
   config = lib.mkIf (osConfig != null && osConfig.services.xserver.desktopManager.gnome.enable) {
     home = {

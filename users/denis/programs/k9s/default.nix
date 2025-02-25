@@ -10,8 +10,11 @@
       k9s = {
         ui = {
           enableMouse = true;
+          logoless = true;
+          reactive = true;
         };
       };
     };
   };
 }
+

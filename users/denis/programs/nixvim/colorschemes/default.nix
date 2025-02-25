@@ -14,6 +14,9 @@
         };
       };
     };
+    cyberdream = {
+      enable = false;
+    };
   };
 }
 

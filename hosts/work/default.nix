@@ -73,8 +73,6 @@
     # Enable integration with Docker Desktop (needs to be installed)
     docker-desktop.enable = false;
 
-    nativeSystemd = true;
-
     interop = {
       includePath = false;
       register = false;
@@ -126,12 +124,12 @@
       ];
     };
 
-    squid = {
-      enable = true;
-      extraConfig = ''
-        http_access allow all
-      '';
-    };
+    # squid = {
+    #   enable = true;
+    #   extraConfig = ''
+    #     http_access allow all
+    #   '';
+    # };
 
     # resolved = {
     #   enable = true;
@@ -141,3 +139,4 @@
 
   system.stateVersion = "24.05";
 }
+

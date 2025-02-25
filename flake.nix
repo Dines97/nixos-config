@@ -77,7 +77,7 @@
         allowUnfree = true;
         # cudaSupport = true;
         permittedInsecurePackages = [
-          "squid-6.10" # squid reverse proxy
+          # "squid-6.13" # squid reverse proxy
           "electron-29.4.6"
 
           "dotnet-sdk-7.0.410"

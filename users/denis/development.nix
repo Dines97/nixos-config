@@ -32,6 +32,7 @@
       skopeo
       rclone
       nerdctl
+      minio-client
 
       jsonnet
       jsonnet-bundler
