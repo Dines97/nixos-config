@@ -36,22 +36,24 @@
       # Notification
       notify = {
         enable = true;
-        timeout = 5000;
-        render.__raw = ''"wrapped-compact"'';
-        stages = [
-          ''
-            function(...)
-              local opts = stages[1](...)
-              if opts then
-                opts.border = 'none'
+        settings = {
+          timeout = 5000;
+          render.__raw = ''"wrapped-compact"'';
+          stages = [
+            ''
+              function(...)
+                local opts = stages[1](...)
+                if opts then
+                  opts.border = 'none'
+                end
+                return opts
               end
-              return opts
-            end
-          ''
-          ''
-            unpack(stages, 2)
-          ''
-        ];
+            ''
+            ''
+              unpack(stages, 2)
+            ''
+          ];
+        };
       };
 
       # File explorer
