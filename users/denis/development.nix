@@ -14,6 +14,7 @@
       kubectl
       kubectx
       kubeswitch
+      kdash
 
       kubernetes-helm
       kube3d
@@ -34,7 +35,7 @@
       nerdctl
       minio-client
 
-      jsonnet
+      go-jsonnet
       jsonnet-bundler
 
       # DevOps

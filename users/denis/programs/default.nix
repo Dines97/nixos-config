@@ -22,17 +22,17 @@
       systemd = false;
       package = inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
-    beets = {
-      enable = true;
-      settings = {
-        import = {
-          write = "yes"; # Wrtie metadata
-
-          copy = "yes"; # Copy instead of move
-          move = "no"; # " "
-        };
-      };
-    };
+    # beets = {
+    #   enable = true;
+    #   settings = {
+    #     import = {
+    #       write = "yes"; # Wrtie metadata
+    #
+    #       copy = "yes"; # Copy instead of move
+    #       move = "no"; # " "
+    #     };
+    #   };
+    # };
 
     zoxide = {
       enable = true;

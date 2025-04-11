@@ -12,6 +12,7 @@
           enableMouse = true;
           logoless = true;
           reactive = true;
+          noIcons = true;
         };
       };
     };
