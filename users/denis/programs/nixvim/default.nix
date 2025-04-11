@@ -24,6 +24,19 @@
       enable = true;
     };
 
+    diagnostics = {
+      virtual_text = {
+        severity = {
+          max.__raw = "vim.diagnostic.severity.WARN";
+        };
+      };
+      virtual_lines = {
+        severity = {
+          min.__raw = "vim.diagnostic.severity.ERROR";
+        };
+      };
+    };
+
     # extraConfigLuaPre = ''
     #   vim.keymap.set("", "\\", "<Nop>", { noremap = true, silent = true })
     # '';
@@ -88,8 +101,15 @@
 
       undofile = true;
 
-      # spelllang = "en_us";
-      # spell = true;
+      spell = true;
+      spelllang = "en_us";
+      spelloptions = ["camel"];
+    };
+
+    dependencies = {
+      gcc = {
+        enable = true;
+      };
     };
   };
 }

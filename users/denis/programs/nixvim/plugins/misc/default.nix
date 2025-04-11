@@ -20,6 +20,13 @@
       enableTelescope = true;
     };
 
+    snacks = {
+      enable = true;
+      settings = {
+        picker = {};
+      };
+    };
+
     # lazy = {
     #   enable = true;
     #   plugins = [];

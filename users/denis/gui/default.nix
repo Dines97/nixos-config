@@ -15,6 +15,19 @@ in {
   ];
 
   config = lib.mkIf condition {
+    xdg = {
+      autostart = {
+        enable = true;
+        entries = [
+          "${pkgs.discord}/share/applications/discord.desktop"
+          "${pkgs.flameshot}/share/applications/org.flameshot.Flameshot.desktop"
+          "${pkgs.input-leap}/share/applications/io.github.input_leap.InputLeap.desktop"
+          "${pkgs.spotify}/share/applications/spotify.desktop"
+          "${pkgs.teams-for-linux}/share/applications/teams-for-linux.desktop"
+        ];
+      };
+    };
+
     home = {
       packages = with pkgs; [
         (discord.override {nss = nss_latest;})
@@ -54,9 +67,9 @@ in {
           # tweaks = ["flat" "grey" "mix" "translucent"];
         })
         (vimix-icon-theme.override {
-          # colorVariants = ["Black"];
+          colorVariants = ["Black"];
         })
-        vimix-cursor-theme
+        vimix-cursors
 
         # dracula-theme
         # dracula-icon-theme
@@ -104,7 +117,7 @@ in {
         lens
 
         # JetBrains
-        # jetbrains.rider
+        jetbrains.rider
         # jetbrains.webstorm
         # jetbrains.idea-ultimate
         # jetbrains.pycharm-professional

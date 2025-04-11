@@ -206,6 +206,14 @@ require('legendary').setup({
     { '<leader>th',  require('telescope.builtin').command_history,                                mode = { 'n' },      description = 'Command history' },
     { '<leader>tn',  '<cmd>Telescope neoclip<cr>',                                                mode = { 'n' },      description = 'Neoclip' },
 
+    -- snacks.nvim
+    { '<leader>sf',  Snacks.picker.files,                                                         mode = { 'n' },      description = 'Files' },
+    { '<leader>sg',  Snacks.picker.grep,                                                          mode = { 'n' },      description = 'Grep' },
+    { '<leader>sb',  Snacks.picker.buffers,                                                       mode = { 'n' },      description = 'Buffers' },
+    { '<leader>sc',  Snacks.picker.commands,                                                      mode = { 'n' },      description = 'Commands' },
+    { '<leader>sh',  Snacks.picker.command_history,                                               mode = { 'n' },      description = 'Command history' },
+
+
     -- vim.diagnostic
     { '<leader>de',  vim.diagnostic.open_float,                                                   mode = { 'n' },      description = 'Open float' },
     { '<leader>dq',  vim.diagnostic.setloclist,                                                   mode = { 'n' },      description = 'setloclist' },

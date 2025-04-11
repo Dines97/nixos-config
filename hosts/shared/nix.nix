@@ -10,7 +10,7 @@
   });
 in {
   nix = {
-    package = pkgs.nixVersions.git;
+    package = pkgs.nixVersions.latest;
 
     # generateNixPathFromInputs = true;
     # linkInputs = true;
