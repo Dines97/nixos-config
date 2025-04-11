@@ -9,9 +9,6 @@
       lazyLoad = {
         enable = false;
       };
-      settings = {
-        global_keymaps = true;
-      };
     };
 
     presence-nvim = {
@@ -21,6 +18,13 @@
     rest = {
       enable = true;
       enableTelescope = true;
+    };
+
+    snacks = {
+      enable = true;
+      settings = {
+        picker = {};
+      };
     };
 
     # lazy = {

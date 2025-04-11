@@ -22,7 +22,6 @@
           enable = true;
         };
       };
-      gccPackage = pkgs.gcc;
     };
 
     # FIX: Error out when scrolling upward

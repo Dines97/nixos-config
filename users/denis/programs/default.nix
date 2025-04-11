@@ -7,6 +7,7 @@
 }: {
   imports = [
     ./alacritty
+    ./fish
     ./git
     ./k9s
     ./nixvim
@@ -20,7 +21,8 @@
     lan-mouse = {
       enable = true;
       systemd = false;
-      package = inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      package = pkgs.lan-mouse;
+      # package = inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
     # beets = {
     #   enable = true;
