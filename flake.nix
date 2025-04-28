@@ -63,6 +63,11 @@
       url = "github:feschber/lan-mouse";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   description = "System configuration";
@@ -109,6 +114,18 @@
       };
 
       hosts = {
+        Denis-NC = {
+          # channelName = "nixpkgs-master";
+          channelName = "nixpkgs-unstable";
+          system = "x86_64-linux";
+          # hostPlatform = "x86_64-linux";
+          modules = [
+            ./hosts/denis-nc
+            inputs.disko.nixosModules.disko
+            inputs.home-manager-unstable.nixosModules.home-manager
+          ];
+        };
+
         Denis-N = {
           # channelName = "nixpkgs-master";
           channelName = "nixpkgs-unstable";

@@ -50,6 +50,24 @@
         };
       };
     };
+
+    lsp = {
+      servers = {
+        harper_ls = {
+          enable = false;
+          extraOptions = {
+            linters = {
+              SentenceCapitalization = false;
+            };
+          };
+          settings = {
+            linters = {
+              SentenceCapitalization = false;
+            };
+          };
+        };
+      };
+    };
   };
 }
 

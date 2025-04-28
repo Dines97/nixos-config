@@ -67,7 +67,7 @@ in {
           # tweaks = ["flat" "grey" "mix" "translucent"];
         })
         (vimix-icon-theme.override {
-          colorVariants = ["Black"];
+          # colorVariants = ["Black"];
         })
         vimix-cursors
 
@@ -84,8 +84,8 @@ in {
         obs-studio
         piper
         # mozillavpn
-        protonvpn-gui
-        protonvpn-cli
+        # protonvpn-gui
+        # protonvpn-cli
         # cloudflare-warp
         mullvad-vpn
         # aawmtt

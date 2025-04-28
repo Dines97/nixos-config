@@ -101,9 +101,9 @@
 
       undofile = true;
 
-      spell = true;
-      spelllang = "en_us";
-      spelloptions = ["camel"];
+      # spell = true;
+      # spelllang = "en_us";
+      # spelloptions = ["camel"];
     };
 
     dependencies = {

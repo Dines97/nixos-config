@@ -212,6 +212,9 @@ require('legendary').setup({
     { '<leader>sb',  Snacks.picker.buffers,                                                       mode = { 'n' },      description = 'Buffers' },
     { '<leader>sc',  Snacks.picker.commands,                                                      mode = { 'n' },      description = 'Commands' },
     { '<leader>sh',  Snacks.picker.command_history,                                               mode = { 'n' },      description = 'Command history' },
+    { '<leader>ss',  Snacks.picker.lsp_symbols,                                                   mode = { 'n' },      description = 'LSP Symbols' },
+    { '<leader>sS',  Snacks.picker.lsp_workspace_symbols,                                         mode = { 'n' },      description = 'LSP Workspace Symbols' },
+
 
 
     -- vim.diagnostic

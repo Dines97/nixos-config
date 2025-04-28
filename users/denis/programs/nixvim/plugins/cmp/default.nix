@@ -30,15 +30,21 @@ in {
           #   preset = "luasnip";
           # };
           sources = {
-            default = ["lsp" "snippets" "buffer" "path" "spell"];
+            default = [
+              "lsp"
+              "snippets"
+              "buffer"
+              "path"
+              # "spell"
+            ];
             providers = {
-              spell = {
-                module = "blink-cmp-spell";
-                name = "Spell";
-                score_offset = 100;
-                opts = {
-                };
-              };
+              # spell = {
+              #   module = "blink-cmp-spell";
+              #   name = "Spell";
+              #   score_offset = 100;
+              #   opts = {
+              #   };
+              # };
             };
           };
           completion = {
@@ -67,9 +73,9 @@ in {
         };
       };
 
-      blink-cmp-spell = {
-        enable = true;
-      };
+      # blink-cmp-spell = {
+      #   enable = true;
+      # };
 
       # cmp = {
       #   enable = true;
