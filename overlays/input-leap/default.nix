@@ -1,6 +1,8 @@
 {
   lib,
+  stdenv,
   fetchFromGitHub,
+  fetchpatch2,
   cmake,
   withLibei ? true,
   avahi,
@@ -20,34 +22,29 @@
   qtbase,
   qttools,
   wrapGAppsHook3,
-  stdenv,
-  qtwayland,
-  qt5compat,
-  qt6,
+  wrapQtAppsHook,
 }:
 stdenv.mkDerivation rec {
   pname = "input-leap";
-  version = "unstable-2024-08-01";
+  version = "2025-04-26";
 
   src = fetchFromGitHub {
     owner = "input-leap";
     repo = "input-leap";
-    rev = "3a95e113435c6433d2f718ee55a4f688ec1ff893";
-    hash = "sha256-g6Eufl/xQ5y1qXbqfmO4ziQN+cH2bw+3ky+BQPsPGL8=";
+    rev = "3b4a6c9f494223a2b74b43a97cc80bb181e3a3d4";
+    hash = "sha256-AF+7UNWs2aUoONZiV0arBeMuf6KEE3YugWa3NgWE/yc=";
     fetchSubmodules = true;
   };
 
   nativeBuildInputs = [
-    qt6.wrapQtAppsHook
     pkg-config
     cmake
     wrapGAppsHook3
+    wrapQtAppsHook
     qttools
   ];
   buildInputs =
     [
-      qt6.qtbase
-      qtwayland
       curl
       qtbase
       avahi
@@ -59,9 +56,19 @@ stdenv.mkDerivation rec {
       libXdmcp
       libICE
       libSM
-      qt5compat
     ]
-    ++ lib.optionals withLibei [libei libportal];
+    ++ lib.optionals withLibei [
+      libei
+      libportal
+    ];
+
+  # patches = [
+  #   (fetchpatch2 {
+  #     # Upstream fix for crash on qt6.8 https://github.com/input-leap/input-leap/issues/2067
+  #     url = "https://github.com/input-leap/input-leap/commit/2641bc502e16b1fb7372b43e94d4b894cbc71279.patch?full_index=1";
+  #     hash = "sha256-LV09ITcE0ihKMByM5wiRetGwKbPrJbVY6HjZLqa8Dcs=";
+  #   })
+  # ];
 
   cmakeFlags =
     [
@@ -78,7 +85,7 @@ stdenv.mkDerivation rec {
   '';
 
   postFixup = ''
-    substituteInPlace $out/share/applications/io.github.input_leap.InputLeap.desktop \
+    substituteInPlace $out/share/applications/io.github.input_leap.input-leap.desktop \
       --replace "Exec=input-leap" "Exec=$out/bin/input-leap"
   '';
 
@@ -94,7 +101,13 @@ stdenv.mkDerivation rec {
     '';
     homepage = "https://github.com/input-leap/input-leap";
     license = lib.licenses.gpl2Plus;
-    maintainers = with lib.maintainers; [kovirobi phryneas twey shymega];
+    maintainers = with lib.maintainers; [
+      kovirobi
+      phryneas
+      twey
+      shymega
+    ];
     platforms = lib.platforms.linux;
   };
 }
+

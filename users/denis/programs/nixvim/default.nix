@@ -24,15 +24,17 @@
       enable = true;
     };
 
-    diagnostics = {
-      virtual_text = {
-        severity = {
-          max.__raw = "vim.diagnostic.severity.WARN";
+    diagnostic = {
+      config = {
+        virtual_text = {
+          severity = {
+            max.__raw = "vim.diagnostic.severity.WARN";
+          };
         };
-      };
-      virtual_lines = {
-        severity = {
-          min.__raw = "vim.diagnostic.severity.ERROR";
+        virtual_lines = {
+          severity = {
+            min.__raw = "vim.diagnostic.severity.ERROR";
+          };
         };
       };
     };

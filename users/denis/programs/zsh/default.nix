@@ -25,7 +25,7 @@
       theme = "robbyrussell";
     };
 
-    initExtra = ''
+    initContent = ''
       RPS1='$(kube_ps1)'
     '';
 

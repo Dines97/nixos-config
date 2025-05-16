@@ -4,17 +4,21 @@
   ...
 }: {
   programs = {
-    uwsm = {
-      enable = true;
-    };
+    # uwsm = {
+    #   enable = true;
+    # };
+    #
+    # hyprland = {
+    #   enable = true;
+    #   # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    #   # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    #
+    #   withUWSM = true;
+    #   # enableNvidiaPatches = true;
+    # };
 
-    hyprland = {
-      enable = true;
-      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-
-      withUWSM = true;
-      # enableNvidiaPatches = true;
+    steam = {
+      # enable = true;
     };
 
     gamemode = {

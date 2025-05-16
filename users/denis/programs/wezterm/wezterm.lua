@@ -41,21 +41,20 @@ local config = wezterm.config_builder()
 config.color_scheme = 'One Half Black (Gogh)'
 config.font = wezterm.font('JetBrainsMono Nerd Font')
 config.window_background_opacity = 0.9
-config.initial_cols = 140
-config.initial_rows = 30
-config.font_size = 13.0
+config.initial_cols = 120
+config.initial_rows = 24
+config.font_size = 11.0
 config.check_for_updates = false
 config.exit_behavior = 'Close'
 config.audible_bell = 'Disabled'
 
 --TODO: Remove this temporary fix for square font in wezterm
-config.front_end = 'WebGpu'
+-- config.front_end = 'WebGpu'
 
---TODO: Until better times disable tmux
 -- config.unix_domains = {
 --   {
---     name = 'unix'
---   }
+--     name = 'unix',
+--   },
 -- }
 --
 -- config.default_gui_startup_args = { 'connect', 'unix' }

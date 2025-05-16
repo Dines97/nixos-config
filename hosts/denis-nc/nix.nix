@@ -5,22 +5,13 @@
   ...
 }: {
   nix = {
-    settings = {
-      # substituters = [
-      #   "ssh://denis@dt826.local"
-      # ];
-    };
+    settings.system-features = ["gccarch-znver5" "benchmark" "big-parallel" "kvm"];
 
-    buildMachines = [
-      {
-        hostName = "denis@dt826.local";
-        system = "x86_64-linux";
-        protocol = "ssh-ng";
-        maxJobs = 8;
-        speedFactor = 4;
-        # supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-        # mandatoryFeatures = [];
-      }
-    ];
+    sshServe = {
+      enable = true;
+      protocol = "ssh-ng";
+      write = true;
+    };
   };
 }
+

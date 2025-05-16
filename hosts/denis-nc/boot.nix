@@ -3,12 +3,15 @@
     kernel = {
       sysctl = {
         "kernel.sysrq" = 1;
+        "vm.max_map_count" = 2147483642;
       };
     };
 
+    # kernelParams = ["amd_pstate=active"];
+
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "ahci" "thunderbolt" "usbhid" "usb_storage" "sd_mod"];
-      kernelModules = [];
+      # kernelModules = ["amdgpu"];
 
       # systemd.enable = true;
 
@@ -27,12 +30,6 @@
         };
       };
     };
-    kernelModules = ["kvm-amd"];
-    extraModulePackages = [];
-
-    blacklistedKernelModules = [
-      "uvcvideo"
-    ];
 
     tmp = {
       cleanOnBoot = true;
@@ -44,12 +41,15 @@
         enable = true;
         memtest86.enable = true;
       };
-      # efi.canTouchEfiVariables = true;
+      efi.canTouchEfiVariables = true;
     };
 
     supportedFilesystems = ["ntfs" "exfat"];
 
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = pkgs.linuxPackages_cachyos;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    # kernelPackages = pkgs.linuxPackages_latest;
 
     # plymouth = {
     #   enable = true;

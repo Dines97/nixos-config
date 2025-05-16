@@ -68,6 +68,8 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   };
 
   description = "System configuration";
@@ -81,15 +83,7 @@
         allowUnfree = true;
         # cudaSupport = true;
         permittedInsecurePackages = [
-          # "squid-6.13" # squid reverse proxy
-          "electron-29.4.6"
-
-          "dotnet-sdk-7.0.410"
-          "dotnet-sdk-wrapped-7.0.410"
-          "dotnet-core-combined"
-
-          "dotnet-sdk-6.0.428"
-          "dotnet-sdk-wrapped-6.0.428"
+          "ventoy-1.1.05"
         ];
       };
 
@@ -110,15 +104,14 @@
           ./hosts/shared
 
           inputs.sops-nix.nixosModules.sops
+          inputs.chaotic.nixosModules.default
         ];
       };
 
       hosts = {
         Denis-NC = {
-          # channelName = "nixpkgs-master";
           channelName = "nixpkgs-unstable";
           system = "x86_64-linux";
-          # hostPlatform = "x86_64-linux";
           modules = [
             ./hosts/denis-nc
             inputs.disko.nixosModules.disko
@@ -130,7 +123,6 @@
           # channelName = "nixpkgs-master";
           channelName = "nixpkgs-unstable";
           system = "x86_64-linux";
-          # hostPlatform = "x86_64-linux";
           modules = [
             ./hosts/denis-n
             inputs.home-manager-unstable.nixosModules.home-manager

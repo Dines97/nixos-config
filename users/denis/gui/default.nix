@@ -10,7 +10,7 @@
 in {
   imports = [
     ./gnome.nix
-    ./hyprland.nix
+    # ./hyprland.nix
     ./plasma.nix
   ];
 
@@ -21,7 +21,7 @@ in {
         entries = [
           "${pkgs.discord}/share/applications/discord.desktop"
           "${pkgs.flameshot}/share/applications/org.flameshot.Flameshot.desktop"
-          "${pkgs.input-leap}/share/applications/io.github.input_leap.InputLeap.desktop"
+          "${pkgs.input-leap}/share/applications/io.github.input_leap.input-leap.desktop"
           "${pkgs.spotify}/share/applications/spotify.desktop"
           "${pkgs.teams-for-linux}/share/applications/teams-for-linux.desktop"
         ];
@@ -48,6 +48,7 @@ in {
         easyeffects
         # mission-center
         gimp
+        lact
 
         # Pipewire gui
         coppwr
@@ -70,6 +71,7 @@ in {
           # colorVariants = ["Black"];
         })
         vimix-cursors
+        colloid-kde
 
         # dracula-theme
         # dracula-icon-theme

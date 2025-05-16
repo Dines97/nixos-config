@@ -28,6 +28,11 @@
   #   };
   # };
 
+  # powerManagement = {
+  #   # enable = true;
+  #   cpuFreqGovernor = "performance";
+  # };
+
   environment = {
     pathsToLink = [
       # Required for https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.enableCompletion
@@ -47,12 +52,6 @@
     sessionVariables = {
       GTK_THEME = "vimix-dark-compact-doder";
     };
-  };
-
-  qt = {
-    enable = true;
-    style = "adwaita-dark";
-    # platformTheme = "gnome";
   };
 
   virtualisation = {
@@ -80,11 +79,18 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC/G+pCzalAw0XAwdE/M+8az+OkN3+MC6XCxrzY3wtYq root@Denis-N"
   ];
 
-  # xdg.portal = {
-  #   wlr = {
-  #     enable = true;
-  #   };
-  # };
+  xdg.portal = {
+    enable = true;
+    # wlr.enable = true;
+    xdgOpenUsePortal = true;
+
+    extraPortals = with pkgs; [
+      xdg-desktop-portal
+      xdg-desktop-portal-wlr
+      xdg-desktop-portal-gtk
+      kdePackages.xdg-desktop-portal-kde
+    ];
+  };
 
   networking = {
     hostName = "Denis-NC";
@@ -118,6 +124,7 @@
         3702 # wsdd
         51820 # wireguard
         4242 # lan-mouse
+        34197
       ];
       checkReversePath = false;
     };

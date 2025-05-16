@@ -21,8 +21,8 @@
     lan-mouse = {
       enable = true;
       systemd = false;
-      package = pkgs.lan-mouse;
-      # package = inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      # package = pkgs.lan-mouse;
+      package = inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
     # beets = {
     #   enable = true;
@@ -66,10 +66,10 @@
           id = 0;
           isDefault = true;
 
-          userChrome = builtins.readFile (builtins.fetchurl {
-            url = "https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/refs/heads/master/chrome/window_control_force_linux_system_style.css";
-            sha256 = "sha256:18289pgf5g5g7cqd7zx5p6za0nf6cvpsy2wbjpgi2p0h525i8313";
-          });
+          # userChrome = builtins.readFile (builtins.fetchurl {
+          #   url = "https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/refs/heads/master/chrome/window_control_force_linux_system_style.css";
+          #   sha256 = "sha256:18289pgf5g5g7cqd7zx5p6za0nf6cvpsy2wbjpgi2p0h525i8313";
+          # });
           extraConfig = ''
             user_pref("browser.uidensity", 1);
             user_pref("ui.key.menuAccessKeyFocuses", false);

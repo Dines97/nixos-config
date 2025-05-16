@@ -14,6 +14,9 @@
       # ripgrep
       ncdu
       htop
+      phoronix-test-suite
+      lm_sensors
+      nvtopPackages.full
       wget
       inetutils
       openssl
@@ -42,3 +45,4 @@
     ];
   };
 }
+

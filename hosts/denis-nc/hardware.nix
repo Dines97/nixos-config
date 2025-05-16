@@ -5,62 +5,47 @@
   ...
 }: {
   hardware = {
-    # xpadneo.enable = true;
-    # enableAllFirmware = true;
-    # enableRedistributableFirmware = true;
-
-    # nvidia = {
-    #   # Pascal doesn't support open module
-    #   open = false;
-    #
-    #   modesetting.enable = true;
-    #   # package = config.boot.kernelPackages.nvidiaPackages.beta;
-    #
-    #   forceFullCompositionPipeline = true;
-    #
-    #   prime = {
-    #     offload = {
-    #       enable = true;
-    #       enableOffloadCmd = true;
-    #     };
-    #
-    #     # sync.enable = true;
-    #
-    #     # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
-    #     intelBusId = "PCI:0:2:0";
-    #
-    #     # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
-    #     nvidiaBusId = "PCI:2:0:0";
-    #   };
-    #
-    #   powerManagement = {
+    # amdgpu = {
+    #   amdvlk = {
     #     enable = true;
-    #     finegrained = true;
+    #     support32Bit = {
+    #       enable = true;
+    #     };
     #   };
-    #
-    #   # dynamicBoost = {
-    #   #   enable = true;
-    #   # };
     # };
+    # xpadneo.enable = true;
+    enableAllFirmware = true;
+    enableRedistributableFirmware = true;
 
     graphics = {
       enable = true;
-      # driSupport = true;
-      # driSupport32Bit = true;
+      enable32Bit = true;
 
-      # driSupport32Bit = true;
       extraPackages = with pkgs; [
+        amdvlk
+        clinfo
+        libcxx
+        rocmPackages.clr.icd
+        rocmPackages.hipblas
+        rocmPackages.rocblas
+        rocmPackages.rocm-runtime
+        rocmPackages.rocminfo
+        stdenv.cc.cc
         # intel-media-driver # LIBVA_DRIVER_NAME=iHD
         # libva
         # intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
         # vaapiVdpau
         # libvdpau-va-gl
         # # libGL
-        mesa
+        # mesa
       ];
+      extraPackages32 = with pkgs.driversi686Linux; [
+        amdvlk
+      ];
+      # setLdLibraryPath = true;
     };
 
-    # cpu.intel.updateMicrocode = true;
+    cpu.amd.updateMicrocode = true;
   };
 }
 

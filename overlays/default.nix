@@ -20,57 +20,67 @@ final: prev: {
 
   asus-touchpad-numpad-driver = prev.callPackage ./asus-touchpad-numpad-driver {};
 
-  # input-leap = prev.qt6Packages.callPackage ./input-leap {
-  #   avahi = prev.avahi.override {withLibdnssdCompat = true;};
-  # };
+  input-leap = prev.qt6Packages.callPackage ./input-leap {
+    avahi = prev.avahi.override {withLibdnssdCompat = true;};
+  };
 
-  # input-leap =
-  #   (prev.input-leap.overrideAttrs (old: {
-  #     version = "2024-03-25";
+  wezterm = prev.wezterm.overrideAttrs (old: {
+    postInstall =
+      old.postInstall
+      + ''
+        substituteInPlace $out/share/applications/org.wezfurlong.wezterm.desktop --replace \
+        "Exec=wezterm start --cwd ." \
+        "Exec=wezterm"
+      '';
+  });
+
+  # input-leap = prev.input-leap.overrideAttrs (old: {
+  #   version = "2025-04-26";
+  #   src = prev.fetchFromGitHub {
+  #     owner = "input-leap";
+  #     repo = "input-leap";
+  #     rev = "3b4a6c9f494223a2b74b43a97cc80bb181e3a3d4";
+  #     hash = "sha256-AF+7UNWs2aUoONZiV0arBeMuf6KEE3YugWa3NgWE/yc=";
+  #     fetchSubmodules = true;
+  #   };
+  # });
+
+  #   buildInputs = with prev;
+  #     old.buildInputs
+  #     ++ [
+  #       libuuid
+  #       libselinux
+  #       libsepol
+  #     ];
+  # }))
+  # .override {
+  #   libportal = prev.libportal.overrideAttrs (old: {
+  #     version = "2024-03-07";
   #     src = prev.fetchFromGitHub {
-  #       owner = "input-leap";
-  #       repo = "input-leap";
-  #       rev = "a1864cba75342ad289699b9ec56de28a957a6e54";
-  #       hash = "sha256-ToOZ00WOL6nYBmshFt6WWneiX0+/2moP/KvuES37pgE=";
+  #       owner = "flatpak";
+  #       repo = "libportal";
+  #       rev = "7c408fbaac7eaad5359a78083ac04cc2abd06674";
+  #       hash = "sha256-R3v/+j9+8bYLjUhnE3qf0Rer+o9Co0oN8KY8nxGBBNY=";
   #       fetchSubmodules = true;
   #     };
   #
-  #     buildInputs = with prev;
-  #       old.buildInputs
+  #     nativeBuildInputs =
+  #       old.nativeBuildInputs
   #       ++ [
-  #         libuuid
-  #         libselinux
-  #         libsepol
-  #       ];
-  #   }))
-  #   .override {
-  #     libportal = prev.libportal.overrideAttrs (old: {
-  #       version = "2024-03-07";
-  #       src = prev.fetchFromGitHub {
-  #         owner = "flatpak";
-  #         repo = "libportal";
-  #         rev = "7c408fbaac7eaad5359a78083ac04cc2abd06674";
-  #         hash = "sha256-R3v/+j9+8bYLjUhnE3qf0Rer+o9Co0oN8KY8nxGBBNY=";
-  #         fetchSubmodules = true;
-  #       };
-  #
-  #       nativeBuildInputs =
-  #         old.nativeBuildInputs
-  #         ++ [
-  #           prev.qt6.qtbase
-  #         ];
-  #
-  #       # propagatedBuildInputs =
-  #       #   old.propagatedBuildInputs
-  #       #   ++ [
-  #       #     prev.qt6.qtbase
-  #       #   ];
-  #
-  #       buildInputs = [
   #         prev.qt6.qtbase
   #       ];
-  #     });
-  #   };
+
+  # propagatedBuildInputs =
+  #   old.propagatedBuildInputs
+  #   ++ [
+  #     prev.qt6.qtbase
+  #   ];
+
+  #   buildInputs = [
+  #     prev.qt6.qtbase
+  #   ];
+  # });
+  # };
 
   vimPlugins =
     prev.vimPlugins

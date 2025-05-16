@@ -46,7 +46,7 @@
         isNormalUser = true;
         home = "/home/denis";
         description = "Denis Kaynar";
-        extraGroups = ["wheel" "networkmanager" "docker" "podman" "libvirtd"];
+        extraGroups = ["wheel" "networkmanager" "docker" "podman" "libvirtd" "video" "render"];
         shell = pkgs.zsh;
         useDefaultShell = false;
         hashedPassword = "$y$j9T$3ehlIN5zwQLx8bj0JhukK/$6caMKJkpHx5BRFQHzbciUYjEubzFNGl0yY.MTZx.6P0";
@@ -99,25 +99,17 @@
       #   xz
       #   systemd
       #
-      #   coreutils # For conda
-      #
-      #   # glib
-      #
-      #   # libbsd # For pulse secure
-      #   # glib
-      #   # gtkmm3
-      #   # atkmm
-      #   # glibmm
-      #   # pangomm
-      #   # gtk3
-      #   # gnome2.pango
-      #   # at-spi2-atk
-      #   # cairo
-      #   # cairomm
-      #   # libsigcxx
-      #   # gdk-pixbuf
-      #   # webkitgtk
-      #   # gnome.libsoup
+      #   # folding@home
+      #   # amdvlk
+      #   # clinfo
+      #   # libcxx
+      #   # rocmPackages.clr
+      #   # rocmPackages.clr.icd
+      #   # rocmPackages.hipblas
+      #   # rocmPackages.rocblas
+      #   # rocmPackages.rocm-runtime
+      #   # rocmPackages.rocminfo
+      #   # stdenv.cc.cc
       # ];
     };
 
